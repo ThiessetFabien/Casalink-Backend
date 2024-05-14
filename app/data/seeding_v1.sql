@@ -22,9 +22,9 @@ VALUES
 -- Insertion of tasks
 INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id")
 VALUES
-    ('Faire à manger', '2024-06-25 11:10:10+02:00','2024-06-25 12:10:10+02:00', 10, 'high', 'A Faire', 'Description de la tâche 1', 1),
-    ('Faire ménage', '2024-06-26 11:10:10+02:00', '2024-06-25 12:10:10+02:00', 20, 'medium', 'En Cours', 'Description de la tâche 2', 2),
-    ('Task 3', '2024-06-27 11:10:10+02:00', '2024-06-25 12:10:10+02:00', 15, 'low', 'Terminée', 'Description de la tâche 3', 3);
+    ('Faire à manger', '2024-06-25 11:10:10+02:00','2024-06-25 12:10:12+02:00', 10, 'high', 'A Faire', 'Description de la tâche 1', 1),
+    ('Faire ménage', '2024-06-26 11:10:10+02:00', '2024-06-26 12:10:12+02:00', 20, 'medium', 'En Cours', 'Description de la tâche 2', 2),
+    ('Task 3', '2024-06-27 11:10:10+02:00', '2024-06-27 12:10:12+02:00', 15, 'low', 'Terminée', 'Description de la tâche 3', 3);
 
 -- Insertion of homes
 INSERT INTO "home" ("shopping_list", "name", "user_id")
