@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS "category" (
 CREATE TABLE IF NOT EXISTS "task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL,
-  "date" INTERVAL NOT NULL,
+  "start_date" TIMESTAMPTZ NOT NULL,
+  "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") NOT NULL,
   "reward_point" INT,
   "priority" TEXT,
-  "duration" INT,
   "status" TEXT DEFAULT('A Débuter') NOT NULL,
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,

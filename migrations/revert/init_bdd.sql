@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "budget", "subtask", "home", "task", "category", "address", "user";
+DROP TABLE "budget", "subtask", "home", "task", "category", "address", "user" CASCADE;
 
 COMMIT;
