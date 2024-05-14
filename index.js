@@ -24,6 +24,14 @@ app.use((req, _, next) => {
   next();
 });
 
+/**
+ * GET /api-doc
+ * @summary Get documentation
+ * @tags Base
+ * @return {object} 200 - success response - application/json
+ * @return {ApiJsonError} 400 - Bad request response - application/json
+ */
+
 createDoc(app);
 
 // Starting server
@@ -32,9 +40,9 @@ const PORT = process.env.PORT ?? 3000;
 app.use(router);
 
 if (process.env.NODE_ENV === 'production') {
-  app.listen(PORT, () => debug(`Server ready: http://localhost:${PORT})`));
+  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT})`));
 } else {
-  app.listen(PORT, () => debug(`Server ready in development mode: http://localhost:${PORT})`));
+  app.listen(PORT, () => debug(`🖌️ Server ready in development mode: http://localhost:${PORT})`));
 }
 
 export default app;
