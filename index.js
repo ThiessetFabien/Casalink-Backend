@@ -12,7 +12,7 @@ import { config } from 'dotenv';
 
 const debug = debugLib('app:server');
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config({ path: `${__dirname}/.env.${process.env.NODE_ENV}` });
 

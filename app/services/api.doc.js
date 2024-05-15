@@ -1,3 +1,4 @@
+import { debug } from 'console';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
 import path from "path";
 const __dirname = path.dirname('./');
