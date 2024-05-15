@@ -18,12 +18,6 @@ SELECT EXISTS (
 SELECT EXISTS (
     SELECT 1
     FROM information_schema.tables
-    WHERE table_name = 'home'
-) AS "home_exists";
-
-SELECT EXISTS (
-    SELECT 1
-    FROM information_schema.tables
     WHERE table_name = 'task'
 ) AS "task_exists";
 
@@ -44,3 +38,9 @@ SELECT EXISTS (
     FROM information_schema.tables
     WHERE table_name = 'user'
 ) AS "user_exists";
+
+SELECT EXISTS (
+    SELECT 1
+    FROM information_schema.tables
+    WHERE table_name = 'home'
+) AS "home_exists";
