@@ -1,4 +1,5 @@
 import winston from 'winston';
+// import 'winston-daily-rotate-file';
 
 const {
   combine, timestamp, simple, json,
