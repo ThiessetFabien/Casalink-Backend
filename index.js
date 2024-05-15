@@ -7,7 +7,7 @@ import createDoc from './app/services/api.doc.js';
 
 // Load environment variables
 import { config } from 'dotenv';
-config();
+config({ path: `${__dirname}/.env.${process.env.NODE_ENV}` });
 
 const debug = debugLib('app:server');
 
