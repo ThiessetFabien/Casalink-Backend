@@ -6,7 +6,7 @@ const {
 
 const logger = winston.createLogger({
     level: 'http',
-    defaultMeta: { service: 'cadex-api' },
+    defaultMeta: { service: 'casalink-api' },
     format: winston.format.json(),
     transports: [
       new winston.transports.Console({ format: winston.format.simple() }),
