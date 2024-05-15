@@ -47,7 +47,7 @@ const userDataMapper = {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
 
-      const result = await client.query('SELECT * FROM "user" JOIN "home" ON user.id = home.user_id WHERE home.id = $1;', [home_id]);
+      const result = await client.query('SELECT * FROM "user" WHERE home_id = $1;', [home_id]);
     
       return result.rows;
     
@@ -69,11 +69,11 @@ const userDataMapper = {
         throw new Error('Les données du user sont manquantes.');
       }
 
-      const { email, firstname, lastname, birthdate, role, pin, score, password } = userData;
+      const { email, firstname, lastname, birthdate, role, pin, score, password, home_id } = userData;
       
       const result = await client.query(
-        'INSERT INTO "user" (email, firstname, lastname, birthdate, role, pin, score, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;',
-        [email, firstname, lastname, birthdate, role, pin, score, password]
+        'INSERT INTO "user" (email, firstname, lastname, birthdate, role, pin, score, password, home_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;',
+        [email, firstname, lastname, birthdate, role, pin, score, password, home_id]
       );
 
       return result.rows[0];
@@ -93,11 +93,11 @@ const userDataMapper = {
         throw new Error('Les données du user ou l\'identifiant sont manquants.');
       }
 
-      const { email, firstname, lastname, birthdate, role, pin, score, password } = userData;
+      const { email, firstname, lastname, birthdate, role, pin, score, password, home_id } = userData;
       
       const result = await client.query(
-        'UPDATE "user" SET email = $1, firstname = $2, lastname = $3, birthdate = $4, role = $5, pin = $6, score = $7, password = $8 WHERE id = $9 RETURNING *;',
-        [ email, firstname, lastname, birthdate, role, pin, score, password, id]
+        'UPDATE "user" SET email = $1, firstname = $2, lastname = $3, birthdate = $4, role = $5, pin = $6, score = $7, password = $8, home_id = $9 WHERE id = $10 RETURNING *;',
+        [ email, firstname, lastname, birthdate, role, pin, score, password, home_id, id]
       );
 
       return result.rows[0];

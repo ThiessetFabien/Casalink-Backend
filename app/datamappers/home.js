@@ -47,7 +47,7 @@ const homeDataMapper = {
         throw new Error('L\'identifiant du user est manquant.');
       }
 
-      const result = await client.query('SELECT * FROM "home" WHERE user_id=$1;', [user_id]);
+      const result = await client.query('SELECT * FROM "home" JOIN "user" ON "user".home_id = "home".id WHERE "user".id=$1;', [user_id]);
     
       return result.rows[0];
     
@@ -69,11 +69,11 @@ const homeDataMapper = {
         throw new Error('Les données du foyer sont manquantes.');
       }
 
-      const { shopping_list, name, user_id } = homeData;
+      const { shopping_list, name } = homeData;
       
       const result = await client.query(
-        'INSERT INTO "home" (shopping_list, name, user_id) VALUES ($1, $2, $3) RETURNING *;',
-        [shopping_list, name, user_id]
+        'INSERT INTO "home" (shopping_list, name) VALUES ($1, $2) RETURNING *;',
+        [shopping_list, name]
       );
 
       return result.rows[0];
@@ -93,11 +93,11 @@ const homeDataMapper = {
         throw new Error('Les données du foyer ou l\'identifiant sont manquants.');
       }
 
-      const { shopping_list, name, user_id } = homeData;
+      const { shopping_list, name } = homeData;
       
       const result = await client.query(
-        'UPDATE "home" SET shopping_list = $1, name = $2, user_id = $3 WHERE id = $4 RETURNING *;',
-        [shopping_list, name, user_id, id]
+        'UPDATE "home" SET shopping_list = $1, name = $2 WHERE id = $3 RETURNING *;',
+        [shopping_list, name, id]
       );
 
       return result.rows[0];
