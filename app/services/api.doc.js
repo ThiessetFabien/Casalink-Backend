@@ -1,4 +1,7 @@
+import { debug } from 'console';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
+import path from "path";
+const __dirname = path.dirname('./');
 
 const options = {
   info: {
@@ -6,14 +9,20 @@ const options = {
     title: "CasaLink",
     description: "Gestion de planification familiale",
   },
-  baseDir: import.meta.url.substring(7, import.meta.url.lastIndexOf('/')),
+  baseDir: __dirname,
 
   filesPattern: '../**/*.js',
 
   swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE || '/api-docs',
 
   exposeApiDocs: true,
-  apiDocsPath: '/api',
+  apiDocsPath: '/api-docs',
 };
+
+/**
+ * Swagger middleware factory
+ * @param {object} app Express application
+ * @returns {object} Express JSDoc Swagger middleware that create web documentation
+ */
 
 export default (app) => expressJSDocSwagger(app)(options);
