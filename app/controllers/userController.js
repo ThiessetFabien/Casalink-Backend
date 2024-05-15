@@ -1,4 +1,4 @@
-import { findAllUsers, findUserById, findUsersByHomeId, createUser, updateUser, deleteUserById } from '../datamappers/user'
+import userDataMapper from '../datamappers/user.js'
 
 
 const userController = {
@@ -6,7 +6,7 @@ const userController = {
   // REQUETE GET
   getAllUsers: async (req, res) => {
     try {
-      const user = await findAllUsers()
+      const user = await userDataMapper.findAllUsers()
       res.json({ status: 'success', data: { user } });
 
     } catch(error) {
@@ -19,7 +19,7 @@ const userController = {
   getUserById: async (req, res) => {
     try {
       const id = req.params.id;
-      const task = await findUserById(id)
+      const task = await userDataMapper.findUserById(id)
 
       if(!task) {
         res.status(404).send('Ce user n\'existe pas')
@@ -37,7 +37,7 @@ const userController = {
   getUserByHomeId: async (req, res) => {
     try {
       const id = req.params.id;
-      const user = await findUsersByHomeId(id)
+      const user = await userDataMapper.findUsersByHomeId(id)
 
       if(!user) {
         res.status(404).send('Ce user n\'existe pas')
@@ -56,7 +56,7 @@ const userController = {
   createOneUser: async (req, res) => {
     try {
       const userData = req.body;
-      const task = await createUser(userData)
+      const task = await userDataMapper.createUser(userData)
       res.json({ status: 'success', data: { task } });
 
     } catch(error) {
@@ -70,7 +70,7 @@ const userController = {
     try {
       const id = req.params.id;
       const userData = req.body;
-      const task = await updateUser(id, userData)
+      const task = await userDataMapper.updateUser(id, userData)
       res.json({ status: 'success', data: { task } });
 
     } catch(error) {
@@ -83,7 +83,7 @@ const userController = {
   deleteOneUser: async (req, res) => {
     try {
       const id = req.params.id;
-      await deleteUserById(id)
+      await userDataMapper.deleteUserById(id)
       res.json({ status: 'success', message: 'Le user a bien été supprimé' });
 
     } catch(error) {

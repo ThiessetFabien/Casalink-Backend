@@ -1,4 +1,4 @@
-import { findAllTask, findTaskById, findTaskByUserId, createTask, updateTask, deleteTaskById } from '../datamappers/task'
+import taskDataMapper from '../datamappers/task.js'
 
 
 const taskController = {
@@ -6,7 +6,7 @@ const taskController = {
   // REQUETE GET
   getAlltasks: async (req, res) => {
     try {
-      const tasks = await findAllTask()
+      const tasks = await taskDataMapper.findAllTask()
       res.json({ status: 'success', data: { tasks } });
 
     } catch(error) {
@@ -19,7 +19,7 @@ const taskController = {
   getTaskById: async (req, res) => {
     try {
       const id = req.params.id;
-      const task = await findTaskById(id)
+      const task = await taskDataMapper.findTaskById(id)
 
       if(!task) {
         res.status(404).send('Cette tache n\'existe pas')
@@ -37,7 +37,7 @@ const taskController = {
   getTaskByUserId: async (req, res) => {
     try {
       const id = req.params.id;
-      const tasks = await findTaskByUserId(id)
+      const tasks = await taskDataMapper.findTaskByUserId(id)
 
       if(!tasks) {
         res.status(404).send('Ces taches n\'existe pas')
@@ -56,7 +56,7 @@ const taskController = {
   createOneTask: async (req, res) => {
     try {
       const taskData = req.body;
-      const task = await createTask(taskData)
+      const task = await taskDataMapper.createTask(taskData)
       res.json({ status: 'success', data: { task } });
 
     } catch(error) {
@@ -70,7 +70,7 @@ const taskController = {
     try {
       const id = req.params.id;
       const taskData = req.body;
-      const task = await updateTask(id, taskData)
+      const task = await taskDataMapper.updateTask(id, taskData)
       res.json({ status: 'success', data: { task } });
 
     } catch(error) {
@@ -83,7 +83,7 @@ const taskController = {
   deleteOneTask: async (req, res) => {
     try {
       const id = req.params.id;
-      await deleteTaskById(id)
+      await taskDataMapper.deleteTaskById(id)
       res.json({ status: 'success', message: 'La tache a bien été supprimée' });
 
     } catch(error) {
