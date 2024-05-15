@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "DEBUG=app:* npx nodemon index.js"
+    "dev": "DEBUG=app:* NODE_ENV=development npx nodemon index.js"
   },
   "keywords": [],
   "author": "",

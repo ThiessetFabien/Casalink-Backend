@@ -4,12 +4,17 @@ import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // Load environment variables
 import { config } from 'dotenv';
-config();
 
 const debug = debugLib('app:server');
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+config({ path: `${__dirname}/.env.${process.env.NODE_ENV}` });
 
 const app = express();
 
