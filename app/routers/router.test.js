@@ -3,7 +3,7 @@ import { describe, it, before } from "mocha";
 import { expect } from "chai";
 import router from "./router.js";
 
-describe("router", () => {
+describe("API endpoints", () => {
 
   it("should have a get method", () => {
     expect(router.get).to.be.a("function");
