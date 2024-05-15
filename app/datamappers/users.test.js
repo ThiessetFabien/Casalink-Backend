@@ -3,14 +3,14 @@ import { expect } from "chai";
 import casalinkData from "../services/index";
 
 
-describe('Casalink génére la liste des membres', () => {
+describe('Casalink génére la liste des users', () => {
     it('should return a object', async () => {
         expect(typeof casalinkData).to.be.an('object');
         });
-    it('should return a list of members', async () => {
-        const membersList = await casalinkData.findAllMember();
-        expect(membersList).to.be.an('array');
-        membersList.forEach(member => {
+    it('should return a list of users', async () => {
+        const usersList = await casalinkData.findAllMember();
+        expect(usersList).to.be.an('array');
+        usersList.forEach(member => {
          expect(member).to.have.property('firstname'); 
          expect(member).to.have.property('lastname');
          expect(member).to.have.property('email');

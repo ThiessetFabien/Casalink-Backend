@@ -1,16 +1,16 @@
 import debug from "debug";
-import userDataMapper from "../datamappers/user";
+import userDataMapper from "../datamappers";
 
 const casalinkData = {
-    async findAllMember() {
-        const membersList = await userDataMapper.findAllUsers();
-        debug("casalinkData:findAllMember")("membersList", membersList);
-        return membersList;
+    async findAllUser() {
+        const usersList = await userDataMapper.findAllUsers();
+        debug("casalinkData:findAlluser")("usersList", usersList);
+        return usersList;
     },
-    async findOneMember(id) {
-        const membersID = await userDataMapper.findUserById(id);
-        debug("casalinkData:find")("membersID", membersID);
-        return membersID;
+    async findOneUser(id) {
+        const usersID = await userDataMapper.findUserById(id);
+        debug("casalinkData:find")("usersID", usersID);
+        return usersID;
     }
 };
 
