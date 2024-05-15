@@ -1,4 +1,5 @@
 import winston from 'winston';
+// import 'winston-daily-rotate-file';
 
 const {
   combine, timestamp, simple, json,
@@ -6,7 +7,7 @@ const {
 
 const logger = winston.createLogger({
     level: 'http',
-    defaultMeta: { service: 'cadex-api' },
+    defaultMeta: { service: 'casalink' },
     format: winston.format.json(),
     transports: [
       new winston.transports.Console({ format: winston.format.simple() }),

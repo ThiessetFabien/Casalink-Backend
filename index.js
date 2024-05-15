@@ -1,13 +1,12 @@
-// Load environment variables
-import { config } from 'dotenv';
 
 // Import dependencies
 import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
-import logger from './app/utils/logger.js';
 
+// Load environment variables
+import { config } from 'dotenv';
 config();
 
 const debug = debugLib('app:server');
@@ -18,11 +17,6 @@ app.use(express.json());
 
 // Setup body parser
 app.use(urlencoded({ extended: true }));
-
-app.use((req, _, next) => {
-  logger.http(req.url, { ip: req.ip, userAgent: req.headers['user-agent'] });
-  next();
-});
 
 /**
  * GET /api-doc

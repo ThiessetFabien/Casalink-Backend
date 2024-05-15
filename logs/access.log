@@ -168,3 +168,32 @@
 {"ip":"::1","level":"http","message":"/api-docs/swagger-ui-standalone-preset.js","service":"cadex-api","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
 {"ip":"::1","level":"http","message":"/api-docs/swagger-ui-init.js","service":"cadex-api","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
 {"ip":"::1","level":"http","message":"/api-docs/favicon-32x32.png","service":"cadex-api","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"level":"error","service":"casalink"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/favicon.ico","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"level":"error","service":"casalink"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui.css","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-bundle.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-standalone-preset.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-init.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/favicon-32x32.png","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui.css","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-bundle.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-init.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-standalone-preset.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/favicon-32x32.png","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui.css","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-bundle.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-standalone-preset.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-init.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/favicon-32x32.png","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui.css","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-bundle.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-standalone-preset.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/swagger-ui-init.js","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}
+{"ip":"::ffff:127.0.0.1","level":"http","message":"/api-docs/favicon-32x32.png","service":"casalink","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"}

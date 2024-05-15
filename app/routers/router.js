@@ -1,8 +1,14 @@
 import express from 'express';
 import ApiError from '../errors/api.error.js'
 import errorMiddleware from "../middlewares/error.middleware.js";
+import logger from '../utils/logger.js';
 
 const router = express.Router();
+
+router.use((req, _, next) => {
+  logger.http(`${req.method} ${req.originalUrl}`);
+  next();
+});
 
 /**
  * @route Get /
