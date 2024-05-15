@@ -1,4 +1,4 @@
-import client from "./connexion";
+import pool from "./connexion.js";
 
 const homeDataMapper = {
 
@@ -9,7 +9,7 @@ const homeDataMapper = {
     
     try {
     
-      const result = await client.query('SELECT * FROM "home";');
+      const result = await pool.query('SELECT * FROM "home";');
       
       return result.rows;
     
@@ -28,7 +28,7 @@ const homeDataMapper = {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
 
-      const result = await client.query('SELECT * FROM "home" WHERE id=$1;', [id]);
+      const result = await pool.query('SELECT * FROM "home" WHERE id=$1;', [id]);
     
       return result.rows[0];
     
@@ -47,7 +47,7 @@ const homeDataMapper = {
         throw new Error('L\'identifiant du user est manquant.');
       }
 
-      const result = await client.query('SELECT * FROM "home" JOIN "user" ON "user".home_id = "home".id WHERE "user".id=$1;', [user_id]);
+      const result = await pool.query('SELECT * FROM "home" JOIN "user" ON "user".home_id = "home".id WHERE "user".id=$1;', [user_id]);
     
       return result.rows[0];
     
@@ -71,7 +71,7 @@ const homeDataMapper = {
 
       const { shopping_list, name } = homeData;
       
-      const result = await client.query(
+      const result = await pool.query(
         'INSERT INTO "home" (shopping_list, name) VALUES ($1, $2) RETURNING *;',
         [shopping_list, name]
       );
@@ -95,7 +95,7 @@ const homeDataMapper = {
 
       const { shopping_list, name } = homeData;
       
-      const result = await client.query(
+      const result = await pool.query(
         'UPDATE "home" SET shopping_list = $1, name = $2 WHERE id = $3 RETURNING *;',
         [shopping_list, name, id]
       );
@@ -120,7 +120,7 @@ const homeDataMapper = {
         throw new Error('L\identifiant du foyer est manquant.');
       }
 
-      await client.query('DELETE FROM "home" WHERE id = $1;', [id]);
+      await pool.query('DELETE FROM "home" WHERE id = $1;', [id]);
       return true;
     
     } catch (error) {
