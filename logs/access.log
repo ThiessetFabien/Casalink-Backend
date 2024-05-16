@@ -1,0 +1,3 @@
+{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}

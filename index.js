@@ -6,6 +6,7 @@ import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import cors from 'cors';
 
 // Load environment variables
 import { config } from 'dotenv';
@@ -35,6 +36,12 @@ createDoc(app);
 
 // Starting server
 const PORT = process.env.PORT ?? 3000;
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:4000", "http://localhost:5000",],
+  })
+);
 
 app.use(router);
 
