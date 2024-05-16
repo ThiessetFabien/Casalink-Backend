@@ -1,23 +1,71 @@
-{"level":"http","message":"GET /ap/task","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
 {"level":"error","service":"casalink-api"}
 {"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
 {"level":"error","service":"casalink-api"}
-{"level":"http","message":"GET /ap/tasks","service":"casalink-api"}
+{"level":"http","message":"GET /api/tasks","service":"casalink-api"}
 {"level":"error","service":"casalink-api"}
-{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
-{"level":"error","service":"casalink-api"}
-{"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
 {"level":"error","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
 {"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/home","service":"casalink-api"}
 {"level":"http","message":"GET /api/user","service":"casalink-api"}
-{"level":"http","message":"GET /api/user","service":"casalink-api"}
-{"level":"http","message":"GET /api/user","service":"casalink-api"}
-{"level":"http","message":"GET /api/user","service":"casalink-api"}
-{"level":"http","message":"GET /api/home","service":"casalink-api"}
-{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"code":"28P01","file":"auth.c","length":131,"level":"error","line":"326","name":"error","routine":"auth_failed","service":"casalink-api","severity":"FATAL"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}

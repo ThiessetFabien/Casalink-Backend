@@ -18,7 +18,7 @@ logs/
 **/*.log.*
 
 #config
-.env.production
+.env
 .env.test
 .env.development
 sqitch.conf
