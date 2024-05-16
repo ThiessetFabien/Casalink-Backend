@@ -12,6 +12,6 @@ const { Pool } = pg;
 
 const pool = new Pool({
   password: process.env.PGPASSWORD
- });
+});
 
 export default pool;
