@@ -1,6 +1,7 @@
 import logger from '../utils/logger.js';
 
 /**
+ * A api json error object
  * @typedef {object} ApiJsonError - Error response
  * @property {string} error.required - Error message
  * @example
