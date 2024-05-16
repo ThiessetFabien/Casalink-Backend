@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 {"level":"http","message":"GET /api/user","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/home","service":"casalink-api"}
+=======
+{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}
+>>>>>>> 9165143171c5f415c34ae46bb54c7024973662f4
