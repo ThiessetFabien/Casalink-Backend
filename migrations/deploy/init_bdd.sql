@@ -2,7 +2,15 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "home", "task", "category", "address", "user";
+DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "user", "home";
+
+CREATE TABLE IF NOT EXISTS "home" (
+  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  "shopping_list" TEXT[],
+  "name" TEXT NOT NULL,
+  "created_at" TIMESTAMPTZ DEFAULT NOW(),
+  "updated_at" TIMESTAMPTZ
+);
 
 CREATE TABLE IF NOT EXISTS "user" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,6 +22,7 @@ CREATE TABLE IF NOT EXISTS "user" (
     "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') NOT NULL,
     "score" INT DEFAULT 0 NOT NULL,
     "password" TEXT NOT NULL,
+    "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -47,15 +56,6 @@ CREATE TABLE IF NOT EXISTS "task" (
   "status" TEXT DEFAULT('A Débuter') NOT NULL,
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
-  "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ
-);
-
-CREATE TABLE IF NOT EXISTS "home" (
-  "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "shopping_list" TEXT[],
-  "name" TEXT NOT NULL,
-  "user_id" INT REFERENCES "user"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );

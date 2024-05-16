@@ -1,9 +1,15 @@
--- Insertion of users
-INSERT INTO "user" ("email", "firstname", "lastname", "birthdate", "role", "pin", "score", "password")
+-- Insertion of homes
+INSERT INTO "home" ("shopping_list", "name")
 VALUES
-    ('user1@example.com', 'Patrick', 'Doe', '1990-05-15', 'adult', '1234', 100, 'password1'),
-    ('user2@example.com', 'milo', 'Smith', '1995-08-25', 'child', '5678', 80, 'password2'),
-    ('admin@example.com', 'Admin', 'User', '1985-02-10', 'admin', '9876', 200, 'adminpassword');
+    ('{"item1", "item2", "item3"}', 'Home 1'),
+    ('{"item4", "item5"}', 'Home 2');
+
+-- Insertion of users
+INSERT INTO "user" ("email", "firstname", "lastname", "birthdate", "role", "pin", "score", "password", "home_id")
+VALUES
+    ('user1@example.com', 'Patrick', 'Doe', '1990-05-15', 'adult', '1234', 100, 'password1', '1'),
+    ('user2@example.com', 'milo', 'Smith', '1995-08-25', 'adult', '5678', 80, 'password2', '2'),
+    ('admin@example.com', 'mila', 'User', '1985-02-10', 'child', '9876', 200, 'adminpassword', '1');
 
 -- Insertion of addresses
 INSERT INTO "address" ("street", "city", "additionnal_information", "postal_code", "country")
@@ -26,12 +32,6 @@ VALUES
     ('Faire ménage', '2024-06-26 11:10:10+02:00', '2024-06-26 12:10:12+02:00', 20, 'medium', 'En Cours', 'Description de la tâche 2', 2),
     ('Task 3', '2024-06-27 11:10:10+02:00', '2024-06-27 12:10:12+02:00', 15, 'low', 'Terminée', 'Description de la tâche 3', 3);
 
--- Insertion of homes
-INSERT INTO "home" ("shopping_list", "name", "user_id")
-VALUES
-    ('{"item1", "item2", "item3"}', 'Home 1', 1),
-    ('{"item4", "item5"}', 'Home 2', 2),
-    ('{"item6"}', 'Home 3', 1);
 
 -- Insertion of subtasks
 INSERT INTO "subtask" ("description", "name", "task_id")

@@ -1,74 +1,46 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import userData from "./user.js";
+import homeData from "./home.js";
 
-describe('Casalink generates the list of users', () => {
-    it('should return a list of users', async () => {
-        const usersList = await userData.findAllUsers();
-        expect(usersList).to.be.an('array');
-        usersList.forEach(user => {
-         expect(user).to.have.property('firstname'); 
-         expect(user).to.have.property('lastname');
-         expect(user).to.have.property('email');
-         expect(user).to.have.property('role');
-         expect(user).to.have.property('pin');
-            });
-          });
- it('should return a user by ID', async () => {
-    const userId = 1; 
-    const user = await userData.findUserById(userId);
-    expect(user).to.be.an('object');
-    expect(user).to.have.property('firstname');
-    expect(user).to.have.property('lastname');
-    expect(user).to.have.property('email');
-    expect(user).to.have.property('birthdate');
-    expect(user).to.have.property('role');
-    expect(user).to.have.property('pin');
-    expect(user).to.have.property('score');
-    expect(user).to.have.property('password');
-  });
-  it('should return a user by home ID', async () => {
-    const homeId = 1; 
-    const user = await userData.findUsersByHomeId(homeId);
-    expect(user).to.be.an('object');
-    expect(user).to.have.property('firstname');
-    expect(user).to.have.property('lastname');
-    expect(user).to.have.property('email');
-    expect(user).to.have.property('birthdate');
-    expect(user).to.have.property('role');
-    expect(user).to.have.property('pin');
-    expect(user).to.have.property('score');
-    expect(user).to.have.property('password');
-  }),
-  it('should create a new user', async () => {
-    const newUser = {
-        email: "adrien.Hack@gmail.com",
-        firstname: "Adrien",
-        lastname: "Hack",
-        birthdate: "1990-01-01",
-        role: "user",
-        pin: "1234",
-        score: 0,
-        password: "helper",
-        home_id: '1'
-    };
-    const user = await userData.createUser(newUser);
-}),
-it('should update a user', async () => {
-    const updateUser = {
-        firstname: "The best IAdrien",
-        lastname: "Hack",
-        email: "adrien.Hack@gmail.com",
-        birthdate: "1990-05-15",
-        role: "adult",
-        pin: "1234",
-        score: 0,
-        password: "IAhelper"
-    };
-    const user = await userData.updateUser(updateUser);
-}),
-it('should delete a user', async () => {
-    const userId = 4;
-    const user = await userData.deleteUser(userId);
+describe('Casalink generates the list of home', () => {
+    it('should return a list of homes', async () => {
+        const homeList = await homeData.findAllHome();
+        expect(homeList).to.be.an('array');
+        homeList.forEach(home => {
+         expect(home).to.have.property('shopping_list'); 
+         expect(home).to.have.property('name');
+        });
+    });
+
+    it('should return a home by ID', async () => {
+        const homeId = 1; 
+        const home = await homeData.findHomeById(homeId);
+        expect(home).to.be.an('object');
+        expect(home).to.have.property('shopping_list'); 
+        expect(home).to.have.property('name');
+   });
+
+    it('should create a new home', async () => {
+        const newhome = {
+            shopping_list: "{item1,item2,item3}",
+            name: "Test",
+        };
+        const home = await homeData.createHome(newhome);
+        expect(home).to.be.an('object');
+    });
+
+    it('should update a home', async () => {
+        const homeId = 3; 
+        const updatehome = {
+          shopping_list: "{item1,item2,item3}",
+          name: "helloWorld",
+      };
+      const home = await homeData.updateHome(homeId, updatehome);
+        });
+    
+  it('should delete a home', async () => {
+    const homeId = 3;
+    const result = await homeData.deleteHomeById(homeId);
+    expect(result).to.be.true;
   });
 });

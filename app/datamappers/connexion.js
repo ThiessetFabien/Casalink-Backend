@@ -1,7 +1,8 @@
 import { config } from 'dotenv';
 config();
 
-import Pool from 'pg';
+import pg from 'pg';
+const { Pool } = pg;
 
 const pool = new Pool({
   password: process.env.PGPASSWORD
