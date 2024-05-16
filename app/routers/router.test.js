@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { describe, it, before } from "mocha";
 import { expect } from "chai";
-import router from "./router.js";
+import router from "./api/index.api.js";
 
 describe("API endpoints", () => {
 
