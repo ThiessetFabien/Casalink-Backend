@@ -11,14 +11,6 @@ router.use((req, __ , next) => {
   next();
 });
 
-/**
-@route GET /*/
-
-router.get('/', (_, res, next) => {
-  res.send('Hello World!');
-  next();
-});
-
 // API ROUTES
 router.use('/api', ApiRouter);
 

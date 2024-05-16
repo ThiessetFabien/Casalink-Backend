@@ -4,7 +4,7 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 const userController = {
 
   // REQUETE GET
-  getAllUsers: controllerWrapper(async (req, res) => {
+  getAllUsers: controllerWrapper(async (_, res) => {
 
     const user = await userDataMapper.findAllUsers()
     res.json({ status: 'success', data: { user } });

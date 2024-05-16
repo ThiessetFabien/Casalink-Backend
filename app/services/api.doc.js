@@ -1,7 +1,4 @@
-import { debug } from 'console';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
-import path from "path";
-const __dirname = path.dirname('./');
 
 const options = {
   info: {
@@ -9,7 +6,7 @@ const options = {
     title: "CasaLink",
     description: "Gestion de planification familiale",
   },
-  baseDir: __dirname,
+  baseDir: './app/routers',
 
   filesPattern: '../**/*.js',
 
@@ -21,6 +18,7 @@ const options = {
 
 /**
  * Swagger middleware factory
+ * @summary Create a swagger middleware
  * @param {object} app Express application
  * @returns {object} Express JSDoc Swagger middleware that create web documentation
  */

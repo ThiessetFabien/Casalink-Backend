@@ -3,8 +3,8 @@ import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const homeController = {
 
-  // REQUETE GET
-  getAllHomes: controllerWrapper(async (req, res) => {
+  // QUERY GET
+  getAllHomes: controllerWrapper(async (_, res) => {
       
     const home = await homeDataMapper.findAllHome()
     res.json({ status: 'success', data: { home } });
@@ -35,7 +35,7 @@ const homeController = {
     res.json({ status: 'success', data: { home } });
   
   }),
- 
+
   // QUERY POST
   createOneHome: controllerWrapper(async (req, res) => {
     
