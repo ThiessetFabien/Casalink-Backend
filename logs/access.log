@@ -1,0 +1,22 @@
+{"level":"http","message":"GET /ap/task","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /ap/tasks","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"error","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}
+{"level":"http","message":"GET /api/user","service":"casalink-api"}
+{"level":"http","message":"GET /api/home","service":"casalink-api"}

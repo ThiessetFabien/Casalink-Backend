@@ -62,7 +62,7 @@ router.delete('/api/user/:id', userController.deleteOneUser);
 /**
 @error 404 /*/
 router.use((_, __, next) => {
-    next(ApiError(404, 'Not Found'));
+    next(new ApiError(404, 'Not Found'));
 });
 
 router.use(errorMiddleware);
