@@ -1,4 +1,4 @@
-import ApiError from '../errors/ApiError.js';
+import ApiError from '../errors/api.error.js';
 
 export default (controller) => async (req, res, next) => {
     try {
