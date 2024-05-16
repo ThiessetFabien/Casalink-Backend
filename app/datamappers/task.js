@@ -1,4 +1,5 @@
 import pool from "./connexion.js";
+import DbError from "../errors/dbError.js";
 
 const taskDataMapper = {
 
@@ -14,8 +15,7 @@ const taskDataMapper = {
       return result.rows;
     
     } catch (error) {
-      console.error('Erreur lors de la rechercher des tâches :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -33,8 +33,7 @@ const taskDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-    console.error('Erreur lors de la recherche de la tâche par ID :', error);
-    throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -52,8 +51,7 @@ const taskDataMapper = {
       return result.rows;
     
     } catch (error) {
-      console.error('Erreur lors de la recherche des tâches par user ID :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -79,8 +77,7 @@ const taskDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-      console.error('Erreur lors de la création d\'une nouvelle tâche :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -104,8 +101,7 @@ const taskDataMapper = {
       
     
     } catch (error) {
-      console.error('Erreur lors de la modification de la tâche :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -125,8 +121,7 @@ const taskDataMapper = {
       return true;
     
     } catch (error) {
-      console.error('Erreur lors de la suppression de la tâche par ID :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   }
 }

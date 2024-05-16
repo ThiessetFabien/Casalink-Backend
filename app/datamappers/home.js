@@ -1,4 +1,5 @@
 import pool from "./connexion.js";
+import DbError from "../errors/dbError.js";
 
 const homeDataMapper = {
 
@@ -14,7 +15,7 @@ const homeDataMapper = {
       return result.rows;
     
     } catch (error) {
-      console.error('Erreur lors de la recherche des foyers:', error);
+      throw new DbError(error.message);
       throw error;
     }
   },
@@ -33,7 +34,7 @@ const homeDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-    console.error('Erreur lors de la recherche du foyer par ID :', error);
+      throw new DbError(error.message);
     throw error;
     }
   },
@@ -52,8 +53,7 @@ const homeDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-    console.error('Erreur lors de la recherche du foyer par user ID :', error);
-    throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -79,8 +79,7 @@ const homeDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-      console.error('Erreur lors de la création d\'un foyer :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -103,8 +102,7 @@ const homeDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-      console.error('Erreur lors de la modification du foyer :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -124,8 +122,7 @@ const homeDataMapper = {
       return true;
     
     } catch (error) {
-      console.error('Erreur lors de la suppression du foyer par son ID :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   }
 }

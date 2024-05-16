@@ -1,4 +1,5 @@
 import pool from "./connexion.js";
+import DbError from "../errors/dbError.js";
 
 const userDataMapper = {
 
@@ -14,8 +15,7 @@ const userDataMapper = {
       return result.rows;
     
     } catch (error) {
-      console.error('Erreur lors de la recherche des users:', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -33,8 +33,7 @@ const userDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-    console.error('Erreur lors de la recherche du user par ID :', error);
-    throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -52,8 +51,7 @@ const userDataMapper = {
       return result.rows;
     
     } catch (error) {
-    console.error('Erreur lors de la recherche des users par home ID :', error);
-    throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -79,8 +77,7 @@ const userDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-      console.error('Erreur lors de la création d\'un user :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -103,8 +100,7 @@ const userDataMapper = {
       return result.rows[0];
     
     } catch (error) {
-      console.error('Erreur lors de la modification du user :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   },
 
@@ -124,8 +120,7 @@ const userDataMapper = {
       return true;
     
     } catch (error) {
-      console.error('Erreur lors de la suppression du user par son ID :', error);
-      throw error;
+      throw new DbError(error.message);
     }
   }
 }
