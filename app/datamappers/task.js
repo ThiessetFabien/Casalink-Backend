@@ -46,7 +46,7 @@ const taskDataMapper = {
         throw new Error('L\'identifiant du user est manquant.');
       }
 
-      const result = await pool.query('SELECT * FROM "task" JOIN user_has_task ON task.id = user_has_task.task_id WHERE user_has_task.user_id = $1;', [userId]);
+      const result = await pool.query('SELECT * FROM "task" JOIN "user_has_task" ON "task".id = "user_has_task".task_id WHERE "user_has_task".user_id = $1;', [userId]);
     
       return result.rows;
     

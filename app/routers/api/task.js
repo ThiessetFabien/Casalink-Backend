@@ -1,7 +1,9 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/task.schema.js';
 import validate from '../../validation/validator.js';
+
 import taskController from '../../controllers/taskController.js';
+import subtastController from '../../controllers/subtaskController.js';
 
 const router = express.Router();
 
@@ -9,6 +11,7 @@ const router = express.Router();
 @route GET /*/
 
 router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
+router.get('/task/:id/subtask', validate (getSchema, 'query'),subtastController.getSubtaskByTaskId);
 router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
 router.get('/task/', validate (getSchema, 'query'),taskController.getAllTasks);
 

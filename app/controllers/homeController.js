@@ -6,8 +6,8 @@ const homeController = {
   // REQUETE GET
   getAllHomes: controllerWrapper(async (req, res) => {
       
-    const home = await homeDataMapper.findAllHome()
-    res.json({ status: 'success', data: { home } });
+    const homes = await homeDataMapper.findAllHomes()
+    res.json({ status: 'success', data: { homes } });
 
   }),
 
