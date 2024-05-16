@@ -1,99 +1,67 @@
 import taskDataMapper from '../datamappers/task.js'
-
+import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const taskController = {
 
   // REQUETE GET
-  getAlltasks: async (req, res) => {
-    try {
-      const tasks = await taskDataMapper.findAllTask()
-      res.json({ status: 'success', data: { tasks } });
+  getAllTasks: controllerWrapper(async (req, res) => {
 
-    } catch(error) {
+    const tasks = await taskDataMapper.findAllTask()
+    res.json({ status: 'success', data: { tasks } });
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  }),
 
+  getTaskById: controllerWrapper(async (req, res) => {
+
+    const id = req.params.id;
+    const task = await taskDataMapper.findTaskById(id)
+
+    if(!task) {
+      res.status(404).send('Cette tache n\'existe pas')
     }
-  },
 
-  getTaskById: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const task = await taskDataMapper.findTaskById(id)
+    res.json({ status: 'success', data: { task } });
+  
+  }),
 
-      if(!task) {
-        res.status(404).send('Cette tache n\'existe pas')
-      }
+  getTaskByUserId: controllerWrapper(async (req, res) => {
 
-      res.json({ status: 'success', data: { task } });
-  
-    } catch(error) {
-  
-      return res.status(500).json({ status: 'error', message: error.message });
-  
+    const id = req.params.id;
+    const tasks = await taskDataMapper.findTaskByUserId(id)
+
+    if(!tasks) {
+      res.status(404).send('Ces taches n\'existe pas')
     }
-  },
 
-  getTaskByUserId: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const tasks = await taskDataMapper.findTaskByUserId(id)
+    res.json({ status: 'success', data: { tasks } });
 
-      if(!tasks) {
-        res.status(404).send('Ces taches n\'existe pas')
-      }
-
-      res.json({ status: 'success', data: { tasks } });
-  
-    } catch(error) {
-  
-      return res.status(500).json({ status: 'error', message: error.message });
-  
-    }
-  },
+  }),
  
   // QUERY POST
-  createOneTask: async (req, res) => {
-    try {
-      const taskData = req.body;
-      const task = await taskDataMapper.createTask(taskData)
-      res.json({ status: 'success', data: { task } });
+  createOneTask: controllerWrapper(async (req, res) => {
 
-    } catch(error) {
+    const taskData = req.body;
+    const task = await taskDataMapper.createTask(taskData)
+    res.json({ status: 'success', data: { task } });
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  }),
 
-    }
-  },
+  updateOneTask: controllerWrapper(async (req, res) => {
 
-  updateOneTask: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const taskData = req.body;
-      const task = await taskDataMapper.updateTask(id, taskData)
-      res.json({ status: 'success', data: { task } });
+    const id = req.params.id;
+    const taskData = req.body;
+    const task = await taskDataMapper.updateTask(id, taskData)
+    res.json({ status: 'success', data: { task } });
 
-    } catch(error) {
+  }),
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  deleteOneTask: controllerWrapper(async (req, res) => {
 
-    }
-  },
+    const id = req.params.id;
+    await taskDataMapper.deleteTaskById(id)
+    res.json({ status: 'success', message: 'La tache a bien été supprimée' });
 
-  deleteOneTask: async (req, res) => {
-    try {
-      const id = req.params.id;
-      await taskDataMapper.deleteTaskById(id)
-      res.json({ status: 'success', message: 'La tache a bien été supprimée' });
-
-    } catch(error) {
-
-      return res.status(500).json({ status: 'error', message: error.message });
-
-    }
-  }
-
-
+  })
 
 }
 

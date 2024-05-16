@@ -1,97 +1,67 @@
 import userDataMapper from '../datamappers/user.js'
-
+import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userController = {
 
   // REQUETE GET
-  getAllUsers: async (req, res) => {
-    try {
-      const user = await userDataMapper.findAllUsers()
-      res.json({ status: 'success', data: { user } });
+  getAllUsers: controllerWrapper(async (req, res) => {
 
-    } catch(error) {
+    const user = await userDataMapper.findAllUsers()
+    res.json({ status: 'success', data: { user } });
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  }),
 
+  getUserById: controllerWrapper(async (req, res) => {
+
+    const id = req.params.id;
+    const task = await userDataMapper.findUserById(id)
+
+    if(!task) {
+      res.status(404).send('Ce user n\'existe pas')
     }
-  },
 
-  getUserById: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const task = await userDataMapper.findUserById(id)
+    res.json({ status: 'success', data: { task } });
 
-      if(!task) {
-        res.status(404).send('Ce user n\'existe pas')
-      }
+  }),
 
-      res.json({ status: 'success', data: { task } });
-  
-    } catch(error) {
-  
-      return res.status(500).json({ status: 'error', message: error.message });
-  
+  getUserByHomeId: controllerWrapper(async (req, res) => {
+
+    const id = req.params.id;
+    const user = await userDataMapper.findUsersByHomeId(id)
+
+    if(!user) {
+      res.status(404).send('Ce user n\'existe pas')
     }
-  },
 
-  getUserByHomeId: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const user = await userDataMapper.findUsersByHomeId(id)
+    res.json({ status: 'success', data: { user } });
 
-      if(!user) {
-        res.status(404).send('Ce user n\'existe pas')
-      }
-
-      res.json({ status: 'success', data: { user } });
-  
-    } catch(error) {
-  
-      return res.status(500).json({ status: 'error', message: error.message });
-  
-    }
-  },
+  }),
  
   // QUERY POST
-  createOneUser: async (req, res) => {
-    try {
-      const userData = req.body;
-      const task = await userDataMapper.createUser(userData)
-      res.json({ status: 'success', data: { task } });
+  createOneUser: controllerWrapper(async (req, res) => {
 
-    } catch(error) {
+    const userData = req.body;
+    const task = await userDataMapper.createUser(userData)
+    res.json({ status: 'success', data: { task } });
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  }),
 
-    }
-  },
+  updateOneUser: controllerWrapper(async (req, res) => {
 
-  updateOneUser: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const userData = req.body;
-      const task = await userDataMapper.updateUser(id, userData)
-      res.json({ status: 'success', data: { task } });
+    const id = req.params.id;
+    const userData = req.body;
+    const task = await userDataMapper.updateUser(id, userData)
+    res.json({ status: 'success', data: { task } });
 
-    } catch(error) {
+  }),
 
-      return res.status(500).json({ status: 'error', message: error.message });
+  deleteOneUser: controllerWrapper(async (req, res) => {
 
-    }
-  },
+    const id = req.params.id;
+    await userDataMapper.deleteUserById(id)
+    res.json({ status: 'success', message: 'Le user a bien été supprimé' });
 
-  deleteOneUser: async (req, res) => {
-    try {
-      const id = req.params.id;
-      await userDataMapper.deleteUserById(id)
-      res.json({ status: 'success', message: 'Le user a bien été supprimé' });
-
-    } catch(error) {
-
-      return res.status(500).json({ status: 'error', message: error.message });
-
-    }
-  }
+  })
 
 
 
