@@ -1,4 +1,5 @@
-{"level":"http","message":"GET /","service":"casalink-api"}
-{"level":"http","message":"GET /","service":"casalink-api"}
-{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/1","service":"casalink-api"}
 {"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/2","service":"casalink-api"}
