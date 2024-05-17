@@ -46,9 +46,9 @@ router.get('/user/',validate (getSchema, 'query'), userController.getAllUsers);
 
 /**
 *POST /api/user
-*@summary Create a new Task
+*@summary Create a new User
 *@tags Post
-*@param {UserInput} request.body.required - Task info
+*@param {UserInput} request.body.required - User info
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

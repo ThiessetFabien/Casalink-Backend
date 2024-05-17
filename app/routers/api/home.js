@@ -8,7 +8,7 @@ const router = express.Router();
 
 /**
 *GET /api/home/user/{id}
-*@summary Get all Users of Home by Home id
+*@summary Get all Users of Home by User id
 *@tags Get
 *@param {number} id.path.required - User id
 *@return {ApiSucces} 200 - Success response - application/json

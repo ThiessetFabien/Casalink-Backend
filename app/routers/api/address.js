@@ -8,7 +8,7 @@ const router = express.Router();
 
 /**
 *GET /api/address/home/{id}
-*@summary Get Address of Home by Home id
+*@summary Get Address of Home by this id
 *@tags Get
 *@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json
@@ -20,7 +20,7 @@ const router = express.Router();
 router.get('/address/home/:id', validate (getSchema, 'query'), addressController.getAddressByHomeId);
 
 /**
-*GET /api/address/Address/{id}
+*GET /api/address/{id}
 *@summary Get Address of Address by Address id
 *@tags Get
 *@param {number} id.path.required - Address id
