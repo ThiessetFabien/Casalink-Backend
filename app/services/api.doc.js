@@ -1,7 +1,4 @@
-import { debug } from 'console';
 import expressJSDocSwagger from 'express-jsdoc-swagger';
-import path from "path";
-const __dirname = path.dirname('./');
 
 const options = {
   info: {
@@ -16,7 +13,6 @@ const options = {
   swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE || '/api-docs',
 
   exposeApiDocs: true,
-  apiDocsPath: '/api-docs',
   apiDocsPath: '/api-docs',
 };
 

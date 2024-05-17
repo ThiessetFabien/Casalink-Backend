@@ -16,7 +16,6 @@ const addressDataMapper = {
     
     } catch (error) {
       throw new DbError(error.message);
-      throw error;
     }
   },
 
@@ -35,7 +34,6 @@ const addressDataMapper = {
     
     } catch (error) {
       throw new DbError(error.message);
-    throw error;
     }
   },
 
@@ -85,7 +83,7 @@ const addressDataMapper = {
     try {
       
       if (!addressData) {
-        throw new Error('Les données de l\adresse sont manquantes.');
+        throw new Error('Les données de l\'adresse sont manquantes.');
       }
 
       const { street, city, additional_information, postal_code, country } = addressData;
@@ -134,7 +132,7 @@ const addressDataMapper = {
     try {
 
       if (!id) {
-        throw new Error('L\identifiant de l\'adresse est manquant.');
+        throw new Error('L\'identifiant de l\'adresse est manquant.');
       }
 
       await pool.query('DELETE FROM "address" WHERE id = $1;', [id]);

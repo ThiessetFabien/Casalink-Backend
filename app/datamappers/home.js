@@ -16,7 +16,6 @@ const homeDataMapper = {
     
     } catch (error) {
       throw new DbError(error.message);
-      throw error;
     }
   },
 
@@ -35,7 +34,6 @@ const homeDataMapper = {
     
     } catch (error) {
       throw new DbError(error.message);
-    throw error;
     }
   },
 
@@ -117,7 +115,7 @@ const homeDataMapper = {
     try {
 
       if (!id) {
-        throw new Error('L\identifiant du foyer est manquant.');
+        throw new Error('L\'identifiant du foyer est manquant.');
       }
 
       await pool.query('DELETE FROM "home" WHERE id = $1;', [id]);

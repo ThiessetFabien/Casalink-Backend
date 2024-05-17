@@ -40,9 +40,9 @@ const addressController = {
   getAddressByHomeId: controllerWrapper(async (req, res) => {
 
     const id = req.params.id;
-    const addresse = await addressDataMapper.findAddressByHomeId(id)
+    const addresses = await addressDataMapper.findAddressByHomeId(id)
 
-    if(!addresse) {
+    if(!addresses) {
       res.status(404).send('Ce foyer n\'existe pas')
     }
 

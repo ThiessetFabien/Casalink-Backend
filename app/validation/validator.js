@@ -2,7 +2,7 @@ import ApiError from '../errors/api.error.js';
 
 /**
 * validate a request data source against a schema
-* @param {objet} schema - a joi schema
+* @param {object} schema - a joi schema
 * @param {'query'|'params'|'body'} source.required - the request data source
 * @returns {function} - an express middleware
 */

@@ -113,7 +113,7 @@ const userDataMapper = {
     try {
 
       if (!id) {
-        throw new Error('L\identifiant du user est manquant.');
+        throw new Error('L\'identifiant du user est manquant.');
       }
 
       await pool.query('DELETE FROM "user" WHERE id = $1;', [id]);

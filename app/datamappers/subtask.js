@@ -20,7 +20,6 @@ const subtaskDataMapper = {
     
     } catch (error) {
       throw new DbError(error.message);
-    throw error;
     }
   },
 
@@ -102,7 +101,7 @@ const subtaskDataMapper = {
     try {
 
       if (!id) {
-        throw new Error('L\identifiant de la sous-tache est manquant.');
+        throw new Error('L\'identifiant de la sous-tache est manquant.');
       }
 
       await pool.query('DELETE FROM "subtask" WHERE id = $1;', [id]);
