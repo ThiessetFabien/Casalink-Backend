@@ -4,7 +4,7 @@ import categoryData from "./category.js";
 
 describe('Casalink generates the list of category', () => {
     it('should return a list of categorys', async () => {
-        const categoryList = await categoryData.findAllcategory();
+        const categoryList = await categoryData.findAllCategory();
         expect(categoryList).to.be.an('array');
         categoryList.forEach(category => {
          expect(category).to.have.property('name'); 
@@ -14,7 +14,7 @@ describe('Casalink generates the list of category', () => {
 
     it('should return a category by ID', async () => {
         const categoryId = 1; 
-        const category = await categoryData.findcategoryById(categoryId);
+        const category = await categoryData.findCategoryById(categoryId);
         expect(category).to.be.an('object');
         expect(category).to.have.property('name'); 
         expect(category).to.have.property('color');
@@ -25,7 +25,7 @@ describe('Casalink generates the list of category', () => {
             name: "OColor",
             color: "Fab",
         };
-        const category = await categoryData.createcategory(newcategory);
+        const category = await categoryData.createCategory(newcategory);
         expect(category).to.be.an('object');
     });
 
@@ -35,12 +35,12 @@ describe('Casalink generates the list of category', () => {
             name: "OColor",
             color: "Fab00",
       };
-      const category = await categoryData.updatecategory(categoryId, updatecategory);
+      const category = await categoryData.updateCategory(categoryId, updatecategory);
         });
     
   it('should delete a category', async () => {
     const categoryId = 4;
-    const result = await categoryData.deletecategoryById(categoryId);
+    const result = await categoryData.deleteCategoryById(categoryId);
     expect(result).to.be.true;
   });
 });

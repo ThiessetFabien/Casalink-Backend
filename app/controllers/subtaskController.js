@@ -1,11 +1,10 @@
 import subtaskDataMapper from '../datamappers/subtask.js'
-import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const subtaskController = {
 
   // REQUETE GET
 
-  getSubtaskById: controllerWrapper(async (req, res) => {
+  getSubtaskById: async (req, res) => {
 
     const id = req.params.id;
     const subtask = await subtaskDataMapper.findSubtaskById(id)
@@ -16,9 +15,9 @@ const subtaskController = {
 
     res.json({ status: 'success', data: { subtask } });
   
-  }),
+  },
 
-  getSubtaskByTaskId: controllerWrapper(async (req, res) => {
+  getSubtaskByTaskId: async (req, res) => {
 
     const id = req.params.id;
     const subtasks = await subtaskDataMapper.findSubtasksByTaskId(id)
@@ -29,34 +28,33 @@ const subtaskController = {
 
     res.json({ status: 'success', data: { subtasks } });
 
-  }),
+  },
  
   // QUERY POST
-  createOneSubtask: controllerWrapper(async (req, res) => {
+  createOneSubtask: async (req, res) => {
 
     const subtaskData = req.body;
     const subtask = await subtaskDataMapper.createSubtask(subtaskData)
     res.json({ status: 'success', data: { subtask } });
 
-  }),
+  },
 
-  updateOneSubtask: controllerWrapper(async (req, res) => {
+  updateOneSubtask: async (req, res) => {
 
     const id = req.params.id;
     const subtaskData = req.body;
     const subtask = await subtaskDataMapper.updateSubtask(id, subtaskData)
     res.json({ status: 'success', data: { subtask } });
 
-  }),
+  },
 
-  deleteOneSubtask: controllerWrapper(async (req, res) => {
+  deleteOneSubtask: async (req, res) => {
 
     const id = req.params.id;
     await subtaskDataMapper.deleteSubtaskById(id)
     res.json({ status: 'success', message: 'La sous-tache a bien été supprimée' });
 
-  })
-
+  }
 }
 
 export default subtaskController;

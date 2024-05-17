@@ -4,7 +4,7 @@ import homeData from "./home.js";
 
 describe('Casalink generates the list of home', () => {
     it('should return a list of homes', async () => {
-        const homeList = await homeData.findAllHome();
+        const homeList = await homeData.findAllHomes();
         expect(homeList).to.be.an('array');
         homeList.forEach(home => {
          expect(home).to.have.property('shopping_list'); 

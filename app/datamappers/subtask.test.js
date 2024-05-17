@@ -3,19 +3,10 @@ import { expect } from "chai";
 import subtaskData from "./subtask.js";
 
 describe('Casalink generates the list of subtask', () => {
-    it('should return a list of subtasks', async () => {
-        const subtaskList = await subtaskData.findAllsubtask();
-        expect(subtaskList).to.be.an('array');
-        subtaskList.forEach(subtask => {
-         expect(subtask).to.have.property('description'); 
-         expect(subtask).to.have.property('name');
-         expect(subtask).to.have.property('task_id');
-        });
-    });
 
     it('should return a subtask by ID', async () => {
         const subtaskId = 1; 
-        const subtask = await subtaskData.findsubtaskById(subtaskId);
+        const subtask = await subtaskData.findSubtaskById(subtaskId);
         expect(subtask).to.be.an('object');
         expect(subtask).to.have.property('description'); 
         expect(subtask).to.have.property('name');
@@ -26,25 +17,25 @@ describe('Casalink generates the list of subtask', () => {
         const newsubtask = {
             description: "jardin",
             name: "Adrien",
-            task_id:"4"
+            task_id:"1"
         };
-        const subtask = await subtaskData.createsubtask(newsubtask);
+        const subtask = await subtaskData.createSubtask(newsubtask);
         expect(subtask).to.be.an('object');
     });
 
     it('should update a subtask', async () => {
-        const subtaskId = 4; 
+        const subtaskId = 1; 
         const updatesubtask = {
             description: "Code",
             name: "IAdrien",
-            task_id:"4"
+            task_id:"1"
       };
-      const subtask = await subtaskData.updatesubtask(subtaskId, updatesubtask);
+      const subtask = await subtaskData.updateSubtask(subtaskId, updatesubtask);
         });
     
   it('should delete a subtask', async () => {
     const subtaskId = 4;
-    const result = await subtaskData.deletesubtaskById(subtaskId);
+    const result = await subtaskData.deleteSubtaskById(subtaskId);
     expect(result).to.be.true;
   });
 });

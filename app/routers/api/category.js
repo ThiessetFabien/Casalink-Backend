@@ -1,7 +1,7 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
-
+import cw from '../../middlewares/controller.wrapper.js';
 import categoryController from '../../controllers/categoryController.js';
 
 const router = express.Router();
@@ -70,6 +70,6 @@ router.patch('/category/:id', validate (patchSchema, 'body'), categoryController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/category/:id', validate (removeSchema, 'body'), categoryController.deleteOneCategory);
+router.delete('/category/:id', validate (removeSchema, 'body'), cw(categoryController.deleteOneCategory));
 
 export default router;

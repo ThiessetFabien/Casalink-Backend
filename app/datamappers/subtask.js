@@ -4,7 +4,7 @@ import DbError from "../errors/dbError.js";
 const subtaskDataMapper = {
 
 // ----------- FIND SUBTASK -----------
-
+  
   // Find a subtask by its id
   async findSubtaskById(id){
     

@@ -12,7 +12,7 @@ VALUES
     ('admin@example.com', 'mila', 'User', '1985-02-10', 'child', '9876', 200, 'adminpassword', '1');
 
 -- Insertion of addresses
-INSERT INTO "address" ("street", "city", "additionnal_information", "postal_code", "country")
+INSERT INTO "address" ("street", "city", "additional_information", "postal_code", "country")
 VALUES
     ('123 Main St', 'Cityville', 'Apartment 1A', '13100', 'France'),
     ('456 Elm St', 'Townsville', NULL, '06200', 'France'),

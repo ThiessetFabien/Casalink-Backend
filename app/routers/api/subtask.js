@@ -1,7 +1,7 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
-
+import cw from '../../middlewares/controller.wrapper.js';
 import subtaskController from '../../controllers/subtaskController.js';
 
 const router = express.Router();
@@ -57,7 +57,7 @@ router.post('/subtask/', validate (postSchema, 'body'),subtaskController.createO
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/subtask/:id', validate (patchSchema, 'body'), subtaskController.updateOneSubtask);
+router.patch('/subtask/:id', validate (patchSchema, 'body'), cw(subtaskController.updateOneSubtask));
 
 /**
 *DELETE /api/subtask/{id}
@@ -70,6 +70,6 @@ router.patch('/subtask/:id', validate (patchSchema, 'body'), subtaskController.u
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/subtask/:id', validate (removeSchema, 'body'), subtaskController.deleteOneSubtask);
+router.delete('/subtask/:id', validate (removeSchema, 'body'), cw(subtaskController.deleteOneSubtask));
 
 export default router;

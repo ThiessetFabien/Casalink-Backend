@@ -4,7 +4,7 @@ import budgetData from "./budget.js";
 
 describe('Casalink generates the list of budget', () => {
     it('should return a list of budgets', async () => {
-        const budgetList = await budgetData.findAllbudget();
+        const budgetList = await budgetData.findAllBudgets();
         expect(budgetList).to.be.an('array');
         budgetList.forEach(budget => {
          expect(budget).to.have.property('category'); 
@@ -15,7 +15,7 @@ describe('Casalink generates the list of budget', () => {
 
     it('should return a budget by ID', async () => {
         const budgetId = 1; 
-        const budget = await budgetData.findbudgetById(budgetId);
+        const budget = await budgetData.findBudgetById(budgetId);
         expect(budget).to.be.an('object');
         expect(budget).to.have.property('amount');
         expect(budget).to.have.property('name'); 
@@ -32,7 +32,7 @@ describe('Casalink generates the list of budget', () => {
             description: "La maladie du code",
             home_id: 1,
         };
-        const budget = await budgetData.createbudget(newbudget);
+        const budget = await budgetData.createBudget(newbudget);
         expect(budget).to.be.an('object');
     });
 
@@ -45,12 +45,12 @@ describe('Casalink generates the list of budget', () => {
             description: "Le petrole du web",
             home_id: 1,
       };
-      const budget = await budgetData.updatebudget(budgetId, updatebudget);
+      const budget = await budgetData.updateBudget(budgetId, updatebudget);
         });
     
   it('should delete a budget', async () => {
     const budgetId = 4;
-    const result = await budgetData.deletebudgetById(budgetId);
+    const result = await budgetData.deleteBudgetById(budgetId);
     expect(result).to.be.true;
   });
 });

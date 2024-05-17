@@ -1,7 +1,6 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/user.schema.js';
 import validate from '../../validation/validator.js';
-
 import userController from '../../controllers/userController.js';
 
 const router = express.Router();
@@ -55,7 +54,7 @@ router.get('/user/',validate (getSchema, 'query'), userController.getAllUsers);
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/user/',validate (postSchema, 'body'), userController.createOneUser);
+router.post('/user/',validate (postSchema, 'body'), cw(userController.createOneUser));
 
 /**
 *PATCH /api/user/{id}
@@ -69,7 +68,7 @@ router.post('/user/',validate (postSchema, 'body'), userController.createOneUser
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/user/:id',validate (patchSchema, 'body'), userController.updateOneUser);
+router.patch('/user/:id',validate (patchSchema, 'body'), cw(userController.updateOneUser));
 
 /**
 *DELETE /api/user/{id}
@@ -82,6 +81,6 @@ router.patch('/user/:id',validate (patchSchema, 'body'), userController.updateOn
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/user/:id',validate (removeSchema, 'body'), userController.deleteOneUser);
+router.delete('/user/:id',validate (removeSchema, 'body'), cw(userController.deleteOneUser));
 
 export default router;

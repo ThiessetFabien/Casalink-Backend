@@ -1,7 +1,7 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
-
+import cw from '../../middlewares/controller.wrapper.js';
 import addressController from '../../controllers/addressController.js';
 
 const router = express.Router();
@@ -83,7 +83,7 @@ router.post('/address/', validate (postSchema, 'body'),addressController.createO
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/address/:id', validate (patchSchema, 'body'), addressController.updateOneAddress);
+router.patch('/address/:id', validate (patchSchema, 'body'), cw(addressController.updateOneAddress));
 
 /**
 *DELETE /api/address/{id}
@@ -96,6 +96,6 @@ router.patch('/address/:id', validate (patchSchema, 'body'), addressController.u
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/address/:id', validate (removeSchema, 'body'), addressController.deleteOneAddress);
+router.delete('/address/:id', validate (removeSchema, 'body'), cw(addressController.deleteOneAddress));
 
 export default router;

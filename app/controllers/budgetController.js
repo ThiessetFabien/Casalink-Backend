@@ -1,17 +1,16 @@
 import budgetDataMapper from '../datamappers/budget.js'
-import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const budgetController = {
 
   // REQUETE GET
-  getAllBudgets: controllerWrapper(async (req, res) => {
+  getAllBudgets: async (req, res) => {
       
     const budgets = await budgetDataMapper.findAllBudgets()
     res.json({ status: 'success', data: { budgets } });
 
-  }),
+  },
 
-  getBudgetById: controllerWrapper(async (req, res) => {
+  getBudgetById: async (req, res) => {
 
     const id = req.params.id;
     const budget = await budgetDataMapper.findBudgetById(id)
@@ -21,9 +20,9 @@ const budgetController = {
       res.json({ status: 'success', data: { budget } });
     }
 
-  }),
+  },
 
-  getBudgetByHomeId: controllerWrapper(async (req, res) => {
+  getBudgetByHomeId: async (req, res) => {
     
     const id = req.params.id;
     const budget = await budgetDataMapper.findBudgetByHomeId(id)
@@ -34,9 +33,9 @@ const budgetController = {
 
     res.json({ status: 'success', data: { budget } });
   
-  }),
+  },
 
-  getBudgetsByUserId: controllerWrapper(async (req, res) => {
+  getBudgetsByUserId: async (req, res) => {
     
     const id = req.params.id;
     const budgets = await budgetDataMapper.findBudgetsByUserId(id)
@@ -47,34 +46,33 @@ const budgetController = {
 
     res.json({ status: 'success', data: { budgets } });
   
-  }),
+  },
  
   // QUERY POST
-  createOneBudget: controllerWrapper(async (req, res) => {
+  createOneBudget: async (req, res) => {
     
     const budgetData = req.body;
     const budget = await budgetDataMapper.createBudget(budgetData)
     res.json({ status: 'success', data: { budget } });
 
-  }),
+  },
 
-  updateOneBudget: controllerWrapper(async (req, res) => {
+  updateOneBudget: async (req, res) => {
 
     const id = req.params.id;
     const budgetData = req.body;
     const budget = await budgetDataMapper.updateBudget(id, budgetData)
     res.json({ status: 'success', data: { budget } });
 
-  }),
+  },
 
-  deleteOneBudget: controllerWrapper(async (req, res) => {
+  deleteOneBudget: async (req, res) => {
 
     const id = req.params.id;
     await budgetDataMapper.deleteBudgetById(id)
     res.json({ status: 'success', message: 'Le budget a bien été supprimé' });
 
-  })
-
+  }
 }
 
 export default budgetController;

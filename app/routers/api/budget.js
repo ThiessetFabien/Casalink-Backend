@@ -1,7 +1,7 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
-
+import cw from '../../middlewares/controller.wrapper.js';
 import budgetController from '../../controllers/budgetController.js';
 
 const router = express.Router();
@@ -97,6 +97,6 @@ router.patch('/budget/:id', validate (patchSchema, 'body'), budgetController.upd
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/budget/:id', validate (removeSchema, 'body'), budgetController.deleteOneBudget);
+router.delete('/budget/:id', validate (removeSchema, 'body'), cw(budgetController.deleteOneBudget));
 
 export default router;
