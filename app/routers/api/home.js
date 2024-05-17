@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/user/:id', validate (getSchema, 'query'), homeController.getHomeByUserId);
+router.get('/home/user/:id', validate (getSchema, 'query'), cw(homeController.getHomeByUserId));
 
 /**
 *GET /api/home/{id}
@@ -30,7 +30,7 @@ router.get('/home/user/:id', validate (getSchema, 'query'), homeController.getHo
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/:id', validate (getSchema, 'query'),homeController.getHomeById);
+router.get('/home/:id', validate (getSchema, 'query'), cw(homeController.getHomeById));
 
 /**
 *GET /api/home

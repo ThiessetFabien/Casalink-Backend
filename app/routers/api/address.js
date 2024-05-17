@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/address/home/:id', validate (getSchema, 'query'), addressController.getAddressByHomeId);
+router.get('/address/home/:id', validate (getSchema, 'query'), cw(addressController.getAddressByHomeId));
 
 /**
 *GET /api/address/{id}
@@ -30,7 +30,7 @@ router.get('/address/home/:id', validate (getSchema, 'query'), addressController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/address/:id', validate (getSchema, 'query'), addressController.getAddressById);
+router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.getAddressById));
 
 /**
 *GET /api/address/{id}
@@ -44,7 +44,7 @@ router.get('/address/:id', validate (getSchema, 'query'), addressController.getA
 */
 
 
-router.get('/address/:id', validate (getSchema, 'query'),addressController.getAddressById);
+router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.getAddressById));
 
 /**
 *GET /api/address
@@ -56,7 +56,7 @@ router.get('/address/:id', validate (getSchema, 'query'),addressController.getAd
 */
 
 
-router.get('/address/', validate (getSchema, 'query'),addressController.getAllAddress);
+router.get('/address/', validate (getSchema, 'query'), cw(addressController.getAllAddress));
 
 /**
 *POST /api/address
@@ -69,7 +69,7 @@ router.get('/address/', validate (getSchema, 'query'),addressController.getAllAd
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/address/', validate (postSchema, 'body'),addressController.createOneAddress);
+router.post('/address/', validate (postSchema, 'body'), cw(addressController.createOneAddress));
 
 /**
 *PATCH /api/address/{id}

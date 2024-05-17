@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/budget/home/:id', validate (getSchema, 'query'), budgetController.getBudgetByHomeId);
+router.get('/budget/home/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetByHomeId));
 
 /**
 *GET /api/budget/user/{id}
@@ -31,7 +31,7 @@ router.get('/budget/home/:id', validate (getSchema, 'query'), budgetController.g
 */
 
 
-router.get('/budget/user/:id', validate (getSchema, 'query'), budgetController.getBudgetsByUserId);
+router.get('/budget/user/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetsByUserId));
 
 /**
 *GET /api/budget/{id}
@@ -44,7 +44,7 @@ router.get('/budget/user/:id', validate (getSchema, 'query'), budgetController.g
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/budget/:id', validate (getSchema, 'query'),budgetController.getBudgetById);
+router.get('/budget/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetById));
 
 /**
 *GET /api/budget
@@ -57,7 +57,7 @@ router.get('/budget/:id', validate (getSchema, 'query'),budgetController.getBudg
 */
 
 
-router.get('/budget/', validate (getSchema, 'query'),budgetController.getAllBudgets);
+router.get('/budget/', validate (getSchema, 'query'), cw(budgetController.getAllBudgets));
 
 /**
 *POST /api/budget
@@ -70,7 +70,7 @@ router.get('/budget/', validate (getSchema, 'query'),budgetController.getAllBudg
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/budget/', validate (postSchema, 'body'),budgetController.createOneBudget);
+router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.createOneBudget));
 
 /**
 *PATCH /api/budget/{id}
@@ -84,7 +84,7 @@ router.post('/budget/', validate (postSchema, 'body'),budgetController.createOne
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/budget/:id', validate (patchSchema, 'body'), budgetController.updateOneBudget);
+router.patch('/budget/:id', validate (patchSchema, 'body'), cw(budgetController.updateOneBudget));
 
 /**
 *DELETE /api/budget/{id}

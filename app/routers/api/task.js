@@ -18,7 +18,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
+router.get('/task/user/:id', validate (getSchema, 'query'), cw(taskController.getTaskByUserId));
 
 /**
 *GET /api/task/{id}
@@ -31,7 +31,7 @@ router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTa
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
+router.get('/task/:id', validate (getSchema, 'query'), cw(taskController.getTaskById));
 
 /**
 *GET /api/task/{id}/subtask
@@ -44,7 +44,7 @@ router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskByI
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/:id/subtask', validate (getSchema, 'query'), subtaskController.getSubtaskById);
+router.get('/task/:id/subtask', validate (getSchema, 'query'), cw(subtaskController.getSubtaskById));
 
 /**
 *GET /api/task

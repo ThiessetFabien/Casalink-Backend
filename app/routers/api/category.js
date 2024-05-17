@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/category/task/:id', validate (getSchema, 'query'), categoryController.getCategoryByTaskId);
+router.get('/category/task/:id', validate (getSchema, 'query'), cw(categoryController.getCategoryByTaskId));
 
 /**
 *GET /api/category{id}
@@ -30,7 +30,7 @@ router.get('/category/task/:id', validate (getSchema, 'query'), categoryControll
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/category/:id', validate (getSchema, 'query'),categoryController.getCategoryById);
+router.get('/category/:id', validate (getSchema, 'query'), cw(categoryController.getCategoryById));
 
 /**
 *POST /api/category
@@ -43,7 +43,7 @@ router.get('/category/:id', validate (getSchema, 'query'),categoryController.get
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/category/', validate (postSchema, 'body'),categoryController.createOneCategory);
+router.post('/category/', validate (postSchema, 'body'), cw(categoryController.createOneCategory));
 
 /**
 *PATCH /api/category/{id}
@@ -57,7 +57,7 @@ router.post('/category/', validate (postSchema, 'body'),categoryController.creat
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/category/:id', validate (patchSchema, 'body'), categoryController.updateOneCategory);
+router.patch('/category/:id', validate (patchSchema, 'body'), cw(categoryController.updateOneCategory));
 
 /**
 *DELETE /api/category/{id}

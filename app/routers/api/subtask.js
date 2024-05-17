@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/subtask/task/:id', validate (getSchema, 'query'), subtaskController.getSubtaskByTaskId);
+router.get('/subtask/task/:id', validate (getSchema, 'query'), cw(subtaskController.getSubtaskByTaskId));
 
 /**
 *GET /api/subtask/{id}
@@ -30,7 +30,7 @@ router.get('/subtask/task/:id', validate (getSchema, 'query'), subtaskController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/subtask/:id', validate (getSchema, 'query'),subtaskController.getSubtaskById);
+router.get('/subtask/:id', validate (getSchema, 'query'), cw(subtaskController.getSubtaskById));
 
 /**
 *POST /api/subtask
@@ -43,7 +43,7 @@ router.get('/subtask/:id', validate (getSchema, 'query'),subtaskController.getSu
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/subtask/', validate (postSchema, 'body'),subtaskController.createOneSubtask);
+router.post('/subtask/', validate (postSchema, 'body'), cw(subtaskController.createOneSubtask));
 
 /**
 *PATCH /api/subtask/{id}
