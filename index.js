@@ -7,6 +7,8 @@ import createDoc from './app/services/api.doc.js';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cors from 'cors';
+import session from 'express-session';
+import auth from './app/middlewares/auth.js';
 
 // Load environment variables
 import { config } from 'dotenv';
@@ -23,6 +25,12 @@ app.use(express.json());
 
 // Setup body parser
 app.use(urlencoded({ extended: true }));
+
+app.use(session({
+  saveUnititialized: true,
+  resave: true,
+  secret: process.env.SESSION_SECRET
+}))
 
 /**
  * GET /api-doc
@@ -42,6 +50,8 @@ app.use(
     origin: ["http://localhost:3000", "http://localhost:4000", "http://localhost:5000",],
   })
 );
+
+app.use(auth);
 
 app.use(router);
 
