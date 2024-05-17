@@ -3,7 +3,7 @@ import { getSchema, postSchema, patchSchema, removeSchema } from '../../validati
 import validate from '../../validation/validator.js';
 
 import taskController from '../../controllers/taskController.js';
-import subtastController from '../../controllers/subtaskController.js';
+import subtaskController from '../../controllers/subtaskController.js';
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ const router = express.Router();
 
 router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
 router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
+router.get('/task/:id/subtask', validate (getSchema, 'query'), subtaskController.getSubtaskById);
 
 /**
 *GET /api/task
