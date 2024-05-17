@@ -20,6 +20,18 @@ const router = express.Router();
 */
 
 router.get('/home/user/:id', validate (getSchema, 'query'), homeController.getHomeByUserId);
+
+/**
+*GET /api/home/{id}
+*@summary Get Home by this id
+*@tags Get
+*@param {number} id.path.required - Home id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/home/:id', validate (getSchema, 'query'),homeController.getHomeById);
 
 /**
