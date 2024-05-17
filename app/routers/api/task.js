@@ -1,7 +1,9 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/task.schema.js';
 import validate from '../../validation/validator.js';
+
 import taskController from '../../controllers/taskController.js';
+import subtastController from '../../controllers/subtaskController.js';
 
 const router = express.Router();
 
@@ -17,18 +19,6 @@ const router = express.Router();
 */
 
 router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
-
-/**
-*GET /api/task/{id}
-*@summary Get a Task by this id
-*@tags Get
-*@param {number} id.path.required - User id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
 
 /**

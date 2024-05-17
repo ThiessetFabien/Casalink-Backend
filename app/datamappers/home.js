@@ -6,7 +6,7 @@ const homeDataMapper = {
 // ----------- FIND HOME -----------
 
   // Find all the Homes
-  async findAllHome(){
+  async findAllHomes(){
     
     try {
     
@@ -38,6 +38,8 @@ const homeDataMapper = {
     throw error;
     }
   },
+
+  
 
   // Find a home by its user_id
   async findHomeByUserId(user_id){

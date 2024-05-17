@@ -1,7 +1,10 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
+
 import homeController from '../../controllers/homeController.js';
+import addressController from '../../controllers/addressController.js';
+import budgetController from '../../controllers/budgetController.js';
 
 const router = express.Router();
 
@@ -17,18 +20,6 @@ const router = express.Router();
 */
 
 router.get('/home/user/:id', validate (getSchema, 'query'), homeController.getHomeByUserId);
-
-/**
-*GET /api/home/{id}
-*@summary Get Home by this id
-*@tags Get
-*@param {number} id.path.required - User id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 router.get('/home/:id', validate (getSchema, 'query'),homeController.getHomeById);
 
 /**

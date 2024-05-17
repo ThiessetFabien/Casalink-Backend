@@ -1,7 +1,11 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/user.schema.js';
 import validate from '../../validation/validator.js';
+
 import userController from '../../controllers/userController.js';
+import addressController from '../../controllers/addressController.js';
+import homeController from '../../controllers/homeController.js';
+import taskController from '../../controllers/taskController.js';
 
 const router = express.Router();
 
@@ -17,29 +21,7 @@ const router = express.Router();
 */
 
 router.get('/user/home/:id',validate (getSchema, 'query'), userController.getUserByHomeId);
-
-/**
-*GET /api/user/{id}
-*@summary Get User by this id
-*@tags Get
-*@param {number} id.path.required - User id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 router.get('/user/:id',validate (getSchema, 'query'), userController.getUserById);
-
-/**
-*GET /api/user
-*@summary Get all Tasks
-*@tags Get
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 router.get('/user/',validate (getSchema, 'query'), userController.getAllUsers);
 
 /**

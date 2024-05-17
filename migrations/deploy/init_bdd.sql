@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "address" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "street" TEXT NOT NULL,
     "city" TEXT NOT NULL,
-    "additionnal_information" TEXT,
+    "additional_information" TEXT,
     "postal_code" TEXT CHECK (postal_code ~ '(^0[1-9]\d{3}$)|(^9[0-6]\d{3}$)|(^[1-8]\d{4}$)|(^9[78][12478]\d{2}$)') NOT NULL,
     "country" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),

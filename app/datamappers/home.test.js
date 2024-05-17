@@ -37,7 +37,7 @@ describe('Casalink generates the list of home', () => {
       };
       const home = await homeData.updateHome(homeId, updatehome);
         });
-    
+
   it('should delete a home', async () => {
     const homeId = 3;
     const result = await homeData.deleteHomeById(homeId);
