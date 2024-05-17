@@ -10,7 +10,7 @@ const router = express.Router();
 *GET /api/user/home/{id}
 *@summary Get all users of home by home id
 *@tags Get
-*@param {number} id.path.required - User id
+*@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -18,7 +18,30 @@ const router = express.Router();
 */
 
 router.get('/user/home/:id',validate (getSchema, 'query'), userController.getUserByHomeId);
+
+/**
+*GET /api/user/{id}
+*@summary Get user by this id
+*@tags Get
+*@param {number} id.path.required - User id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/user/:id',validate (getSchema, 'query'), userController.getUserById);
+
+/**
+*GET /api/user
+*@summary Get all Users
+*@tags Get
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/user/',validate (getSchema, 'query'), userController.getAllUsers);
 
 /**
