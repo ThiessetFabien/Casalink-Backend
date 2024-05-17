@@ -7,23 +7,68 @@ import categoryController from '../../controllers/categoryController.js';
 const router = express.Router();
 
 /**
-@route GET /*/
+*GET /api/category/task/{id}
+*@summary Get Category of Tasks by Task id
+*@tags Get
+*@param {number} id.path.required - Task id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
 
 router.get('/category/task/:id', validate (getSchema, 'query'), categoryController.getCategoryByTaskId);
+
+/**
+*GET /api/category{id}
+*@summary Get Category by this id
+*@tags Get
+*@param {number} id.path.required - Category id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/category/:id', validate (getSchema, 'query'),categoryController.getCategoryById);
 
 /**
-@route POST /*/
+*POST /api/category
+*@summary Create a new Category
+*@tags Post
+*@param {CategoryInput} request.body.required - Category info
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
 
 router.post('/category/', validate (postSchema, 'body'),categoryController.createOneCategory);
 
 /**
-@route PATCH /*/
+*PATCH /api/category/{id}
+*@summary Update a Category by this id
+*@tags Patch
+*@param {number} id.path.required - Category id
+*@param {CategoryInput} request.body.required - Category info
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
 
 router.patch('/category/:id', validate (patchSchema, 'body'), categoryController.updateOneCategory);
 
 /**
-@route DELETE /*/
+*DELETE /api/category/{id}
+*@summary Delete a Category by this id
+*@tags Delete
+*@param {number} id.path.required - Category id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
 
 router.delete('/category/:id', validate (removeSchema, 'body'), categoryController.deleteOneCategory);
 

@@ -59,7 +59,7 @@ router.get('/address/:id', validate (getSchema, 'query'),addressController.getAd
 router.get('/address/', validate (getSchema, 'query'),addressController.getAllAddress);
 
 /**
-*POST /api/Address
+*POST /api/address
 *@summary Create a new Address
 *@tags Post
 *@param {AddressInput} request.body.required - Address info
