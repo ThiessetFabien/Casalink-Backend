@@ -3,9 +3,6 @@ import { getSchema, postSchema, patchSchema, removeSchema } from '../../validati
 import validate from '../../validation/validator.js';
 
 import userController from '../../controllers/userController.js';
-import addressController from '../../controllers/addressController.js';
-import homeController from '../../controllers/homeController.js';
-import taskController from '../../controllers/taskController.js';
 
 const router = express.Router();
 

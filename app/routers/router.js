@@ -15,15 +15,7 @@ router.use((req, __ , next) => {
  * A api succes object
  * @typedef {object} ApiSucces
  * @property {number} status - Status response
- * @property {string} name - Name response
- * @property {string} message - Message response
- * @example
- * {
- *  "status": "404",
- *  "name": "error",
- *  "message": "Not Found"
- * }
-
+ * @property {object} data - Data response
  */
 
 // API ROUTES
