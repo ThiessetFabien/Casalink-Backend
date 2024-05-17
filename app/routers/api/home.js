@@ -2,6 +2,7 @@ import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
 import homeController from '../../controllers/homeController.js';
+import cw from '../../middlewares/controller.wrapper.js';
 
 const router = express.Router();
 
