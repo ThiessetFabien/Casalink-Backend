@@ -1,7 +1,7 @@
 import express from 'express';
 import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/task.schema.js';
 import validate from '../../validation/validator.js';
-
+import cw from '../../middlewares/controller.wrapper.js';
 import taskController from '../../controllers/taskController.js';
 import subtaskController from '../../controllers/subtaskController.js';
 
@@ -18,9 +18,9 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
-router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
-router.get('/task/:id/subtask', validate (getSchema, 'query'), subtaskController.getSubtaskById);
+router.get('/task/user/:id', validate (getSchema, 'query'), cw(taskController.getTaskByUserId));
+router.get('/task/:id', validate (getSchema, 'query'), cw(taskController.getTaskById));
+router.get('/task/:id/subtask', validate (getSchema, 'query'), cw(subtaskController.getSubtaskById));
 
 /**
 *GET /api/task
@@ -31,7 +31,7 @@ router.get('/task/:id/subtask', validate (getSchema, 'query'), subtaskController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/', validate (getSchema, 'query'),taskController.getAllTasks);
+router.get('/task/', validate (getSchema, 'query'), cw(taskController.getAllTasks));
 
 /**
 *POST /api/task
@@ -44,7 +44,7 @@ router.get('/task/', validate (getSchema, 'query'),taskController.getAllTasks);
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/', validate (postSchema, 'body'),taskController.createOneTask);
+router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOneTask));
 
 /**
 *PATCH /api/task/{id}
@@ -58,7 +58,7 @@ router.post('/task/', validate (postSchema, 'body'),taskController.createOneTask
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/task/:id', validate (patchSchema, 'body'), taskController.updateOneTask);
+router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.updateOneTask));
 
 /**
 *DELETE /api/task/{id}
@@ -71,6 +71,6 @@ router.patch('/task/:id', validate (patchSchema, 'body'), taskController.updateO
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/task/:id', validate (removeSchema, 'body'), taskController.deleteOneTask);
+router.delete('/task/:id', validate (removeSchema, 'body'), cw(taskController.deleteOneTask));
 
 export default router;

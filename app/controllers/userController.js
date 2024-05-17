@@ -1,17 +1,16 @@
 import userDataMapper from '../datamappers/user.js'
-import controllerWrapper from '../middlewares/controller.wrapper.js';
 
 const userController = {
 
   // REQUETE GET
-  getAllUsers: controllerWrapper(async (_, res) => {
+  getAllUsers: async (_, res) => {
 
     const user = await userDataMapper.findAllUsers()
     res.json({ status: 'success', data: { user } });
 
-  }),
+  },
 
-  getUserById: controllerWrapper(async (req, res) => {
+  getUserById: async (req, res) => {
 
     const id = req.params.id;
     const task = await userDataMapper.findUserById(id)
@@ -22,9 +21,9 @@ const userController = {
 
     res.json({ status: 'success', data: { task } });
 
-  }),
+  },
 
-  getUserByHomeId: controllerWrapper(async (req, res) => {
+  getUserByHomeId: async (req, res) => {
 
     const id = req.params.id;
     const user = await userDataMapper.findUsersByHomeId(id)
@@ -35,36 +34,33 @@ const userController = {
 
     res.json({ status: 'success', data: { user } });
 
-  }),
+  },
  
   // QUERY POST
-  createOneUser: controllerWrapper(async (req, res) => {
+  createOneUser: async (req, res) => {
 
     const userData = req.body;
     const task = await userDataMapper.createUser(userData)
     res.json({ status: 'success', data: { task } });
 
-  }),
+  },
 
-  updateOneUser: controllerWrapper(async (req, res) => {
+  updateOneUser: async (req, res) => {
 
     const id = req.params.id;
     const userData = req.body;
     const task = await userDataMapper.updateUser(id, userData)
     res.json({ status: 'success', data: { task } });
 
-  }),
+  },
 
-  deleteOneUser: controllerWrapper(async (req, res) => {
+  deleteOneUser: async (req, res) => {
 
     const id = req.params.id;
     await userDataMapper.deleteUserById(id)
     res.json({ status: 'success', message: 'Le user a bien été supprimé' });
 
-  })
-
-
-
+  }
 }
 
 export default userController;

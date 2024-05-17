@@ -4,7 +4,18 @@ import DbError from "../errors/dbError.js";
 const categoryDataMapper = {
 
 // ----------- FIND CATEGORY -----------
-
+  async findAllCategory(){
+      
+      try {
+      
+        const result = await pool.query('SELECT * FROM "category";');
+        
+        return result.rows;
+      
+      } catch (error) {
+        throw new DbError(error.message);
+      }
+    },
   // Find a category by its id
   async findCategoryById(id){
     
@@ -82,9 +93,8 @@ const categoryDataMapper = {
         'UPDATE "category" SET name = $1, color = $2 WHERE id = $3 RETURNING *;',
         [name, color, id]
       );
-
-      return result.rows[0];
       
+      return result.rows[0];      
     
     } catch (error) {
       throw new DbError(error.message);

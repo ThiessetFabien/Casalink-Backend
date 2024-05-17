@@ -25,3 +25,6 @@
 {"level":"http","message":"GET /api/task/1","service":"casalink-api"}
 {"level":"http","message":"GET /api/task/1/subtask","service":"casalink-api"}
 {"level":"http","message":"GET /api/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}

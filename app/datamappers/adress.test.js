@@ -1,10 +1,10 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import adressData from "./adress.js";
+import adressData from "./address.js";
 
 describe('Casalink generates the list of adress', () => {
     it('should return a list of adresss', async () => {
-        const adressList = await adressData.findAlladress();
+        const adressList = await adressData.findAllAddress();
         expect(adressList).to.be.an('array');
         adressList.forEach(adress => {
          expect(adress).to.have.property('street'); 
@@ -17,7 +17,7 @@ describe('Casalink generates the list of adress', () => {
 
     it('should return a adress by ID', async () => {
         const adressId = 1; 
-        const adress = await adressData.findadressById(adressId);
+        const adress = await adressData.findAddressById(adressId);
         expect(adress).to.be.an('object');
         expect(adress).to.have.property('street'); 
         expect(adress).to.have.property('city');
@@ -34,7 +34,7 @@ describe('Casalink generates the list of adress', () => {
             postal_code: "75001",
             country: "France",
         };
-        const adress = await adressData.createadress(newadress);
+        const adress = await adressData.createAddress(newadress);
         expect(adress).to.be.an('object');
     });
 
@@ -47,12 +47,12 @@ describe('Casalink generates the list of adress', () => {
             postal_code: "94200",
             country: "France",
       };
-      const adress = await adressData.updateadress(adressId, updateadress);
+      const adress = await adressData.updateAddress(adressId, updateadress);
         });
     
   it('should delete a adress', async () => {
     const adressId = 4;
-    const result = await adressData.deleteadressById(adressId);
+    const result = await adressData.deleteAddressById(adressId);
     expect(result).to.be.true;
   });
 });
