@@ -19,7 +19,31 @@ const router = express.Router();
 */
 
 router.get('/task/user/:id', validate (getSchema, 'query'), taskController.getTaskByUserId);
+
+/**
+*GET /api/task/{id}
+*@summary Get Task by this id
+*@tags Get
+*@param {number} id.path.required - Task id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/task/:id', validate (getSchema, 'query'), taskController.getTaskById);
+
+/**
+*GET /api/task/{id}/subtask
+*@summary Get Subtask by Task id
+*@tags Get
+*@param {number} id.path.required - Task id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
 router.get('/task/:id/subtask', validate (getSchema, 'query'), subtaskController.getSubtaskById);
 
 /**
