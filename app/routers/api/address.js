@@ -30,7 +30,7 @@ router.get('/address/home/:id', validate (getSchema, 'query'), addressController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/address/Address/:id', validate (getSchema, 'query'), addressController.getAddressByAddressId);
+router.get('/address/:id', validate (getSchema, 'query'), addressController.getAddressById);
 
 /**
 *GET /api/address/{id}
