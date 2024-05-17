@@ -6,6 +6,7 @@ import userRouter from './user.js';
 import subtaskRouter from './subtask.js';
 import categoryRouter from './category.js';
 import budgetRouter from './budget.js';
+import addressRouter from './address.js';
 
 const router = express.Router();
 
@@ -20,6 +21,7 @@ router.use(userRouter);
 router.use(subtaskRouter);
 router.use(categoryRouter);
 router.use(budgetRouter);
+router.use(addressRouter);
 
 // error handler (404)
 router.use((_, __, next) => {
