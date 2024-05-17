@@ -64,11 +64,11 @@ const addressDataMapper = {
       
     try {
     
-      if (!user_id) {
+      if (!home_id) {
         throw new Error('L\'identifiant du user est manquant.');
       }
 
-      const result = await pool.query('SELECT address.* FROM home JOIN user ON user.home_id = home.id JOIN user_has_address ON user_has_address.user_id = user.id JOIN address ON address.id = user_has_address.address_id WHERE home.id = $1;', [home_id]);
+      const result = await pool.query('SELECT "address".* FROM "home" JOIN "user" ON "user".home_id = "home".id JOIN "user_has_address" ON "user_has_address".user_id = "user".id JOIN "address" ON "address".id = "user_has_address".address_id WHERE "home".id = $1;', [home_id]);
     
       return result.rows[0];
     

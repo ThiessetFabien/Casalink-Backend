@@ -61,7 +61,7 @@ describe('Casalink generates the list of task', () => {
       };
         const task = await taskData.updateTask(taskId, updatetask);
     });
-    
+
   it('should delete a task', async () => {
     const taskId = 4;
     const result = await taskData.deleteTaskById(taskId);
