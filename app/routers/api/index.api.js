@@ -15,9 +15,7 @@ router.use(taskRouter);
 router.use(homeRouter);
 router.use(userRouter);
 
-/*
-error handler (404)
-*/
+// error handler (404)
 router.use((_, __, next) => {
   next(new ApiError(404, 'Not Found'));
 });
