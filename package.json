@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "mocha --recursive ./app/**/*.test.js --require test.config.js --require test.hooks.js",
-    "dev": "DEBUG=app:* npx nodemon index.js",
+    "dev": "DEBUG=app:* NODE_ENV=development npx nodemon index.js",
     "resetDB": "sqitch revert -y && sqitch deploy init_bdd && psql -d casalink -f ./app/data/seeding_v1.sql",
     "resetDbTest": "psql -d casalink_test -f ./app/data/create_tables_test.sql && psql -d casalink_test -f ./app/data/seeding_v1.sql"
   },
