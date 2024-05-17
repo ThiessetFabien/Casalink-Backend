@@ -7,7 +7,8 @@ import createDoc from './app/services/api.doc.js';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cors from 'cors';
-
+import rateLimit from 'express-rate-limit';
+import bodySanitizer from './app/middlewares/bodySanitizer.js';
 // Load environment variables
 import { config } from 'dotenv';
 
@@ -21,6 +22,14 @@ const app = express();
 
 app.use(express.json());
 
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests from this IP, please try again after an hour"
+});
+
+app.use(globalLimiter);
+app.use(bodySanitizer);
 // Setup body parser
 app.use(urlencoded({ extended: true }));
 
@@ -37,11 +46,7 @@ createDoc(app);
 // Starting server
 const PORT = process.env.PORT ?? 3000;
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:4000", "http://localhost:5000",],
-  })
-);
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
 app.use(router);
 

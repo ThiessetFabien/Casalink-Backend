@@ -1,0 +1,4 @@
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/home","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
