@@ -24,10 +24,4 @@ router.use('/api', ApiRouter);
 // ERROR MANAGER
 router.use(errorMiddleware);
 
-// API ROUTES
-router.use('/api', ApiRouter);
-
-// ERROR MANAGER
-router.use(errorMiddleware);
-
 export default router;
