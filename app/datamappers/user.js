@@ -38,6 +38,24 @@ const userDataMapper = {
     }
   },
 
+    // Find a user by its id without its password
+    async findUserByIdWithoutPassword(id){
+    
+      try {
+      
+        if (!id) {
+          throw new Error('L\'identifiant du user est manquant.');
+        }
+  
+        const result = await pool.query('SELECT id, email, firstname, lastname, role, home_id FROM "user" WHERE id = $1', [id]);
+      
+        return result.rows[0];
+      
+      } catch (error) {
+        throw new DbError(error.message);
+      }
+    },
+
   // Find a User by its id
   async findUsersByHomeId(home_id){
       
@@ -51,6 +69,19 @@ const userDataMapper = {
     
       return result.rows;
     
+    } catch (error) {
+      throw new DbError(error.message);
+    }
+  },
+
+  findUserByEmail: async (email) => {
+    try {
+      if (!email) {
+        throw new Error('L\'email est manquant.');
+      }
+
+      const result = await pool.query('SELECT * FROM "user" WHERE email = $1;', [email]);
+      return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }

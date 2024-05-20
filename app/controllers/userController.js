@@ -1,4 +1,5 @@
 import userDataMapper from '../datamappers/user.js'
+import cryptoPassword from '../utils/cryptoPassword.js';
 
 const userController = {
 
@@ -40,9 +41,45 @@ const userController = {
   createOneUser: async (req, res) => {
 
     const userData = req.body;
+    const { firstname, lastname, email, password } = userData;
+    
+    if (!firstname || !lastname || !email || !password) {
+      res.status(400).send('Il manque des informations')
+    }
+
+    const checkUser = await userDataMapper.findUserByEmail(email);
+
+    if (checkUser) {
+      res.status(400).send('Cet email est déjà utilisé')
+    }
+
     const task = await userDataMapper.createUser(userData)
     res.json({ status: 'success', data: { task } });
 
+  },
+
+  loginForm: async (req, res) => {
+      
+      const { email, password } = req.body;
+      const user = await userDataMapper.findUserByEmail(email);
+  
+      if (!user) {
+        res.status(404).send('L\email ou le mot de passe est incorrect')
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+  
+      if (!isMatch) {
+        res.status(401).send('L\email ou le mot de passe est incorrect')
+      }
+
+      req.session.userId = user.id;
+      res.json({ status: 'success', data: { user } });
+  },
+
+  logout: async (req, res) => {
+    req.session.destroy();
+    res.json({ status: 'success', message: 'Vous êtes déconnecté' });
   },
 
   updateOneUser: async (req, res) => {

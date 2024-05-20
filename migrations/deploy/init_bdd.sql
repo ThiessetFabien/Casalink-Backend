@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "name" TEXT NOT NULL DEFAULT 'Profile 1',
     "birthdate" TIMESTAMPTZ NOT NULL,
     "role" TEXT CHECK("role" IN ('adult', 'child', 'admin')) DEFAULT 'adult' NOT NULL,
-    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') NOT NULL,
+    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') DEFAULT 0000 NOT NULL,
     "score" INT DEFAULT 0 NOT NULL,
     "image" TEXT DEFAULT 'https://www.casalink.com/public/img/default-avatar.webp',
     "user_id" INT REFERENCES "user"("id") ON DELETE CASCADE,
