@@ -5,9 +5,9 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 
 -- Insérer des utilisateurs (users)
 INSERT INTO "user" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
-VALUES ('user1@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
-       ('user2@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
-       ('admin@example.com', 'Admin', 'Admin', 'admin', 'adminpassword', 1, NOW(), NOW());
+VALUES ('user123@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
+       ('user2877847@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
+       ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword', 1, NOW(), NOW());
 
 -- Insérer des profils (profiles)
 INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "user_id", "created_at", "updated_at")
@@ -27,8 +27,8 @@ VALUES ('Courses', 'RGB(210, 144, 20)', NOW(), NOW()),
 
 -- Insérer des tâches (tasks)
 INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "created_at", "updated_at")
-VALUES ('Faire les courses', '2024-05-25', '2024-05-25', 50, 'Haute', 'A Débuter', 'Acheter des produits alimentaires', 1, NOW(), NOW()),
-       ('Sortie à la plage', '2024-06-01', '2024-06-01', NULL, 'Moyenne', 'A Débuter', 'Aller à la plage pour se détendre', 2, NOW(), NOW());
+VALUES ('Faire les courses', '2024-05-25 00:00:00+02', '2024-05-25 01:00:00+02', 50, 'Haute', 'A Débuter', 'Acheter des produits alimentaires', 1, NOW(), NOW()),
+       ('Sortie à la plage', '2024-05-26 00:00:00+02', '2024-05-27 00:00:00+02', NULL, 'Moyenne', 'A Débuter', 'Aller à la plage pour se détendre', 2, NOW(), NOW());
 
 -- Insérer des sous-tâches (subtasks)
 INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_at")

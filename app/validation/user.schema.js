@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const userPartValidator = Joi.string().pattern(/^./);
 const home_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
-const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } }).required();
+const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
 
 
 export const getSchema = Joi.object({
