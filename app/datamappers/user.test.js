@@ -11,8 +11,6 @@ describe('Casalink generates the list of users', () => {
          expect(user).to.have.property('lastname');
          expect(user).to.have.property('email');
          expect(user).to.have.property('role');
-         expect(user).to.have.property('pin');
-         expect(user).to.have.property('score');
          expect(user).to.have.property('password');
          expect(user).to.have.property('home_id');
         });
@@ -25,10 +23,7 @@ describe('Casalink generates the list of users', () => {
         expect(user).to.have.property('firstname');
         expect(user).to.have.property('lastname');
         expect(user).to.have.property('email');
-        expect(user).to.have.property('birthdate');
         expect(user).to.have.property('role');
-        expect(user).to.have.property('pin');
-        expect(user).to.have.property('score');
         expect(user).to.have.property('password');
         expect(user).to.have.property('home_id');
     });
@@ -41,10 +36,7 @@ describe('Casalink generates the list of users', () => {
             expect(user).to.have.property('firstname');
             expect(user).to.have.property('lastname');
             expect(user).to.have.property('email');
-            expect(user).to.have.property('birthdate');
             expect(user).to.have.property('role');
-            expect(user).to.have.property('pin');
-            expect(user).to.have.property('score');
             expect(user).to.have.property('password');
             expect(user).to.have.property('home_id');
         });
@@ -72,10 +64,7 @@ describe('Casalink generates the list of users', () => {
             email: "adrien.Hack@gmail.com",
             firstname: "IAdrien",
             lastname: "The Best",
-            birthdate: "1990-01-01",
-            role: "adult",
-            pin: "1234",
-            score: 0,
+            role: "user",
             password: "IAhelper",
             home_id: '1'
         };

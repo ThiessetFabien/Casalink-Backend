@@ -1,62 +1,51 @@
--- Insertion of homes
-INSERT INTO "home" ("shopping_list", "name")
-VALUES
-    ('{"item1", "item2", "item3"}', 'Home 1'),
-    ('{"item4", "item5"}', 'Home 2');
+-- Insérer des foyers (homes)
+INSERT INTO "home" ("name", "shopping_list", "created_at", "updated_at")
+VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
+       ('Maison de vacances', ARRAY['jouets de plage', 'crème solaire'], NOW(), NOW());
 
--- Insertion of users
-INSERT INTO "user" ("email", "firstname", "lastname", "birthdate", "role", "pin", "score", "password", "home_id")
-VALUES
-    ('user1@example.com', 'Patrick', 'Doe', '1990-05-15', 'adult', '1234', 100, 'password1', '1'),
-    ('user2@example.com', 'milo', 'Smith', '1995-08-25', 'adult', '5678', 80, 'password2', '2'),
-    ('admin@example.com', 'mila', 'User', '1985-02-10', 'child', '9876', 200, 'adminpassword', '1');
+-- Insérer des utilisateurs (users)
+INSERT INTO "user" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
+VALUES ('user1@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
+       ('user2@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
+       ('admin@example.com', 'Admin', 'Admin', 'admin', 'adminpassword', 1, NOW(), NOW());
 
--- Insertion of addresses
-INSERT INTO "address" ("street", "city", "additional_information", "postal_code", "country")
-VALUES
-    ('123 Main St', 'Cityville', 'Apartment 1A', '13100', 'France'),
-    ('456 Elm St', 'Townsville', NULL, '06200', 'France'),
-    ('789 Oak St', 'Villagetown', 'Suite 100', '67890', 'France');
+-- Insérer des profils (profiles)
+INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "user_id", "created_at", "updated_at")
+VALUES ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 1, NOW(), NOW()),
+       ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 2, NOW(), NOW());
 
--- Insertion of categories
-INSERT INTO "category" ("name", "color")
-VALUES
-    ('Category 1', 'blue'),
-    ('Category 2', 'green'),
-    ('Category 3', 'red');
+-- Insérer des adresses (addresses)
+INSERT INTO "address" ("street", "city", "additional_information", "postal_code", "country", "created_at", "updated_at")
+VALUES ('123 rue de la Paix', 'Paris', NULL, '75001', 'France', NOW(), NOW()),
+       ('456 Main Street', 'New York', 'Apt. 202', '10001', 'USA', NOW(), NOW());
 
--- Insertion of tasks
-INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id")
-VALUES
-    ('Faire à manger', '2024-06-25 11:10:10+02:00','2024-06-25 12:10:12+02:00', 10, 'high', 'A Faire', 'Description de la tâche 1', 1),
-    ('Faire ménage', '2024-06-26 11:10:10+02:00', '2024-06-26 12:10:12+02:00', 20, 'medium', 'En Cours', 'Description de la tâche 2', 2),
-    ('Task 3', '2024-06-27 11:10:10+02:00', '2024-06-27 12:10:12+02:00', 15, 'low', 'Terminée', 'Description de la tâche 3', 3);
+-- Insérer des catégories (categories)
+INSERT INTO "category" ("name", "color", "created_at", "updated_at")
+VALUES ('Courses', 'RGB(210, 144, 20)', NOW(), NOW()),
+       ('Loisirs', 'RGB(210, 110, 80)', NOW(), NOW()),
+       ('Travail', 'RGBA(210, 144, 200, 0.8)', NOW(), NOW());
 
+-- Insérer des tâches (tasks)
+INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "created_at", "updated_at")
+VALUES ('Faire les courses', '2024-05-25', '2024-05-25', 50, 'Haute', 'A Débuter', 'Acheter des produits alimentaires', 1, NOW(), NOW()),
+       ('Sortie à la plage', '2024-06-01', '2024-06-01', NULL, 'Moyenne', 'A Débuter', 'Aller à la plage pour se détendre', 2, NOW(), NOW());
 
--- Insertion of subtasks
-INSERT INTO "subtask" ("description", "name", "task_id")
-VALUES
-    ('Description de la sous-tâche 1', 'Subtask 1', 1),
-    ('Description de la sous-tâche 2', 'Subtask 2', 2),
-    ('Description de la sous-tâche 3', 'Subtask 3', 3);
+-- Insérer des sous-tâches (subtasks)
+INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_at")
+VALUES ('Acheter du lait', 'Prendre du lait demi-écrémé', 1, NOW(), NOW()),
+       ('Jouer au frisbee', 'Amener un frisbee à la plage', 2, NOW(), NOW());
 
--- Insertion of links between users and tasks
-INSERT INTO "user_has_task" ("user_id", "task_id")
-VALUES
-    (1, 1),
-    (2, 2),
-    (1, 3);
+-- Insérer des associations entre utilisateurs et tâches (user_has_task)
+INSERT INTO "user_has_task" ("user_id", "task_id", "created_at", "updated_at")
+VALUES (1, 1, NOW(), NOW()),
+       (2, 2, NOW(), NOW());
 
--- Insertion of links between users and address
-INSERT INTO "user_has_address" ("user_id", "address_id")
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3);
+-- Insérer des associations entre utilisateurs et adresses (user_has_address)
+INSERT INTO "user_has_address" ("user_id", "address_id", "created_at", "updated_at")
+VALUES (1, 1, NOW(), NOW()),
+       (2, 2, NOW(), NOW());
 
--- Insertion of budgets
-INSERT INTO "budget" ("amount", "name", "category", "description", "home_id")
-VALUES
-    (1000, 'Budget 1', 'Category 1', 'Description du budget 1', 1),
-    (2000, 'Budget 2', 'Category 2', 'Description du budget 2', 2),
-    (3000, 'Budget 3', 'Category 3', 'Description du budget 3', 1);
+-- Insérer des budgets (budgets)
+INSERT INTO "budget" ("amount", "name", "category", "description", "home_id", "created_at", "updated_at")
+VALUES (100.00, 'Courses hebdomadaires', 'Courses', 'Budget alloué pour les courses alimentaires de la semaine', 1, NOW(), NOW()),
+       (50.00, 'Loisirs mensuels', 'Loisirs', 'Budget pour les activités de loisirs du mois', 1, NOW(), NOW());

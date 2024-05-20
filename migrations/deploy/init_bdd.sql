@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "user", "home";
+DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "user", "home";
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -17,12 +17,22 @@ CREATE TABLE IF NOT EXISTS "user" (
     "email" TEXT NOT NULL UNIQUE,
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
+    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user' NOT NULL,
+    "password" TEXT NOT NULL,
+    "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
+    "created_at" TIMESTAMPTZ DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS "profile" (
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT NOT NULL DEFAULT 'Profile 1',
     "birthdate" TIMESTAMPTZ NOT NULL,
     "role" TEXT CHECK("role" IN ('adult', 'child', 'admin')) DEFAULT 'adult' NOT NULL,
     "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') NOT NULL,
     "score" INT DEFAULT 0 NOT NULL,
-    "password" TEXT NOT NULL,
-    "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
+    "image" TEXT DEFAULT 'https://www.casalink.com/public/img/default-avatar.webp',
+    "user_id" INT REFERENCES "user"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );

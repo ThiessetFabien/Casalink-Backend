@@ -8,46 +8,38 @@ const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { al
 export const getSchema = Joi.object({
     lastname: userPartValidator,
     firstname: userPartValidator,
-    birthdate: userPartValidator,
     role: userPartValidator,
     pin: userPartValidator.pattern(/^[0-9]{4}$/),
     password: userPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
-    score: userPartValidator
 });
 export const postSchema = Joi.object({
     lastname: userPartValidator,
     firstname: userPartValidator,
-    birthdate: userPartValidator,
     role: userPartValidator,
     pin: userPartValidator,
     password: userPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
-    score: userPartValidator
 });
 
 export const patchSchema = Joi.object({
     lastname: userPartValidator,
     firstname: userPartValidator,
-    birthdate: userPartValidator,
     role: userPartValidator,
     pin: userPartValidator,
     password: userPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
-    score: userPartValidator
 });
 
 export const removeSchema = Joi.object({
     lastname: userPartValidator,
     firstname: userPartValidator,
-    birthdate: userPartValidator,
     role: userPartValidator,
     pin: userPartValidator,
     password: userPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
-    score: userPartValidator
 });

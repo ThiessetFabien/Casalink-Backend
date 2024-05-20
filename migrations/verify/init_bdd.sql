@@ -36,6 +36,12 @@ SELECT EXISTS (
 SELECT EXISTS (
     SELECT 1
     FROM information_schema.tables
+    WHERE table_name = 'profile'
+) AS "profile_exists";
+
+SELECT EXISTS (
+    SELECT 1
+    FROM information_schema.tables
     WHERE table_name = 'user'
 ) AS "user_exists";
 

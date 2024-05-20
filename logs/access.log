@@ -2,3 +2,15 @@
 {"level":"http","message":"GET /","service":"casalink-api"}
 {"level":"http","message":"GET /api/home","service":"casalink-api"}
 {"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/category","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/category/task/1","service":"casalink-api"}
