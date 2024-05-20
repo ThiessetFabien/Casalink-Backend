@@ -1,5 +1,6 @@
 import pool from "./connexion.js";
 import DbError from "../errors/dbError.js";
+import cryptoPassword from '../utils/cryptoPassword.js';
 
 const userDataMapper = {
 
@@ -69,9 +70,11 @@ const userDataMapper = {
 
       const { email, firstname, lastname, birthdate, role, pin, score, password, home_id } = userData;
       
+      const hashedPassword = await cryptoPassword.hash(password);
+
       const result = await pool.query(
         'INSERT INTO "user" (email, firstname, lastname, birthdate, role, pin, score, password, home_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *;',
-        [email, firstname, lastname, birthdate, role, pin, score, password, home_id]
+        [email, firstname, lastname, birthdate, role, pin, score, hashedPassword, home_id]
       );
 
       return result.rows[0];
@@ -92,9 +95,11 @@ const userDataMapper = {
 
       const { email, firstname, lastname, birthdate, role, pin, score, password, home_id } = userData;
       
+      const hashedPassword = await cryptoPassword.hash(password);
+      
       const result = await pool.query(
         'UPDATE "user" SET email = $1, firstname = $2, lastname = $3, birthdate = $4, role = $5, pin = $6, score = $7, password = $8, home_id = $9 WHERE id = $10 RETURNING *;',
-        [ email, firstname, lastname, birthdate, role, pin, score, password, home_id, id]
+        [ email, firstname, lastname, birthdate, role, pin, score, hashedPassword, home_id, id]
       );
 
       return result.rows[0];
