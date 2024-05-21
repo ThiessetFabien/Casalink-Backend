@@ -20,7 +20,7 @@ const router = express.Router();
 router.get('/signup', validate(getSchema, 'query'), cw(accountController.createOneAccount));
 
 /**
-*POST /api/account
+*POST /api/account/{ irstname, lastname, email, password, confirmPassword }
 *@summary Create a new account
 *@tags Post
 *@param {accountInput} request.body.required - account info
