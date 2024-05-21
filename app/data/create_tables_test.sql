@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "user_has_address", "user_has_task", "subtask", "task", "category", "address", "user", "home";
+DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -10,17 +10,28 @@ CREATE TABLE IF NOT EXISTS "home" (
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user" (
+CREATE TABLE IF NOT EXISTS "account" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "email" TEXT NOT NULL UNIQUE,
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
-    "birthdate" TIMESTAMPTZ NOT NULL,
-    "role" TEXT CHECK("role" IN ('adult', 'child', 'admin')) DEFAULT 'adult' NOT NULL,
-    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') NOT NULL,
-    "score" INT DEFAULT 0 NOT NULL,
+    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user' NOT NULL,
     "password" TEXT NOT NULL,
     "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
+    "created_at" TIMESTAMPTZ DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS "profile" (
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT NOT NULL DEFAULT 'Profile 1',
+    "birthdate" TIMESTAMPTZ NOT NULL,
+    "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult' NOT NULL,
+    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$'),
+    "score" INT DEFAULT 0 NOT NULL,
+    "image" TEXT DEFAULT 'assets/avatars/default-avatar.webp',
+    "email" TEXT,
+    "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -67,18 +78,18 @@ CREATE TABLE IF NOT EXISTS "subtask" (
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user_has_task" (
+CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "user_id" INT REFERENCES "user"("id"),
-  "task_id" INT REFERENCES "task"("id"),
+  "profile_id" INT REFERENCES "profile"("id") ON DELETE CASCADE,
+  "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user_has_address" (
+CREATE TABLE IF NOT EXISTS "account_has_address" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "user_id" INT REFERENCES "user"("id"),
-  "address_id" INT REFERENCES "address"("id"),
+  "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
+  "address_id" INT REFERENCES "address"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );
