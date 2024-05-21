@@ -49,7 +49,7 @@ router.get('/account/',validate (getSchema, 'query'), cw(accountController.getAl
 *@summary Update a account by this id
 *@tags Patch
 *@param {number} id.path.required - account id
-*@param {accountInput} request.body.required - account info
+*@param {accountInput} request.body.required - account info { email, firstname, lastname, role, password, home_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

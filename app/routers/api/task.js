@@ -61,7 +61,7 @@ router.get('/task/', validate (getSchema, 'query'), cw(taskController.getAllTask
 *POST /api/task
 *@summary Create a new Task
 *@tags Post
-*@param {TaskInput} request.body.required - Task info
+*@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -75,7 +75,7 @@ router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOne
 *@summary Update a Task by this id
 *@tags Patch
 *@param {number} id.path.required - Task id
-*@param {TaskInput} request.body.required - Task info
+*@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

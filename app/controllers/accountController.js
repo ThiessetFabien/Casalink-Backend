@@ -40,16 +40,20 @@ const accountController = {
   createOneAccount: async (req, res) => {
 
     const accountData = req.body;
-    const { firstname, lastname, email, password } = accountData;
+    const { firstname, lastname, email, password, confirmPassword, home_id } = accountData;
     
-    if (!firstname || !lastname || !email || !password) {
-      res.status(400).send('Il manque des informations')
+    if (!firstname || !lastname || !email || !password || !confirmPassword || !home_id) {
+      res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
+    }
+
+    if(password !== confirmPassword) {
+      res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
     }
 
     const checkAccount = await accountDataMapper.findAccountByEmail(email);
 
     if (checkAccount) {
-      res.status(400).send('Cet email est déjà utilisé')
+      res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
     }
 
     const task = await accountDataMapper.createAccount(accountData)
@@ -59,15 +63,11 @@ const accountController = {
 
   loginForm: async (req, res) => {
       
-      const { email, password, confirmPassword } = req.body;
+      const { email, password } = req.body;
       const account = await accountDataMapper.findAccountByEmail(email);
   
       if (!account) {
         res.status(404).json({ status: 'error', message: 'L\'email ou le mot de passe est incorrect' });
-      }
-
-      if(password !== confirmPassword) {
-        res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
       }
 
       const isMatch = await bcrypt.compare(password, account.password);

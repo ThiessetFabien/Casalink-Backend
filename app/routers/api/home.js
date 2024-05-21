@@ -47,7 +47,7 @@ router.get('/home/', validate (getSchema, 'query'), cw(homeController.getAllHome
 *POST /api/home
 *@summary Create a new Home
 *@tags Post
-*@param {HomeInput} request.body.required - Home info
+*@param {HomeInput} request.body.required - Home info { shopping_list, name }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -61,7 +61,7 @@ router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOne
 *@summary Update a Home by this id
 *@tags Patch
 *@param {number} id.path.required - Home id
-*@param {HomeInput} request.body.required - Home info
+*@param {HomeInput} request.body.required - Home info { shopping_list, name }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

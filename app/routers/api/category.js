@@ -36,7 +36,7 @@ router.get('/category/:id', validate (getSchema, 'query'), cw(categoryController
 *POST /api/category
 *@summary Create a new Category
 *@tags Post
-*@param {CategoryInput} request.body.required - Category info
+*@param {CategoryInput} request.body.required - Category info { name, color }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -50,7 +50,7 @@ router.post('/category/', validate (postSchema, 'body'), cw(categoryController.c
 *@summary Update a Category by this id
 *@tags Patch
 *@param {number} id.path.required - Category id
-*@param {CategoryInput} request.body.required - Category info
+*@param {CategoryInput} request.body.required - Category info { name, color }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

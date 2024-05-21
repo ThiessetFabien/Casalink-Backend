@@ -10,7 +10,7 @@ const router = express.Router();
 *GET /api/account
 *@summary Create a new account
 *@tags GET
-*@param {accountInput} request.body.required - account info
+*@param {accountInput} request.body.required - account info 
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -20,10 +20,10 @@ const router = express.Router();
 router.get('/signup', validate(getSchema, 'query'), cw(accountController.createOneAccount));
 
 /**
-*POST /api/account
+*POST /api/account/
 *@summary Create a new account
 *@tags Post
-*@param {accountInput} request.body.required - account info
+*@param {accountInput} request.body.required - account info { firstname, lastname, email, password, confirmPassword, home_id } }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
