@@ -63,7 +63,7 @@ router.get('/budget/', validate (getSchema, 'query'), cw(budgetController.getAll
 *POST /api/budget
 *@summary Create a new Budget
 *@tags Post
-*@param {BudgetInput} request.body.required - Budget info
+*@param {BudgetInput} request.body.required - Budget info { amount, name, category, description, home_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -77,7 +77,7 @@ router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.creat
 *@summary Update a Budget by this id
 *@tags Patch
 *@param {number} id.path.required - Budget id
-*@param {BudgetInput} request.body.required - Budget info
+*@param {BudgetInput} request.body.required - Budget info { amount, name, category, description, home_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

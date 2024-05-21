@@ -62,7 +62,7 @@ router.get('/address/', validate (getSchema, 'query'), cw(addressController.getA
 *POST /api/address
 *@summary Create a new Address
 *@tags Post
-*@param {AddressInput} request.body.required - Address info
+*@param {AddressInput} request.body.required - Address info { street, city, additional_information, postal_code, country }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -76,7 +76,7 @@ router.post('/address/', validate (postSchema, 'body'), cw(addressController.cre
 *@summary Update a Address by this id
 *@tags Patch
 *@param {number} id.path.required - Address id
-*@param {AddressInput} request.body.required - Address info
+*@param {AddressInput} request.body.required - Address info { street, city, additional_information, postal_code, country }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

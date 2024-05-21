@@ -40,10 +40,10 @@ const accountController = {
   createOneAccount: async (req, res) => {
 
     const accountData = req.body;
-    const { firstname, lastname, email, password, confirmPassword } = accountData;
+    const { firstname, lastname, email, password, confirmPassword, home_id } = accountData;
     
-    if (!firstname || !lastname || !email || !password || !confirmPassword) {
-      res.status(400).send('Il manque des informations')
+    if (!firstname || !lastname || !email || !password || !confirmPassword || !home_id) {
+      res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
     }
 
     if(password !== confirmPassword) {
@@ -53,7 +53,7 @@ const accountController = {
     const checkAccount = await accountDataMapper.findAccountByEmail(email);
 
     if (checkAccount) {
-      res.status(400).send('Cet email est déjà utilisé')
+      res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
     }
 
     const task = await accountDataMapper.createAccount(accountData)

@@ -36,7 +36,7 @@ router.get('/subtask/:id', validate (getSchema, 'query'), cw(subtaskController.g
 *POST /api/subtask
 *@summary Create a new Subtask
 *@tags Post
-*@param {AddressInput} request.body.required - Subtask info
+*@param {AddressInput} request.body.required - Subtask info { description, name, task_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -46,11 +46,11 @@ router.get('/subtask/:id', validate (getSchema, 'query'), cw(subtaskController.g
 router.post('/subtask/', validate (postSchema, 'body'), cw(subtaskController.createOneSubtask));
 
 /**
-*PATCH /api/subtask/{id}
+*PATCH /api/subtask/{id}/
 *@summary Update a Subtask by this id
 *@tags Patch
 *@param {number} id.path.required - Subtask id
-*@param {AddressInput} request.body.required - Address info
+*@param {AddressInput} request.body.required - { description, name, task_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json

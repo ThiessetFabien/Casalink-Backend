@@ -51,7 +51,7 @@ router.get('/profile/:id', validate (getSchema, 'query'), cw(profileController.g
 *POST /api/profile/
 *@summary Create a new Profile
 *@tags Post
-*@param {BudgetInput} request.body.required - Profile info
+*@param {BudgetInput} request.body.required - Profile info { name, birthdate, role, pin, score, image, email, account_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -65,7 +65,7 @@ router.post('/profile/', validate (postSchema, 'body'), cw(profileController.cre
 *@summary Update a profile by this id
 *@tags Patch
 *@param {number} id.path.required - Profile id
-*@param {BudgetInput} request.body.required - Profile info
+*@param {BudgetInput} request.body.required - Profile info { name, birthdate, role, pin, score, image, email, account_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
