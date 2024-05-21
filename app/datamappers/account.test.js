@@ -48,7 +48,7 @@ describe('Casalink generates the list of accounts', () => {
             firstname: "Adrien",
             lastname: "Hack",
             birthdate: "1990-01-01",
-            role: "adult",
+            role: "user",
             pin: "1234",
             score: 0,
             password: "helper",

@@ -65,49 +65,51 @@ const profilDataMapper = {
 
   // Create a new profile
   async createProfile(profileData) {
-
     try {
-      
-      if (!profileData) {
-        throw new Error('Les données du profil sont manquantes.');
-      }
+        const { name, role, pin, score, birthdate, image, email, account_id } = profileData;
 
-      const { name, birthdate, role, pin, score, image, email, account_id } = profileData;
-      
-      const result = await pool.query(
-        'INSERT INTO "profile" (name, role, pin, score, birthdate, image, email, account_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;',
-        [name, birthdate, role, pin, score, image, email, account_id]
-      );
+        const query = `
+            INSERT INTO "profile" (name, role, pin, score, birthdate, image, email, account_id, created_at, updated_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW())
+            RETURNING *;
+        `;
+        const values = [name, role, pin, score, birthdate, image, email, account_id];
+        const result = await pool.query(query, values);
 
-      return result.rows[0];
-    
+        return result.rows[0];
     } catch (error) {
-      throw new DbError(error.message);
+        throw new DbError(error.message);
     }
-  },
+},
 
   // ----------- UPDATE PROFILE -----------
 
   async updateProfile(id, profileData) {
     try {
+        if (!id || !profileData) {
+            throw new Error('Les données du profil ou l\'identifiant sont manquants.');
+        }
 
-      if (!id || !profileData) {
-        throw new Error('Les données du profil ou l\'identifiant sont manquants.');
-      }
+        const { name, role, pin, score, birthdate, image, email, account_id } = profileData;
 
-      const { name, birthdate, role, pin, score, image, email, account_id } = profileData;
-      
-      const result = await pool.query(
-        'UPDATE "profile" SET name = $1, birthdate = $2, role = $3, pin = $4, score = $5, image = $6, account_id = $7 WHERE id = $8 RETURNING *;',
-        [name, birthdate, role, pin, score, image, email, account_id, id]
-      );
+        const query = `
+            UPDATE "profile" 
+            SET name = $1, role = $2, pin = $3, score = $4, birthdate = $5, image = $6, email = $7, account_id = $8, updated_at = NOW()
+            WHERE id = $9 
+            RETURNING *;
+        `;
+        const values = [name, role, pin, score, birthdate, image, email, account_id, id];
+        const result = await pool.query(query, values);
 
-      return result.rows[0];
-    
+        if (result.rows.length === 0) {
+            throw new Error('Aucun profil trouvé avec cet ID.');
+        }
+
+        return result.rows[0];
     } catch (error) {
-      throw new DbError(error.message);
+        throw new DbError(error.message);
     }
-  },
+},
 
 
   // ----------- DELETE PROFIL -----------
