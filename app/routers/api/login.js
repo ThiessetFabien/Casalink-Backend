@@ -20,7 +20,7 @@ const router = express.Router();
 router.get('/connexion', validate (getSchema, 'query'), cw(accountController.loginForm));
 
 /**
-*POST /api/connexion/{id}
+*POST /api/connexion/{ email, password, confirmPassword }
 *@summary Post connexion of connexion by connexion id
 *@tags Post
 *@param {number} id.path.required - connexion id
