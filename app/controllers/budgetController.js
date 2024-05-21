@@ -35,10 +35,10 @@ const budgetController = {
   
   },
 
-  getBudgetsByUserId: async (req, res) => {
+  getBudgetsByAccountId: async (req, res) => {
     
     const id = req.params.id;
-    const budgets = await budgetDataMapper.findBudgetsByUserId(id)
+    const budgets = await budgetDataMapper.findBudgetsByAccountId(id)
 
     if(!budgets) {
       res.status(404).send('Ce budget n\'existe pas')

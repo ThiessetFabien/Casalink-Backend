@@ -17,10 +17,10 @@ const profileController = {
   
   },
 
-  getProfileByUserId: async (req, res) => {
+  getProfileByAccountId: async (req, res) => {
 
     const id = req.params.id;
-    const profile = await profileDataMapper.findProfileByUserId(id)
+    const profile = await profileDataMapper.findProfileByAccountId(id)
 
     if(!profile) {
       res.status(404).send('Ce profil n\'existe pas')

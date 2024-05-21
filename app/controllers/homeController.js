@@ -22,13 +22,13 @@ const homeController = {
 
   },
 
-  getHomeByUserId: async (req, res) => {
+  getHomeByAccountId: async (req, res) => {
     
     const id = req.params.id;
-    const home = await homeDataMapper.findHomeByUserId(id)
+    const home = await homeDataMapper.findHomeByAccountId(id)
 
     if(!home) {
-      res.status(404).send('Ce user n\'existe pas')
+      res.status(404).send('Ce compte n\'existe pas')
     }
 
     res.json({ status: 'success', data: { home } });

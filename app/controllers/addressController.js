@@ -23,10 +23,10 @@ const addressController = {
   
   },
 
-  getAddressByUserId: async (req, res) => {
+  getAddressByAccountId: async (req, res) => {
 
     const id = req.params.id;
-    const addresse = await addressDataMapper.findAddressByUserId(id)
+    const addresse = await addressDataMapper.findAddressByAccountId(id)
 
     if(!addresse) {
       res.status(404).send('Cette adresse n\'existe pas')

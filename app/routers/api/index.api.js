@@ -2,7 +2,7 @@ import express from 'express';
 import ApiError from '../../errors/api.error.js';
 import taskRouter from './task.js';
 import homeRouter from './home.js';
-import userRouter from './user.js';
+import accountRouter from './account.js';
 import subtaskRouter from './subtask.js';
 import categoryRouter from './category.js';
 import budgetRouter from './budget.js';
@@ -18,7 +18,7 @@ router.use((_, res, next) => {
 
 router.use(taskRouter);
 router.use(homeRouter);
-router.use(userRouter);
+router.use(accountRouter);
 router.use(subtaskRouter);
 router.use(categoryRouter);
 router.use(budgetRouter);

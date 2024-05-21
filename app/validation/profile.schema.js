@@ -1,8 +1,8 @@
 import Joi from 'joi';
 
 const profilePartValidator = Joi.string().pattern(/^./);
-const user_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
-const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } }).required();
+const account_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
+const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
 
 
 export const getSchema = Joi.object({
@@ -10,8 +10,9 @@ export const getSchema = Joi.object({
     role: profilePartValidator,
     pin: profilePartValidator.pattern(/^[0-9]{4}$/),
     image: profilePartValidator,
-    user_id: user_idPartValidator,
+    account_id: account_idPartValidator,
     score: profilePartValidator,
+    email: emailPartValidator,
     birthdate: profilePartValidator
 });
 export const postSchema = Joi.object({
@@ -19,8 +20,9 @@ export const postSchema = Joi.object({
     role: profilePartValidator,
     pin: profilePartValidator,
     image: profilePartValidator,
-    user_id: user_idPartValidator,
+    account_id: account_idPartValidator,
     score: profilePartValidator,
+    email: emailPartValidator,
     birthdate: profilePartValidator
 
 });
@@ -30,8 +32,9 @@ export const patchSchema = Joi.object({
     role: profilePartValidator,
     pin: profilePartValidator,
     image: profilePartValidator,
-    user_id: user_idPartValidator,
+    account_id: account_idPartValidator,
     score: profilePartValidator,
+    email: emailPartValidator,
     birthdate: profilePartValidator
 
 });
@@ -41,8 +44,9 @@ export const removeSchema = Joi.object({
     role: profilePartValidator,
     pin: profilePartValidator,
     image: profilePartValidator,
-    user_id: user_idPartValidator,
+    account_id: account_idPartValidator,
     score: profilePartValidator,
+    email: emailPartValidator,
     birthdate: profilePartValidator
 
 });

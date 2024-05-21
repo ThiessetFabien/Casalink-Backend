@@ -8,17 +8,17 @@ import subtaskController from '../../controllers/subtaskController.js';
 const router = express.Router();
 
 /**
-*GET /api/task/user/{id}
-*@summary Get all Tasks by User id
+*GET /api/task/account/{id}
+*@summary Get all Tasks by account id
 *@tags Get
-*@param {number} id.path.required - User id
+*@param {number} id.path.required - account id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/user/:id', validate (getSchema, 'query'), cw(taskController.getTaskByUserId));
+router.get('/task/account/:id', validate (getSchema, 'query'), cw(taskController.getTaskByAccountId));
 
 /**
 *GET /api/task/{id}

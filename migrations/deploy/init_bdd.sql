@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "user", "home";
+DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home";
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "home" (
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user" (
+CREATE TABLE IF NOT EXISTS "account" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "email" TEXT NOT NULL UNIQUE,
     "firstname" TEXT NOT NULL,
@@ -28,11 +28,12 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL DEFAULT 'Profile 1',
     "birthdate" TIMESTAMPTZ NOT NULL,
-    "role" TEXT CHECK("role" IN ('adult', 'child', 'admin')) DEFAULT 'adult' NOT NULL,
-    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$') DEFAULT 0000 NOT NULL,
+    "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult' NOT NULL,
+    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$'),
     "score" INT DEFAULT 0 NOT NULL,
-    "image" TEXT DEFAULT 'https://www.casalink.com/public/img/default-avatar.webp',
-    "user_id" INT REFERENCES "user"("id") ON DELETE CASCADE,
+    "image" TEXT DEFAULT 'assets/avatars/default-avatar.webp',
+    "email" TEXT,
+    "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -79,17 +80,17 @@ CREATE TABLE IF NOT EXISTS "subtask" (
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user_has_task" (
+CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "user_id" INT REFERENCES "user"("id"),
+  "profile_id" INT REFERENCES "profile"("id"),
   "task_id" INT REFERENCES "task"("id"),
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS "user_has_address" (
+CREATE TABLE IF NOT EXISTS "account_has_address" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "user_id" INT REFERENCES "user"("id"),
+  "account_id" INT REFERENCES "account"("id"),
   "address_id" INT REFERENCES "address"("id"),
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ

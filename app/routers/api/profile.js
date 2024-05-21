@@ -7,22 +7,22 @@ import profileController from '../../controllers/profileController.js';
 const router = express.Router();
 
 /**
-*GET /api/user/{id}/profile
-*@summary Get profile of User by User id
+*GET /api/account/{id}/profile
+*@summary Get profile of account by account id
 *@tags Get
-*@param {number} id.path.required - user id
+*@param {number} id.path.required - account id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/user/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByUserId));
+router.get('/account/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByAccountId));
 
 
 /**
-*GET /api/user/{id}
-*@summary Get Profile of User by home id
+*GET /api/account/{id}
+*@summary Get Profile of account by home id
 *@tags Get
 *@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json

@@ -37,16 +37,16 @@ const taskDataMapper = {
     }
   },
 
-  // All the tasks of a specific user
-  async findTaskByUserId(userId){
+  // All the tasks of a specific profile
+  async findTaskByProfilId(profileId){
     
     try {
     
-      if (!userId) {
-        throw new Error('L\'identifiant du user est manquant.');
+      if (!profileId) {
+        throw new Error('L\'identifiant du profile est manquant.');
       }
 
-      const result = await pool.query('SELECT * FROM "task" JOIN "user_has_task" ON "task".id = "user_has_task".task_id WHERE "user_has_task".user_id = $1;', [userId]);
+      const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "task".id = "profile_has_task".task_id WHERE "profile_has_task".account_id = $1;', [profileId]);
     
       return result.rows;
     

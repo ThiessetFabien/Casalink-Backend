@@ -23,10 +23,10 @@ const taskController = {
   
   },
 
-  getTaskByUserId: async (req, res) => {
+  getTaskByAccountId: async (req, res) => {
 
     const id = req.params.id;
-    const tasks = await taskDataMapper.findTaskByUserId(id)
+    const tasks = await taskDataMapper.findTaskByAccountId(id)
 
     if(!tasks) {
       res.status(404).send('Ces taches n\'existe pas')

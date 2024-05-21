@@ -42,8 +42,8 @@ SELECT EXISTS (
 SELECT EXISTS (
     SELECT 1
     FROM information_schema.tables
-    WHERE table_name = 'user'
-) AS "user_exists";
+    WHERE table_name = 'account'
+) AS "account_exists";
 
 SELECT EXISTS (
     SELECT 1

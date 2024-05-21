@@ -20,10 +20,10 @@ const router = express.Router();
 router.get('/budget/home/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetByHomeId));
 
 /**
-*GET /api/budget/user/{id}
-*@summary Get Budget of User by User id
+*GET /api/budget/account/{id}
+*@summary Get Budget of account by account id
 *@tags Get
-*@param {number} id.path.required - User id
+*@param {number} id.path.required - account id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -31,7 +31,7 @@ router.get('/budget/home/:id', validate (getSchema, 'query'), cw(budgetControlle
 */
 
 
-router.get('/budget/user/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetsByUserId));
+router.get('/budget/account/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetsByAccountId));
 
 /**
 *GET /api/budget/{id}
