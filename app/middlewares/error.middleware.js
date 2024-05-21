@@ -1,6 +1,6 @@
 import logger from '../utils/logger.js';
 import ApiError from '../errors/api.error.js';
-import DbError from '../errors/db.error.js'; 
+import DbError from '../errors/dbError.js'; 
 
 /**
  * A api json error object

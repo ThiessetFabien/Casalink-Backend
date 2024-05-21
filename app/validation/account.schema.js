@@ -3,16 +3,15 @@ import Joi from 'joi';
 const accountPartValidator = Joi.string().pattern(/^./);
 const home_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
 const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
-const passwordPartValidator = Joi.string()
-.is().min(8)
-.is().max(100)
-.has().uppercase()
-.has().lowercase()
-.has().digits(1)
-.has().symbols()
-.has().not().spaces()
-.is().not().oneOf(['Passw0rd', 'Password123']);
-
+const passwordPartValidator = Joi.string().min(8)
+.min(8)
+.max(100)
+.pattern(new RegExp('[A-Z]'))
+.pattern(new RegExp('[a-z]'))
+.pattern(new RegExp('[0-9]'))
+.pattern(new RegExp('[!@#\$%\^&\*]'))
+.pattern(new RegExp('^[^\s]*$'))
+.invalid('Passw0rd', 'Password123');
 
 export const getSchema = Joi.object({
     lastname: accountPartValidator,

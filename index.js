@@ -8,7 +8,6 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import session from 'express-session';
-import auth from './app/middlewares/auth.js';
 
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
@@ -55,13 +54,6 @@ createDoc(app);
 // Starting server
 const PORT = process.env.PORT ?? 3000;
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:4000", "http://localhost:5000",],
-  })
-);
-
-app.use(auth);
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
 app.use(router);
