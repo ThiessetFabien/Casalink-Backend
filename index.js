@@ -10,9 +10,10 @@ import session from 'express-session';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
 
-// Load environment variables
+// Load environment variables 
 import { config } from 'dotenv';
 config({ path: `.env.${process.env.NODE_ENV}` });
+const VERSION = process.env.VERSION || 1;
 
 const debug = debugLib('app:server');
 
@@ -56,9 +57,9 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(router);
 
 if (process.env.NODE_ENV === 'production') {
-  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT})`));
+  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT}/api/v${VERSION})`));
 } else {
-  app.listen(PORT, () => debug(`🖌️ Server ready in development mode: http://localhost:${PORT})`));
+  app.listen(PORT, () => debug(`🖌️ Server ready in development mode: http://localhost:${PORT}/api/v${VERSION})`));
 }
 
 export default app;

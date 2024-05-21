@@ -35,7 +35,7 @@ const accountController = {
     res.json({ status: 'success', data: { account } });
 
   },
- 
+
   // QUERY POST
   createOneAccount: async (req, res) => {
 
