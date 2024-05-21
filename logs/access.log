@@ -67,3 +67,5 @@
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
 {"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/task/2","service":"casalink-api"}

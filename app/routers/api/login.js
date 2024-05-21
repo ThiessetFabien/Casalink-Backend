@@ -20,9 +20,9 @@ const router = express.Router();
 router.get('/connexion', validate (getSchema, 'query'), cw(accountController.loginForm));
 
 /**
-*GET /api/connexion/{id}
-*@summary Get connexion of connexion by connexion id
-*@tags Get
+*POST /api/connexion/{id}
+*@summary Post connexion of connexion by connexion id
+*@tags Post
 *@param {number} id.path.required - connexion id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
