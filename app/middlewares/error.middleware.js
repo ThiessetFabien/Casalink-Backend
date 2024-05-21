@@ -1,4 +1,6 @@
 import logger from '../utils/logger.js';
+import ApiError from '../errors/api.error.js';
+import DbError from '../errors/db.error.js'; 
 
 /**
  * A api json error object
@@ -10,19 +12,37 @@ import logger from '../utils/logger.js';
  * }
  */
 
-export default (err, req, res, next) => {
+export default (err, __, res, next) => {
   let { status, message } = err;
   const { code } = err;
 
-  if (code === '23505') {
+  // Gestion des erreurs spécifiques
+  if (err instanceof ApiError) {
+    status = err.status;
+    message = err.message;
+  } else if (err instanceof DbError) {
+    status = 500;
+    message = 'Database error occurred';
+  } else if (code === '23505') {
+    // Gestion des erreurs de duplication de base de données
     status = 400;
     message = 'Resource already exists';
+  } else if (err.status === 404) {
+    // Gestion des erreurs 404
+    status = 404;
+    message = 'Resource not found';
+  } else if (err.status === 401) {
+    // Gestion des erreurs 401
+    status = 401;
+    message = 'Unauthorized';
+  } else if (err.status === 403) {
+    // Gestion des erreurs 403
+    status = 403;
+    message = 'Forbidden';
   }
 
-  if (!status) {
-    status = 500;
-  }
 
+  // Gestion des erreurs 500 en environnement de développement
   if (status === 500) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(err);
@@ -30,13 +50,5 @@ export default (err, req, res, next) => {
     logger.error(err);
     message = 'Internal Server Error';
   }
-
-  if (res.format === 'html') {
-    return res.status(status).render('error', {
-      httpStatus: status,
-      message,
-    });
-  }
-
-  return res.status(status).json({ error: message });
+  res.status(status).json({ error: message });
 };

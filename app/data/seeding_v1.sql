@@ -3,16 +3,16 @@ INSERT INTO "home" ("name", "shopping_list", "created_at", "updated_at")
 VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
        ('Maison de vacances', ARRAY['jouets de plage', 'crème solaire'], NOW(), NOW());
 
--- Insérer des utilisateurs (users)
-INSERT INTO "user" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
+-- Insérer des utilisateurs (account)
+INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('user123@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
        ('user2877847@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
        ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword', 1, NOW(), NOW());
 
 -- Insérer des profils (profiles)
-INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "user_id", "created_at", "updated_at")
-VALUES ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 1, NOW(), NOW()),
-       ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 2, NOW(), NOW());
+INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "email", "account_id", "created_at", "updated_at")
+VALUES ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 'user564@example.com' ,1, NOW(), NOW()),
+       ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user852@example.com',1, NOW(), NOW());
 
 -- Insérer des adresses (addresses)
 INSERT INTO "address" ("street", "city", "additional_information", "postal_code", "country", "created_at", "updated_at")
@@ -35,13 +35,13 @@ INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_
 VALUES ('Acheter du lait', 'Prendre du lait demi-écrémé', 1, NOW(), NOW()),
        ('Jouer au frisbee', 'Amener un frisbee à la plage', 2, NOW(), NOW());
 
--- Insérer des associations entre utilisateurs et tâches (user_has_task)
-INSERT INTO "user_has_task" ("user_id", "task_id", "created_at", "updated_at")
+-- Insérer des associations entre utilisateurs et tâches (uprofile_has_task)
+INSERT INTO "profile_has_task" ("profile_id", "task_id", "created_at", "updated_at")
 VALUES (1, 1, NOW(), NOW()),
        (2, 2, NOW(), NOW());
 
--- Insérer des associations entre utilisateurs et adresses (user_has_address)
-INSERT INTO "user_has_address" ("user_id", "address_id", "created_at", "updated_at")
+-- Insérer des associations entre utilisateurs et adresses (account_has_address)
+INSERT INTO "account_has_address" ("account_id", "address_id", "created_at", "updated_at")
 VALUES (1, 1, NOW(), NOW()),
        (2, 2, NOW(), NOW());
 

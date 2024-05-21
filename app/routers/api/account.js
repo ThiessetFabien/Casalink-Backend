@@ -45,19 +45,6 @@ router.get('/account/:id',validate (getSchema, 'query'), cw(accountController.ge
 router.get('/account/',validate (getSchema, 'query'), cw(accountController.getAllAccounts));
 
 /**
-*POST /api/account
-*@summary Create a new account
-*@tags Post
-*@param {accountInput} request.body.required - account info
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
-router.post('/account/',validate (postSchema, 'body'), cw(accountController.createOneAccount));
-
-/**
 *PATCH /api/account/{id}
 *@summary Update a account by this id
 *@tags Patch

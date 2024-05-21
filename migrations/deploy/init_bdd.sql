@@ -82,16 +82,16 @@ CREATE TABLE IF NOT EXISTS "subtask" (
 
 CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "profile_id" INT REFERENCES "profile"("id"),
-  "task_id" INT REFERENCES "task"("id"),
+  "profile_id" INT REFERENCES "profile"("id") ON DELETE CASCADE,
+  "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "account_has_address" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "account_id" INT REFERENCES "account"("id"),
-  "address_id" INT REFERENCES "address"("id"),
+  "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
+  "address_id" INT REFERENCES "address"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );

@@ -1,5 +1,4 @@
 import accountDataMapper from '../datamappers/account.js'
-import cryptoPassword from '../utils/cryptoPassword.js';
 
 const accountController = {
 
@@ -53,24 +52,28 @@ const accountController = {
       res.status(400).send('Cet email est déjà utilisé')
     }
 
-    const task = await accountDataMapper.createaccount(accountData)
+    const task = await accountDataMapper.createAccount(accountData)
     res.json({ status: 'success', data: { task } });
 
   },
 
   loginForm: async (req, res) => {
       
-      const { email, password } = req.body;
-      const account = await accountDataMapper.findaccountByEmail(email);
+      const { email, password, confirmPassword } = req.body;
+      const account = await accountDataMapper.findAccountByEmail(email);
   
       if (!account) {
-        res.status(404).send('L\email ou le mot de passe est incorrect')
+        res.status(404).json({ status: 'error', message: 'L\'email ou le mot de passe est incorrect' });
+      }
+
+      if(password !== confirmPassword) {
+        res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
       }
 
       const isMatch = await bcrypt.compare(password, account.password);
   
       if (!isMatch) {
-        res.status(401).send('L\email ou le mot de passe est incorrect')
+        res.status(401).json({ status: 'error', message: 'L\'email ou le mot de passe est incorrect' });
       }
 
       req.session.accountId = account.id;

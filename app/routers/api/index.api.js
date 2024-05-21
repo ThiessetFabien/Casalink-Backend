@@ -8,6 +8,9 @@ import categoryRouter from './category.js';
 import budgetRouter from './budget.js';
 import addressRouter from './address.js';
 import profileRouter from './profile.js';
+import loginRouter from './login.js';
+import signupRouter from './signup.js';
+import session from '../../middlewares/session.js';
 
 const router = express.Router();
 
@@ -15,6 +18,13 @@ router.use((_, res, next) => {
   res.type('json');
   next();
 });
+
+// route public
+router.use(signupRouter);
+router.use(loginRouter);
+
+//middleware d'authentification
+router.use(session);
 
 router.use(taskRouter);
 router.use(homeRouter);

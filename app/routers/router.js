@@ -2,10 +2,7 @@ import express from 'express';
 import errorMiddleware from "../middlewares/error.middleware.js";
 import logger from '../utils/logger.js';
 
-import loggedRouter from './api/index.logged.js';
-import publicRouter from './api/index.public.js';
-
-import app from '../../index.js';
+import apiRouter from './api/index.api.js';
 
 const router = express.Router();
 
@@ -22,8 +19,7 @@ router.use((req, __ , next) => {
  */
 
 // API ROUTES
-router.use('/api', loggedRouter);
-router.use('/api', publicRouter);
+router.use('/api', apiRouter);
 
 // ERROR MANAGER
 router.use(errorMiddleware);

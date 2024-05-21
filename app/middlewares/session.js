@@ -1,33 +1,40 @@
-import userController from "../controllers/userController";
+import accountController from "../controllers/accountController";
+import ApiError from '../errors/api.error.js';
 
-const sessionMiddleware = async (req, res, next) => {
+const sessionMiddleware = async (req, __, next) => {
   try {
-    // Catch the userId from the session
-    const userId = req.session.userId;
+    // Catch the accountId from the session
+    const accountId = req.session.accountId;
 
-    if (!userId) {
-      // if the user is not authenticated, respond with a 401 (Unauthorized) error
-      return res.status(401).json({ error: "User not authenticated" });
+    if (!accountId) {
+      // if the account is not authenticated, respond with a 401 (Unauthorized) error
+      throw new ApiError(401, 'Unauthorized', 'You must be logged in to access this resource');
     }
 
-    // Find the user data by its id
-    const userData = await userController.findUserByIdWithoutPassword({ id: userId
+    // Find the account data by its id
+    const accountData = await accountController.findaccountByIdWithoutPassword({ id: accountId
     }); 
 
-    if (!userData) {
-      // if the user is not found, respond with a 404 (Not Found) error
-      return res.status(404).json({ error: "User not found" });
+    if (!accountData) {
+      // if the account is not found, respond with a 404 (Not Found) error
+      throw new ApiError(404, 'Not Found', 'The account does not exist');
     }
 
-    // Add the user data to the request object
-    req.user = userData;
+    // Add the account data to the request object
+    req.account = accountData;
 
     // Continue to the next middleware
     next();
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    if(error instanceof ApiError) {
+      // If the error is an instance of ApiError, pass it to the error handler middleware
+      next(error);
+    } else{
+      // If the error is not an instance of ApiError, create a new ApiError object and pass it to the error handler middleware
+      const apiError = new ApiError(500, error.name, error.message);
+      next(apiError);
+    }
   }
 };
 
-module.exports = sessionMiddleware;
+export default sessionMiddleware;
