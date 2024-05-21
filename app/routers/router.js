@@ -4,7 +4,12 @@ import logger from '../utils/logger.js';
 
 import apiRouter from './api/index.api.js';
 
+import { config } from 'dotenv';
+config({ path: `.env.development` });
+
 const router = express.Router();
+
+const VERSION = process.env.VERSION || 1;
 
 router.use((req, __ , next) => {
   logger.http(`${req.method} ${req.originalUrl}`);
@@ -19,7 +24,7 @@ router.use((req, __ , next) => {
  */
 
 // API ROUTES
-router.use('/api', apiRouter);
+router.use(`/api/v${VERSION}`, apiRouter);
 
 // ERROR MANAGER
 router.use(errorMiddleware);

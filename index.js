@@ -4,21 +4,17 @@ import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import session from 'express-session';
 
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
+
 // Load environment variables
 import { config } from 'dotenv';
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 const debug = debugLib('app:server');
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-config({ path: `${__dirname}/.env.${process.env.NODE_ENV}` });
 
 const app = express();
 
@@ -32,6 +28,7 @@ const globalLimiter = rateLimit({
 
 app.use(globalLimiter);
 app.use(bodySanitizer);
+
 // Setup body parser
 app.use(urlencoded({ extended: true }));
 

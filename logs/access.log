@@ -40,3 +40,11 @@
 {"level":"http","message":"GET /api/task/","service":"casalink-api"}
 {"level":"http","message":"GET /api/task/2","service":"casalink-api"}
 >>>>>>> 7c90a8135cd923b311287fc0ad04f47b4b6b284c
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v2/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/v2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v2/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/v2/task/1","service":"casalink-api"}
