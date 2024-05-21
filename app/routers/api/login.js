@@ -17,10 +17,10 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/connexion', validate (getSchema, 'query'), cw(accountController.loginForm));
+router.get('/login', validate (getSchema, 'query'), cw(accountController.loginForm));
 
 /**
-*POST /api/connexion/{ email, password, confirmPassword }
+*POST /api/login/{ email, password }
 *@summary Post connexion of connexion by connexion id
 *@tags Post
 *@param {number} id.path.required - connexion id
@@ -30,7 +30,7 @@ router.get('/connexion', validate (getSchema, 'query'), cw(accountController.log
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/connexion/', validate (postSchema, 'body'), cw(accountController.loginForm));
+router.post('/login/', validate (postSchema, 'body'), cw(accountController.loginForm));
 
 
 export default router;
