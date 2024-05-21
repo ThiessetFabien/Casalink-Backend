@@ -24,7 +24,7 @@ router.use(signupRouter);
 router.use(loginRouter);
 
 //middleware d'authentification
-router.use(session);
+//router.use(session);
 
 router.use(taskRouter);
 router.use(homeRouter);
