@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
+import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/adress.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import addressController from '../../controllers/addressController.js';

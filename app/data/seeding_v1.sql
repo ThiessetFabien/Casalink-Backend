@@ -7,7 +7,7 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('user123@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
        ('user2877847@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
-       ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword', 1, NOW(), NOW());
+       ('admin89@example.com', 'Admin', 'Admin', 'admin', 'eopzioeuhfT45#', 1, NOW(), NOW());
 
 -- Insérer des profils (profiles)
 INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "email", "account_id", "created_at", "updated_at")
