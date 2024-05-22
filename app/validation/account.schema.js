@@ -11,7 +11,6 @@ const passwordPartValidator = Joi.string()
     .pattern(/[0-9]/)
     .pattern(/[!@#$%^&*]/)
     .pattern(/^[^\s]*$/)
-    .invalid('Passw0rd', 'Password123');
 
 /**
  * Account schema for the GET method
