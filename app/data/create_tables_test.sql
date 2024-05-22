@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS "account" (
     "password" TEXT NOT NULL,
     "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ DEFAULT NOW()
+    "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "profile" (
