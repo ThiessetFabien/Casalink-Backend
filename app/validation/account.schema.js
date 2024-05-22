@@ -3,15 +3,19 @@ import Joi from 'joi';
 const accountPartValidator = Joi.string().pattern(/^./);
 const home_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
 const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
-const passwordPartValidator = Joi.string().min(8)
-.min(8)
-.max(100)
-.pattern(new RegExp('[A-Z]'))
-.pattern(new RegExp('[a-z]'))
-.pattern(new RegExp('[0-9]'))
-.pattern(new RegExp('[!@#\$%\^&\*]'))
-.pattern(new RegExp('^[^\s]*$'))
-.invalid('Passw0rd', 'Password123');
+const passwordPartValidator = Joi.string()
+    .min(8)
+    .max(100)
+    .pattern(/[A-Z]/)
+    .pattern(/[a-z]/)
+    .pattern(/[0-9]/)
+    .pattern(/[!@#$%^&*]/)
+    .pattern(/^[^\s]*$/)
+    .invalid('Passw0rd', 'Password123');
+
+/**
+ * Account schema for the GET method
+ */
 
 export const getSchema = Joi.object({
     lastname: accountPartValidator,
@@ -21,6 +25,11 @@ export const getSchema = Joi.object({
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });
+
+/**
+ * Account schema for the POST method
+ */
+
 export const postSchema = Joi.object({
     lastname: accountPartValidator,
     firstname: accountPartValidator,
@@ -30,6 +39,10 @@ export const postSchema = Joi.object({
     email: emailPartValidator,
 });
 
+/**
+ * Account schema for the PATCH method
+ */
+
 export const patchSchema = Joi.object({
     lastname: accountPartValidator,
     firstname: accountPartValidator,
@@ -38,6 +51,10 @@ export const patchSchema = Joi.object({
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });
+
+/**
+ * Account schema for the DELETE method
+ */
 
 export const removeSchema = Joi.object({
     lastname: accountPartValidator,

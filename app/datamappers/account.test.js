@@ -7,12 +7,12 @@ describe('Casalink generates the list of accounts', () => {
         const accountsList = await accountData.findAllAccounts();
         expect(accountsList).to.be.an('array');
         accountsList.forEach(account => {
-         expect(account).to.have.property('firstname'); 
-         expect(account).to.have.property('lastname');
-         expect(account).to.have.property('email');
-         expect(account).to.have.property('role');
-         expect(account).to.have.property('password');
-         expect(account).to.have.property('home_id');
+        expect(account).to.have.property('firstname'); 
+        expect(account).to.have.property('lastname');
+        expect(account).to.have.property('email');
+        expect(account).to.have.property('role');
+        expect(account).to.have.property('password');
+        expect(account).to.have.property('home_id');
         });
     });
 
@@ -71,10 +71,10 @@ describe('Casalink generates the list of accounts', () => {
         const account = await accountData.updateAccount(accountId, updateAccount);
         expect(account).to.be.an('object');
     });
-    
-  it('should delete an account', async () => {
-    const accountId = 4;
-    const result = await accountData.deleteAccountById(accountId);
-    expect(result).to.be.true;
-  });
+
+    it('should delete an account', async () => {
+        const accountId = 4;
+        const result = await accountData.deleteAccountById(accountId);
+        expect(result).to.be.true;
+    });
 });

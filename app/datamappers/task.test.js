@@ -30,7 +30,7 @@ describe('Casalink generates the list of task', () => {
         expect(task).to.have.property('status');
         expect(task).to.have.property('description');
         expect(task).to.have.property('category_id');
-   });
+    });
 
     it('should create a new task', async () => {
         const newtask = {
@@ -50,21 +50,21 @@ describe('Casalink generates the list of task', () => {
     it('should update a task', async () => {
         const taskId = 4;
         const updatetask = {
-          name: "helloWorld",
-          start_date: "2021-01-01",
-          end_date: "2021-01-02",
-          reward_point: 5,
-          priority: 1,
-          status: "todo",
-          description: "Test",
-          category_id: 1,
-      };
+        name: "helloWorld",
+        start_date: "2021-01-01",
+        end_date: "2021-01-02",
+        reward_point: 5,
+        priority: 1,
+        status: "todo",
+        description: "Test",
+        category_id: 1,
+    };
         const task = await taskData.updateTask(taskId, updatetask);
     });
 
-  it('should delete a task', async () => {
-    const taskId = 4;
-    const result = await taskData.deleteTaskById(taskId);
-    expect(result).to.be.true;
-  });
+    it('should delete a task', async () => {
+        const taskId = 4;
+        const result = await taskData.deleteTaskById(taskId);
+        expect(result).to.be.true;
+    });
 });

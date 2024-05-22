@@ -6,7 +6,6 @@ import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
 import session from 'express-session';
-
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
 
@@ -36,7 +35,10 @@ app.use(urlencoded({ extended: true }));
 app.use(session({
   saveUnititialized: true,
   resave: true,
-  secret: process.env.SESSION_SECRET
+  secret: process.env.SESSION_SECRET,
+  cache: {
+    maxAge: 24 * 60 * 60 * 1000
+  }
 }))
 
 /**

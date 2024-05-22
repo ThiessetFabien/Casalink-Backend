@@ -6,9 +6,15 @@ import DbError from '../errors/dbError.js';
  * A api json error object
  * @typedef {object} ApiJsonError - Error response
  * @property {string} error.required - Error message
+ * @param {Error} err - Error object
+ * @param {Request} _ - Request object
+ * @param {Response} res - Response object
+ * @param {NextFunction} next - Next function
  * @example
  * {
- *  "error": "Bad request"
+ *  "status": 400,
+ *  "error": "Bad request",
+ *  "message": "Resource already exists"
  * }
  */
 
@@ -16,33 +22,42 @@ export default (err, __, res, next) => {
   let { status, message } = err;
   const { code } = err;
 
-  // Gestion des erreurs spécifiques
+  // Error handling of specific errors
   if (err instanceof ApiError) {
     status = err.status;
     message = err.message;
-  } else if (err instanceof DbError) {
+  } 
+
+  if (err instanceof DbError) {
     status = 500;
     message = 'Database error occurred';
-  } else if (code === '23505') {
-    // Gestion des erreurs de duplication de base de données
+  } 
+
+  // Error handling of specific database errors
+  if (code === '23505') {
     status = 400;
     message = 'Resource already exists';
-  } else if (err.status === 404) {
-    // Gestion des erreurs 404
+  } 
+
+  // Error handling of 404 errors
+  if (err.status === 404) {
     status = 404;
     message = 'Resource not found';
-  } else if (err.status === 401) {
-    // Gestion des erreurs 401
+  } 
+
+  // Error handling of 401 errors
+  if (err.status === 401) {
     status = 401;
     message = 'Unauthorized';
-  } else if (err.status === 403) {
-    // Gestion des erreurs 403
+  } 
+
+  // Error handling of 403 errors
+  if (err.status === 403) {
     status = 403;
     message = 'Forbidden';
   }
 
-
-  // Gestion des erreurs 500 en environnement de développement
+  // Error handling of 500 errors
   if (status === 500) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(err);

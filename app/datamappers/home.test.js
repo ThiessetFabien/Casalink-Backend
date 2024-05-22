@@ -7,8 +7,8 @@ describe('Casalink generates the list of home', () => {
         const homeList = await homeData.findAllHomes();
         expect(homeList).to.be.an('array');
         homeList.forEach(home => {
-         expect(home).to.have.property('shopping_list'); 
-         expect(home).to.have.property('name');
+        expect(home).to.have.property('shopping_list'); 
+        expect(home).to.have.property('name');
         });
     });
 
@@ -18,7 +18,7 @@ describe('Casalink generates the list of home', () => {
         expect(home).to.be.an('object');
         expect(home).to.have.property('shopping_list'); 
         expect(home).to.have.property('name');
-   });
+    });
 
     it('should create a new home', async () => {
         const newhome = {
@@ -38,9 +38,9 @@ describe('Casalink generates the list of home', () => {
       const home = await homeData.updateHome(homeId, updatehome);
         });
 
-  it('should delete a home', async () => {
-    const homeId = 3;
-    const result = await homeData.deleteHomeById(homeId);
-    expect(result).to.be.true;
-  });
+    it('should delete a home', async () => {
+      const homeId = 3;
+      const result = await homeData.deleteHomeById(homeId);
+      expect(result).to.be.true;
+    });
 });

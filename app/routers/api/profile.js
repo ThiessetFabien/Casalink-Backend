@@ -19,7 +19,6 @@ const router = express.Router();
 
 router.get('/account/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByAccountId));
 
-
 /**
 *GET /api/account/{id}
 *@summary Get Profile of account by home id
@@ -30,7 +29,6 @@ router.get('/account/:id/profile', validate (getSchema, 'query'), cw(profileCont
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
-
 
 router.get('/home/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByHomeId));
 
