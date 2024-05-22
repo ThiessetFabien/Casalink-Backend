@@ -1,3 +1,4 @@
+import { log } from 'winston';
 import accountDataMapper from '../datamappers/account.js'
 
 const accountController = {
@@ -50,6 +51,9 @@ const accountController = {
   loginForm: async (req, res) => {
       
       const { email, password } = req.body;
+      console.log(req.body);
+      console.log(email);
+      
       const account = await accountDataMapper.findAccountByEmail(email);
         if (!account) {
         res.status(404).json({ status: 'error', message: 'L\'email ou le mot de passe est incorrect' });
