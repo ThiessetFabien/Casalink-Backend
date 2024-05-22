@@ -1,5 +1,5 @@
-import { log } from 'winston';
 import accountDataMapper from '../datamappers/account.js'
+import bcrypt from 'bcrypt';
 
 const accountController = {
 
@@ -31,9 +31,9 @@ const accountController = {
   // QUERY POST
   createOneAccount: async (req, res) => {
     const accountData = req.body;
-    const { firstname, lastname, email, password, confirmPassword, home_id } = accountData;
+    const { firstname, lastname, email, role, password, confirmPassword, home_id } = accountData;
     
-    if (!firstname || !lastname || !email || !password || !confirmPassword || !home_id) {
+    if (!firstname || !lastname || !email || !password || !role || !confirmPassword || !home_id) {
       res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
     }
 

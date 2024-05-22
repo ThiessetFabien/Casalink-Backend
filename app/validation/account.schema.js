@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const accountPartValidator = Joi.string().pattern(/^./);
 const home_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
-const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
+const emailPartValidator = Joi.string().pattern(/^./);
 const passwordPartValidator = Joi.string()
     .min(8)
     .max(100)
@@ -22,6 +22,7 @@ export const getSchema = Joi.object({
     firstname: accountPartValidator,
     role: accountPartValidator,
     password: accountPartValidator,
+    confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });
@@ -35,6 +36,7 @@ export const postSchema = Joi.object({
     firstname: accountPartValidator,
     role: accountPartValidator,
     password: passwordPartValidator,
+    confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });
@@ -48,6 +50,7 @@ export const patchSchema = Joi.object({
     firstname: accountPartValidator,
     role: accountPartValidator,
     password: passwordPartValidator,
+    confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });
@@ -61,6 +64,7 @@ export const removeSchema = Joi.object({
     firstname: accountPartValidator,
     role: accountPartValidator,
     password: accountPartValidator,
+    confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,
 });

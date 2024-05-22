@@ -18,6 +18,9 @@ const debug = debugLib('app:server');
 
 const app = express();
 
+// Setup body parser
+app.use(urlencoded({ extended: true }));
+
 app.use(express.json());
 
 const globalLimiter = rateLimit({
@@ -29,11 +32,10 @@ const globalLimiter = rateLimit({
 app.use(globalLimiter);
 app.use(bodySanitizer);
 
-// Setup body parser
-app.use(urlencoded({ extended: true }));
+
 
 app.use(session({
-  saveUnititialized: true,
+  saveUninitialized: true,
   resave: true,
   secret: process.env.SESSION_SECRET,
   cache: {

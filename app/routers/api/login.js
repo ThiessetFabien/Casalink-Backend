@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema } from '../../validation/home.schema.js';
+import { getSchema, postSchema } from '../../validation/account.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import accountController from '../../controllers/accountController.js';
@@ -31,7 +31,8 @@ router.get('/login', validate (getSchema, 'query'), cw(accountController.loginFo
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/login/', validate (postSchema, 'body'), cw(accountController.loginForm));
 
+
+router.post('/login/', validate (postSchema, 'body'), cw(accountController.loginForm));
 
 export default router;

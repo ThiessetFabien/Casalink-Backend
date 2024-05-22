@@ -80,7 +80,7 @@ const accountDataMapper = {
         throw new Error('L\'email est manquant.');
       }
 
-      const result = await pool.query('SELECT * FROM "account" WHERE email = $1;', [email]);
+      const result = await pool.query('SELECT * FROM "account" WHERE email=$1;', [email]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
