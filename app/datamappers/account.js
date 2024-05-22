@@ -38,23 +38,23 @@ const accountDataMapper = {
     }
   },
 
-    // Find a account by its id without its password
-    async findAccountByIdWithoutPassword(id){
-    
-      try {
-      
-        if (!id) {
-          throw new Error('L\'identifiant du compte est manquant.');
-        }
+  // Find a account by its id without its password
+  async findAccountByIdWithoutPassword(id){
   
-        const result = await pool.query('SELECT id, email, firstname, lastname, role, home_id FROM "account" WHERE id = $1', [id]);
-      
-        return result.rows[0];
-      
-      } catch (error) {
-        throw new DbError(error.message);
+    try {
+    
+      if (!id) {
+        throw new Error('L\'identifiant du compte est manquant.');
       }
-    },
+
+      const result = await pool.query('SELECT id, email, firstname, lastname, role, home_id FROM "account" WHERE id = $1', [id]);
+    
+      return result.rows[0];
+    
+    } catch (error) {
+      throw new DbError(error.message);
+    }
+  },
 
   // Find a account by its id
   async findAccountsByHomeId(home_id){

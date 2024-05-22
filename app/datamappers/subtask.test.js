@@ -11,7 +11,7 @@ describe('Casalink generates the list of subtask', () => {
         expect(subtask).to.have.property('description'); 
         expect(subtask).to.have.property('name');
         expect(subtask).to.have.property('task_id');
-  });
+    });
 
     it('should create a new subtask', async () => {
         const newsubtask = {
@@ -29,13 +29,13 @@ describe('Casalink generates the list of subtask', () => {
             description: "Code",
             name: "IAdrien",
             task_id:"1"
-      };
+    };
       const subtask = await subtaskData.updateSubtask(subtaskId, updatesubtask);
         });
-    
-  it('should delete a subtask', async () => {
-    const subtaskId = 4;
-    const result = await subtaskData.deleteSubtaskById(subtaskId);
-    expect(result).to.be.true;
-  });
+
+    it('should delete a subtask', async () => {
+      const subtaskId = 4;
+      const result = await subtaskData.deleteSubtaskById(subtaskId);
+      expect(result).to.be.true;
+    });
 });

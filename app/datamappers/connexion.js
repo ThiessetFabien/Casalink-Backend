@@ -6,7 +6,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 config({ path: `${__dirname}/.env.development` });
 
-
 import pg from 'pg';
 const { Pool } = pg;
 

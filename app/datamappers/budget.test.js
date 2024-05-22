@@ -7,9 +7,9 @@ describe('Casalink generates the list of budget', () => {
         const budgetList = await budgetData.findAllBudgets();
         expect(budgetList).to.be.an('array');
         budgetList.forEach(budget => {
-         expect(budget).to.have.property('category'); 
-         expect(budget).to.have.property('amount');
-         expect(budget).to.have.property('description');
+        expect(budget).to.have.property('category'); 
+        expect(budget).to.have.property('amount');
+        expect(budget).to.have.property('description');
         });
     });
 
@@ -22,7 +22,7 @@ describe('Casalink generates the list of budget', () => {
         expect(budget).to.have.property('category'); 
         expect(budget).to.have.property('description');
         expect(budget).to.have.property('home_id');
-   });
+});
 
     it('should create a new budget', async () => {
         const newbudget = {
@@ -44,13 +44,14 @@ describe('Casalink generates the list of budget', () => {
             category: "Category 5",
             description: "Le petrole du web",
             home_id: 1,
-      };
-      const budget = await budgetData.updateBudget(budgetId, updatebudget);
+    };
+
+    const budget = await budgetData.updateBudget(budgetId, updatebudget);
         });
-    
-  it('should delete a budget', async () => {
+
+    it('should delete a budget', async () => {
     const budgetId = 4;
     const result = await budgetData.deleteBudgetById(budgetId);
     expect(result).to.be.true;
-  });
+    });
 });

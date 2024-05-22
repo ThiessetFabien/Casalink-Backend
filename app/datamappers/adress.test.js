@@ -7,11 +7,11 @@ describe('Casalink generates the list of adress', () => {
         const adressList = await adressData.findAllAddress();
         expect(adressList).to.be.an('array');
         adressList.forEach(adress => {
-         expect(adress).to.have.property('street'); 
-         expect(adress).to.have.property('city');
-         expect(adress).to.have.property('additional_information');
-         expect(adress).to.have.property('postal_code');
-         expect(adress).to.have.property('country');
+        expect(adress).to.have.property('street'); 
+        expect(adress).to.have.property('city');
+        expect(adress).to.have.property('additional_information');
+        expect(adress).to.have.property('postal_code');
+        expect(adress).to.have.property('country');
         });
     });
 
@@ -24,7 +24,7 @@ describe('Casalink generates the list of adress', () => {
         expect(adress).to.have.property('additional_information');
         expect(adress).to.have.property('postal_code');
         expect(adress).to.have.property('country');
-   });
+});
 
     it('should create a new adress', async () => {
         const newadress = {
@@ -46,13 +46,14 @@ describe('Casalink generates the list of adress', () => {
             additional_information: "Chateau 2",
             postal_code: "94200",
             country: "France",
-      };
-      const adress = await adressData.updateAddress(adressId, updateadress);
-        });
-    
-  it('should delete a adress', async () => {
+    };
+
+    const adress = await adressData.updateAddress(adressId, updateadress);
+    });
+
+    it('should delete a adress', async () => {
     const adressId = 4;
     const result = await adressData.deleteAddressById(adressId);
     expect(result).to.be.true;
-  });
+    });
 });

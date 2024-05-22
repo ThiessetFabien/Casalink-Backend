@@ -10,7 +10,6 @@ import addressRouter from './address.js';
 import profileRouter from './profile.js';
 import loginRouter from './login.js';
 import signupRouter from './signup.js';
-import session from '../../middlewares/session.js';
 
 const router = express.Router();
 

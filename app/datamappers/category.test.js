@@ -7,8 +7,8 @@ describe('Casalink generates the list of category', () => {
         const categoryList = await categoryData.findAllCategory();
         expect(categoryList).to.be.an('array');
         categoryList.forEach(category => {
-         expect(category).to.have.property('name'); 
-         expect(category).to.have.property('color');
+        expect(category).to.have.property('name'); 
+        expect(category).to.have.property('color');
         });
     });
 
@@ -38,9 +38,9 @@ describe('Casalink generates the list of category', () => {
       const category = await categoryData.updateCategory(categoryId, updatecategory);
         });
     
-  it('should delete a category', async () => {
-    const categoryId = 4;
-    const result = await categoryData.deleteCategoryById(categoryId);
-    expect(result).to.be.true;
-  });
+    it('should delete a category', async () => {
+      const categoryId = 4;
+      const result = await categoryData.deleteCategoryById(categoryId);
+      expect(result).to.be.true;
+    });
 });
