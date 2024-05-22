@@ -3,6 +3,14 @@ import Joi from 'joi';
 const homePartValidator = Joi.string().pattern(/^./);
 
 /**
+* Response of API for a home data source
+* @typedef {object} Home
+* @property {string} shopping_list - Points are excluded
+* @property {string} name - Points are excluded
+* @returns {ApiJsonSucces} - a home object
+*/
+
+/**
  * Home schema for the GET method
  */
 export const getSchema = Joi.object({

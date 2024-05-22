@@ -4,6 +4,19 @@ const taskPartValidator = Joi.string().pattern(/^./);
 const category_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
 
 /**
+* Response of API for a task data source
+* @typedef {object} Task
+* @property {string} name - Points are excluded
+* @property {string} start_date - Points are excluded
+* @property {string} end_date - Points are excluded
+* @property {string} reward_point - Points are excluded
+* @property {string} priority - Points are excluded
+* @property {string} status - Points are excluded
+* @property {string} description - Points are excluded
+* @returns {ApiJsonSucces} - a task object
+*/
+
+/**
  * Task schema for the GET method
  */
 export const getSchema = Joi.object({

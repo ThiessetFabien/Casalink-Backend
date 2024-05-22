@@ -9,7 +9,7 @@ const router = express.Router();
 /**
 *GET /api/account
 *@summary Create a new account
-*@tags GET
+*@tags Get
 *@param {accountInput} request.body.required - account info 
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json

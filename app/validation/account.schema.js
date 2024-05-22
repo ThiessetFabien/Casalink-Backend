@@ -14,6 +14,18 @@ const passwordPartValidator = Joi.string()
     .invalid('Passw0rd', 'Password123');
 
 /**
+* Response of API for a account data source
+* @typedef {object} Account
+* @property {string} lastname - Points are excluded
+* @property {string} firstname - Points are excluded
+* @property {string} role - Points are excluded
+* @property {string} password - Between 8 characters and 100 characters, at least one uppercase letter, one lowercase letter, one number and one special character
+* @property {number} home_id - Foreign key of home table
+* @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr "
+* @returns {ApiJsonSucces} - an account object
+*/
+
+/**
  * Account schema for the GET method
  */
 
