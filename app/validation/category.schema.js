@@ -7,7 +7,11 @@ const colorPartValidator = Joi.string().pattern(/rgba?\((?<r>[.\d]+)[, ]+(?<g>[.
 * Response of API for a category data source
 * @typedef {object} Category
 * @property {string} name.required - Points are excluded
+<<<<<<< HEAD
 * @property {string} color - Only rbg or rgba color codes
+=======
+* @property {string} color.required - Only rbg or rgba color codes
+>>>>>>> ca128301cad4cc5294825b5f2a4717469eb3d5a9
 * @returns {ApiJsonSucces} - a category object
 */
 
