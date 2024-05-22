@@ -43,16 +43,16 @@ const homeDataMapper = {
 
   // ----------- CREATE HOME -----------
   // Create a new home
-  async createHome(homeData) {
+  async createHome(name) {
     try {
-      if (!homeData) {
+      if (!name) {
         throw new Error('Les données du foyer sont manquantes.');
       }
-      const { shopping_list, name } = homeData;
       const result = await pool.query(
-        'INSERT INTO "home" (shopping_list, name) VALUES ($1, $2) RETURNING *;',
-        [shopping_list, name]
+        'INSERT INTO "home" (name) VALUES ($1) RETURNING *;',
+        [name]
       );
+      console.log(result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);

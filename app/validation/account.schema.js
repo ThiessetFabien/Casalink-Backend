@@ -12,19 +12,6 @@ const passwordPartValidator = Joi.string()
     .pattern(/[!@#$%^&*]/)
     .pattern(/^[^\s]*$/)
 
-/**
- * Account schema for the GET method
- */
-
-export const getSchema = Joi.object({
-    lastname: accountPartValidator,
-    firstname: accountPartValidator,
-    role: accountPartValidator,
-    password: accountPartValidator,
-    confirmPassword: accountPartValidator,
-    home_id: home_idPartValidator,
-    email: emailPartValidator,
-});
 
 /**
  * Account schema for the POST method
@@ -33,7 +20,6 @@ export const getSchema = Joi.object({
 export const postSchema = Joi.object({
     lastname: accountPartValidator,
     firstname: accountPartValidator,
-    role: accountPartValidator,
     password: passwordPartValidator,
     confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
@@ -49,20 +35,6 @@ export const patchSchema = Joi.object({
     firstname: accountPartValidator,
     role: accountPartValidator,
     password: passwordPartValidator,
-    confirmPassword: accountPartValidator,
-    home_id: home_idPartValidator,
-    email: emailPartValidator,
-});
-
-/**
- * Account schema for the DELETE method
- */
-
-export const removeSchema = Joi.object({
-    lastname: accountPartValidator,
-    firstname: accountPartValidator,
-    role: accountPartValidator,
-    password: accountPartValidator,
     confirmPassword: accountPartValidator,
     home_id: home_idPartValidator,
     email: emailPartValidator,

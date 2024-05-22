@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/subtask.schema.js';
+import { postSchema, patchSchema } from '../../validation/subtask.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import subtaskController from '../../controllers/subtaskController.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/subtask/task/:id', validate (getSchema, 'query'), cw(subtaskController.getSubtaskByTaskId));
+router.get('/subtask/task/:id', cw(subtaskController.getSubtaskByTaskId));
 
 /**
 *GET /api/subtask/{id}
@@ -30,7 +30,7 @@ router.get('/subtask/task/:id', validate (getSchema, 'query'), cw(subtaskControl
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/subtask/:id', validate (getSchema, 'query'), cw(subtaskController.getSubtaskById));
+router.get('/subtask/:id', cw(subtaskController.getSubtaskById));
 
 /**
 *POST /api/subtask
@@ -70,6 +70,6 @@ router.patch('/subtask/:id', validate (patchSchema, 'body'), cw(subtaskControlle
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/subtask/:id', validate (removeSchema, 'body'), cw(subtaskController.deleteOneSubtask));
+router.delete('/subtask/:id', cw(subtaskController.deleteOneSubtask));
 
 export default router;

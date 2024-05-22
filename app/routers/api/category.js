@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/category.schema.js';
+import { postSchema, patchSchema } from '../../validation/category.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import categoryController from '../../controllers/categoryController.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/category/task/:id', validate (getSchema, 'query'), cw(categoryController.getCategoryByTaskId));
+router.get('/category/task/:id', cw(categoryController.getCategoryByTaskId));
 
 /**
 *GET /api/category{id}
@@ -30,7 +30,7 @@ router.get('/category/task/:id', validate (getSchema, 'query'), cw(categoryContr
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/category/:id', validate (getSchema, 'query'), cw(categoryController.getCategoryById));
+router.get('/category/:id', cw(categoryController.getCategoryById));
 
 /**
 *POST /api/category
@@ -70,6 +70,6 @@ router.patch('/category/:id', validate (patchSchema, 'body'), cw(categoryControl
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/category/:id', validate (removeSchema, 'body'), cw(categoryController.deleteOneCategory));
+router.delete('/category/:id',cw(categoryController.deleteOneCategory));
 
 export default router;

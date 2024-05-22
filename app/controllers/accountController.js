@@ -1,5 +1,6 @@
 import accountDataMapper from '../datamappers/account.js'
 import bcrypt from 'bcrypt';
+import homeDataMapper from '../datamappers/home.js';
 
 const accountController = {
 
@@ -31,9 +32,9 @@ const accountController = {
   // QUERY POST
   createOneAccount: async (req, res) => {
     const accountData = req.body;
-    const { firstname, lastname, email, role, password, confirmPassword, home_id } = accountData;
-    
-    if (!firstname || !lastname || !email || !password || !role || !confirmPassword || !home_id) {
+    const { firstname, lastname, email, password, confirmPassword } = accountData;
+
+    if (!firstname || !lastname || !email || !password || !confirmPassword) {
       res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
     }
 
@@ -44,8 +45,18 @@ const accountController = {
     if (checkAccount) {
       res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
     }
-    const task = await accountDataMapper.createAccount(accountData)
-    res.json({ status: 'success', data: { task } });
+    const name = {
+      name: 'Mon foyer',
+    };
+    const home = await homeDataMapper.createHome(name);
+    if (!home) {
+      res.status(400).json({ status: 'error', message: 'La création de la maison a échoué' });
+    }
+    
+    const accountDataWithHomeId = { ...accountData, home_id: home.id };
+
+    const account = await accountDataMapper.createAccount(accountDataWithHomeId)
+    res.json({ status: 'success', data: { account } });
   },
 
   loginForm: async (req, res) => {

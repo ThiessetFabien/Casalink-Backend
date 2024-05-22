@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/task.schema.js';
+import { postSchema, patchSchema } from '../../validation/task.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import taskController from '../../controllers/taskController.js';
@@ -18,7 +18,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/account/:id', validate (getSchema, 'query'), cw(taskController.getTaskByAccountId));
+router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 
 /**
 *GET /api/task/{id}
@@ -31,7 +31,7 @@ router.get('/task/account/:id', validate (getSchema, 'query'), cw(taskController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/:id', validate (getSchema, 'query'), cw(taskController.getTaskById));
+router.get('/task/:id', cw(taskController.getTaskById));
 
 /**
 *GET /api/task/{id}/subtask
@@ -44,7 +44,7 @@ router.get('/task/:id', validate (getSchema, 'query'), cw(taskController.getTask
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/:id/subtask', validate (getSchema, 'query'), cw(subtaskController.getSubtaskById));
+router.get('/task/:id/subtask', cw(subtaskController.getSubtaskById));
 
 /**
 *GET /api/task
@@ -55,7 +55,7 @@ router.get('/task/:id/subtask', validate (getSchema, 'query'), cw(subtaskControl
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/', validate (getSchema, 'query'), cw(taskController.getAllTasks));
+router.get('/task/', cw(taskController.getAllTasks));
 
 /**
 *POST /api/task
@@ -95,6 +95,6 @@ router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.upda
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/task/:id', validate (removeSchema, 'body'), cw(taskController.deleteOneTask));
+router.delete('/task/:id', cw(taskController.deleteOneTask));
 
 export default router;

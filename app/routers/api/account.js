@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema ,patchSchema, removeSchema } from '../../validation/account.schema.js';
+import { patchSchema } from '../../validation/account.schema.js';
 import validate from '../../validation/validator.js';
 import accountController from '../../controllers/accountController.js';
 import cw from '../../middlewares/controller.wrapper.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/account/home/:id',validate (getSchema, 'query'), cw(accountController.getAccountByHomeId));
+router.get('/account/home/:id', cw(accountController.getAccountByHomeId));
 
 /**
 *GET /api/account/{id}
@@ -30,7 +30,7 @@ router.get('/account/home/:id',validate (getSchema, 'query'), cw(accountControll
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/account/:id',validate (getSchema, 'query'), cw(accountController.getAccountById));
+router.get('/account/:id', cw(accountController.getAccountById));
 
 /**
 *GET /api/account
@@ -42,7 +42,7 @@ router.get('/account/:id',validate (getSchema, 'query'), cw(accountController.ge
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/account/',validate (getSchema, 'query'), cw(accountController.getAllAccounts));
+router.get('/account/', cw(accountController.getAllAccounts));
 
 /**
 *PATCH /api/account/{id}
@@ -69,6 +69,6 @@ router.patch('/account/:id',validate (patchSchema, 'body'), cw(accountController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/account/:id',validate (removeSchema, 'body'), cw(accountController.deleteOneAccount));
+router.delete('/account/:id', cw(accountController.deleteOneAccount));
 
 export default router;

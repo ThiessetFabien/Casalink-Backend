@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/adress.schema.js';
+import { postSchema, patchSchema } from '../../validation/adress.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import addressController from '../../controllers/addressController.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/address/home/:id', validate (getSchema, 'query'), cw(addressController.getAddressByHomeId));
+router.get('/address/home/:id', cw(addressController.getAddressByHomeId));
 
 /**
 *GET /api/address/{id}
@@ -30,7 +30,7 @@ router.get('/address/home/:id', validate (getSchema, 'query'), cw(addressControl
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.getAddressById));
+router.get('/address/:id', cw(addressController.getAddressById));
 
 /**
 *GET /api/address/{id}
@@ -44,7 +44,7 @@ router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.g
 */
 
 
-router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.getAddressById));
+router.get('/address/:id', cw(addressController.getAddressById));
 
 /**
 *GET /api/address
@@ -56,7 +56,7 @@ router.get('/address/:id', validate (getSchema, 'query'), cw(addressController.g
 */
 
 
-router.get('/address/', validate (getSchema, 'query'), cw(addressController.getAllAddress));
+router.get('/address/', cw(addressController.getAllAddress));
 
 /**
 *POST /api/address
@@ -96,6 +96,6 @@ router.patch('/address/:id', validate (patchSchema, 'body'), cw(addressControlle
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/address/:id', validate (removeSchema, 'body'), cw(addressController.deleteOneAddress));
+router.delete('/address/:id', cw(addressController.deleteOneAddress));
 
 export default router;

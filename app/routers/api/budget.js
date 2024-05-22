@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/budget.schema.js';
+import { postSchema, patchSchema } from '../../validation/budget.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import budgetController from '../../controllers/budgetController.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/budget/home/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetByHomeId));
+router.get('/budget/home/:id', cw(budgetController.getBudgetByHomeId));
 
 /**
 *GET /api/budget/account/{id}
@@ -31,7 +31,7 @@ router.get('/budget/home/:id', validate (getSchema, 'query'), cw(budgetControlle
 */
 
 
-router.get('/budget/account/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetsByAccountId));
+router.get('/budget/account/:id', cw(budgetController.getBudgetsByAccountId));
 
 /**
 *GET /api/budget/{id}
@@ -44,7 +44,7 @@ router.get('/budget/account/:id', validate (getSchema, 'query'), cw(budgetContro
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/budget/:id', validate (getSchema, 'query'), cw(budgetController.getBudgetById));
+router.get('/budget/:id', cw(budgetController.getBudgetById));
 
 /**
 *GET /api/budget
@@ -57,7 +57,7 @@ router.get('/budget/:id', validate (getSchema, 'query'), cw(budgetController.get
 */
 
 
-router.get('/budget/', validate (getSchema, 'query'), cw(budgetController.getAllBudgets));
+router.get('/budget/', cw(budgetController.getAllBudgets));
 
 /**
 *POST /api/budget
@@ -97,6 +97,6 @@ router.patch('/budget/:id', validate (patchSchema, 'body'), cw(budgetController.
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/budget/:id', validate (removeSchema, 'body'), cw(budgetController.deleteOneBudget));
+router.delete('/budget/:id',cw(budgetController.deleteOneBudget));
 
 export default router;

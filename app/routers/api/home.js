@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/home.schema.js';
+import { postSchema, patchSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
 import homeController from '../../controllers/homeController.js';
 import cw from '../../middlewares/controller.wrapper.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/account/:id', validate (getSchema, 'query'), cw(homeController.getHomeByAccountId));
+router.get('/home/account/:id', cw(homeController.getHomeByAccountId));
 
 /**
 *GET /api/home/{id}
@@ -30,7 +30,7 @@ router.get('/home/account/:id', validate (getSchema, 'query'), cw(homeController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/:id', validate (getSchema, 'query'), cw(homeController.getHomeById));
+router.get('/home/:id', cw(homeController.getHomeById));
 
 /**
 *GET /api/home
@@ -41,7 +41,7 @@ router.get('/home/:id', validate (getSchema, 'query'), cw(homeController.getHome
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/', validate (getSchema, 'query'), cw(homeController.getAllHomes));
+router.get('/home/', cw(homeController.getAllHomes));
 
 /**
 *POST /api/home
@@ -81,6 +81,6 @@ router.patch('/home/:id', validate (patchSchema, 'body'), cw(homeController.upda
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/home/:id', validate (removeSchema, 'body'), cw(homeController.deleteOneHome));
+router.delete('/home/:id', cw(homeController.deleteOneHome));
 
 export default router;

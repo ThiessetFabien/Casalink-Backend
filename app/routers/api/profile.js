@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSchema, postSchema, patchSchema, removeSchema } from '../../validation/profile.schema.js';
+import { postSchema, patchSchema } from '../../validation/profile.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import profileController from '../../controllers/profileController.js';
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/account/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByAccountId));
+router.get('/account/:id/profile', cw(profileController.getProfileByAccountId));
 
 /**
 *GET /api/account/{id}
@@ -30,7 +30,7 @@ router.get('/account/:id/profile', validate (getSchema, 'query'), cw(profileCont
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/home/:id/profile', validate (getSchema, 'query'), cw(profileController.getProfileByHomeId));
+router.get('/home/:id/profile', cw(profileController.getProfileByHomeId));
 
 /**
 *GET /api/profile/{id}
@@ -43,7 +43,7 @@ router.get('/home/:id/profile', validate (getSchema, 'query'), cw(profileControl
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/profile/:id', validate (getSchema, 'query'), cw(profileController.getProfileById));
+router.get('/profile/:id', cw(profileController.getProfileById));
 
 /**
 *POST /api/profile/
@@ -83,6 +83,6 @@ router.patch('/profile/:id', validate (patchSchema, 'body'), cw(profileControlle
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/profile/:id', validate (removeSchema, 'body'), cw(profileController.deleteOneProfile));
+router.delete('/profile/:id', cw(profileController.deleteOneProfile));
 
 export default router;

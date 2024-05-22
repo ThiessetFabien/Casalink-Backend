@@ -99,13 +99,13 @@ const accountDataMapper = {
         throw new Error('Les données du account sont manquantes.');
       }
 
-      const { email, firstname, lastname, role, password, home_id } = accountData;
+      const { email, firstname, lastname, password } = accountData;
       
       const hashedPassword = await cryptoPassword.hash(password);
 
       const result = await pool.query(
-        'INSERT INTO "account" (email, firstname, lastname, role, password, home_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;',
-        [email, firstname, lastname, role, hashedPassword, home_id]
+        'INSERT INTO "account" (email, firstname, lastname, password) VALUES ($1, $2, $3, $4) RETURNING *;',
+        [email, firstname, lastname, hashedPassword]
       );
 
       return result.rows[0];
