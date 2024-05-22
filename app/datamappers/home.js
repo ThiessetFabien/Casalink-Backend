@@ -52,7 +52,6 @@ const homeDataMapper = {
         'INSERT INTO "home" (name) VALUES ($1) RETURNING *;',
         [name]
       );
-      console.log(result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);

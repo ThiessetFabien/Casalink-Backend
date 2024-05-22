@@ -92,28 +92,27 @@ const accountDataMapper = {
 
   // Create a new account
   async createAccount(accountData) {
-
     try {
-      
-      if (!accountData) {
-        throw new Error('Les données du account sont manquantes.');
-      }
+        if (!accountData) {
+            throw new Error('Les données du compte sont manquantes.');
+        }
 
-      const { email, firstname, lastname, password } = accountData;
-      
-      const hashedPassword = await cryptoPassword.hash(password);
+        const { email, firstname, lastname, password, home_id } = accountData;
+        
+        const hashedPassword = await cryptoPassword.hash(password);
 
-      const result = await pool.query(
-        'INSERT INTO "account" (email, firstname, lastname, password) VALUES ($1, $2, $3, $4) RETURNING *;',
-        [email, firstname, lastname, hashedPassword]
-      );
+        const result = await pool.query(
+            'INSERT INTO "account" (email, firstname, lastname, password, home_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;',
+            [email, firstname, lastname, hashedPassword, home_id]
+        );
 
-      return result.rows[0];
+        return result.rows[0];
     
     } catch (error) {
-      throw new DbError(error.message);
+        throw new DbError(error.message);
     }
-  },
+}
+,
 
   // ----------- UPDATE account -----------
 

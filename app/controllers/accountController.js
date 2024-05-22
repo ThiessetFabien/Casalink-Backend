@@ -31,34 +31,50 @@ const accountController = {
 
   // QUERY POST
   createOneAccount: async (req, res) => {
-    const accountData = req.body;
-    const { firstname, lastname, email, password, confirmPassword } = accountData;
+    try {
+        const accountData = req.body;
+        const { firstname, lastname, email, password, confirmPassword } = accountData;
 
-    if (!firstname || !lastname || !email || !password || !confirmPassword) {
-      res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
-    }
+        if (!firstname || !lastname || !email || !password || !confirmPassword) {
+            return res.status(400).json({ status: 'error', message: 'Tous les champs sont obligatoires' });
+        }
 
-    if(password !== confirmPassword) {
-      res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
-    }
-    const checkAccount = await accountDataMapper.findAccountByEmail(email);
-    if (checkAccount) {
-      res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
-    }
-    const name = {
-      name: 'Mon foyer',
-    };
-    const home = await homeDataMapper.createHome(name);
-    if (!home) {
-      res.status(400).json({ status: 'error', message: 'La création de la maison a échoué' });
-    }
-    
-    const accountDataWithHomeId = { ...accountData, home_id: home.id };
+        if (password !== confirmPassword) {
+            return res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
+        }
 
-    const account = await accountDataMapper.createAccount(accountDataWithHomeId)
-    res.json({ status: 'success', data: { account } });
-  },
+        const checkAccount = await accountDataMapper.findAccountByEmail(email);
+        if (checkAccount) {
+            return res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
+        }
 
+        const homeData = {
+            name: 'Mon foyer',
+        };
+        const home = await homeDataMapper.createHome(homeData);
+        if (!home) {
+            return res.status(400).json({ status: 'error', message: 'La création de la maison a échoué' });
+        }
+
+        const accountDataWithHomeId = { 
+            firstname, 
+            lastname, 
+            email, 
+            password, 
+            home_id: home.id 
+        };
+
+        const account = await accountDataMapper.createAccount(accountDataWithHomeId);
+        if (!account) {
+            return res.status(500).json({ status: 'error', message: 'La création du compte a échoué' });
+        }
+
+        res.status(201).json({ status: 'success', data: { account } });
+    } catch (error) {
+        console.error('Error creating account:', error);
+        res.status(500).json({ status: 'error', message: 'Erreur serveur' });
+    }
+},
   loginForm: async (req, res) => {
       
       const { email, password } = req.body;
