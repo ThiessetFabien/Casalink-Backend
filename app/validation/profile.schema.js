@@ -4,7 +4,6 @@ const profilePartValidator = Joi.string().pattern(/^./);
 const account_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
 const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
 
-
 /**
  * Profile schema for the POST method
  */
