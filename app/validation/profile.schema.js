@@ -5,6 +5,19 @@ const account_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to al
 const emailPartValidator = Joi.string().email({ minDomainSegments: 3, tlds: { allow: ['com', 'net', 'fr'] } });
 
 /**
+* Response of API for a profil data source
+* @typedef {object} Profil
+* @property {string} name - Points are excluded
+* @property {string} birthdate - Points are excluded
+* @property {string} role - Points are excluded
+* @property {string} pin - Fourth numbers are required
+* @property {string} image - Points are excluded
+* @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr "
+* @property {string} score - Points are excluded
+* @returns {ApiJsonSucces} - a profil object
+*/
+
+/**
  * Profile schema for the GET method
  */
 export const getSchema = Joi.object({

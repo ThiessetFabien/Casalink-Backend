@@ -4,6 +4,15 @@ const budgetPartValidator = Joi.string().pattern(/^./);
 const amountPartValidator = Joi.string().pattern(/^\d+(\.\d{1,2})?$/).required(); // Regex to allow only digits with up to 2 decimal places
 
 /**
+* Response of API for a budget data source
+* @typedef {object} Budget
+* @property {string} category - Points are excluded
+* @property {string} amount.required - Two decimal places are required
+* @property {string} name - Points are excluded
+* @returns {ApiJsonSucces} - a budget object
+*/
+
+/**
  * Budget schema for the GET method
  */
 

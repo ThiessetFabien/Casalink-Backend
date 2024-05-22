@@ -4,6 +4,14 @@ const categoryPartValidator = Joi.string().pattern(/^./).required();
 const colorPartValidator = Joi.string().pattern(/rgba?\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/); // Regex to allow only rbg and rgba color codes
 
 /**
+* Response of API for a category data source
+* @typedef {object} Category
+* @property {string} name.required - Points are excluded
+* @property {string} color.required - Only rbg or rgba color codes
+* @returns {ApiJsonSucces} - a category object
+*/
+
+/**
  * Category schema for the GET method
  */
 

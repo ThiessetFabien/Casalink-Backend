@@ -6,17 +6,6 @@ import addressController from '../../controllers/addressController.js';
 
 const router = express.Router();
 
-/**
-*GET /api/address/home/{id}
-*@summary Get Address of Home by this id
-*@tags Get
-*@param {number} id.path.required - Home id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 router.get('/address/home/:id', validate (getSchema, 'query'), cw(addressController.getAddressByHomeId));
 
 /**
