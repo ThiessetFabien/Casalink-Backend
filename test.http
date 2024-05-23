@@ -110,6 +110,7 @@ Content-Type: application/json
 }
 
 ### Post login → error 401 Unauthorized
+### Post login → success
 POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
@@ -118,6 +119,18 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
+### Post login → error 401 Unauthorized
+POST http://localhost:4000/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "totot@gmail.com",
+  "password": "Totott#123"
+  "password": "Totott#123"
+}
+
+### GET login → error 400 Bad Request
+GET http://localhost:4000/api/v1/login
 ### GET login → error 400 Bad Request
 GET http://localhost:4000/api/v1/login
 
