@@ -1,4 +1,3 @@
-
 // Import dependencies
 import debugLib from 'debug';
 import express, { urlencoded } from 'express';
@@ -8,6 +7,7 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
 import sessionMiddleware from './app/middlewares/session.middleware.js';
+import jwtMiddleware from './app/middlewares/jwt.middleware.js';
 
 // Load environment variables 
 import { config } from 'dotenv';
@@ -30,7 +30,11 @@ const globalLimiter = rateLimit({
 });
 
 app.use(globalLimiter);
+
+app.use(jwtMiddleware);
+
 app.use(bodySanitizer);
+
 app.use(sessionMiddleware);
 
 /**

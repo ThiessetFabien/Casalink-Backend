@@ -126,3 +126,15 @@
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}

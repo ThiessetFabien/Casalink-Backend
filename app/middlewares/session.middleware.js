@@ -26,4 +26,6 @@ const sessionMiddleware = session({
   cookie: { secure: false } // The cookie is transmitted in HTTP, not HTTPS
 });
 
+
+
 export default sessionMiddleware;
