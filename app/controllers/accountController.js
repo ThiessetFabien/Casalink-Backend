@@ -102,9 +102,18 @@ const accountController = {
 
   updateOneAccount: async (req, res) => {
     const id = req.params.id;
-    const accountData = req.body;
-    const task = await accountDataMapper.updateAccount(id, accountData)
-    res.json({ status: 'success', data: { task } });
+    const newAccountData = req.body;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, "L'identifiant du compte est incorrect."));
+    }
+    const currentAccountData = await accountDataMapper.findAccountById(id);
+    if (!currentAccountData) {
+      return next(new ApiError(404, "Le compte n'existe pas."));
+    }
+    const updateAccountData = { ...currentAccountData, ...newAccountData };
+
+    const updateAccount= await accountDataMapper.updateAccount(id, updateAccountData )
+    return res.json({ status: 'success', data: { updateAccount } });
   },
 
   deleteOneAccount: async (req, res) => {
