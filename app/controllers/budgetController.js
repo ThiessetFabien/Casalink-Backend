@@ -48,9 +48,14 @@ const budgetController = {
 
   updateOneBudget: async (req, res) => {
     const id = req.params.id;
-    const budgetData = req.body;
-    const budget = await budgetDataMapper.updateBudget(id, budgetData)
-    res.json({ status: 'success', data: { budget } });
+    const newBudgetData = req.body;
+    const currentBudgetData = await budgetDataMapper.findBudgetById(id);
+    if (!currentBudgetData) {
+      return res.status(404).send('Ce budget n\'existe pas');
+    }
+    const updateBudgetData = { ...currentBudgetData, ...newBudgetData };
+    const updateBudget = await budgetDataMapper.updateBudget(id, updateBudgetData);
+    res.json({ status: 'success', data: { updateBudget } });
   },
 
   deleteOneBudget: async (req, res) => {

@@ -45,9 +45,14 @@ const addressController = {
 
   updateOneAddress: async (req, res) => {
     const id = req.params.id;
-    const addressData = req.body;
-    const address = await addressDataMapper.updateAddress(id, addressData)
-    res.json({ status: 'success', data: { address } });
+    const newAddressData = req.body;
+    const currentAddressData = await addressDataMapper.findAddressById(id);
+    if (!currentAddressData) {
+      return res.status(404).send('Cette adresse n\'existe pas');
+    }
+    const updateAddressData = { ...currentAddressData, ...newAddressData };
+    const updateAddress = await addressDataMapper.updateAddress(id, updateAddressData);
+    res.json({ status: 'success', data: { updateAddress } });
   },
 
   deleteOneAddress: async (req, res) => {
