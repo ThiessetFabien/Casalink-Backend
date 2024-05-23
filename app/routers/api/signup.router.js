@@ -7,20 +7,6 @@ import cw from '../../middlewares/controller.wrapper.js';
 const router = express.Router();
 
 /**
-*GET /api/account
-*@summary Create a new account
-*@tags Get
-*@param {accountInput} request.body.required - account info 
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 401 - Unauthorized - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
-router.get('/signup', cw(accountController.createAccount));
-
-/**
 *POST /api/account/
 *@summary Create a new account
 *@tags Post

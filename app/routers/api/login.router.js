@@ -7,19 +7,6 @@ import accountController from '../../controllers/account.controller.js';
 const router = express.Router();
 
 /**
-*GET /api/connexion
-*@summary Get connexion of connexion by this id
-*@tags Get
-*@param {number} id.path.required - connexion id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
-router.get('/login', cw(accountController.loginForm));
-
-/**
 *POST /api/login/
 *@summary Post connexion of connexion by connexion id
 *@tags Post
