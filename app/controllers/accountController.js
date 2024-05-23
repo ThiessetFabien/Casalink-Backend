@@ -99,12 +99,6 @@ const accountController = {
     res.json({ status: 'success', message: 'Vous êtes déconnecté' });
   },
 
-  // updateOneAccount: async (req, res) => {
-  //   const id = req.params.id;
-  //   const accountData = req.body;
-  //   const account = await accountDataMapper.updateAccount(id, accountData)
-  //   res.json({ status: 'success', data: { account } });
-  // },
   updateOneAccount: async (req, res) => {
     const id = req.params.id;
     const newAccountData = req.body;
