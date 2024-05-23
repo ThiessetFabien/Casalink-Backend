@@ -35,9 +35,14 @@ const homeController = {
 
   updateOneHome: async (req, res) => {
     const id = req.params.id;
-    const homeData = req.body;
-    const home = await homeDataMapper.updateHome(id, homeData)
-    res.json({ status: 'success', data: { home } });
+    const newHomeData = req.body;
+    const currentHomeData = await homeDataMapper.findHomeById(id);
+    if (!currentHomeData) {
+      return res.status(404).send('Ce foyer n\'existe pas');
+    }
+    const updateHomeData = { ...currentHomeData, ...newHomeData };
+    const updateHome = await homeDataMapper.updateHome(id, updateHomeData);
+    res.json({ status: 'success', data: { updateHome } });
   },
 
   deleteOneHome: async (req, res) => {

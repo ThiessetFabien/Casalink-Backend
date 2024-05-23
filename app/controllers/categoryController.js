@@ -30,9 +30,14 @@ const categoryController = {
 
   updateOneCategory: async (req, res) => {
     const id = req.params.id;
-    const categoryData = req.body;
-    const category = await categoryDataMapper.updateCategory(id, categoryData)
-    res.json({ status: 'success', data: { category } });
+    const newCategoryData = req.body;
+    const currentCategoryData = await categoryDataMapper.findCategoryById(id);
+    if (!currentCategoryData) {
+      return res.status(404).send('Cette categorie n\'existe pas');
+    }
+    const updateCategoryData = { ...currentCategoryData, ...newCategoryData };
+    const updateCategory = await categoryDataMapper.updateCategory(id, updateCategoryData);
+    res.json({ status: 'success', data: { updateCategory } });
   },
 
   deleteOneCategory: async (req, res) => {
