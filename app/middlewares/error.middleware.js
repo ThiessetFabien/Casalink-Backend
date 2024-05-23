@@ -1,6 +1,8 @@
 import logger from '../utils/logger.js';
 import ApiError from '../errors/api.error.js';
 import DbError from '../errors/dbError.js'; 
+import { config } from 'dotenv';
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 /**
  * A api json error object
@@ -26,9 +28,7 @@ export default (err, __, res, next) => {
   if (err instanceof ApiError) {
     status = err.status;
     message = err.message;
-  } 
-
-  if (err instanceof DbError) {
+  } else if (err instanceof DbError) {
     status = 500;
     message = 'Database error occurred';
   } 
@@ -40,20 +40,17 @@ export default (err, __, res, next) => {
   } 
 
   // Error handling of 404 errors
-  if (err.status === 404) {
-    status = 404;
+  if (status === 404) {
     message = 'Resource not found';
   } 
 
   // Error handling of 401 errors
-  if (err.status === 401) {
-    status = 401;
+  if (status === 401) {
     message = 'Unauthorized';
   } 
 
   // Error handling of 403 errors
-  if (err.status === 403) {
-    status = 403;
+  if (status === 403) {
     message = 'Forbidden';
   }
 
@@ -65,5 +62,5 @@ export default (err, __, res, next) => {
     logger.error(err);
     message = 'Internal Server Error';
   }
-  res.status(status).json({ error: message });
+  return res.status(status).json({ error: message });
 };

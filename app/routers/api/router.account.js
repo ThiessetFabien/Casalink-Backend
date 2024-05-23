@@ -1,7 +1,7 @@
 import express from 'express';
 import { patchSchema } from '../../validation/account.schema.js';
 import validate from '../../validation/validator.js';
-import accountController from '../../controllers/accountController.js';
+import accountController from '../../controllers/account.controller.js';
 import cw from '../../middlewares/controller.wrapper.js';
 
 const router = express.Router();
@@ -56,7 +56,7 @@ router.get('/account/', cw(accountController.getAllAccounts));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/account/:id',validate (patchSchema, 'body'), cw(accountController.updateOneAccount));
+router.patch('/account/:id', validate(patchSchema, 'body'), cw(accountController.updateOneAccount));
 
 /**
 *DELETE /api/account/{id}

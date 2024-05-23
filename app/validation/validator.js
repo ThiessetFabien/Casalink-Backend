@@ -3,16 +3,19 @@ import ApiError from '../errors/api.error.js';
 /**
 * validate a request data source against a schema
 * @param {object} schema - a joi schema
-* @param {'query'|'params'|'body'} source.required - the request data source
+* @param {'query'|'params'|'body'} source - the request data source
 * @returns {function} - an express middleware
 */
 
 function validate(schema, source) {
-    return (request, __, next) => {
-        const { error } = schema.validate(request[source]);
+    return (req, res, next) => {
+        const { error } = schema.validate(req[source]);
         if (error) {
-            const apiError = new ApiError(400, error.name, error.message);
-        next(apiError);
+            // return next(new ApiError(400, error.name, error.message));
+            return res.status(400).json({ 
+                message: 'Validation error',
+                details: error.details.map(detail => detail.message) 
+            });
         }
     next();
     };

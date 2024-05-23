@@ -1,0 +1,121 @@
+### Get account # 1 → success
+GET http://localhost:4000/api/v1/account/home/2
+
+### Get account # 69 → error 404
+GET http://localhost:4000/api/v1/account/home/69
+
+### Get account # toto → error401 Unauthorized
+GET http://localhost:4000/api/v1/account/home/toto
+
+### Get all accounts → success
+GET http://localhost:4000/api/v1/account
+
+### Get account by id 1 → success
+GET http://localhost:4000/api/v1/account/1
+
+### Get account by id 3 → success
+GET http://localhost:4000/api/v1/account/3
+
+### Get account by id 69 → error404 Not Found
+GET http://localhost:4000/api/v1/account/69
+
+### Get account by id toto → error401 Unauthorized
+GET http://localhost:4000/api/v1/account/toto
+
+### Get account # 1 → success
+GET http://localhost:4000/api/v1/account/home/1
+
+### Patch account # 1 → success
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "role":"user",
+  "password": "Totott#123"
+}
+
+### Patch account # 1 → validation error 400
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "name": "John Doe"
+}
+
+### Patch account # 1 → success role is required
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "password": "Totott#123"
+}
+
+### Patch account # 1 → error 400 email is required
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "role":"user",
+  "password": "Totott#123"
+}
+
+### Patch account # 1 → error lastname is required 400
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "email": "totot@gmail.com",
+  "role":"user",
+  "password": "Totott#123"
+}
+
+### Patch account # 1 → error firstname is required 400
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "role":"user",
+  "password": "Totott#123"
+}
+
+# ! A vérifier
+### Patch account # 1 → success
+PATCH http://localhost:4000/api/v1/account/1
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "role":"user"
+}
+
+### Delete account # 1 → success
+DELETE http://localhost:4000/api/v1/account/1
+
+### Post signup → 
+POST http://localhost:4000/api/v1/signup
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "password": "Totott#123",
+  "confirmPassword": "Totott#123"
+}
+
+
+### Get signup → error 400 Bad Request
+POST http://localhost:4000/api/v1/signup
