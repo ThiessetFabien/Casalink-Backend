@@ -1,8 +1,14 @@
 ### Get account # 1 → success
+GET http://localhost:4000/api/v1/account/home/1
+
+### Get account # 1 → success
 GET http://localhost:4000/api/v1/account/home/2
 
 ### Get account # 69 → error 404
 GET http://localhost:4000/api/v1/account/home/69
+
+### Get account # 1 → error 401 Unauthorized
+GET http://localhost:4000/api/v1/account/home/
 
 ### Get account # toto → error401 Unauthorized
 GET http://localhost:4000/api/v1/account/home/toto
@@ -37,7 +43,19 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
-### Patch account # 1 → validation error 400
+### Patch account # 1 → error 400 Bad Request
+PATCH http://localhost:4000/api/v1/account/
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "role":"user",
+  "password": "Totott#123"
+}
+
+### Patch account # 1 → error 400 Bad Request
 PATCH http://localhost:4000/api/v1/account/1
 Content-Type: application/json
 
@@ -48,8 +66,14 @@ Content-Type: application/json
 ### Delete account # 1 → success
 DELETE http://localhost:4000/api/v1/account/1
 
-### Post signup → 
-POST http://localhost:4000/api/v1/signup
+### Delete account # null → error 400 Bad Request
+DELETE http://localhost:4000/api/v1/account/
+
+### Delete account # toto → error 401 Unauthorized
+DELETE http://localhost:4000/api/v1/account/toto
+
+### Get signup → success
+GET http://localhost:4000/api/v1/signup
 Content-Type: application/json
 
 {
@@ -61,18 +85,121 @@ Content-Type: application/json
 }
 
 
+### Post signup → success
+POST http://localhost:4000/api/v1/signup
+Content-Type: application/json
+
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "password": "Totott#123",
+  "confirmPassword": "Totott#123"
+}
+
 ### Post signup → error 400 Bad Request
 POST http://localhost:4000/api/v1/signup
 
-### Post login → 
+### Post login → success
 POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
   "email": "totot@gmail.com",
-  "password": "Totott#123",
+  "password": "Totott#123"
 }
 
+### Post login → error 401 Unauthorized
+POST http://localhost:4000/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "totot@gmail.com",
+  "password": "Totott#123"
+}
+
+### GET login → error 400 Bad Request
+GET http://localhost:4000/api/v1/login
 
 ### Post login → error 400 Bad Request
 POST http://localhost:4000/api/v1/login
+
+### GET /home/account/#1 → success
+GET http://localhost:4000/api/v1/home/account/1
+
+### GET /home/account/#2 → success
+GET http://localhost:4000/api/v1/home/account/2
+
+### GET /home/account/#69 → Error 401 Unauthorized
+GET http://localhost:4000/api/v1/home/account/69
+
+### GET /home/account/#toto → Error 401 Unauthorized
+GET http://localhost:4000/api/v1/home/account/toto
+
+### GET /home/account/#toto → Error 401 Unauthorized
+GET http://localhost:4000/api/v1/home/account/
+
+### GET /home/{id} #1 → success
+GET http://localhost:4000/api/v1/home/1
+
+### GET /home/{id} #2 → success
+GET http://localhost:4000/api/v1/home/2
+
+### GET /home/{id} #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/home/69
+
+### GET /home/{id} #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/home/toto
+
+### GET /home → success
+GET http://localhost:4000/api/v1/home
+
+### POST /home → success
+POST http://localhost:4000/api/v1/home
+Content-Type: application/json
+
+{
+  "name": "My family"
+}
+
+### POST /home → error 400 Bad Request
+POST http://localhost:4000/api/v1/home
+
+### POST /home → error 400 Bad Request
+POST http://localhost:4000/api/v1/home
+Content-Type: application/json
+
+{
+  "shopping_list": "Mouchoirs"
+}
+
+### PATCH /home/{id} #1 → success
+PATCH http://localhost:4000/api/v1/home/1
+Content-Type: application/json
+
+{
+  "name": "Rename my home"
+}
+
+### PATCH /home/{id} #toto → error 401 Unauthorized
+PATCH http://localhost:4000/api/v1/home/toto
+Content-Type: application/json
+
+{
+  "name": "Rename my home"
+}
+
+### PATCH /home/{id} #1 → 400 Bad Request
+PATCH http://localhost:4000/api/v1/home/1
+
+### PATCH /home/{id} # null → 404 Not Found
+PATCH http://localhost:4000/api/v1/home/
+
+### DELETE /home/{id} #1 → success
+DELETE http://localhost:4000/api/v1/home/1
+
+### DELETE /home/{id} #1 → success
+DELETE http://localhost:4000/api/v1/home/toto
+
+### DELETE /home/{id} #1 → error 404 Not Found
+DELETE http://localhost:4000/api/v1/home/

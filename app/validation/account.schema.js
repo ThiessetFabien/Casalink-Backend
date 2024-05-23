@@ -23,12 +23,12 @@ const passwordPartValidator = Joi.string()
  * Account schema for the POST method
  */
 export const postSchema = Joi.object({
-    lastname: accountPartValidator.required(),
-    firstname: accountPartValidator.required(),
-    password: passwordPartValidator.required(),
+    lastname: accountPartValidator,
+    firstname: accountPartValidator,
+    password: passwordPartValidator,
     confirmPassword: passwordPartValidator,
     role:accountPartValidator,
-    email: emailPartValidator.required(),
+    email: emailPartValidator,
 });
 
 /**
