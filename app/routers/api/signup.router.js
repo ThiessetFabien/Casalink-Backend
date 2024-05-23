@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/signup', cw(accountController.createOneAccount));
+router.get('/signup', cw(accountController.createAccount));
 
 /**
 *POST /api/account/
@@ -30,7 +30,7 @@ router.get('/signup', cw(accountController.createOneAccount));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/signup', validate(postSchema, 'body'), cw(accountController.createOneAccount));
+router.post('/signup', validate(postSchema, 'body'), cw(accountController.createAccount));
 
 
 export default router;

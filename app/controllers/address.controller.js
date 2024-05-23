@@ -1,4 +1,5 @@
 import addressDataMapper from '../datamappers/address.datamapper.js'
+import ApiError from '../errors/api.error.js';
 
 const addressController = {
 
@@ -9,19 +10,19 @@ const addressController = {
   },
 
   getAddressById: async (req, res, next) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
     const address = await addressDataMapper.findAddressById(id)
-    if(address === 0) {
+    if(!address[0]) {
       return next(new ApiError(404, `L'adresse n'existe pas.`));
     }
     return res.json({ status: 'success', data: { address } });
 },
 
   getAddressByAccountId: async (req, res, next) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
@@ -33,12 +34,12 @@ const addressController = {
   },
 
   getAddressByHomeId: async (req, res, next) => {
-    const { id } = req.params.id;
+    const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
     const addresses = await addressDataMapper.findAddressByHomeId(id)
-    if(addresses.lenght === 0) {
+    if(!addresses[0]) {
       return next(new ApiError(404, `L'adresse n'existe pas.`));
     }
     return res.json({ status: 'success', data: { addresses } });
@@ -51,7 +52,7 @@ const addressController = {
     return res.json({ status: 'success', data: { address } });
   },
 
-  updateOneAddress: async (req, res) => {
+  updateOneAddress: async (req, res, next) => {
     const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
@@ -61,7 +62,7 @@ const addressController = {
     return res.json({ status: 'success', data: { address } });
   },
 
-  deleteOneAddress: async (req, res) => {
+  deleteOneAddress: async (req, res, next) => {
     const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   

@@ -7,7 +7,7 @@ const homePartValidator = Joi.string().pattern(/^./);
  */
 export const postSchema = Joi.object({
     shopping_list: homePartValidator,
-    name: homePartValidator,
+    name: homePartValidator.required(),
 });
 
 /**
@@ -15,5 +15,5 @@ export const postSchema = Joi.object({
  */
 export const patchSchema = Joi.object({
     shopping_list: homePartValidator,
-    name: homePartValidator,
+    name: homePartValidator.required(),
 });

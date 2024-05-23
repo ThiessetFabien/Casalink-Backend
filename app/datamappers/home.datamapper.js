@@ -18,17 +18,21 @@ const homeDataMapper = {
   async findHomeById(id){
     try {
       const result = await pool.query('SELECT * FROM "home" WHERE id=$1;', [id]);
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
   // Find a home by its user_id
-  async findHomeByUserId(user_id){
+  async findHomeByAccountId(user_id){
     try {
-      const result = await pool.query('SELECT * FROM "home" JOIN "user" ON "user".home_id = "home".id WHERE "user".id=$1;', [user_id]);
-      return result.rows[0];
+      const result = await pool.query(
+        `SELECT * FROM "home" 
+          JOIN "user" ON "user".home_id = "home".id 
+          WHERE "user".id=$1;`,
+          [user_id]);
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -37,12 +41,14 @@ const homeDataMapper = {
 
   // ----------- CREATE HOME -----------
   // Create a new home
-  async createHome(name) {
+  async createHome(homeData) {
     try {
+      const { name } = homeData
       const result = await pool.query(
         'INSERT INTO "home" (name) VALUES ($1) RETURNING *;',
         [name]
       );
+      console.log('result', result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -54,8 +60,9 @@ const homeDataMapper = {
     try {
       const { shopping_list, name } = homeData;
       const result = await pool.query(
-        'UPDATE "home" SET shopping_list = $1, name = $2 WHERE id = $3 RETURNING *;',
-        [shopping_list, name, id]
+        `UPDATE "home" SET shopping_list = $1, name = $2 
+          WHERE id = $3 RETURNING *;`,
+          [shopping_list, name, id]
       );
       return result.rows[0];
     } catch (error) {
