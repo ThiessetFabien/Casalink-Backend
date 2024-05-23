@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const accountPartValidator = Joi.string().pattern(/^./);
 const home_idPartValidator = Joi.string().pattern(/^[1-9]+$/); // Regex to allow only digits
-const emailPartValidator = Joi.string().pattern(/^./);
+const emailPartValidator = Joi.string().email().pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(fr|com|net)$/); // allow only email with domain .fr, .com, .net
 const passwordPartValidator = Joi.string()
     .min(8)
     .max(100)

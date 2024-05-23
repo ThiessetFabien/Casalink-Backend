@@ -66,6 +66,7 @@ const accountController = {
 
         const account = await accountDataMapper.createAccount(accountDataWithHomeId);
         if (!account) {
+            const deleteHome = await homeDataMapper.deleteHomeById(home.id);
             return res.status(500).json({ status: 'error', message: 'La création du compte a échoué' });
         }
 
