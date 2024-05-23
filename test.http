@@ -1,0 +1,8 @@
+PATCH //localhost:3000/api/v1/account/4
+{
+  "firstname": "ppo",
+  "lastname": "tata",
+  "email": "totot@gmail.com",
+  "role":"user",
+  "password": "Totott#123"
+}

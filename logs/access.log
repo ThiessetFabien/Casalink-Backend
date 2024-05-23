@@ -110,3 +110,24 @@
 {"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
 {"level":"http","message":"PATCH /api/v1/account/4","service":"casalink-api"}
 {"level":"http","message":"PATCH /api/v1/account/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/4","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/4","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/4","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/4","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/3","service":"casalink-api"}

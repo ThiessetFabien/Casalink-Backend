@@ -116,14 +116,14 @@ const accountDataMapper = {
 
   // ----------- UPDATE account -----------
 
-  async updateAccount(id, accountData) {
+ async updateAccount(id, accountData) {
     try {
 
       if (!id || !accountData) {
         throw new Error('Les données du account ou l\'identifiant sont manquants.');
       }
 
-      const { email, firstname, lastname, role, password, home_id } = accountData;
+      const { email, firstname, lastname, role, password, home_id  } = accountData;
       
       const hashedPassword = await cryptoPassword.hash(password);
       
