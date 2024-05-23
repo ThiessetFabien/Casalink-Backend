@@ -31,8 +31,17 @@ const subtaskController = {
 
   updateOneSubtask: async (req, res) => {
     const id = req.params.id;
-    const subtaskData = req.body;
-    const subtask = await subtaskDataMapper.updateSubtask(id, subtaskData)
+    const newSubtaskData = req.body;
+
+    const currentSubtask = await subtaskDataMapper.findSubtaskById(id)
+
+    if (!currentSubtask) {
+      return next(new ApiError(404, "La sous-tâche n'existe pas."));
+    }
+
+    const updateSubtaskData = { ...currentSubtask, ...newSubtaskData };
+
+    const subtask = await subtaskDataMapper.updateSubtask(id, updateSubtaskData)
     res.json({ status: 'success', data: { subtask } });
   },
 

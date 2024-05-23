@@ -39,8 +39,17 @@ const profileController = {
 
   updateOneProfile: async (req, res) => {
     const id = req.params.id;
-    const profileData = req.body;
-    const profile = await profileDataMapper.updateProfile(id, profileData)
+    const newProfileData = req.body;
+    
+    const currentProfile = await profileDataMapper.findProfileById(id)
+
+    if (!currentProfile) {
+      return next(new ApiError(404, "Le profil n'existe pas."));
+    }
+
+    const updateProfileData = { ...currentProfile, ...newProfileData };
+    
+    const profile = await profileDataMapper.updateProfile(id, updateProfileData)
     res.json({ status: 'success', data: { profile } });
   },
 

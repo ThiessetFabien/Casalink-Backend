@@ -35,8 +35,17 @@ const taskController = {
 
   updateOneTask: async (req, res) => {
     const id = req.params.id;
-    const taskData = req.body;
-    const task = await taskDataMapper.updateTask(id, taskData)
+    const newTaskData = req.body;
+
+    const currentTask = await taskDataMapper.findTaskById(id)
+    if (!currentTask) {
+      return next(new ApiError(404, "La tâche n'existe pas."));
+    }
+
+    const updateTaskData = { ...currentTask, ...newTaskData };
+
+    const task = await taskDataMapper.updateTask(id, updateTaskData)
+    
     res.json({ status: 'success', data: { task } });
   },
 

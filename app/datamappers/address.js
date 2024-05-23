@@ -33,7 +33,7 @@ const addressDataMapper = {
   },
 
   // Find a address by its user_id
-  async findAddressByUserId(user_id){
+  async findAddressByAccountId(user_id){
     try {
       if (!user_id) {
         throw new Error('L\'identifiant du user est manquant.');
