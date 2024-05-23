@@ -33,6 +33,9 @@ dependencies:
   bcrypt:
     specifier: ^5.1.1
     version: 5.1.1
+  connect-pg-simple:
+    specifier: ^9.0.1
+    version: 9.0.1
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -615,6 +618,15 @@ packages:
   /confusing-browser-globals@1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
     dev: true
+
+  /connect-pg-simple@9.0.1:
+    resolution: {integrity: sha512-BuwWJH3K3aLpONkO9s12WhZ9ceMjIBxIJAh0JD9x4z1Y9nShmWqZvge5PG/+4j2cIOcguUoa2PSQ4HO/oTsrVg==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      pg: 8.11.5
+    transitivePeerDependencies:
+      - pg-native
+    dev: false
 
   /console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}

@@ -110,6 +110,11 @@ const accountController = {
     if (!currentAccountData) {
       return next(new ApiError(404, "Le compte n'existe pas."));
     }
+    if(newAccountData.password && newAccountData.confirmPassword) {
+      if (newAccountData.password !== newAccountData.confirmPassword) {
+        return res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
+      }
+    }
     const updateAccountData = { ...currentAccountData, ...newAccountData };
 
     const updateAccount= await accountDataMapper.updateAccount(id, updateAccountData )

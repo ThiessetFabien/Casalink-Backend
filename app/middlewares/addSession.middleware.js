@@ -1,7 +1,7 @@
 import accountController from "../controllers/accountController.js";
 import ApiError from '../errors/api.error.js';
 
-const sessionMiddleware = async (req, __, next) => {
+const addSessionMiddleware = async (req, __, next) => {
   try {
     // Catch the accountId from the session
     const accountId = req.session.accountId;
@@ -37,4 +37,4 @@ const sessionMiddleware = async (req, __, next) => {
   }
 };
 
-export default sessionMiddleware;
+export default addSessionMiddleware;

@@ -5,9 +5,9 @@ import express, { urlencoded } from 'express';
 import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
-import session from 'express-session';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
+import sessionMiddleware from './app/middlewares/session.middleware.js';
 
 // Load environment variables 
 import { config } from 'dotenv';
@@ -31,17 +31,7 @@ const globalLimiter = rateLimit({
 
 app.use(globalLimiter);
 app.use(bodySanitizer);
-
-
-
-app.use(session({
-  saveUninitialized: true,
-  resave: true,
-  secret: process.env.SESSION_SECRET,
-  cache: {
-    maxAge: 24 * 60 * 60 * 1000
-  }
-}))
+app.use(sessionMiddleware);
 
 /**
  * GET /api-doc
