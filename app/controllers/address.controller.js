@@ -1,0 +1,74 @@
+import addressDataMapper from '../datamappers/address.datamapper.js'
+
+const addressController = {
+
+  // QUERY GET
+  getAllAddress: async (_, res) => {
+    const addresses = await addressDataMapper.findAllAddress()
+    return res.json({ status: 'success', data: { addresses } });
+  },
+
+  getAddressById: async (req, res, next) => {
+    const { id } = req.params.id;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
+    }
+    const address = await addressDataMapper.findAddressById(id)
+    if(address === 0) {
+      return next(new ApiError(404, `L'adresse n'existe pas.`));
+    }
+    return res.json({ status: 'success', data: { address } });
+},
+
+  getAddressByAccountId: async (req, res, next) => {
+    const { id } = req.params.id;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
+    }
+    const addresses = await addressDataMapper.findAddressByAccountId(id)
+    if(addresses.lenght === 0) {
+      return next(new ApiError(404, `L'adresse n'existe pas.`));
+    }
+    return res.json({ status: 'success', data: { addresses } });
+  },
+
+  getAddressByHomeId: async (req, res, next) => {
+    const { id } = req.params.id;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
+    }
+    const addresses = await addressDataMapper.findAddressByHomeId(id)
+    if(addresses.lenght === 0) {
+      return next(new ApiError(404, `L'adresse n'existe pas.`));
+    }
+    return res.json({ status: 'success', data: { addresses } });
+  },
+
+  // QUERY POST
+  createOneAddress: async (req, res) => {
+    const addressData = req.body;
+    const address = await addressDataMapper.createAddress(addressData)
+    return res.json({ status: 'success', data: { address } });
+  },
+
+  updateOneAddress: async (req, res) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
+    }
+    const addressData = req.body;
+    const address = await addressDataMapper.updateAddress(id, addressData)
+    return res.json({ status: 'success', data: { address } });
+  },
+
+  deleteOneAddress: async (req, res) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
+    }
+    await addressDataMapper.deleteAddressById(id)
+    return res.json({ status: 'success', message: 'L\'adresse a bien été supprimée' });
+  }
+}
+
+export default addressController;

@@ -2,14 +2,14 @@ import express from 'express';
 import ApiError from '../../errors/api.error.js';
 import taskRouter from './task.js';
 import homeRouter from './home.js';
-import accountRouter from './router.account.js';
+import accountRouter from './account.router.js';
 import subtaskRouter from './subtask.js';
 import categoryRouter from './category.js';
 import budgetRouter from './budget.js';
-import addressRouter from './address.js';
+import addressRouter from './address.router.js';
 import profileRouter from './profile.js';
-import loginRouter from './login.js';
-import signupRouter from './router.signup.js';
+import loginRouter from './login.router.js';
+import signupRouter from './signup.router.js';
 
 const router = express.Router();
 

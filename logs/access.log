@@ -475,3 +475,10 @@
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
 {"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}

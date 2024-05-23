@@ -30,14 +30,8 @@ const accountDataMapper = {
   async findAccountByIdWithoutPassword(id){
   
     try {
-    
-      if (!id) {
-        throw new Error('L\'identifiant du compte est manquant.');
-      }
       const result = await pool.query('SELECT id, email, firstname, lastname, role, home_id FROM "account" WHERE id = $1', [id]);
-    
       return result.rows[0];
-    
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -92,9 +86,7 @@ const accountDataMapper = {
         'UPDATE "account" SET email = $1, firstname = $2, lastname = $3, password = $4, home_id = $5 WHERE id = $6 RETURNING *;',
         [ email, firstname, lastname, hashedPassword, home_id, id]
       );
-
       return result.rows[0];
-    
     } catch (error) {
       throw new DbError(error.message);
     }

@@ -45,62 +45,6 @@ Content-Type: application/json
   "name": "John Doe"
 }
 
-### Patch account # 1 → success role is required
-PATCH http://localhost:4000/api/v1/account/1
-Content-Type: application/json
-
-{
-  "firstname": "ppo",
-  "lastname": "tata",
-  "email": "totot@gmail.com",
-  "password": "Totott#123"
-}
-
-### Patch account # 1 → error 400 email is required
-PATCH http://localhost:4000/api/v1/account/1
-Content-Type: application/json
-
-{
-  "firstname": "ppo",
-  "lastname": "tata",
-  "role":"user",
-  "password": "Totott#123"
-}
-
-### Patch account # 1 → error lastname is required 400
-PATCH http://localhost:4000/api/v1/account/1
-Content-Type: application/json
-
-{
-  "firstname": "ppo",
-  "email": "totot@gmail.com",
-  "role":"user",
-  "password": "Totott#123"
-}
-
-### Patch account # 1 → error firstname is required 400
-PATCH http://localhost:4000/api/v1/account/1
-Content-Type: application/json
-
-{
-  "lastname": "tata",
-  "email": "totot@gmail.com",
-  "role":"user",
-  "password": "Totott#123"
-}
-
-# ! A vérifier
-### Patch account # 1 → success
-PATCH http://localhost:4000/api/v1/account/1
-Content-Type: application/json
-
-{
-  "firstname": "ppo",
-  "lastname": "tata",
-  "email": "totot@gmail.com",
-  "role":"user"
-}
-
 ### Delete account # 1 → success
 DELETE http://localhost:4000/api/v1/account/1
 
@@ -117,5 +61,18 @@ Content-Type: application/json
 }
 
 
-### Get signup → error 400 Bad Request
+### Post signup → error 400 Bad Request
 POST http://localhost:4000/api/v1/signup
+
+### Post login → 
+POST http://localhost:4000/api/v1/login
+Content-Type: application/json
+
+{
+  "email": "totot@gmail.com",
+  "password": "Totott#123",
+}
+
+
+### Post login → error 400 Bad Request
+POST http://localhost:4000/api/v1/login

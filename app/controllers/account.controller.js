@@ -12,15 +12,15 @@ const accountController = {
   },
 
   getAccountById: async (req, res, next) => {
-    const {id} = req.params;
+    const { id } = req.params;
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
-    const result = await accountDataMapper.findAccountById(id)
-    if (result.length === 0) {
+    const account = await accountDataMapper.findAccountById(id)
+    if (account.length === 0) {
       return next(new ApiError(404, `Le compte n'existe pas.`));
     }
-    return res.json({ status: 'success', data: { result } });
+    return res.json({ status: 'success', data: { account } });
   },
 
   getAccountByHomeId: async (req, res, next) => {
@@ -62,7 +62,7 @@ const accountController = {
         if (!account) {
             return next(new ApiError(500, 'La création du compte a échoué.'));
         }
-        res.status(201).json({ status: 'success', data: { account } });
+        res.json({ status: 'success', data: { account } });
 },
 
   loginForm: async (req, res) => {
@@ -73,7 +73,7 @@ const accountController = {
       }
       const isMatch = await bcrypt.compare(password, account.password);
         if (!isMatch) {
-        return next(new ApiError(401, `L'email ou le mot de passe est incorrect`));
+        return next(new ApiError(404, `L'email ou le mot de passe est incorrect`));
       }
       req.session.accountId = account.id;
       return res.json({ status: 'success', data: { account } });
@@ -98,7 +98,7 @@ const accountController = {
     if (currentAccountData.length === 0) {
       return next(new ApiError(404, `Le compte n'existe pas.`));
     }
-    const accountData = { ...currentAccountData, ...newAccountData };
+    const accountData = { ...currentAccountData[0], ...newAccountData };
     const updatedAccount = await accountDataMapper.updateAccount(id, accountData)
     return res.json({ status: 'success', data: { updatedAccount } });
   },
