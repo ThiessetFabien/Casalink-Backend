@@ -1,10 +1,19 @@
 import Joi from 'joi';
 
-const addressPartValidator = Joi.string().pattern(/^./);
-const postalPartValidator = Joi.string().pattern(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/).required(); // Regex to allow only 5 digits
-const cityPartValidator = Joi.string().pattern(/^[[:alpha:]]([-' ]?[[:alpha:]])*$/).required(); // Regex to allow only letters, spaces, apostrophes and hyphens
-const countryPartValidator = Joi.string().pattern(/^[a-zA-ZÀ-ÿ\s'-]+$/).required(); // Regex to allow only letters, spaces, apostrophes and hyphens
+/**
+ * Response of API for a address data source
+ * @typedef {object} Address
+ * @property {string} street - Points are excluded
+ * @property {string} city - Spaces, accents and hyphens are allowed
+ * @property {string} additional_information - Points are excluded
+ * @property {string} postal_code - 5 digits between 01000 and 98999
+ * @property {string} country - Spaces, accents and hyphens are allowed
+ * @returns {ApiJsonSucces} - an address object
+ */
 
+const addressPartValidator = Joi.string().pattern(/^./);
+const postalPartValidator = Joi.string().pattern(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/);
+const cityAndCountryPartValidator = Joi.string().pattern(/^[a-zA-ZÀ-ÿ\s'-]+$/);
 
 /**
  * Address schema for the POST method
@@ -12,10 +21,10 @@ const countryPartValidator = Joi.string().pattern(/^[a-zA-ZÀ-ÿ\s'-]+$/).requir
 
 export const postSchema = Joi.object({
     street: addressPartValidator,
-    city: cityPartValidator,
+    city: cityAndCountryPartValidator.required(),
     additional_information: addressPartValidator,
-    postal_code: postalPartValidator,
-    country: countryPartValidator,
+    postal_code: postalPartValidator.required(),
+    country: cityAndCountryPartValidator.required(),
 });
 
 /**
@@ -24,8 +33,8 @@ export const postSchema = Joi.object({
 
 export const patchSchema = Joi.object({
     street: addressPartValidator,
-    city: cityPartValidator,
+    city: cityAndCountryPartValidator.required(),
     additional_information: addressPartValidator,
-    postal_code: postalPartValidator,
-    country: countryPartValidator,
+    postal_code: postalPartValidator.required(),
+    country: cityAndCountryPartValidator.required(),
 });

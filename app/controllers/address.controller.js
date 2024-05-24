@@ -27,7 +27,7 @@ const addressController = {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
     const addresses = await addressDataMapper.findAddressByAccountId(id)
-    if(addresses.lenght === 0) {
+    if(!addresses[0]) {
       return next(new ApiError(404, `L'adresse n'existe pas.`));
     }
     return res.json({ status: 'success', data: { addresses } });
@@ -39,7 +39,7 @@ const addressController = {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
     const addresses = await addressDataMapper.findAddressByHomeId(id)
-    if(!addresses[0]) {
+    if(!addresses) {
       return next(new ApiError(404, `L'adresse n'existe pas.`));
     }
     return res.json({ status: 'success', data: { addresses } });
@@ -76,7 +76,11 @@ const addressController = {
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
-    await addressDataMapper.deleteAddressById(id)
+    const currentAddress = await addressDataMapper.findAddressById(id)
+    if (!currentAddress[0]) {
+      return next(new ApiError(404, `L'adresse n'existe pas.`));
+    }
+    await addressDataMapper.deleteAddressById(id);
     return res.json({ status: 'success', message: 'L\'adresse a bien été supprimée' });
   }
 }

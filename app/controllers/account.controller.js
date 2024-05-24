@@ -115,6 +115,10 @@ const accountController = {
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
+    const currentAccount = await accountDataMapper.findAccountById(id);
+    if (!currentAccount[0]) {
+      return next(new ApiError(404, `Le compte n'existe pas.`));
+    }
     await accountDataMapper.deleteAccountById(id)
     return res.json({ status: 'success', message: 'Le compte a bien été supprimé' });
   }

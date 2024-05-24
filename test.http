@@ -66,6 +66,12 @@ Content-Type: application/json
 ### Delete account # 1 → success
 DELETE http://localhost:4000/api/v1/account/1
 
+### Delete account # 2 → success
+DELETE http://localhost:4000/api/v1/account/2
+
+### Delete account # 69 → error 404 Not Found
+DELETE http://localhost:4000/api/v1/account/69
+
 ### Delete account # null → error 400 Bad Request
 DELETE http://localhost:4000/api/v1/account/
 
@@ -199,3 +205,128 @@ DELETE http://localhost:4000/api/v1/home/toto
 
 ### DELETE /home/{id} #1 → error 404 Not Found
 DELETE http://localhost:4000/api/v1/home/
+
+### GET /address/home/{id} #1 → success
+GET http://localhost:4000/api/v1/address/home/1
+
+### GET /address/home/{id} #2 → success
+GET http://localhost:4000/api/v1/address/home/2
+
+### GET /address/home/{id} #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/address/home/69
+
+### GET /address/home/{id} #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/address/home/toto
+
+### GET /address/{id} #1 → success
+GET http://localhost:4000/api/v1/address/1
+
+### GET /address/{id} #2 → success
+GET http://localhost:4000/api/v1/address/2
+
+### GET /address/{id} #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/address/69
+
+### GET /address/{id} #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/address/toto
+
+### GET /address → success
+GET http://localhost:4000/api/v1/address
+
+### POST /address → success
+POST http://localhost:4000/api/v1/address
+Content-Type: application/json
+
+{
+  "street": "rue de la paix",
+  "city": "Paris",
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### POST /address → error 400 Bad Request
+POST http://localhost:4000/api/v1/address
+Content-Type: application/json
+
+{
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### POST /address → error 400 Bad Request
+POST http://localhost:4000/api/v1/address
+Content-Type: application/json
+
+{
+  "city": "Paris",
+  "country": "France"
+}
+
+### POST /address → error 400 Bad Request
+POST http://localhost:4000/api/v1/address
+Content-Type: application/json
+
+{
+  "city": "Paris",
+  "postal_code": "75000"
+}
+
+### POST /address → error 400 Bad Request
+POST http://localhost:4000/api/v1/address
+
+### PATCH /address/{id} #1 → success
+PATCH http://localhost:4000/api/v1/address/1
+Content-Type: application/json
+
+{
+  "street": "rue de la paix",
+  "city": "Paris",
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### PATCH /address/{id} #2 → success
+PATCH http://localhost:4000/api/v1/address/2
+Content-Type: application/json
+
+{
+  "street": "rue de la paix",
+  "city": "Paris",
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### PATCH /address/{id} #69 → error 404 Not Found
+PATCH http://localhost:4000/api/v1/address/69
+Content-Type: application/json
+
+{
+  "street": "rue de la paix",
+  "city": "Paris",
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### PATCH /address/{id} #toto → error 401 Unauthorized
+PATCH http://localhost:4000/api/v1/address/toto
+Content-Type: application/json
+
+{
+  "street": "rue de la paix",
+  "city": "Paris",
+  "postal_code": "75000",
+  "country": "France"
+}
+
+### DELETE /address/{id} #1 → success
+DELETE http://localhost:4000/api/v1/address/1
+
+### DELETE /address/{id} #2 → success
+DELETE http://localhost:4000/api/v1/address/2
+
+### DELETE /address/{id} #69 → error 404 Not Found
+DELETE http://localhost:4000/api/v1/address/69
+
+### DELETE /address/{id} #toto → error 401 Unauthorized
+DELETE http://localhost:4000/api/v1/address/toto
+

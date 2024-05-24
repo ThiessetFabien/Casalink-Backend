@@ -43,7 +43,12 @@ const addressDataMapper = {
   // Find a address by its home_id
   async findAddressByHomeId(home_id){
     try {
-      const result = await pool.query('SELECT "address".* FROM "home" JOIN "user" ON "user".home_id = "home".id JOIN "user_has_address" ON "user_has_address".user_id = "user".id JOIN "address" ON "address".id = "user_has_address".address_id WHERE "home".id = $1;', [home_id]);
+      const result = await pool.query(`
+        SELECT "address".* FROM "home" 
+        JOIN "user" ON "user".home_id = "home".id 
+        JOIN "user_has_address" ON "user_has_address".user_id = "user".id JOIN "address" ON "address".id = "user_has_address".address_id
+        WHERE "home".id = $1;`,
+        [home_id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -84,8 +89,9 @@ const addressDataMapper = {
   // Delete a address by its id
   async deleteAddressById(id) {
     try {
-      await pool.query('DELETE FROM "address" WHERE id = $1;', [id]);
-      return true;
+      const result = await pool.query('DELETE FROM "address" WHERE id = $1;', [id]);
+      console.log('result deleteAddressById', result.rows);
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }

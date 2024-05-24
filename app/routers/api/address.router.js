@@ -26,6 +26,7 @@ router.get('/address/home/:id', cw(addressController.getAddressByHomeId));
 *@param {number} id.path.required - Address id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -39,6 +40,7 @@ router.get('/address/:id', cw(addressController.getAddressById));
 *@param {number} id.path.required - Address id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -92,6 +94,7 @@ router.patch('/address/:id', validate (patchSchema, 'body'), cw(addressControlle
 *@param {number} id.path.required - Address id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
