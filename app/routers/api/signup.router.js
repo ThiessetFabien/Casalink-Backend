@@ -13,11 +13,11 @@ const router = express.Router();
 *@param {accountInput} request.body.required - account info { firstname, lastname, email, password, confirmPassword, home_id } }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
 router.post('/signup', validate(postSchema, 'body'), cw(accountController.createAccount));
-
 
 export default router;

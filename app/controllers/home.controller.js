@@ -67,6 +67,10 @@ const homeController = {
     if (!parseInt(id)) {
       return next(new ApiError(401, `L'identifiant du compte est incorrect.`));   
     }
+    const home = await homeDataMapper.findHomeById(id);
+    if (!home[0]) {
+      return next(new ApiError(404, `Le foyer n'existe pas.`));
+    }
     await homeDataMapper.deleteHomeById(id);
     return res.json({ status: 'success', message: 'Le foyer a bien été supprimé' });
   }

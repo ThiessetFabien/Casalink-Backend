@@ -120,7 +120,6 @@ Content-Type: application/json
 {
   "email": "totot@gmail.com",
   "password": "Totott#123"
-  "password": "Totott#123"
 }
 
 ### Post login → error 400 Bad Request
