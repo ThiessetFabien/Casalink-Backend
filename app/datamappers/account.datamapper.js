@@ -8,13 +8,9 @@ const accountDataMapper = {
 
   // Find all the accounts
   async findAllAccounts(){
-    
     try {
-    
       const result = await pool.query('SELECT * FROM "account";');
-      
       return result.rows;
-    
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -22,17 +18,9 @@ const accountDataMapper = {
 
   // Find a account by its id
   async findAccountById(id){
-    
     try {
-    
-      if (!id) {
-        throw new Error('L\'identifiant du compte est manquant.');
-      }
-
-      const result = await pool.query('SELECT * FROM "account" WHERE id=$1;', [id]);
-    
-      return result.rows[0];
-    
+      const result = await pool.query('SELECT * FROM "account" WHERE id = $1;', [id]);
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -42,15 +30,8 @@ const accountDataMapper = {
   async findAccountByIdWithoutPassword(id){
   
     try {
-    
-      if (!id) {
-        throw new Error('L\'identifiant du compte est manquant.');
-      }
-
       const result = await pool.query('SELECT id, email, firstname, lastname, role, home_id FROM "account" WHERE id = $1', [id]);
-    
       return result.rows[0];
-    
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -58,17 +39,9 @@ const accountDataMapper = {
 
   // Find a account by its id
   async findAccountsByHomeId(home_id){
-      
     try {
-    
-      if (!home_id) {
-        throw new Error('L\'identifiant du foyer est manquant.');
-      }
-
       const result = await pool.query('SELECT * FROM "account" WHERE home_id = $1;', [home_id]);
-    
       return result.rows;
-    
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -76,11 +49,7 @@ const accountDataMapper = {
 
   findAccountByEmail: async (email) => {
     try {
-      if (!email) {
-        throw new Error('L\'email est manquant.');
-      }
-
-      const result = await pool.query('SELECT * FROM "account" WHERE email=$1;', [email]);
+      const result = await pool.query('SELECT * FROM "account" WHERE email = $1;', [email]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -93,47 +62,31 @@ const accountDataMapper = {
   // Create a new account
   async createAccount(accountData) {
     try {
-        if (!accountData) {
-            throw new Error('Les données du compte sont manquantes.');
-        }
-
         const { email, firstname, lastname, password, home_id } = accountData;
-        
         const hashedPassword = await cryptoPassword.hash(password);
-
         const result = await pool.query(
-            'INSERT INTO "account" (email, firstname, lastname, password, home_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;',
+            `INSERT 
+              INTO "account" (email, firstname, lastname, password, home_id) 
+              VALUES ($1, $2, $3, $4, $5) 
+              RETURNING *;`,
             [email, firstname, lastname, hashedPassword, home_id]
         );
-
         return result.rows[0];
-    
     } catch (error) {
         throw new DbError(error.message);
     }
-}
-,
+},
 
   // ----------- UPDATE account -----------
-
- async updateAccount(id, accountData) {
+  async updateAccount(id, accountData) {
     try {
-
-      if (!id || !accountData) {
-        throw new Error('Les données du account ou l\'identifiant sont manquants.');
-      }
-
-      const { email, firstname, lastname, role, password, home_id  } = accountData;
-      
+      const { email, firstname, lastname, password, home_id } = accountData;
       const hashedPassword = await cryptoPassword.hash(password);
-      
       const result = await pool.query(
-        'UPDATE "account" SET email = $1, firstname = $2, lastname = $3, role = $4, password = $5, home_id = $6 WHERE id = $7 RETURNING *;',
-        [ email, firstname, lastname, role, hashedPassword, home_id, id]
+        'UPDATE "account" SET email = $1, firstname = $2, lastname = $3, password = $4, home_id = $5 WHERE id = $6 RETURNING *;',
+        [ email, firstname, lastname, hashedPassword, home_id, id]
       );
-
       return result.rows[0];
-    
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -144,17 +97,10 @@ const accountDataMapper = {
 
   // Delete a account by its id
   async deleteAccountById(id) {
-
     try {
-
-      if (!id) {
-        throw new Error('L\'identifiant du compte est manquant.');
-      }
-
       await pool.query('DELETE FROM "account" WHERE id = $1;', [id]);
       return true;
-    
-    } catch (error) {
+        } catch (error) {
       throw new DbError(error.message);
     }
   }

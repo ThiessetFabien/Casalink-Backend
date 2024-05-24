@@ -1,7 +1,7 @@
 import express from 'express';
 import { postSchema } from '../../validation/account.schema.js';
 import validate from '../../validation/validator.js';
-import accountController from '../../controllers/accountController.js';
+import accountController from '../../controllers/account.controller.js';
 import cw from '../../middlewares/controller.wrapper.js';
 
 const router = express.Router();
@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/signup/',validate (postSchema, 'body'), cw(accountController.createOneAccount));
+router.post('/signup', validate(postSchema, 'body'), cw(accountController.createAccount));
 
 
 export default router;

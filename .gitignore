@@ -13,7 +13,7 @@ package-lock.json
 *.gz
 
 #log
-logs/
+logs
 **/*.log
 **/*.log.*
 

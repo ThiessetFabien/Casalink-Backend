@@ -7,7 +7,8 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('user123@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
        ('user2877847@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
-       ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword12#A', 1, NOW(), NOW());
+       ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword12#A', 1, NOW(), NOW()),
+       ('iadrien@example.com', 'Adrien', 'Delcroix', 'admin', 'jaipasdidee12#A', 2, NOW(), NOW());
 
 -- Insérer des profils (profiles)
 INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "email", "account_id", "created_at", "updated_at")
@@ -48,4 +49,5 @@ VALUES (1, 1, NOW(), NOW()),
 -- Insérer des budgets (budgets)
 INSERT INTO "budget" ("amount", "name", "category", "description", "home_id", "created_at", "updated_at")
 VALUES (100.00, 'Courses hebdomadaires', 'Courses', 'Budget alloué pour les courses alimentaires de la semaine', 1, NOW(), NOW()),
-       (50.00, 'Loisirs mensuels', 'Loisirs', 'Budget pour les activités de loisirs du mois', 1, NOW(), NOW());
+       (50.00, 'Loisirs mensuels', 'Loisirs', 'Budget pour les activités de loisirs du mois', 1, NOW(), NOW()),
+       (25.00, 'Sortie cinéma', 'Loisirs', 'Budget pour les activités de loisirs du mois', 2, NOW(), NOW());

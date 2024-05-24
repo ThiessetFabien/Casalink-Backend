@@ -2,7 +2,7 @@ import express from 'express';
 import { postSchema } from '../../validation/account.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import accountController from '../../controllers/accountController.js';
+import accountController from '../../controllers/account.controller.js';
 
 const router = express.Router();
 

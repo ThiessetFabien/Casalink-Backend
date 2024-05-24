@@ -1,7 +1,7 @@
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
-import homeController from '../../controllers/homeController.js';
+import homeController from '../../controllers/home.controller.js';
 import cw from '../../middlewares/controller.wrapper.js';
 
 const router = express.Router();
@@ -13,6 +13,7 @@ const router = express.Router();
 *@param {number} id.path.required - account id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -26,6 +27,7 @@ router.get('/home/account/:id', cw(homeController.getHomeByAccountId));
 *@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -54,7 +56,7 @@ router.get('/home/', cw(homeController.getAllHomes));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOneHome));
+router.post('/home/', validate (postSchema, 'body'), cw(homeController.createHome));
 
 /**
 *PATCH /api/home/{id}
@@ -77,6 +79,7 @@ router.patch('/home/:id', validate (patchSchema, 'body'), cw(homeController.upda
 *@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
