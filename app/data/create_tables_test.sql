@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS "task" (
   "name" TEXT NOT NULL,
   "start_date" TIMESTAMPTZ NOT NULL,
   "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") NOT NULL,
-  "reward_point" INT,
+  "reward_point" INT DEFAULT 0,
   "priority" TEXT,
   "status" TEXT DEFAULT('A Débuter'),
   "description" TEXT,
