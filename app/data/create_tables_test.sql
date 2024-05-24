@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS "task" (
   "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") NOT NULL,
   "reward_point" INT,
   "priority" TEXT,
-  "status" TEXT DEFAULT('A Débuter') NOT NULL,
+  "status" TEXT DEFAULT('A Débuter'),
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS "account_has_address" (
 
 CREATE TABLE IF NOT EXISTS "budget" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "amount" NUMERIC(10,2) DEFAULT 0 NOT NULL,
+  "amount" NUMERIC(10,2) DEFAULT 0,
   "name" TEXT NOT NULL,
   "category" TEXT,
   "description" TEXT,
