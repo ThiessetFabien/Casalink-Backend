@@ -25,7 +25,7 @@ const profilDataMapper = {
       }
 
       const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1;', [account_id]);
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
