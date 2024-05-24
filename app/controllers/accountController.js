@@ -1,6 +1,7 @@
 import accountDataMapper from '../datamappers/account.js'
 import bcrypt from 'bcrypt';
 import homeDataMapper from '../datamappers/home.js';
+import profilDataMapper from '../datamappers/profile.js';
 
 const accountController = {
 
@@ -47,7 +48,7 @@ const accountController = {
         if (checkAccount) {
             return res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
         }
-
+        // creating a default home
         const homeData = {
             name: 'Mon foyer',
         };
@@ -55,7 +56,7 @@ const accountController = {
         if (!home) {
             return res.status(400).json({ status: 'error', message: 'La création de la maison a échoué' });
         }
-
+        // creating an account with the home_id
         const accountDataWithHomeId = { 
             firstname, 
             lastname, 
@@ -69,13 +70,30 @@ const accountController = {
             await homeDataMapper.deleteHomeById(home.id);
             return res.status(500).json({ status: 'error', message: 'La création du compte a échoué' });
         }
+        // creating a profile with the account_id
+      const profileData = {
+        name: `${firstname} ${lastname}`,
+        pin: '1234',
+        score: 0,
+        birthdate: '1994-10-05',
+        image: null,
+        email: `${email}`,
+        account_id: account.id
+      };
+      const createdProfile = await profilDataMapper.createProfile(profileData);
+      if (!createdProfile) {
+        // rollback account creation and home creation if profile creation fails 
+        await accountDataMapper.deleteAccountById(account.id);
+        await homeDataMapper.deleteHomeById(home.id);
+        return res.status(500).json({ status: 'error', message: 'La création du profil a échoué' });
+      }
 
-        res.status(201).json({ status: 'success', data: { account } });
+      res.status(201).json({ status: 'success', data: { account, profile: createdProfile, home } });
     } catch (error) {
-        console.error('Error creating account:', error);
-        res.status(500).json({ status: 'error', message: 'Erreur serveur' });
+      console.error('Error creating account:', error);
+      res.status(500).json({ status: 'error', message: 'Erreur serveur' });
     }
-},
+  },
   loginForm: async (req, res) => {
       
       const { email, password } = req.body;

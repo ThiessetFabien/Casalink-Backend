@@ -53,3 +53,4 @@
 {"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
 {"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
 {"level":"error","name":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","name":"TypeError","service":"casalink-api","status":500}

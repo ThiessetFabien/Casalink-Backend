@@ -3,6 +3,7 @@ import { postSchema, patchSchema } from '../../validation/home.schema.js';
 import validate from '../../validation/validator.js';
 import homeController from '../../controllers/homeController.js';
 import cw from '../../middlewares/controller.wrapper.js';
+import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 
 const router = express.Router();
 
@@ -54,7 +55,7 @@ router.get('/home/', cw(homeController.getAllHomes));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOneHome));
+router.post('/home/', validate (postSchema, 'body'), checkUserRole, cw(homeController.createOneHome));
 
 /**
 *PATCH /api/home/{id}
@@ -68,7 +69,7 @@ router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOne
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/home/:id', validate (patchSchema, 'body'), cw(homeController.updateOneHome));
+router.patch('/home/:id', validate (patchSchema, 'body'), checkUserRole, cw(homeController.updateOneHome));
 
 /**
 *DELETE /api/home/{id}
@@ -81,6 +82,6 @@ router.patch('/home/:id', validate (patchSchema, 'body'), cw(homeController.upda
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/home/:id', cw(homeController.deleteOneHome));
+router.delete('/home/:id', checkUserRole, cw(homeController.deleteOneHome));
 
 export default router;
