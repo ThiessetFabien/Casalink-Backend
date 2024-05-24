@@ -41,14 +41,12 @@ const homeDataMapper = {
 
   // ----------- CREATE HOME -----------
   // Create a new home
-  async createHome(homeData) {
+  async createHome(name) {
     try {
-      const { name } = homeData
       const result = await pool.query(
         'INSERT INTO "home" (name) VALUES ($1) RETURNING *;',
         [name]
       );
-      console.log('result', result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);

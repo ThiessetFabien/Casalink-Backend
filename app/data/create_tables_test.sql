@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS "home" (
   "shopping_list" TEXT[],
   "name" TEXT NOT NULL,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "account" (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "email" TEXT,
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ DEFAULT NOW()
+    "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "address" (
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS "address" (
     "postal_code" TEXT CHECK (postal_code ~ '(^0[1-9]\d{3}$)|(^9[0-6]\d{3}$)|(^[1-8]\d{4}$)|(^9[78][12478]\d{2}$)') NOT NULL,
     "country" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ DEFAULT NOW()
+    "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "category" (
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS "category" (
   "name" TEXT NOT NULL,
   "color" TEXT,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "task" (
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS "task" (
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "subtask" (
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS "subtask" (
   "name" TEXT NOT NULL,
   "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "profile_has_task" (
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "profile_id" INT REFERENCES "profile"("id") ON DELETE CASCADE,
   "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "account_has_address" (
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS "account_has_address" (
   "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
   "address_id" INT REFERENCES "address"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 CREATE TABLE IF NOT EXISTS "budget" (
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS "budget" (
   "description" TEXT,
   "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ DEFAULT NOW()
+  "updated_at" TIMESTAMPTZ NOW()
 );
 
 COMMIT;

@@ -31,7 +31,7 @@ const globalLimiter = rateLimit({
 
 app.use(globalLimiter);
 
-app.use(jwtMiddleware);
+// app.use(jwtMiddleware);
 
 app.use(bodySanitizer);
 

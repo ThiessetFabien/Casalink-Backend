@@ -72,19 +72,6 @@ DELETE http://localhost:4000/api/v1/account/
 ### Delete account # toto → error 401 Unauthorized
 DELETE http://localhost:4000/api/v1/account/toto
 
-### Get signup → success
-GET http://localhost:4000/api/v1/signup
-Content-Type: application/json
-
-{
-  "firstname": "ppo",
-  "lastname": "tata",
-  "email": "totot@gmail.com",
-  "password": "Totott#123",
-  "confirmPassword": "Totott#123"
-}
-
-
 ### Post signup → success
 POST http://localhost:4000/api/v1/signup
 Content-Type: application/json
@@ -93,6 +80,7 @@ Content-Type: application/json
   "firstname": "ppo",
   "lastname": "tata",
   "email": "totot@gmail.com",
+  "role":"user",
   "password": "Totott#123",
   "confirmPassword": "Totott#123"
 }

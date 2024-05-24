@@ -39,7 +39,6 @@ const accountController = {
   // QUERY POST
   createAccount: async (req, res, next) => {
         const { firstname, lastname, email, password, confirmPassword } = req.body;
-
         if (!firstname || !lastname || !email || !password || !confirmPassword) {
             return next(new ApiError(400, 'Tous les champs sont obligatoires.'));
         }
