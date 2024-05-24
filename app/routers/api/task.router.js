@@ -4,7 +4,7 @@ import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import taskController from '../../controllers/task.controller.js';
 import subtaskController from '../../controllers/subtaskController.js';
-
+import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 
 /**
@@ -71,7 +71,7 @@ router.get('/task/', cw(taskController.getAllTasks));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOneTask));
+router.post('/task/', validate (postSchema, 'body'), checkUserRole, cw(taskController.createOneTask));
 
 /**
 *PATCH /api/task/{id}
@@ -85,7 +85,7 @@ router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOne
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.updateOneTask));
+router.patch('/task/:id', validate (patchSchema, 'body'), checkUserRole, cw(taskController.updateOneTask));
 
 /**
 *DELETE /api/task/{id}
@@ -98,6 +98,6 @@ router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.upda
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/task/:id', cw(taskController.deleteOneTask));
+router.delete('/task/:id', checkUserRole, cw(taskController.deleteOneTask));
 
 export default router;
