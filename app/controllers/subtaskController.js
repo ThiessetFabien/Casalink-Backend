@@ -1,14 +1,19 @@
-import subtaskDataMapper from '../datamappers/subtask.js'
+import ApiError from '../errors/api.error.js';
+import subtaskDataMapper from '../datamappers/subtask.js';
 
 const subtaskController = {
 
   // REQUETE GET
 
-  getSubtaskById: async (req, res) => {
-    const id = req.params.id;
-    const subtask = await subtaskDataMapper.findSubtaskById(id)
-    if(!subtask) {
-      res.status(404).send('Cette sous-tache n\'existe pas')
+  getSubtaskById: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant de la sous-tâche est incorrect.`));
+    }
+    const subtask = await subtaskDataMapper.findSubtaskById(id);
+    console.log('subtask', subtask);
+    if(!subtask[0]) {
+      return next(new ApiError(404, `La sous-tâche n'existe pas.`));
     }
     res.json({ status: 'success', data: { subtask } });
   },

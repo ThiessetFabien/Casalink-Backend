@@ -326,3 +326,54 @@ DELETE http://localhost:4000/api/v1/address/69
 ### DELETE /address/{id} #toto → error 401 Unauthorized
 DELETE http://localhost:4000/api/v1/address/toto
 
+### GET /task/account/{id} #1 → success
+GET http://localhost:4000/api/v1/task/profile/1
+
+### GET /task/account/{id} #1 → success
+GET http://localhost:4000/api/v1/task/profile/2
+
+### GET /task/account/{id} #1 → error 401 Unauthorized
+GET http://localhost:4000/api/v1/task/profile/toto
+
+### GET /task/account/{id} #1 → error 404 Not Found
+GET http://localhost:4000/api/v1/task/profile/69
+
+### GET /task/{id} #1 → success
+GET http://localhost:4000/api/v1/task/1
+
+### GET /task/{id} #2 → success
+GET http://localhost:4000/api/v1/task/2
+
+### GET /task/{id} #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/task/69
+
+### GET /task/{id} #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/task/toto
+
+### GET /task/{id}/subtask #1 → success
+GET http://localhost:4000/api/v1/task/1/subtask
+
+### GET /task/{id}/subtask #2 → success
+GET http://localhost:4000/api/v1/task/2/subtask
+
+### GET /task/{id}/subtask #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/task/69/subtask
+
+### GET /task/{id}/subtask #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/task/toto/subtask
+
+### GET /task → success
+GET http://localhost:4000/api/v1/task
+
+### POST /task → success
+POST http://localhost:4000/api/v1/task
+Content-Type: application/json
+
+{
+  "name": "Acheter du pain",
+  "description": "Acheter du pain pour le petit déjeuner",
+  "status": "todo",
+  "priority": "En cours",
+  "start_date": "2021-12-31",
+  "start_date": "2021-12-32"
+}

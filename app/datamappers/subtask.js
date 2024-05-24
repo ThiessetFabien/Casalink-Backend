@@ -7,11 +7,8 @@ const subtaskDataMapper = {
   // Find a subtask by its id
   async findSubtaskById(id){
     try {
-      if (!id) {
-        throw new Error('L\'identifiant de la sous-tache est manquant.');
-      }
       const result = await pool.query('SELECT * FROM "subtask" WHERE id=$1;', [id]);
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }

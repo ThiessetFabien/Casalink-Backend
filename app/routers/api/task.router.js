@@ -2,7 +2,7 @@ import express from 'express';
 import { postSchema, patchSchema } from '../../validation/task.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import taskController from '../../controllers/taskController.js';
+import taskController from '../../controllers/task.controller.js';
 import subtaskController from '../../controllers/subtaskController.js';
 
 const router = express.Router();
@@ -15,10 +15,11 @@ const router = express.Router();
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
+router.get('/task/profile/:id', cw(taskController.getTaskByProfileId));
 
 /**
 *GET /api/task/{id}
@@ -27,6 +28,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 *@param {number} id.path.required - Task id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -40,6 +42,7 @@ router.get('/task/:id', cw(taskController.getTaskById));
 *@param {number} id.path.required - Task id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
