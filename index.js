@@ -33,9 +33,9 @@ app.use(globalLimiter);
 
 // app.use(jwtMiddleware);
 
+app.use(sessionMiddleware);
 app.use(bodySanitizer);
 
-app.use(sessionMiddleware);
 
 /**
  * GET /api-doc

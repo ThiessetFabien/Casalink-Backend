@@ -3,6 +3,7 @@ import { postSchema, patchSchema } from '../../validation/budget.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import budgetController from '../../controllers/budgetController.js';
+import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 
 const router = express.Router();
 
@@ -70,7 +71,7 @@ router.get('/budget/', cw(budgetController.getAllBudgets));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.createOneBudget));
+router.post('/budget/', validate (postSchema, 'body'), checkUserRole, cw(budgetController.createOneBudget));
 
 /**
 *PATCH /api/budget/{id}
@@ -84,7 +85,7 @@ router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.creat
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/budget/:id', validate (patchSchema, 'body'), cw(budgetController.updateOneBudget));
+router.patch('/budget/:id', validate (patchSchema, 'body'), checkUserRole, cw(budgetController.updateOneBudget));
 
 /**
 *DELETE /api/budget/{id}
@@ -97,6 +98,6 @@ router.patch('/budget/:id', validate (patchSchema, 'body'), cw(budgetController.
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/budget/:id',cw(budgetController.deleteOneBudget));
+router.delete('/budget/:id', checkUserRole, cw(budgetController.deleteOneBudget));
 
 export default router;
