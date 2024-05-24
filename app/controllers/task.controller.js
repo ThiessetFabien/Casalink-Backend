@@ -36,8 +36,11 @@ const taskController = {
   // QUERY POST
   createOneTask: async (req, res, next) => {
     const taskData = req.body;
-  // ! VALIDATION DES TIMESTAMPS
-    const task = await taskDataMapper.createTask(taskData)
+    const { name, start_date } = taskData;
+    if (!name || !start_date) {
+      return next(new ApiError(400, 'Les données de la tâche sont incorrectes.'));
+    }
+    const task = await taskDataMapper.createTask(taskData);
     return res.json({ status: 'success', data: { task } });
   },
 

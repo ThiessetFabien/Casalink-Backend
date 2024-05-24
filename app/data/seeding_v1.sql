@@ -7,12 +7,16 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('totot@gmail.com', 'toto', 'ppo', 'user', 'Totott#123', 1, NOW(), NOW()),
        ('tatat@gmail.com', 'tata', 'ppa', 'admin', 'Totott#123', 1, NOW(), NOW()),
-       ('titit@gmail.com', 'titi', 'ppa', 'user', 'Totott#123', 2, NOW(), NOW());
+       ('titit@gmail.com', 'titi', 'ppa', 'user', 'Totott#123', 2, NOW(), NOW()),
+       ('test@test.com', 'test', 'test', 'user',	'$2b$08$ZvoGus9T9eYHAzlsBVheI.kZy0EmUVCvGSMwO.CAlcr44bQ1S4E6y', 2, NOW(), NOW());
 
 -- Insérer des profils (profiles)
 INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "email", "account_id", "created_at", "updated_at")
 VALUES ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 'user564@example.com' ,1, NOW(), NOW()),
-       ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user852@example.com',1, NOW(), NOW());
+       ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user852@example.com',1, NOW(), NOW()),
+       ('Profil Jiuiuane', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user855252@example.com',1, NOW(), NOW()),
+       ('Profil Test', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user@example.com',4, NOW(), NOW()),
+       ('Priuytrezest', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'use5r@example.com',4, NOW(), NOW());
 
 -- Insérer des adresses (addresses)
 INSERT INTO "address" ("street", "city", "additional_information", "postal_code", "country", "created_at", "updated_at")
@@ -28,7 +32,8 @@ VALUES ('Courses', 'RGB(210, 144, 20)', NOW(), NOW()),
 -- Insérer des tâches (tasks)
 INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "created_at", "updated_at")
 VALUES ('Faire les courses', '2024-05-25 00:00:00+02', '2024-05-25 01:00:00+02', 50, 'Haute', 'A Débuter', 'Acheter des produits alimentaires', 1, NOW(), NOW()),
-       ('Sortie à la plage', '2024-05-26 00:00:00+02', '2024-05-27 00:00:00+02', NULL, 'Moyenne', 'A Débuter', 'Aller à la plage pour se détendre', 2, NOW(), NOW());
+       ('Faire a manger', '2024-05-26 00:00:00+02', '2024-05-27 01:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, NOW(), NOW()),
+       ('Manger ses morts', '2024-05-27 00:00:00+02', '2024-05-27 02:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, NOW(), NOW());
 
 -- Insérer des sous-tâches (subtasks)
 INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_at")

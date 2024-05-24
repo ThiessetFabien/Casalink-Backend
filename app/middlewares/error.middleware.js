@@ -26,8 +26,8 @@ export default (err, __, res, next) => {
 
   // Error handling of specific errors
   if (err instanceof ApiError) {
-    status = err.status;
-    message = err.message;
+    status = err.status || 500;
+    message = err.message || 'Internal Server Error';
   } else if (err instanceof DbError) {
     status = 500;
     message = 'Database error occurred';

@@ -83,12 +83,12 @@ POST http://localhost:4000/api/v1/signup
 Content-Type: application/json
 
 {
-  "firstname": "ppo",
-  "lastname": "tata",
-  "email": "totot@gmail.com",
+  "firstname": "ebf gfgv  aba",
+  "lastname": "tab  fFveabreata",
+  "email": "tovaevabtot@gmail.com",
   "role":"user",
-  "password": "Totott#123",
-  "confirmPassword": "Totott#123"
+  "password": "TotF Fott*123",
+  "confirmPassword": "TotFFott*123"
 }
 
 ### Post signup → error 400 Bad Request
@@ -370,10 +370,38 @@ POST http://localhost:4000/api/v1/task
 Content-Type: application/json
 
 {
-  "name": "Acheter du pain",
-  "description": "Acheter du pain pour le petit déjeuner",
-  "status": "todo",
-  "priority": "En cours",
-  "start_date": "2021-12-31",
-  "start_date": "2021-12-32"
+  "name": "Buy bread",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z",
+  "status": "à faire"
 }
+
+### POST /task → error 404 Not Found
+POST http://localhost:4000/api/v1/task
+Content-Type: application/json
+
+{
+  "name": "Buy bread",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z"
+}
+
+### POST /task → error 404 Not Found
+POST http://localhost:4000/api/v1/task
+Content-Type: application/json
+
+{
+  "name": "Buy bread",
+  "start_date": "2024-05-27T10:12Z"
+}
+
+### POST /task → error 404 Not Found
+POST http://localhost:4000/api/v1/task
+Content-Type: application/json
+
+{
+  "name": "Buy bread"
+}
+
+### POST /task → error 404 Not Found
+POST http://localhost:4000/api/v1/task

@@ -43,22 +43,15 @@ const taskDataMapper = {
 
   // Create a new task
   async createTask(taskData) {
-
     try {
-
-      if (!taskData) {
-        throw new Error('Les données de la tâche sont manquantes.');
-      }
-
       const { name, start_date, end_date, reward_point, priority, status, description, category_id } = taskData;
-      
       const result = await pool.query(
-        'INSERT INTO "task" (name, start_date, end_date, reward_point, priority, status, description, category_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;',
+        `INSERT INTO "task" (name, start_date, end_date, reward_point, priority, status, description, category_id) 
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+          RETURNING *;`,
         [name, start_date, end_date, reward_point, priority, status, description, category_id]
       );
-
-      return result.rows[0];
-    
+      return result.rows[0];    
     } catch (error) {
       throw new DbError(error.message);
     }
