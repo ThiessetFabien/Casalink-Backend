@@ -68,8 +68,11 @@ const accountController = {
 
   loginForm: async (req, res, next) => {
       const { email, password } = req.body;
+      if (!email || !password) {
+        return next(new ApiError(401, `L'email ou le mot de passe est incorrect`));
+      }
       const account = await accountDataMapper.findAccountByEmail(email);
-      if (!account[0]) {
+      if (!account.id) {
         return next(new ApiError(401, `L'email ou le mot de passe est incorrect`));
       }
       const isMatch = await bcrypt.compare(password, account.password);

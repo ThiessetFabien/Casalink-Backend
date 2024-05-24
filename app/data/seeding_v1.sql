@@ -5,7 +5,7 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 
 -- Insérer des utilisateurs (account)
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
-VALUES ('user123@example.com', 'John', 'Doe', 'user', 'password123', 1, NOW(), NOW()),
+VALUES ('totot@gmail.com', 'ppo', 'tata', 'user', 'Totott#123', 1, NOW(), NOW()),
        ('user2877847@example.com', 'Jane', 'Doe', 'user', 'password456', 1, NOW(), NOW()),
        ('admin89@example.com', 'Admin', 'Admin', 'admin', 'adminpassword12#A', 1, NOW(), NOW()),
        ('iadrien@example.com', 'Adrien', 'Delcroix', 'admin', 'jaipasdidee12#A', 2, NOW(), NOW());

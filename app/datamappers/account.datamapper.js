@@ -50,7 +50,6 @@ const accountDataMapper = {
   findAccountByEmail: async (email) => {
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE email = $1;', [email]);
-      console.log('result findAccountByEmail', result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
