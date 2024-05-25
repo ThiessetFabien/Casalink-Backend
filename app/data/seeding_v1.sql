@@ -3,7 +3,7 @@ INSERT INTO "home" ("name", "shopping_list", "created_at", "updated_at")
 VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
        ('Maison de vacances', ARRAY['jouets de plage', 'crème solaire'], NOW(), NOW());
 
--- Insérer des utilisateurs (account)
+-- Insérer des utilisateurs (account) - account de test mot de passe : Test1234#
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('totot@gmail.com', 'toto', 'ppo', 'user', 'Totott#123', 1, NOW(), NOW()),
        ('tatat@gmail.com', 'tata', 'ppa', 'admin', 'Totott#123', 1, NOW(), NOW()),
