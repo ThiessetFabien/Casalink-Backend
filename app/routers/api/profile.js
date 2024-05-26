@@ -2,7 +2,7 @@ import express from 'express';
 import { postSchema, patchSchema } from '../../validation/profile.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import profileController from '../../controllers/profileController.js';
+import profileController from '../../controllers/profile.controller.js';
 import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 

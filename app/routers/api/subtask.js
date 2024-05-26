@@ -2,7 +2,7 @@ import express from 'express';
 import { postSchema, patchSchema } from '../../validation/subtask.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import subtaskController from '../../controllers/subtaskController.js';
+import subtaskController from '../../controllers/subtask.controller.js';
 import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 

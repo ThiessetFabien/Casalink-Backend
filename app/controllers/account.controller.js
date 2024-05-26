@@ -2,6 +2,7 @@ import accountDataMapper from '../datamappers/account.datamapper.js'
 import bcrypt from 'bcrypt';
 import homeDataMapper from '../datamappers/home.datamapper.js';
 import ApiError from '../errors/api.error.js';
+import { profile } from 'winston';
 
 const accountController = {
 
@@ -63,6 +64,9 @@ const accountController = {
             await homeDataMapper.deleteHomeById(home.id);
             return next(new ApiError(500, 'La création du compte a échoué.'));
         }
+
+        const profile = await profileDataMapper.createProfile({ account_id: account.id, name: account.firstname });
+        
         res.json({ status: 'success', data: { account } });
 },
 

@@ -44,6 +44,8 @@ VALUES ('Acheter du lait', 'Prendre du lait demi-écrémé', 1, NOW(), NOW()),
 -- Insérer des associations entre utilisateurs et tâches (uprofile_has_task)
 INSERT INTO "profile_has_task" ("profile_id", "task_id", "created_at", "updated_at")
 VALUES (1, 1, NOW(), NOW()),
+       (4, 1, NOW(), NOW()),
+       (5, 2, NOW(), NOW()),
        (2, 2, NOW(), NOW());
 
 -- Insérer des associations entre utilisateurs et adresses (account_has_address)

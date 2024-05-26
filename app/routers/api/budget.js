@@ -2,7 +2,7 @@ import express from 'express';
 import { postSchema, patchSchema } from '../../validation/budget.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import budgetController from '../../controllers/budgetController.js';
+import budgetController from '../../controllers/budget.controller.js';
 import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 
 const router = express.Router();
