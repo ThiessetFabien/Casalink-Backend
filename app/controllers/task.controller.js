@@ -33,6 +33,18 @@ const taskController = {
     return res.json({ status: 'success', data: { tasks } });
   },
 
+  getTaskByUserId: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, "L'identifiant du compte est incorrect."));
+    }
+    const tasks = await taskDataMapper.findAllTaskByUserId(id);
+    if (!tasks[0]) {
+      return next(new ApiError(404, "Aucune tâche n'a été trouvée."));
+    }
+    return res.json({ status: 'success', data: { tasks } });
+  },
+
   // QUERY POST
   createOneTask: async (req, res, next) => {
     const taskData = req.body;

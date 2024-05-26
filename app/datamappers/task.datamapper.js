@@ -14,6 +14,21 @@ const taskDataMapper = {
     }
   },
 
+  // find all tasks for the profiles of a specific user
+  async findAllTaskByUserId(id){
+    try {
+      const result = await pool.query(`
+        SELECT * FROM "task" 
+        JOIN "profile_has_task" ON "task".id = "profile_has_task".task_id 
+        JOIN "profile" ON "profile".id = "profile_has_task".profile_id 
+        WHERE "profile".user_id = $1;`,
+         [id]);
+      return result.rows;
+    } catch (error) {
+      throw new DbError(error.message);
+    }
+  },
+
   // Find a task by its id
   async findTaskById(id){
     try {

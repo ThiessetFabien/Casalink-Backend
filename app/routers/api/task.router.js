@@ -61,6 +61,18 @@ router.get('/task/:id/subtask', cw(subtaskController.getSubtaskById));
 router.get('/task/', cw(taskController.getAllTasks));
 
 /**
+*GET /api/task/account/{id}
+*@summary Get all Tasks FOR A SPECIFIC USER
+*@tags Get
+*@param {number} id.path.required - Task id
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
+router.get('/task/account/:id', cw(taskController.getTaskByUserId));
+
+/**
 *POST /api/task
 *@summary Create a new Task
 *@tags Post
