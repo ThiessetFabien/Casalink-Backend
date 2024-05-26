@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
+DROP TABLE IF EXISTS "budget", "account_has_address", "profile_has_task", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "account" (
 CREATE TABLE IF NOT EXISTS "profile" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL DEFAULT 'Profile 1',
-    "birthdate" TIMESTAMPTZ DEFAULT 2000-01-01 00:00:00 NOT NULL,
+    "birthdate" TIMESTAMPTZ DEFAULT '2000-01-01 00:00:00' NOT NULL,
     "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult' NOT NULL,
     "pin" TEXT CHECK (pin ~ '^[0-9]{4}$'),
     "score" INT DEFAULT 0 NOT NULL,

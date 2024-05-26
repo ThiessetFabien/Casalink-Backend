@@ -7,7 +7,7 @@ const taskDataMapper = {
   // Find all the tasks
   async findAllTask(){
     try {
-      const result = await pool.query('SELECT * FROM "task";');
+      const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "profile_has_task".task_id = "task".id;');
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
