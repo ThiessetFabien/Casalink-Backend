@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import homeData from "./home.js";
+import homeData from "./home.datamapper.js";
 
 describe('Casalink generates the list of home', () => {
     it('should return a list of homes', async () => {
@@ -15,9 +15,10 @@ describe('Casalink generates the list of home', () => {
     it('should return a home by ID', async () => {
         const homeId = 1; 
         const home = await homeData.findHomeById(homeId);
-        expect(home).to.be.an('object');
-        expect(home).to.have.property('shopping_list'); 
-        expect(home).to.have.property('name');
+        expect(home).to.be.an('array');
+        expect(home[0]).to.be.an('object');
+        expect(home[0]).to.have.property('shopping_list'); 
+        expect(home[0]).to.have.property('name'); 
     });
 
     it('should create a new home', async () => {

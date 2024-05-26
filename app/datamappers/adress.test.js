@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import adressData from "./address.js";
+import adressData from "./address.datamapper.js";
 
 describe('Casalink generates the list of adress', () => {
     it('should return a list of adresss', async () => {
@@ -18,13 +18,14 @@ describe('Casalink generates the list of adress', () => {
     it('should return a adress by ID', async () => {
         const adressId = 1; 
         const adress = await adressData.findAddressById(adressId);
-        expect(adress).to.be.an('object');
-        expect(adress).to.have.property('street'); 
-        expect(adress).to.have.property('city');
-        expect(adress).to.have.property('additional_information');
-        expect(adress).to.have.property('postal_code');
-        expect(adress).to.have.property('country');
-});
+        expect(adress).to.be.an('array').that.has.lengthOf(1);
+        expect(adress[0]).to.have.property('street'); 
+        expect(adress[0]).to.have.property('city');
+        expect(adress[0]).to.have.property('additional_information');
+        expect(adress[0]).to.have.property('postal_code');
+        expect(adress[0]).to.have.property('country');
+    });
+    
 
     it('should create a new adress', async () => {
         const newadress = {
@@ -39,7 +40,7 @@ describe('Casalink generates the list of adress', () => {
     });
 
     it('should update a adress', async () => {
-        const adressId = 4; 
+        const adressId = 3; 
         const updateadress = {
             street: "50 rue de la paix",
             city: "Ivry sur seine",
@@ -52,8 +53,9 @@ describe('Casalink generates the list of adress', () => {
     });
 
     it('should delete a adress', async () => {
-    const adressId = 4;
-    const result = await adressData.deleteAddressById(adressId);
-    expect(result).to.be.true;
+        const adressId = 3;
+        const result = await adressData.deleteAddressById(adressId);
+        expect(result).to.be.an('array').that.is.empty;
     });
+    
 });

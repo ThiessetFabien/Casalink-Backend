@@ -3,7 +3,7 @@ import { postSchema, patchSchema } from '../../validation/category.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import categoryController from '../../controllers/categoryController.js';
-import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
+// import {checkAdminOrAdultRole, checkAdultOrChildRole } from '../../middlewares/checkUserRole.middleware.js';
 
 const router = express.Router();
 
@@ -44,7 +44,7 @@ router.get('/category/:id', cw(categoryController.getCategoryById));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/category/', validate (postSchema, 'body'), checkUserRole, cw(categoryController.createOneCategory));
+router.post('/category/', validate (postSchema, 'body'), cw(categoryController.createOneCategory));
 
 /**
 *PATCH /api/category/{id}
@@ -58,7 +58,7 @@ router.post('/category/', validate (postSchema, 'body'), checkUserRole, cw(categ
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/category/:id', validate (patchSchema, 'body'), checkUserRole, cw(categoryController.updateOneCategory));
+router.patch('/category/:id', validate (patchSchema, 'body'), cw(categoryController.updateOneCategory));
 
 /**
 *DELETE /api/category/{id}
@@ -71,6 +71,6 @@ router.patch('/category/:id', validate (patchSchema, 'body'), checkUserRole, cw(
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/category/:id', checkUserRole, cw(categoryController.deleteOneCategory));
+router.delete('/category/:id', cw(categoryController.deleteOneCategory));
 
 export default router;

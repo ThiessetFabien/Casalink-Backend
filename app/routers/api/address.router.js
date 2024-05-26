@@ -2,8 +2,9 @@ import express from 'express';
 import { postSchema, patchSchema } from '../../validation/adress.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
-import addressController from '../../controllers/addressController.js';
-import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
+import addressController from '../../controllers/address.controller.js';
+// import {checkAdminOrAdultRole, checkAdminRole} from '../../middlewares/checkUserRole.middleware.js';
+
 const router = express.Router();
 /**
 *GET /api/address/home/{id}
@@ -25,25 +26,9 @@ router.get('/address/home/:id', cw(addressController.getAddressByHomeId));
 *@param {number} id.path.required - Address id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
-
-router.get('/address/:id', cw(addressController.getAddressById));
-
-/**
-*GET /api/address/{id}
-*@summary Get Address by this id
-*@tags Get
-*@param {number} id.path.required - Address id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 401 - Unauthorized - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
 
 router.get('/address/:id', cw(addressController.getAddressById));
 
@@ -70,7 +55,7 @@ router.get('/address/', cw(addressController.getAllAddress));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/address/', validate (postSchema, 'body'),checkUserRole, cw(addressController.createOneAddress));
+router.post('/address/', validate (postSchema, 'body'), cw(addressController.createOneAddress));
 
 /**
 *PATCH /api/address/{id}
@@ -84,7 +69,7 @@ router.post('/address/', validate (postSchema, 'body'),checkUserRole, cw(address
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/address/:id', validate (patchSchema, 'body'),checkUserRole, cw(addressController.updateOneAddress));
+router.patch('/address/:id', validate (patchSchema, 'body'), cw(addressController.updateOneAddress));
 
 /**
 *DELETE /api/address/{id}
@@ -93,11 +78,9 @@ router.patch('/address/:id', validate (patchSchema, 'body'),checkUserRole, cw(ad
 *@param {number} id.path.required - Address id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/address/:id',checkUserRole, cw(addressController.deleteOneAddress));
-
+router.delete('/address/:id', cw(addressController.deleteOneAddress));
 export default router;

@@ -18,18 +18,20 @@ describe('Casalink generates the list of profile', () => {
     });
 
     it('should return a profile by AccountId', async () => {
-    const profileAccountId = 1; 
-    const profile = await profileData.findProfileByAccountId(profileAccountId);
-    expect(profile).to.be.an('object');
-    expect(profile).to.have.property('name'); 
-    expect(profile).to.have.property('role');
-    expect(profile).to.have.property('pin');
-    expect(profile).to.have.property('score');
-    expect(profile).to.have.property('birthdate');
-    expect(profile).to.have.property('image');
-    expect(profile).to.have.property('email');
-    expect(profile).to.have.property('account_id');
-    });
+      const profileAccountId = 1; 
+      const profile = await profileData.findProfileByAccountId(profileAccountId);
+      expect(profile).to.be.an('array');
+      expect(profile[0]).to.be.an('object');
+      expect(profile[0]).to.have.property('name'); 
+      expect(profile[0]).to.have.property('role');
+      expect(profile[0]).to.have.property('pin');
+      expect(profile[0]).to.have.property('score');
+      expect(profile[0]).to.have.property('birthdate');
+      expect(profile[0]).to.have.property('image');
+      expect(profile[0]).to.have.property('email');
+      expect(profile[0]).to.have.property('account_id');
+  });
+  
 
   it('should return a profile by HomeId', async () => {
     const profileHomeId = 1; 
