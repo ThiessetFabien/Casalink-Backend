@@ -49,6 +49,7 @@ const accountController = {
             return next(new ApiError(400, 'Les mots de passe ne correspondent pas'));
         }
         const checkAccount = await accountDataMapper.findAccountByEmail(email);
+        console.log('checkAccount', checkAccount);
         if (checkAccount) {
             return res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
         }
