@@ -13,6 +13,7 @@ const router = express.Router();
 *@param {number} id.path.required - account id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -26,6 +27,7 @@ router.get('/account/:id/profile', cw(profileController.getProfileByAccountId));
 *@param {number} id.path.required - Home id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -39,6 +41,7 @@ router.get('/home/:id/profile', cw(profileController.getProfileByHomeId));
 *@param {number} id.path.required - Profile id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -49,7 +52,7 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 *POST /api/profile/
 *@summary Create a new Profile
 *@tags Post
-*@param {BudgetInput} request.body.required - Profile info { name, birthdate, role, pin, score, image, email, account_id }
+*@param {BudgetInput} request.body.required - Profile info
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
@@ -66,6 +69,7 @@ router.post('/profile/', validate (postSchema, 'body'), cw(profileController.cre
 *@param {BudgetInput} request.body.required - Profile info { name, birthdate, role, pin, score, image, email, account_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -79,6 +83,7 @@ router.patch('/profile/:id', validate (patchSchema, 'body'), cw(profileControlle
 *@param {number} id.path.required - profile id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */

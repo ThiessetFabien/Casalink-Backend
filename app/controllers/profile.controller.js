@@ -3,7 +3,7 @@ import ApiError from '../errors/api.error.js';
 
 const profileController = {
 
-  // REQUETE GET
+  // QUERY GET
   getProfileById: async (req, res, next) => {
     const { id } = req.params;
     if (!parseInt(id)) {

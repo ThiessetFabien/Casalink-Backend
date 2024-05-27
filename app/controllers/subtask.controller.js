@@ -3,7 +3,7 @@ import subtaskDataMapper from '../datamappers/subtask.js';
 
 const subtaskController = {
 
-  // REQUETE GET
+  // QUERY GET
 
   getSubtaskById: async (req, res, next) => {
     const { id } = req.params;
