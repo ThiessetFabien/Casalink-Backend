@@ -41,6 +41,7 @@ const accountDataMapper = {
   async findAccountsByHomeId(home_id){
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE home_id = $1;', [home_id]);
+      console.log('result', result.rows);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -50,6 +51,7 @@ const accountDataMapper = {
   findAccountByEmail: async (email) => {
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE email = $1;', [email]);
+      console.log('result', result.rows);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
