@@ -78,6 +78,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByUserId));
 *@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -92,6 +93,7 @@ router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOne
 *@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
@@ -105,6 +107,7 @@ router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.upda
 *@param {number} id.path.required - Task id
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */

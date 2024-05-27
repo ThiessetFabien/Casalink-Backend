@@ -6,7 +6,7 @@ import Joi from 'joi';
 * @property {string} lastname - Points are excluded
 * @property {string} firstname - Points are excluded
 * @property {string} role - Points are excluded
-* @property {string} password - Between 8 characters and 100 characters, at least one uppercase letter, one lowercase letter, one number and one special character among @.#$!%*?&^
+* @property {string} password - Between 8 characters and 100 characters, at least one uppercase letter, one lowercase letter, one number and one special character
 * @property {string} confirmPassword - Same as password
 * @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr "
 * @returns {ApiJsonSucces} - an account object
@@ -17,7 +17,7 @@ const emailPartValidator = Joi.string()
     .email()
     .pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.(fr|com|net)$/);
 const passwordPartValidator = Joi.string()
-    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=\S+$).{8,}$/);
+    .pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\w)(?=\S+$).{8,}$/);
 
 /**
  * Account schema for the POST method

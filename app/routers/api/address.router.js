@@ -3,8 +3,7 @@ import { postSchema, patchSchema } from '../../validation/adress.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import addressController from '../../controllers/address.controller.js';
-// import {checkAdminOrAdultRole, checkAdminRole} from '../../middlewares/checkUserRole.middleware.js';
-
+// import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 /**
 *GET /api/address/home/{id}

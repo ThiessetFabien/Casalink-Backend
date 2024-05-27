@@ -33,8 +33,7 @@ VALUES ('Courses', 'RGB(210, 144, 20)', NOW(), NOW()),
 INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "created_at", "updated_at")
 VALUES ('Faire les courses', '2024-05-25 00:00:00+02', '2024-05-25 01:00:00+02', 50, 'Haute', 'A Débuter', 'Acheter des produits alimentaires', 1, NOW(), NOW()),
        ('Faire a manger', '2024-05-26 00:00:00+02', '2024-05-27 01:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, NOW(), NOW()),
-       ('Manger ses morts', '2024-05-27 00:00:00+02', '2024-05-27 02:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, NOW(), NOW()),
-       ('Sortie à la plage', '2024-05-26 00:00:00+02', '2024-05-27 00:00:00+02', NULL, 'Moyenne', 'A Débuter', 'Aller à la plage pour se détendre', 2, NOW(), NOW());
+       ('Manger ses morts', '2024-05-27 00:00:00+02', '2024-05-27 02:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, NOW(), NOW());
 
 -- Insérer des sous-tâches (subtasks)
 INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_at")
