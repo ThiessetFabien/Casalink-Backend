@@ -44,10 +44,24 @@ const addressDataMapper = {
   async findAddressByHomeId(home_id){
     try {
       const result = await pool.query(`
-        SELECT "address".* FROM "home" 
-        JOIN "user" ON "user".home_id = "home".id 
-        JOIN "user_has_address" ON "user_has_address".user_id = "user".id JOIN "address" ON "address".id = "user_has_address".address_id
-        WHERE "home".id = $1;`,
+      SELECT DISTINCT
+        h.name AS home_name,
+        a.email AS account_email,
+        ad.street,
+        ad.city,
+        ad.additional_information,
+        ad.postal_code,
+        ad.country
+      FROM 
+          "home" h
+      JOIN 
+          "account" a ON h.id = a.home_id
+      JOIN 
+          "account_has_address" aha ON a.id = aha.account_id
+      JOIN 
+          "address" ad ON aha.address_id = ad.id
+      WHERE 
+        h.id = $1;`,
         [home_id]);
       return result.rows[0];
     } catch (error) {

@@ -3,7 +3,7 @@ import { postSchema, patchSchema } from '../../validation/profile.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import profileController from '../../controllers/profile.controller.js';
-import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
+// import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 
 /**
@@ -70,7 +70,7 @@ router.post('/profile/', validate (postSchema, 'body'), cw(profileController.cre
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/profile/:id', validate (patchSchema, 'body'), checkUserRole, cw(profileController.updateOneProfile));
+router.patch('/profile/:id', validate (patchSchema, 'body'), cw(profileController.updateOneProfile));
 
 /**
 *DELETE /api/profile/{id}

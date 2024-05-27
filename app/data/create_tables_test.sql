@@ -1,3 +1,5 @@
+-- Deploy casalink:init_bdd to pg
+
 BEGIN;
 
 DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
@@ -7,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "home" (
   "shopping_list" TEXT[],
   "name" TEXT NOT NULL,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "account" (
@@ -19,7 +21,7 @@ CREATE TABLE IF NOT EXISTS "account" (
     "password" TEXT NOT NULL,
     "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ NOW()
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "profile" (
@@ -33,7 +35,7 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "email" TEXT,
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ NOW()
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "address" (
@@ -44,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "address" (
     "postal_code" TEXT CHECK (postal_code ~ '(^0[1-9]\d{3}$)|(^9[0-6]\d{3}$)|(^[1-8]\d{4}$)|(^9[78][12478]\d{2}$)') NOT NULL,
     "country" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ NOW()
+    "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "category" (
@@ -52,7 +54,7 @@ CREATE TABLE IF NOT EXISTS "category" (
   "name" TEXT NOT NULL,
   "color" TEXT,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "task" (
@@ -60,13 +62,13 @@ CREATE TABLE IF NOT EXISTS "task" (
   "name" TEXT NOT NULL,
   "start_date" TIMESTAMPTZ NOT NULL,
   "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") NOT NULL,
-  "reward_point" INT DEFAULT 0,
+  "reward_point" INT,
   "priority" TEXT,
-  "status" TEXT DEFAULT('A Débuter'),
+  "status" TEXT DEFAULT('A Débuter') NOT NULL,
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "subtask" (
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS "subtask" (
   "name" TEXT NOT NULL,
   "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "profile_has_task" (
@@ -83,7 +85,7 @@ CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "profile_id" INT REFERENCES "profile"("id") ON DELETE CASCADE,
   "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "account_has_address" (
@@ -91,18 +93,18 @@ CREATE TABLE IF NOT EXISTS "account_has_address" (
   "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
   "address_id" INT REFERENCES "address"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS "budget" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "amount" NUMERIC(10,2) DEFAULT 0,
+  "amount" NUMERIC(10,2) DEFAULT 0 NOT NULL,
   "name" TEXT NOT NULL,
   "category" TEXT,
   "description" TEXT,
   "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ NOW()
+  "updated_at" TIMESTAMPTZ
 );
 
 COMMIT;

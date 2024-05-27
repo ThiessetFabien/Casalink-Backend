@@ -1,4 +1,4 @@
-import accountController from "../controllers/accountController.js";
+import accountController from "../controllers/account.controller.js";
 import ApiError from '../errors/api.error.js';
 
 const addSessionMiddleware = async (req, __, next) => {
