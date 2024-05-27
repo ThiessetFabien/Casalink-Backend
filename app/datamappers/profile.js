@@ -7,11 +7,9 @@ const profilDataMapper = {
   // Find a profile by its id
   async findProfileById(id){
     try {
-      if (!id) {
-        throw new Error('L\'identifiant du profil est manquant.');
-      }
+      console.log('id', id);
       const result = await pool.query('SELECT * FROM "profile" WHERE id=$1;', [id]);
-      return result.rows[0];
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -20,11 +18,8 @@ const profilDataMapper = {
   // Find a profile by its account_id
   async findProfileByAccountId(account_id){
     try {
-      if (!account_id) {
-        throw new Error('L\'identifiant du compte est manquant.');
-      }
-
       const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1;', [account_id]);
+      console.log('result', result.rows);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);

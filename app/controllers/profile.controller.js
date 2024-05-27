@@ -1,24 +1,32 @@
-import profileDataMapper from '../datamappers/profile.js'
+import profileDataMapper from '../datamappers/profile.js';
+import ApiError from '../errors/api.error.js';
 
 const profileController = {
 
   // REQUETE GET
-  getProfileById: async (req, res) => {
-    const id = req.params.id;
-    const profile = await profileDataMapper.findProfileById(id)
-    if(!profile) {
-      res.status(404).send('Cette profile n\'existe pas')
+  getProfileById: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du profil est incorrect.`));   
     }
-    res.json({ status: 'success', data: { profile } });
+    const profile = await profileDataMapper.findProfileById(id)
+    if(!profile[0]) {
+      return next(new ApiError(404, `Le profil n'existe pas.`));
+    }
+    return res.json({ status: 'success', data: { profile } });
 },
 
-  getProfileByAccountId: async (req, res) => {
-    const id = req.params.id;
-    const profile = await profileDataMapper.findProfileByAccountId(id)
-    if(!profile) {
-      res.status(404).send('Ce profil n\'existe pas')
+  getProfileByAccountId: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, `L'identifiant du profil est incorrect.`));   
     }
-    res.json({ status: 'success', data: { profile } });
+    const profile = await profileDataMapper.findProfileByAccountId(id);
+    console.log('profile', profile);
+    if(!profile) {
+      return next(new ApiError(404, `Le profil n'existe pas.`));
+    }
+    return res.json({ status: 'success', data: { profile } });
   },
 
   getProfileByHomeId: async (req, res) => {

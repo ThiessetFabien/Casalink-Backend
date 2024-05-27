@@ -1,0 +1,53 @@
+{"level":"http","message":"GET /api/v1/account/home/toto","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/2/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/login","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/signup","service":"casalink-api"}

@@ -1,37 +1,40 @@
-### Get account # 1 → success
+### Get /account # 1 → success
 GET http://localhost:4000/api/v1/account/home/1
 
-### Get account # 1 → success
+### Get /account # 2 → success
 GET http://localhost:4000/api/v1/account/home/2
 
-### Get account # 69 → error 404
+### Get /account # 69 → error 404
 GET http://localhost:4000/api/v1/account/home/69
 
-### Get account # 1 → error 401 Unauthorized
-GET http://localhost:4000/api/v1/account/home/
-
-### Get account # toto → error401 Unauthorized
+### Get /account # toto → error 401 Unauthorized
 GET http://localhost:4000/api/v1/account/home/toto
 
-### Get all accounts → success
+### Get /account # null → error 401 Unauthorized
+GET http://localhost:4000/api/v1/account/home/
+
+### Get /account # toto → error401 Unauthorized
+GET http://localhost:4000/api/v1/account/home/toto
+
+### Get /account → success
 GET http://localhost:4000/api/v1/account
 
-### Get account by id 1 → success
+### Get /account by id 1 → success
 GET http://localhost:4000/api/v1/account/1
 
-### Get account by id 3 → success
+### Get /account by id 3 → success
 GET http://localhost:4000/api/v1/account/3
 
-### Get account by id 69 → error404 Not Found
+### Get /account by id 69 → error404 Not Found
 GET http://localhost:4000/api/v1/account/69
 
-### Get account by id toto → error401 Unauthorized
+### Get /account by id toto → error401 Unauthorized
 GET http://localhost:4000/api/v1/account/toto
 
-### Get account # 1 → success
+### Get /account # 1 → success
 GET http://localhost:4000/api/v1/account/home/1
 
-### Patch account # 1 → success
+### Patch /account # 1 → success
 PATCH http://localhost:4000/api/v1/account/1
 Content-Type: application/json
 
@@ -43,7 +46,7 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
-### Patch account # 1 → error 400 Bad Request
+### Patch /account # 1 → error 400 Bad Request
 PATCH http://localhost:4000/api/v1/account/
 Content-Type: application/json
 
@@ -55,7 +58,7 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
-### Patch account # 1 → error 400 Bad Request
+### Patch /account # 1 → error 400 Bad Request
 PATCH http://localhost:4000/api/v1/account/1
 Content-Type: application/json
 
@@ -63,22 +66,22 @@ Content-Type: application/json
   "name": "John Doe"
 }
 
-### Delete account # 1 → success
+### Delete /account # 1 → success
 DELETE http://localhost:4000/api/v1/account/1
 
-### Delete account # 2 → success
+### Delete /account # 2 → success
 DELETE http://localhost:4000/api/v1/account/2
 
-### Delete account # 69 → error 404 Not Found
+### Delete /account # 69 → error 404 Not Found
 DELETE http://localhost:4000/api/v1/account/69
 
-### Delete account # null → error 400 Bad Request
+### Delete /account # null → error 400 Bad Request
 DELETE http://localhost:4000/api/v1/account/
 
-### Delete account # toto → error 401 Unauthorized
+### Delete /account # toto → error 401 Unauthorized
 DELETE http://localhost:4000/api/v1/account/toto
 
-### Post signup → success
+### Post /signup → success
 POST http://localhost:4000/api/v1/signup
 Content-Type: application/json
 
@@ -87,14 +90,14 @@ Content-Type: application/json
   "lastname": "tab  fFveabreata",
   "email": "tovaevabtot@gmail.com",
   "role":"user",
-  "password": "TotF Fott*123",
+  "password": "TotFFott*123",
   "confirmPassword": "TotFFott*123"
 }
 
-### Post signup → error 400 Bad Request
+### Post /signup → error 400 Bad Request
 POST http://localhost:4000/api/v1/signup
 
-### Post login → success
+### Post /login → success
 POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
@@ -103,7 +106,7 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
-### Post login → error 401 Unauthorized
+### Post /login → error 401 Unauthorized
 POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
@@ -111,7 +114,7 @@ Content-Type: application/json
   "email": "totot@gmail.com"
 }
 
-### Post login → error 401 Unauthorized
+### Post /login → error 401 Unauthorized
 POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
@@ -119,7 +122,7 @@ Content-Type: application/json
   "password": "Totott#123"
 }
 
-### Post login → error 400 Bad Request
+### Post /login → error 400 Bad Request
 POST http://localhost:4000/api/v1/login
 
 ### GET /home/account/#1 → success
@@ -462,3 +465,9 @@ DELETE http://localhost:4000/api/v1/task/69
 
 ### DELETE /task/{id} #toto → error 401 Unauthorized
 DELETE http://localhost:4000/api/v1/task/toto
+
+### GET /account/:id/profile #1 → success
+GET http://localhost:4000/api/v1/account/1/profile
+
+### GET /account/:id/profile #2 → success
+GET http://localhost:4000/api/v1/account/2/profile

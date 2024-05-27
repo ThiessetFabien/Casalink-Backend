@@ -7,7 +7,7 @@ import subtaskRouter from './subtask.js';
 import categoryRouter from './category.js';
 import budgetRouter from './budget.js';
 import addressRouter from './address.router.js';
-import profileRouter from './profile.js';
+import profileRouter from './profile.router.js';
 import loginRouter from './login.router.js';
 import signupRouter from './signup.router.js';
 
