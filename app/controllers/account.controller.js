@@ -81,7 +81,7 @@ const accountController = {
         // creating a profile with the account_id
       const profileData = {
         name: `${firstname} ${lastname}`,
-        pin: '1234',
+        pin: '0000',
         score: 0,
         birthdate: '1994-10-05',
         image: null,

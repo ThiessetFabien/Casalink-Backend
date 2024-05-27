@@ -17,7 +17,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/subtask/task/:id', cw(subtaskController.getSubtaskByTaskId));
+// router.get('/subtask/task/:id', cw(subtaskController.getSubtaskByTaskId));
 
 /**
 *GET /api/subtask/{id}

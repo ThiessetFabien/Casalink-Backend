@@ -1219,3 +1219,700 @@
 {"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
 {"level":"http","message":"GET /api/v1/home/account/3","service":"casalink-api"}
 {"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/account/1","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/2","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/3","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/4","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home/account","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/account","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/account/1","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/account/1","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/account/4","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/account/1","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/task","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/account/1","service":"casalink-api"}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profil","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/substask/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/task/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/2","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address/home/2","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/2/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/3/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/4/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1","service":"casalink-api"}
+{"level":"http","message":"GET /favicon.ico","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/","service":"casalink-api"}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/home","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/home/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/home/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task/1/subtask","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/task","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/task/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/task/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1/profile","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/home/1/profile","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/profile/2","service":"casalink-api"}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"http","message":"POST /api/v1/profile","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/profile/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/profile/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/subtask/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/subtask","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/subtask/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"DELETE /api/v1/subtask/3","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/account/1","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"http","message":"GET /api/v1/account","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/account/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/task/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/category/1","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/category","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/category/4","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/home/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address/1","service":"casalink-api"}
+{"level":"http","message":"GET /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"POST /api/v1/address","service":"casalink-api"}
+{"level":"http","message":"PATCH /api/v1/address/3","service":"casalink-api"}
+{"level":"http","message":"DELETE /api/v1/address/3","service":"casalink-api"}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}

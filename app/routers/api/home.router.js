@@ -8,20 +8,6 @@ import cw from '../../middlewares/controller.wrapper.js';
 const router = express.Router();
 
 /**
-*GET /api/home/account/{id}
-*@summary Get all accounts of Home by account id
-*@tags Get
-*@param {number} id.path.required - account id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
-router.get('/home/account/:id', cw(homeController.getHomeByAccountId));
-// ne marche pas
-
-/**
 *GET /api/home/{id}
 *@summary Get Home by this id
 *@tags Get
