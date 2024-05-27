@@ -41,6 +41,7 @@ const accountDataMapper = {
   async findAccountsByHomeId(home_id){
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE home_id = $1;', [home_id]);
+      console.log('result', result.rows);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -98,8 +99,8 @@ const accountDataMapper = {
   // Delete a account by its id
   async deleteAccountById(id) {
     try {
-      await pool.query('DELETE FROM "account" WHERE id = $1;', [id]);
-      return true;
+      const result = await pool.query('DELETE FROM "account" WHERE id = $1;', [id]);
+      return result.rows[0];
         } catch (error) {
       throw new DbError(error.message);
     }

@@ -6,7 +6,7 @@ import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
-// import sessionMiddleware from './app/middlewares/session.middleware.js';
+import sessionMiddleware from './app/middlewares/session.middleware.js';
 // import jwtMiddleware from './app/middlewares/jwt.middleware.js';
 
 // Load environment variables 
@@ -33,7 +33,7 @@ app.use(globalLimiter);
 
 // app.use(jwtMiddleware);
 
-// app.use(sessionMiddleware);
+app.use(sessionMiddleware);
 app.use(bodySanitizer);
 
 

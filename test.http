@@ -102,8 +102,8 @@ POST http://localhost:4000/api/v1/login
 Content-Type: application/json
 
 {
-  "email": "totot@gmail.com",
-  "password": "Totott#123"
+  "email": "tovaevabtot@gmail.com",
+  "password": "TotFFott*123"
 }
 
 ### Post /login → error 401 Unauthorized
