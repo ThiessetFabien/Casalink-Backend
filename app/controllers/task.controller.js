@@ -44,10 +44,15 @@ const taskController = {
     return res.json({ status: 'success', data: { task } });
   },
 
-  updateOneTask: async (req, res) => {
-    const id = req.params.id;
+  updateOneTask: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, "L'identifiant de la tâche est incorrect."));
+    }
     const newTaskData = req.body;
-
+    if (!newTaskData) {
+      return next(new ApiError(400, 'Le nom et la date de début de la tâche sont incorrectes.'));
+    }
     const currentTask = await taskDataMapper.findTaskById(id)
     if (!currentTask) {
       return next(new ApiError(404, "La tâche n'existe pas."));
@@ -60,8 +65,15 @@ const taskController = {
     res.json({ status: 'success', data: { task } });
   },
 
-  deleteOneTask: async (req, res) => {
-    const id = req.params.id;
+  deleteOneTask: async (req, res, next) => {
+    const { id } = req.params;
+    if (!parseInt(id)) {
+      return next(new ApiError(401, "L'identifiant de la tâche est incorrect."));
+    }
+    const currentTask = await taskDataMapper.findTaskById(id);
+    if (!currentTask) {
+      return next(new ApiError(404, "La tâche n'existe pas."));
+    }
     await taskDataMapper.deleteTaskById(id)
     res.json({ status: 'success', message: 'La tache a bien été supprimée' });
   }

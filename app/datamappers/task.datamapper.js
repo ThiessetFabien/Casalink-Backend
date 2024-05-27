@@ -18,6 +18,7 @@ const taskDataMapper = {
   async findTaskById(id){
     try {
       const result = await pool.query('SELECT * FROM "task" WHERE id=$1;', [id]);
+      console.log(result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -93,8 +94,8 @@ const taskDataMapper = {
         throw new Error('L\'identifiant de la tâche est manquant.');
       }
 
-      await pool.query('DELETE FROM "task" WHERE id = $1;', [id]);
-      return true;
+      const result = await pool.query('DELETE FROM "task" WHERE id = $1;', [id]);
+      return result.rows[0];
     
     } catch (error) {
       throw new DbError(error.message);

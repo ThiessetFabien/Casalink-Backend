@@ -85,7 +85,7 @@ router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOne
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/task/:id', validate (patchSchema, 'body'), checkUserRole, cw(taskController.updateOneTask));
+router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.updateOneTask));
 
 /**
 *DELETE /api/task/{id}
@@ -98,6 +98,6 @@ router.patch('/task/:id', validate (patchSchema, 'body'), checkUserRole, cw(task
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.delete('/task/:id', checkUserRole, cw(taskController.deleteOneTask));
+router.delete('/task/:id', cw(taskController.deleteOneTask));
 
 export default router;

@@ -370,7 +370,7 @@ POST http://localhost:4000/api/v1/task
 Content-Type: application/json
 
 {
-  "name": "Buy bread",
+  "name": "Acheter du pain",
   "start_date": "2024-05-27T10:12Z",
   "end_date": "2024-05-27T10:13Z",
   "status": "à faire"
@@ -381,7 +381,7 @@ POST http://localhost:4000/api/v1/task
 Content-Type: application/json
 
 {
-  "name": "Buy bread",
+  "name": "Acheter du pain",
   "start_date": "2024-05-27T10:12Z",
   "end_date": "2024-05-27T10:13Z"
 }
@@ -391,7 +391,7 @@ POST http://localhost:4000/api/v1/task
 Content-Type: application/json
 
 {
-  "name": "Buy bread",
+  "name": "Acheter du pain",
   "start_date": "2024-05-27T10:12Z"
 }
 
@@ -400,8 +400,65 @@ POST http://localhost:4000/api/v1/task
 Content-Type: application/json
 
 {
-  "name": "Buy bread"
+  "name": "Acheter du pain"
 }
 
 ### POST /task → error 404 Not Found
 POST http://localhost:4000/api/v1/task
+
+
+### PATCH /task/{id} #1 → success
+PATCH http://localhost:4000/api/v1/task/1
+Content-Type: application/json
+
+{
+  "name": "Acheter du pain",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z",
+  "status": "à faire"
+}
+
+### PATCH /task/{id} #1 → success
+PATCH http://localhost:4000/api/v1/task/2
+Content-Type: application/json
+
+{
+  "name": "Acheter du pain",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z",
+  "status": "à faire"
+}
+
+### PATCH /task/{id} #1 → success
+PATCH http://localhost:4000/api/v1/task/69
+Content-Type: application/json
+
+{
+  "name": "Acheter du pain",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z",
+  "status": "à faire"
+}
+
+### PATCH /task/{id} #1 → success
+PATCH http://localhost:4000/api/v1/task/toto
+Content-Type: application/json
+
+{
+  "name": "Acheter du pain",
+  "start_date": "2024-05-27T10:12Z",
+  "end_date": "2024-05-27T10:13Z",
+  "status": "à faire"
+}
+
+### DELETE /task/{id} #1 → success
+DELETE http://localhost:4000/api/v1/task/1
+
+### DELETE /task/{id} #2 → success
+DELETE http://localhost:4000/api/v1/task/2
+
+### DELETE /task/{id} #69 → error 404 Not Found
+DELETE http://localhost:4000/api/v1/task/69
+
+### DELETE /task/{id} #toto → error 401 Unauthorized
+DELETE http://localhost:4000/api/v1/task/toto
