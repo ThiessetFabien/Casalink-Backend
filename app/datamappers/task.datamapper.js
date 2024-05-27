@@ -21,7 +21,7 @@ const taskDataMapper = {
         SELECT * FROM "task" 
         JOIN "profile_has_task" ON "task".id = "profile_has_task".task_id 
         JOIN "profile" ON "profile".id = "profile_has_task".profile_id 
-        WHERE "profile".user_id = $1;`,
+        WHERE "profile".account_id = $1;`,
          [id]);
       return result.rows;
     } catch (error) {
