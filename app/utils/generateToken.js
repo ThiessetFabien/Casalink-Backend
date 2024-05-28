@@ -20,12 +20,14 @@ const generateToken = (user) => {
 };
 
 // Example user object
-const user = {
-    id: 3,
-    name: 'popo',
-    role: 'adult',
-    email: 'popo@example.com'
-};
+// const user = {
+//     id: 3,
+//     name: 'popo',
+//     role: 'adult',
+//     email: 'popo@example.com'
+// };
 
-const token = generateToken(user);
-console.log('Generated JWT:', token);
+// const token = generateToken(user);
+// console.log('Generated JWT:', token);
+
+export default generateToken;

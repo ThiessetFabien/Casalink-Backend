@@ -86,8 +86,8 @@ POST http://localhost:4000/api/v1/signup
 Content-Type: application/json
 
 {
-  "firstname": "ebf gfgv  aba",
-  "lastname": "tab  fFveabreata",
+  "firstname": "ebfgfgvaba",
+  "lastname": "tabfFveabreata",
   "email": "tovaevabtot@gmail.com",
   "role":"user",
   "password": "TotFFott*123",
@@ -505,3 +505,13 @@ GET http://localhost:4000/api/v1/profile/toto
 
 ### GET /profile → success
 GET http://localhost:4000/api/v1/profile
+
+### POST /profile → success
+POST http://localhost:4000/api/v1/profile
+Content-Type: application/json
+
+{
+  "name": "tata",
+  "birthdate": "tabfFveabreata",
+  "rôle": "child"
+}

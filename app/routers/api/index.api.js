@@ -10,6 +10,7 @@ import addressRouter from './address.router.js';
 import profileRouter from './profile.router.js';
 import loginRouter from './login.router.js';
 import signupRouter from './signup.router.js';
+import jwtMiddleware from '../../middlewares/jwt.middleware.js';
 
 const router = express.Router();
 
@@ -22,17 +23,14 @@ router.use((_, res, next) => {
 router.use(signupRouter);
 router.use(loginRouter);
 
-//middleware d'authentification
-//router.use(session);
-
-router.use(taskRouter);
-router.use(homeRouter);
-router.use(accountRouter);
-router.use(subtaskRouter);
-router.use(categoryRouter);
-router.use(budgetRouter);
-router.use(addressRouter);
-router.use(profileRouter);
+router.use(jwtMiddleware, taskRouter);
+router.use(jwtMiddleware, homeRouter);
+router.use(jwtMiddleware, accountRouter);
+router.use(jwtMiddleware, subtaskRouter);
+router.use(jwtMiddleware, categoryRouter);
+router.use(jwtMiddleware, budgetRouter);
+router.use(jwtMiddleware, addressRouter);
+router.use(jwtMiddleware, profileRouter);
 
 // error handler (404)
 router.use((_, __, next) => {
