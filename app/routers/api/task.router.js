@@ -7,7 +7,7 @@ import subtaskController from '../../controllers/subtask.controller.js';
 // import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 /**
-*GET /api/task/account/{id}
+*GET /api/task/profile/{id}
 *@summary Get all Tasks by account id
 *@tags Get
 *@param {number} id.path.required - account id
@@ -69,7 +69,7 @@ router.get('/task/', cw(taskController.getAllTasks));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/account/:id', cw(taskController.getTaskByUserId));
+router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 
 /**
 *POST /api/task
@@ -83,7 +83,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByUserId));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/', validate (postSchema, 'body'), cw(taskController.createOneTask));
+router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByAccoutId));
 
 /**
 *PATCH /api/task/{id}
