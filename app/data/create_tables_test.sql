@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS "task" (
   "status" TEXT DEFAULT('A Débuter') NOT NULL,
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
+  "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );

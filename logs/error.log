@@ -1,3 +1,12 @@
 {"level":"error","message":"TypeError","service":"casalink-api","status":500}
 {"level":"error","message":"TypeError","service":"casalink-api","status":500}
 {"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"No profile found for the given account ID","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}
