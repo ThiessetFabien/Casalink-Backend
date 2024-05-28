@@ -175,7 +175,7 @@ describe("Task router", () => {
       .patch(`/api/v${VERSION}/task/3`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
-      .send({ name: 'Musculation' })
+      .send({ name: 'Muscu' })
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
@@ -230,13 +230,14 @@ describe("Profile router", () => {
   it("should respond with status 200 for GET /api/profile/:id", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .get(`/api/v${VERSION}/profile/2`)
+      .get(`/api/v${VERSION}/profile/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('object');
+    expect(response.body).to.be.an('array'); // Adjust expectation
+    expect(response.body[0]).to.have.property('id', ); // Further checks
   });
   /* it("should respond with status 200 for GET /api/profile", async () => {
     const token = generateToken();
@@ -428,7 +429,7 @@ describe("Account router", () => {
     expect(response.body).to.be.an('object');
   });
 
-  it("should respond with status 200 for PATCH /api/account/1", async () => {
+  it("should update an account", async () => {
     const token = generateToken();
     const response = await supertest(app)
       .patch(`/api/v${VERSION}/account/1`)
@@ -436,11 +437,11 @@ describe("Account router", () => {
       .set('Accept', 'application/json')
       .send(
         {
-          email: "ttot@gmail.com",
+          email: "HackAdrien@gmail.com",
           firstname: "tata",
-          lastname: "tete",
+          lastname: "tee",
           role: "user",
-          password: "Totott#123"
+          password: "Tototte#123"
          }
       )
       .expect('Content-Type', /json/)
@@ -448,16 +449,24 @@ describe("Account router", () => {
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
   });
-  it("should respond with status 200 for DELETE /api/account/3", async () => {
+  it("should delete an account", async () => {
     const token = generateToken();
-    const response = await supertest(app)
-      .delete(`/api/v${VERSION}/account/1`)
-      .set('Authorization', `Bearer ${token}`)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200);
-    expect(response.status).to.equal(200);
-  });
+  const response = await supertest(app)
+    .delete(`/api/v${VERSION}/account/1`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200);
+  expect(response.status).to.equal(200);
+
+  // Verify the account no longer exists
+  const checkResponse = await supertest(app)
+    .get(`/api/v${VERSION}/account/1`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Accept', 'application/json')
+    .expect(404); // Assuming it returns 404 when not found
+  expect(checkResponse.status).to.equal(404);
+});
 }
 );
 describe("Category router", () => {
