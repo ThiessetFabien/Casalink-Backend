@@ -466,8 +466,42 @@ DELETE http://localhost:4000/api/v1/task/69
 ### DELETE /task/{id} #toto → error 401 Unauthorized
 DELETE http://localhost:4000/api/v1/task/toto
 
+# ! A VERIFIER
 ### GET /account/:id/profile #1 → success
 GET http://localhost:4000/api/v1/account/1/profile
 
 ### GET /account/:id/profile #2 → success
 GET http://localhost:4000/api/v1/account/2/profile
+
+### GET /account/:id/profile #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/account/69/profile
+
+### GET /account/:id/profile #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/account/toto/profile
+
+### GET /home/:id/profile #1 → success
+GET http://localhost:4000/api/v1/home/1/profile
+
+### GET /home/:id/profile #2 → success
+GET http://localhost:4000/api/v1/home/2/profile
+
+### GET /home/:id/profile #69 → error 404 Not Found
+GET http://localhost:4000/api/v1/home/69/profile
+
+### GET /home/:id/profile #toto → error 401 Unauthorized
+GET http://localhost:4000/api/v1/home/toto/profile
+
+### GET /profile/:id → success
+GET http://localhost:4000/api/v1/profile/1
+
+### GET /profile/:id → success
+GET http://localhost:4000/api/v1/profile/2
+
+### GET /profile/:id → error 404 Not Found
+GET http://localhost:4000/api/v1/profile/69
+
+### GET /profile/:id → error 401 Unauthorized
+GET http://localhost:4000/api/v1/profile/toto
+
+### GET /profile → success
+GET http://localhost:4000/api/v1/profile

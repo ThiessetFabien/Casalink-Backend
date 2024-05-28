@@ -7,9 +7,8 @@ const profilDataMapper = {
   // Find a profile by its id
   async findProfileById(id){
     try {
-      console.log('id', id);
       const result = await pool.query('SELECT * FROM "profile" WHERE id=$1;', [id]);
-      return result.rows;
+      return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }
