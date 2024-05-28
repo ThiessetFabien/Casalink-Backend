@@ -44,14 +44,15 @@ const profilDataMapper = {
   async createProfile(profileData) {
     try {
         const { name, pin, score, birthdate, image, email, account_id } = profileData;
-        const query = `
-            INSERT INTO "profile" (name, pin, score, birthdate, image, email, account_id, created_at, updated_at)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), NOW())
-            RETURNING *;
-        `;
-        const values = [name, pin, score, birthdate, image, email, account_id];
-        const result = await pool.query(query, values);
-        return result.rows[0];
+        const result = await pool.query(
+          `INSERT 
+            INTO "profile" (name, pin, score, birthdate, image, email, account_id)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING *;`,
+            [name, pin, score, birthdate, image, email, account_id]
+        );
+
+      return result.rows[0];
     } catch (error) {
         throw new DbError(error.message);
     }
