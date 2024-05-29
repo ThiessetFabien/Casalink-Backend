@@ -89,7 +89,6 @@ Content-Type: application/json
   "firstname": "ebfgfgvaba",
   "lastname": "tabfFveabreata",
   "email": "tovaevabtot@gmail.com",
-  "role":"user",
   "password": "TotFFott*123",
   "confirmPassword": "TotFFott*123"
 }
@@ -124,6 +123,9 @@ Content-Type: application/json
 
 ### Post /login → error 400 Bad Request
 POST http://localhost:4000/api/v1/login
+
+### POST /logout → success
+POST http://localhost:4000/api/v1/logout
 
 ### GET /home/account/#1 → success
 GET http://localhost:4000/api/v1/home/account/1

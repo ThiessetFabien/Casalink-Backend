@@ -10,3 +10,12 @@
 {"level":"error","message":"La création du compte a échoué.","service":"casalink-api","status":500}
 {"level":"error","message":"La création du compte a échoué.","service":"casalink-api","status":500}
 {"level":"error","message":"La création du compte a échoué.","service":"casalink-api","status":500}
+{"level":"error","message":"ReferenceError","service":"casalink-api","status":500}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"DatabaseError","service":"casalink-api","status":500}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"error","message":"Error","service":"casalink-api","status":500}
+{"level":"error","message":"TypeError","service":"casalink-api","status":500}

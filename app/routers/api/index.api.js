@@ -23,14 +23,16 @@ router.use((_, res, next) => {
 router.use(signupRouter);
 router.use(loginRouter);
 
-router.use(jwtMiddleware, taskRouter);
-router.use(jwtMiddleware, homeRouter);
-router.use(jwtMiddleware, accountRouter);
-router.use(jwtMiddleware, subtaskRouter);
-router.use(jwtMiddleware, categoryRouter);
-router.use(jwtMiddleware, budgetRouter);
-router.use(jwtMiddleware, addressRouter);
-router.use(jwtMiddleware, profileRouter);
+router.use(jwtMiddleware);
+
+router.use(taskRouter);
+router.use(homeRouter);
+router.use(accountRouter);
+router.use(subtaskRouter);
+router.use(categoryRouter);
+router.use(budgetRouter);
+router.use(addressRouter);
+router.use(profileRouter);
 
 // error handler (404)
 router.use((_, __, next) => {

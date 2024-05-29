@@ -5,7 +5,8 @@ config({ path: `.env.development` });
 const generateToken = (user) => {
     const payload = {
         userId: user.id,
-        name: user.name,
+        firstname: user.firstname,
+        lastname: user.lastname,
         role: user.role,
         email: user.email
     };
