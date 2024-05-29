@@ -2,6 +2,7 @@
 
 BEGIN;
 
+ALTER TABLE "task"
     DROP COLUMN "account_id";
 
 COMMIT;
