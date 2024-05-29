@@ -115,7 +115,6 @@ const accountController = {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
         }
       // req.session.accountId = account.id;
-      // generateToken(account);
       const token = generateToken(account);
       console.log('token', token);
       return res.json({ 
