@@ -73,7 +73,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 
 /**
 *POST /api/task
-*@summary Create a new Task
+*@summary Create a new Task by account id
 *@tags Post
 *@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
 *@return {ApiSucces} 200 - Success response - application/json
@@ -83,7 +83,21 @@ router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByAccoutId));
+router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByAccountId));
+
+/**
+*POST /api/task
+*@summary Create a new Task by profile id
+*@tags Post
+*@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 401 - Unauthorized - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*/
+
+router.post('/task/profile/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByProfileId));
 
 /**
 *PATCH /api/task/{id}

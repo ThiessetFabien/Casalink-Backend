@@ -9,6 +9,9 @@ const taskController = {
     return res.json({ status: 'success', data: { tasks } });
   },
 
+/*  getAllTasks ne sert à rien tant que nous n'avons pas définit la partie administrateur 
+ */
+
   getTaskById: async (req, res, next) => {
     const { id } = req.params;
     if (!parseInt(id)) {
@@ -46,13 +49,25 @@ const taskController = {
   },
 
   // QUERY POST
-  createOneTaskByAccoutId: async (req, res, next) => {
+  createOneTaskByAccountId: async (req, res, next) => {
     const taskData = req.body;
+    const {id: account_id} = req.params;
     const { name, start_date } = taskData;
     if (!name || !start_date) {
       return next(new ApiError(400, 'Les données de la tâche sont incorrectes.'));
     }
-    const task = await taskDataMapper.createTaskByProfileId(taskData);
+    const task = await taskDataMapper.createTaskByAccountId(taskData, account_id);
+    return res.json({ status: 'success', data: { task } });
+  },
+
+  createOneTaskByProfileId: async (req, res, next) => {
+    const taskData = req.body;
+    const {id: profile_id} = req.params;
+    const { name, start_date } = taskData;
+    if (!name || !start_date) {
+      return next(new ApiError(400, 'Les données de la tâche sont incorrectes.'));
+    }
+    const task = await taskDataMapper.createTaskByProfileId(taskData, profile_id);
     return res.json({ status: 'success', data: { task } });
   },
 

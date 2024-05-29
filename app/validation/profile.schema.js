@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
-const profilePartValidator = Joi.string().pattern(/^./);
-const pinPartValidator = Joi.number().integer();
+const profilePartValidator = Joi.string().pattern(/^./).allow('');
+const pinPartValidator = Joi.number().integer().allow('');
 const scorePartValidator = Joi.number().integer();
 const account_idPartValidator = Joi.number().integer();
 const emailPartValidator = Joi.string()
@@ -33,6 +33,6 @@ export const patchSchema = Joi.object({
     image: profilePartValidator,
     account_id: account_idPartValidator,
     score: scorePartValidator,
-    email: emailPartValidator,
+    email: emailPartValidator || null,
     birthdate: profilePartValidator
 });
