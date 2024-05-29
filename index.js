@@ -30,7 +30,7 @@ const globalLimiter = rateLimit({
 
 app.use(globalLimiter);
 
-app.use(sessionMiddleware);
+// app.use(sessionMiddleware);
 app.use(bodySanitizer);
 
 /**

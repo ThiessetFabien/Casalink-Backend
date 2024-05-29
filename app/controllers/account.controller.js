@@ -50,7 +50,7 @@ const accountController = {
             return next(new ApiError(400, 'Les mots de passe ne correspondent pas'));
         }
         const checkAccount = await accountDataMapper.findAccountByEmail(email);
-        if (!checkAccount[0]) {
+        if (checkAccount) {
           return next(new ApiError(400, 'Cet email est déjà utilisé'));
         }
         // creating a default home
@@ -101,26 +101,26 @@ const accountController = {
   },
 
   loginForm: async (req, res, next) => {
-      // if (req.session.accountId) {
-      //   return res.json({ status: 'success', message: 'Vous êtes déjà connecté' });        
-      // }
       const { email, password } = req.body;
+
       const account = await accountDataMapper.findAccountByEmail(email);
       console.log('account', account);
         if (!account) {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
       }
+
       const isMatch = await bcrypt.compare(password, account.password);
+      console.log('isMatch', isMatch);
         if (!isMatch) {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
         }
-
-      req.session.accountId = account.id;
-      // const token = generateToken(account);
+      // req.session.accountId = account.id;
+      // generateToken(account);
+      const token = generateToken(account);
       console.log('token', token);
       return res.json({ 
         status: 'success',
-        // token: token, 
+        token: token, 
         data: { account } 
       });
   },
