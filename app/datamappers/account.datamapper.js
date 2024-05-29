@@ -41,7 +41,6 @@ const accountDataMapper = {
   async findAccountsByHomeId(home_id){
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE home_id = $1;', [home_id]);
-      console.log('result', result.rows);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -51,7 +50,6 @@ const accountDataMapper = {
   findAccountByEmail: async (email) => {
     try {
       const result = await pool.query('SELECT * FROM "account" WHERE email = $1;', [email]);
-      console.log('result', result.rows);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -67,8 +65,7 @@ const accountDataMapper = {
         const { email, firstname, lastname, password, home_id } = accountData;
         const hashedPassword = await cryptoPassword.hash(password);
         const result = await pool.query(
-            `INSERT 
-              INTO "account" (email, firstname, lastname, password, home_id) 
+            `INSERT INTO "account" (email, firstname, lastname, password, home_id) 
               VALUES ($1, $2, $3, $4, $5) 
               RETURNING *;`,
             [email, firstname, lastname, hashedPassword, home_id]

@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import homeDataMapper from '../datamappers/home.datamapper.js';
 import ApiError from '../errors/api.error.js';
 import profilDataMapper from '../datamappers/profile.js';
+import generateToken from '../utils/generateToken.js';
 
 const accountController = {
 
@@ -39,7 +40,7 @@ const accountController = {
 
 
   // QUERY POST
-  createOneAccount: async (req, res,) => {
+  createOneAccount: async (req, res, next) => {
         const accountData = req.body;
         const { firstname, lastname, email, password, confirmPassword } = accountData;
         if (!firstname || !lastname || !email || !password || !confirmPassword) {
@@ -49,16 +50,14 @@ const accountController = {
             return next(new ApiError(400, 'Les mots de passe ne correspondent pas'));
         }
         const checkAccount = await accountDataMapper.findAccountByEmail(email);
-        console.log('checkAccount', checkAccount);
         if (checkAccount) {
-            return res.status(400).json({ status: 'error', message: 'Cet email est déjà utilisé' });
+          return next(new ApiError(400, 'Cet email est déjà utilisé'));
         }
         // creating a default home
-        const homeData = { name: 'Mon foyer', };
+        const homeData = 'Mon foyer';
         const home = await homeDataMapper.createHome(homeData);
-        console.log('home', home);
         if (!home) {
-          return next(new ApiError(500, 'La création du foyer a échoué.'));
+            return next(new ApiError(500, 'La création du foyer a échoué.'));
         }
         // creating an account with the home_id
         const accountDataWithHomeId = { 
@@ -67,11 +66,9 @@ const accountController = {
             email, 
             password, 
             home_id: home.id 
-        };
-
+        }
         const account = await accountDataMapper.createAccount(accountDataWithHomeId);
-        console.log('account', account);
-        if (!account[0]) {
+        if (!account) {
             await homeDataMapper.deleteHomeById(home.id);
             return next(new ApiError(500, 'La création du compte a échoué.'));
         }
@@ -85,6 +82,7 @@ const accountController = {
         email: `${email}`,
         account_id: account.id
       };
+      
       const createdProfile = await profilDataMapper.createProfile(profileData);
       if (!createdProfile) {
         // rollback account creation and home creation if profile creation fails 
@@ -92,22 +90,38 @@ const accountController = {
         await homeDataMapper.deleteHomeById(home.id);
         return next(new ApiError(500, 'La création du profil a échoué.'));
       }
-      res.status(201).json({ status: 'success', data: { account, profile: createdProfile, home } });
+      const token = generateToken(account);
+      return res.status(201).json({ 
+        status: 'success',
+        token: token, 
+        data: { 
+          account, 
+          profile: createdProfile, 
+          home } });
   },
 
   loginForm: async (req, res, next) => {
       const { email, password } = req.body;
+
       const account = await accountDataMapper.findAccountByEmail(email);
+      console.log('account', account);
         if (!account) {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
       }
+
       const isMatch = await bcrypt.compare(password, account.password);
+      console.log('isMatch', isMatch);
         if (!isMatch) {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
         }
-        console.log('isMatch', isMatch);
-      req.session.accountId = account.id;
-      return res.json({ status: 'success', data: { account } });
+      // req.session.accountId = account.id;
+      const token = generateToken(account);
+      console.log('token', token);
+      return res.json({ 
+        status: 'success',
+        token: token, 
+        data: { account } 
+      });
   },
 
   logout: async (req, res) => {
@@ -116,7 +130,7 @@ const accountController = {
   },
 
   updateOneAccount: async (req, res, next) => {
-    const id = req.params.id;
+    const { id } = req.params;
     const newAccountData = req.body;
     if (!parseInt(id)) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
@@ -127,11 +141,11 @@ const accountController = {
     }
     if(newAccountData.password && newAccountData.confirmPassword) {
       if (newAccountData.password !== newAccountData.confirmPassword) {
-        return res.status(400).json({ status: 'error', message: 'Les mots de passe ne correspondent pas' });
+        return next(new ApiError(400, 'Les mots de passe ne correspondent pas'));
       }
     }
     const updateAccountData = { ...currentAccountData, ...newAccountData };
-
+    generateToken(updateAccountData);
     const updateAccount= await accountDataMapper.updateAccount(id, updateAccountData )
     return res.json({ status: 'success', data: { updateAccount } });
   },
@@ -142,7 +156,6 @@ const accountController = {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const accountExist = await accountDataMapper.findAccountById(id);
-    console.log('accountExist', accountExist);
     if (!accountExist[0]) {
       return next(new ApiError(404, "Le compte n'existe pas."));
     }
