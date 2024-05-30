@@ -81,14 +81,32 @@ const profileController = {
   },
 
   imageBase64: async (req, res) => {
+    
+    const options = {  
+      flag: "w+" 
+    }; 
 
     const imageBase64 = req.body.image;
-    // const base64Data = image.split(';base64,').pop();
-    const imageBuffer = Buffer.from(imageBase64, 'base64');
-    const imagePath = `app/uploads/avatars/${Date.now()}.jpg`; // path to save the image 
-    await fs.outputFile(imagePath, imageBuffer);
-
     const profileId = req.body.id;
+
+    if (!imageBase64 || !profileId) {
+      return next(new ApiError(400, "Invalid request: image and profile ID are required."));
+    }
+
+    // get extension of the image
+    const matches = imageBase64.match(/^data:image\/([A-Za-z-+/]+);base64/);
+    if (!matches || matches.length < 2) {
+      return next(new ApiError(400, "Invalid base64 image format."));
+    }
+    const extension = matches[1];
+
+    const base64Data = imageBase64.split(';base64,').pop();
+    const imageBuffer = Buffer.from(base64Data, 'base64');
+    const imagePath = `public/uploads/avatars/${profileId}.${extension}`; // path to save the image 
+    await fs.outputFile(imagePath, imageBuffer, options);
+
+    const imageName = imagePath.split("public/").pop();
+    
     console.log(profileId);
     const currentProfile = await profileDataMapper.findProfileById(profileId)
 
@@ -96,7 +114,7 @@ const profileController = {
       return next(new ApiError(404, "Le profil n'existe pas."));
     }
 
-    const updateProfileData = { ...currentProfile, image: imagePath };
+    const updateProfileData = { ...currentProfile, image: imageName };
 
     const profile = await profileDataMapper.updateProfile(profileId, updateProfileData);
   

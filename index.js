@@ -8,6 +8,8 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
 import sessionMiddleware from './app/middlewares/session.middleware.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Load environment variables 
 import { config } from 'dotenv';
@@ -17,6 +19,10 @@ const VERSION = process.env.VERSION || 1;
 const debug = debugLib('app:server');
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Setup body parser
 app.use(bodyParser.json({ limit: '100mb' }));
