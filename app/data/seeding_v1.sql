@@ -15,7 +15,7 @@ INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "em
 VALUES ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 'user564@example.com' ,1, NOW(), NOW()),
        ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user852@example.com',1, NOW(), NOW()),
        ('Profil Jiuiuane', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user855252@example.com',1, NOW(), NOW()),
-       ('Profil Test', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user@example.com',4, NOW(), NOW()),
+       ('Profil Test', '1992-08-21', 'adult', '5678', 150, 'default-avatar.webp', 'user@example.com',4, NOW(), NOW()),
        ('Priuytrezest', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'use5r@example.com',4, NOW(), NOW());
 
 -- Insérer des adresses (addresses)

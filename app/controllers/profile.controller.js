@@ -1,5 +1,6 @@
 import profileDataMapper from '../datamappers/profile.js';
 import ApiError from '../errors/api.error.js';
+import fs from 'fs-extra';
 
 const profileController = {
 
@@ -65,6 +66,41 @@ const profileController = {
     const id = req.params.id;
     await profileDataMapper.deleteProfileById(id)
     res.json({ status: 'success', message: 'Le profil a bien été supprimé' });
+  },
+
+  uploadImage: async (req, res) => {
+        if (!req.file) {
+            // Si aucune image n'est téléchargée, utilisez un chemin par défaut
+            const defaultImagePath = "./app/uploads/avatars/default-avatar.png";
+            return res.status(200).json({ filePath: defaultImagePath });
+        }
+
+        // S'il y a une image téléchargée, utilisez-la
+        const filePath = req.file.path; // sauvegardez le chemin du fichier téléchargé
+        res.status(200).json({ filePath });
+  },
+
+  imageBase64: async (req, res) => {
+
+    const imageBase64 = req.body.image;
+    // const base64Data = image.split(';base64,').pop();
+    const imageBuffer = Buffer.from(imageBase64, 'base64');
+    const imagePath = `app/uploads/avatars/${Date.now()}.jpg`; // path to save the image 
+    await fs.outputFile(imagePath, imageBuffer);
+
+    const profileId = req.body.id;
+    console.log(profileId);
+    const currentProfile = await profileDataMapper.findProfileById(profileId)
+
+    if (!currentProfile) {
+      return next(new ApiError(404, "Le profil n'existe pas."));
+    }
+
+    const updateProfileData = { ...currentProfile, image: imagePath };
+
+    const profile = await profileDataMapper.updateProfile(profileId, updateProfileData);
+  
+    return res.status(200).json({ status: 'success', message: 'Image uploaded successfully !' });
   }
 }
 

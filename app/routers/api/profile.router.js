@@ -3,6 +3,7 @@ import { postSchema, patchSchema } from '../../validation/profile.schema.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import profileController from '../../controllers/profile.controller.js';
+import upload from '../../middlewares/imagesUpload.middleware.js';
 // import checkUserRole from '../../middlewares/checkUserRole.middleware.js';
 const router = express.Router();
 
@@ -56,11 +57,12 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json
 *@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
+*@return {ApiJsonError} 500 - Internal  Server Error - application/json
 */
 
 router.post('/profile/', validate (postSchema, 'body'), profileController.createOneProfile);
 
+router.post('/profile/upload', profileController.imageBase64);
 /**
 *PATCH /api/profile/{id}
 *@summary Update a profile by this id

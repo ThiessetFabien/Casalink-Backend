@@ -1,6 +1,7 @@
 // Import dependencies
 import debugLib from 'debug';
 import express, { urlencoded } from 'express';
+import bodyParser from 'body-parser';
 import router from './app/routers/router.js';
 import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
@@ -19,7 +20,8 @@ const debug = debugLib('app:server');
 const app = express();
 
 // Setup body parser
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 app.use(express.json());
 
