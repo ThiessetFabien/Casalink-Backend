@@ -21,4 +21,10 @@ const router = express.Router();
 
 router.post('/login/', validate (postSchema, 'body'), cw(accountController.loginForm));
 
+/**
+ * POST /api/logout/
+ * 
+ */
+router.post('/logout/', cw(accountController.logout));
+
 export default router;

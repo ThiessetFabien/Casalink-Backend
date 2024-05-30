@@ -7,7 +7,7 @@ VALUES ('Maison principale', ARRAY['lait', 'pain', 'œufs'], NOW(), NOW()),
 INSERT INTO "account" ("email", "firstname", "lastname", "role", "password", "home_id", "created_at", "updated_at")
 VALUES ('totot@gmail.com', 'toto', 'ppo', 'user', 'Totott#123', 1, NOW(), NOW()),
        ('tatat@gmail.com', 'tata', 'ppa', 'admin', 'Totott#123', 1, NOW(), NOW()),
-       ('titit@gmail.com', 'titi', 'ppa', 'user', 'Totott#123', 2, NOW(), NOW()),
+       ('titit@gmail.com', 'titi', 'ppa', 'user', 'Totott#123', 3, NOW(), NOW()),
        ('test@test.com', 'test', 'test', 'user',	'$2b$08$ZvoGus9T9eYHAzlsBVheI.kZy0EmUVCvGSMwO.CAlcr44bQ1S4E6y', 2, NOW(), NOW());
 
 -- Insérer des profils (profiles)

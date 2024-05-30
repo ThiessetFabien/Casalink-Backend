@@ -10,6 +10,8 @@ import addressRouter from './address.router.js';
 import profileRouter from './profile.router.js';
 import loginRouter from './login.router.js';
 import signupRouter from './signup.router.js';
+import jwtMiddleware from '../../middlewares/jwt.middleware.js';
+
 const router = express.Router();
 
 router.use((_, res, next) => {
@@ -21,8 +23,7 @@ router.use((_, res, next) => {
 router.use(signupRouter);
 router.use(loginRouter);
 
-//middleware d'authentification
-//router.use(session);
+router.use(jwtMiddleware);
 
 router.use(taskRouter);
 router.use(homeRouter);
