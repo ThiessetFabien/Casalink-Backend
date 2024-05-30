@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mocha --recursive ./app/**/*.test.js --require test.config.js --require test.hooks.js",
     "dev": "DEBUG=app:* NODE_ENV=development npx nodemon index.js",
-    "resetDB": "sqitch revert -y && sqitch deploy && psql -d casalink -f ./app/data/seeding_v1.sql",
+    "resetDB": "sqitch revert -y && sqitch deploy init_bdd && psql -d casalink -f ./app/data/seeding_v1.sql",
     "resetDbTest": "psql -d casalink_test -f ./app/data/create_tables_test.sql && psql -d casalink_test -f ./app/data/seeding_v1.sql",
     "headShot": "pnpm run resetDbTest && pnpm run test"
   },
@@ -38,12 +38,16 @@
     "winston": "^3.13.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.13",
     "chai": "^5.1.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "mocha": "^10.4.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   },
   "pnpm": {
     "overrides": {
