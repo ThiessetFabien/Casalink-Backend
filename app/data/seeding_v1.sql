@@ -43,7 +43,10 @@ VALUES
   ('Faire une application', '2024-05-27 12:00:00+02', '2024-05-27 13:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 3, NOW(), NOW()),
   ('Presentation du projet', '2024-05-29 10:00:00+02', '2024-05-29 11:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW()),
   ('Macdo et burger king', '2024-05-29 12:00:00+02', '2024-05-29 14:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW()),
-  ('Faire une application', '2024-05-28 09:00:00+02', '2024-05-28 10:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 1, NOW(), NOW());
+  ('Faire b', '2024-05-29 09:00:00+02', '2024-05-29 10:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW()),
+  ('Faire c', '2024-05-27 09:00:00+02', '2024-05-27 10:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW()),
+  ('Faire d', '2024-05-26 09:00:00+02', '2024-05-26 10:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW()),
+  ('Faire g', '2024-05-28 09:00:00+02', '2024-05-28 10:00:00+02', 50, 'Basse', 'A Débuter', 'blablabla', 1, 4, NOW(), NOW());
 
 -- Insérer des sous-tâches (subtasks)
 INSERT INTO "subtask" ("name", "description", "task_id", "created_at", "updated_at")
