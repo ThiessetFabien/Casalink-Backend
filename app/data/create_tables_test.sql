@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult' NOT NULL,
     "pin" TEXT CHECK (pin ~ '^[0-9]{4}$'),
     "score" INT DEFAULT 0 NOT NULL,
-    "image" TEXT DEFAULT 'assets/avatars/default-avatar.webp',
+    "image" TEXT DEFAULT 'uploads/avatars/default-avatar.webp',
     "email" TEXT,
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
