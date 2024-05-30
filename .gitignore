@@ -22,3 +22,4 @@ logs/
 .env.test
 .env.development
 sqitch.conf
+.vercel
