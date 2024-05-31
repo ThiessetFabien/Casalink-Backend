@@ -10,7 +10,11 @@ import pg from 'pg';
 const { Pool } = pg;
 
 const pool = new Pool({
-  password: process.env.PGPASSWORD
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  url: process.env.PGURL,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE
 });
 
 export default pool;
