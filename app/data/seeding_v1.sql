@@ -15,11 +15,13 @@ VALUES
 -- Insert profiles ensuring account_id values are correct
 INSERT INTO "profile" ("name", "birthdate", "role", "pin", "score", "image", "email", "account_id", "created_at", "updated_at")
 VALUES 
-    ('Profil John', '1990-05-15', 'adult', '1234', 100, 'https://example.com/john.jpg', 'user564@example.com', 1, NOW(), NOW()),
-    ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user852@example.com', 1, NOW(), NOW()),
-    ('Profil Jiuiuane', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user855252@example.com', 1, NOW(), NOW()),
-    ('Profil Test', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'user@example.com', 3, NOW(), NOW()), -- Changed from 4 to 3
-    ('Priuytrezest', '1992-08-21', 'adult', '5678', 150, 'https://example.com/jane.jpg', 'use5r@example.com', 3, NOW(), NOW()); -- Changed from 4 to 3
+    ('Profil John', '1990-05-15', 'adult', '1234', 100, 'uploads/avatars/default-avatar.webp', 'user564@example.com', 1, NOW(), NOW()),
+        ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'user852@example.com', 4, NOW(), NOW()),
+    ('Profil Jiuiuane', '1992-08-21', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'user855252@example.com', 4, NOW(), NOW()),
+    ('Profil Jane', '1992-08-20', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'user852@example.com', 1, NOW(), NOW()),
+    ('Profil Jiuiuane', '1992-08-21', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'user855252@example.com', 1, NOW(), NOW()),
+    ('Profil Test', '1992-08-21', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'user@example.com', 3, NOW(), NOW()), -- Changed from 4 to 3
+    ('Priuytrezest', '1992-08-21', 'adult', '5678', 150, 'uploads/avatars/default-avatar.webp', 'use5r@example.com', 3, NOW(), NOW()); -- Changed from 4 to 3
 
 -- Continue with other insertions as before
 

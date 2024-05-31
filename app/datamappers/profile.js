@@ -43,13 +43,13 @@ const profilDataMapper = {
   // Create a new profile
   async createProfile(profileData) {
     try {
-        const { name, pin, score, birthdate, image, email, account_id } = profileData;
+        const { name, pin, score, birthdate, image, email, account_id, role } = profileData;
         const result = await pool.query(
           `INSERT 
-            INTO "profile" (name, pin, score, birthdate, image, email, account_id)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            INTO "profile" (name, pin, score, birthdate, image, email, account_id, role)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING *;`,
-            [name, pin, score, birthdate, image, email, account_id]
+            [name, pin, score, birthdate, image, email, account_id, role]
         );
 
       return result.rows[0];
@@ -90,6 +90,7 @@ const profilDataMapper = {
       if (!id) {
         throw new Error('L\'identifiant du profil est manquant.');
       }
+      await pool.query('DELETE FROM "task" WHERE profile_id = $1;', [id]);
       await pool.query('DELETE FROM "profile" WHERE id = $1;', [id]);
       return true;
     } catch (error) {
