@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-config({ path: `${__dirname}/.env.development` });
+config({ path: `${__dirname}/.env` });
 
 import pg from 'pg';
 const { Pool } = pg;

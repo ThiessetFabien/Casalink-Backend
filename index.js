@@ -7,7 +7,7 @@ import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
-import sessionMiddleware from './app/middlewares/session.middleware.js';
+// import sessionMiddleware from './app/middlewares/session.middleware.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
