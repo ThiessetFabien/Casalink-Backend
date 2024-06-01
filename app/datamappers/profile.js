@@ -90,7 +90,7 @@ const profilDataMapper = {
       if (!id) {
         throw new Error('L\'identifiant du profil est manquant.');
       }
-      await pool.query('DELETE FROM "task" WHERE profile_id = $1;', [id]);
+      await pool.query('DELETE FROM "task" WHERE id IN (SELECT task_id FROM "profile_has_task" WHERE profile_id = $1);', [id]);
       await pool.query('DELETE FROM "profile" WHERE id = $1;', [id]);
       return true;
     } catch (error) {

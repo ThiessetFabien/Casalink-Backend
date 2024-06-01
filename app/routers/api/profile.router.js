@@ -60,9 +60,9 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 *@return {ApiJsonError} 500 - Internal  Server Error - application/json
 */
 
-router.post('/profile/', validate (postSchema, 'body'), profileController.createOneProfile);
+router.post('/profile/', validate (postSchema, 'body'), cw(profileController.createOneProfile));
 
-router.post('/profile/upload', profileController.imageBase64);
+router.post('/profile/upload', cw(profileController.imageBase64));
 /**
 *PATCH /api/profile/{id}
 *@summary Update a profile by this id
