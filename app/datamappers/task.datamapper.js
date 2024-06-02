@@ -17,21 +17,7 @@ const taskDataMapper = {
   // find all tasks for the profiles of a specific account
   async findAllTaskByAccountId(account_id) {
     try {
-      const result = await pool.query(`
-        SELECT 
-          tsk.id AS task_id,
-          tsk.name AS task_name,
-          tsk.start_date AS task_start_date,
-          tsk.end_date AS task_end_date,
-          tsk.reward_point AS task_reward_point,
-          tsk.priority AS task_priority,
-          tsk.status AS task_status,
-          tsk.description AS task_description
-        FROM 
-          "task" tsk
-        WHERE 
-          tsk.account_id = $1;
-      `, [account_id]);
+      const result = await pool.query(`SELECT * FROM "task" WHERE "task".account_id = $1;`, [account_id]);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);

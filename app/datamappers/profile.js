@@ -17,7 +17,7 @@ const profilDataMapper = {
   // Find a profile by its account_id
   async findProfileByAccountId(account_id){
     try {
-      const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1;', [account_id]);
+      const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
       console.log('result', result.rows);
       return result.rows;
     } catch (error) {

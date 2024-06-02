@@ -43,6 +43,7 @@ const profileController = {
   // QUERY POST
   createOneProfile: async (req, res) => {
     const profileData = req.body;
+    console.log(profileData);
     const profile = await profileDataMapper.createProfile(profileData)
     res.json({ status: 'success', data: { profile } });
   },
