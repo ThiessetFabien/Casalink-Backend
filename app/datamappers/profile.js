@@ -18,7 +18,7 @@ const profilDataMapper = {
   async findProfileByAccountId(account_id){
     try {
         //const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
-        const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY/MM/DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
+        const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
 
         console.log('date apres traitement de la query', result.rows);
         return result.rows;
