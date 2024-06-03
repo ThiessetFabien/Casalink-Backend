@@ -1,5 +1,5 @@
 import express from 'express';
-import { postSchema, patchSchema } from '../../validation/profile.schema.js';
+import { postSchema, patchSchema } from '../../validation/schemas/profile.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import profileController from '../../controllers/profile.controller.js';

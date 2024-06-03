@@ -1,5 +1,5 @@
 import ApiError from '../errors/api.error.js';
-import subtaskDataMapper from '../datamappers/subtask.js';
+import subtaskDataMapper from '../datamappers/subtask.datamapper.js';
 
 const subtaskController = {
 

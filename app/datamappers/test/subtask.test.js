@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import subtaskData from "./subtask.js";
+import subtaskData from "../subtask.datamapper.js";
 
 describe('Casalink generates the list of subtask', () => {
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { postSchema, patchSchema } from '../../validation/category.schema.js';
+import { postSchema, patchSchema } from '../../validation/schemas/category.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import categoryController from '../../controllers/category.controller.js';

@@ -2,7 +2,7 @@ import accountDataMapper from '../datamappers/account.datamapper.js'
 import bcrypt from 'bcrypt';
 import homeDataMapper from '../datamappers/home.datamapper.js';
 import ApiError from '../errors/api.error.js';
-import profilDataMapper from '../datamappers/profile.js';
+import profilDataMapper from '../datamappers/profile.datamapper.js';
 import generateToken from '../utils/generateToken.js';
 import taskDataMapper from '../datamappers/task.datamapper.js';
 

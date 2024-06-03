@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import adressData from "./address.datamapper.js";
+import adressData from "../address.datamapper.js";
 
 describe('Casalink generates the list of adress', () => {
     it('should return a list of adresss', async () => {

@@ -1,5 +1,5 @@
 import express from 'express';
-import { postSchema, patchSchema } from '../../validation/subtask.schema.js';
+import { postSchema, patchSchema } from '../../validation/schemas/subtask.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import subtaskController from '../../controllers/subtask.controller.js';

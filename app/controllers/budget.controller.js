@@ -1,4 +1,4 @@
-import budgetDataMapper from '../datamappers/budget.js'
+import budgetDataMapper from '../datamappers/budget.datamapper.js'
 
 const budgetController = {
 
