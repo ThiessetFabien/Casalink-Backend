@@ -18,7 +18,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.get('/task/profile/:id', (taskController.getTaskByProfileId));
+router.get('/task/profile/:id', cw(taskController.getTaskByProfileId));
 
 /**
 *GET /api/task/{id}

@@ -17,8 +17,8 @@ const homeDataMapper = {
   // Find a home by its id
   async findHomeById(id){
     try {
-      const result = await pool.query('SELECT * FROM "home" WHERE id=$1;', [id]);
-      return result.rows;
+      const result = await pool.query('SELECT * FROM "home" WHERE id = $1;', [id]);
+      return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }

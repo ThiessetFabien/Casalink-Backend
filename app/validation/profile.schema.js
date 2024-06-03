@@ -1,13 +1,13 @@
 import Joi from 'joi';
 
 const profilePartValidator = Joi.string().pattern(/^./).allow('');
-const pinPartValidator = Joi.number().integer().allow('');
+const pinPartValidator = Joi.number().integer().allow('', null);
 const scorePartValidator = Joi.number().integer();
 const account_idPartValidator = Joi.number().integer();
 const emailPartValidator = Joi.string()
     .email()
     .pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.(fr|com|net)$/)
-    .allow('');
+    .allow('', null);
 
 /**
  * Profile schema for the POST method

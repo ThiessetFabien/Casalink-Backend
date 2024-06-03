@@ -62,6 +62,7 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 router.post('/profile/', validate (postSchema, 'body'), cw(profileController.createOneProfile));
 
 router.post('/profile/upload', cw(profileController.imageBase64));
+
 /**
 *PATCH /api/profile/{id}
 *@summary Update a profile by this id

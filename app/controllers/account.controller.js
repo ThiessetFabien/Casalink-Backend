@@ -4,6 +4,7 @@ import homeDataMapper from '../datamappers/home.datamapper.js';
 import ApiError from '../errors/api.error.js';
 import profilDataMapper from '../datamappers/profile.js';
 import generateToken from '../utils/generateToken.js';
+import taskDataMapper from '../datamappers/task.datamapper.js';
 
 const accountController = {
 
@@ -91,6 +92,7 @@ const accountController = {
         return next(new ApiError(500, 'La création du profil a échoué.'));
       }
       const token = generateToken(account);
+      console.log('Generated Token:', token);
       return res.status(201).json({ 
         status: 'success',
         token: token, 
@@ -114,15 +116,20 @@ const accountController = {
         if (!isMatch) {
           return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
         }
+        // Récupérer les tâches associées à l'utilisateur
+    const tasks = await taskDataMapper.findAllTaskByAccountId(account.id);
       // req.session.accountId = account.id;
       const token = generateToken(account);
-      console.log('token', token);
+      console.log('Generated Token:', token)
       return res.json({ 
         status: 'success',
         token: token, 
-        data: { account } 
+        data: { 
+          account,
+          tasks // Ajouter les tâches à la réponse
+        } 
       });
-  },
+    },
 
   logout: async (req, res) => {
     req.session.destroy();
@@ -147,7 +154,11 @@ const accountController = {
     const updateAccountData = { ...currentAccountData, ...newAccountData };
     generateToken(updateAccountData);
     const updateAccount= await accountDataMapper.updateAccount(id, updateAccountData )
-    return res.json({ status: 'success', data: { updateAccount } });
+    // Mettre à jour les tâches en session
+    const account_id = req.session.accountId;
+    req.session.tasks = await taskDataMapper.findAllTaskByAccountId(account_id);
+
+    return res.json({ status: 'success', data: { updateAccount, tasks: req.session.tasks } });
   },
 
   deleteOneAccount: async (req, res, next) => {

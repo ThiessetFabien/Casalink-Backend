@@ -17,11 +17,77 @@ const profilDataMapper = {
   // Find a profile by its account_id
   async findProfileByAccountId(account_id){
     try {
-        //const result = await pool.query('SELECT * FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
-        const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
+      const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
 
-        console.log('date apres traitement de la query', result.rows);
-        return result.rows;
+      console.log('date apres traitement de la query', result.rows);
+      return result.rows;
+    } catch (error) {
+      throw new DbError(error.message);
+    }
+  },
+
+  async findTaskByProfileId(id){
+    try {
+      // Get the role of the profile
+      const { rows: [{ role }] } = await pool.query('SELECT role FROM "profile" WHERE id = $1', [id]);
+
+      let query = '';
+      if (role === 'child') {
+        // If the role is 'child', select only the tasks of the child
+        query = `
+          SELECT 
+            prof.id AS profile_id,
+            prof.name AS profile_name,
+            tsk.id AS task_id,
+            tsk.name AS task_name,
+            tsk.start_date AS task_start_date,
+            tsk.end_date AS task_end_date,
+            tsk.reward_point AS task_reward_point,
+            tsk.priority AS task_priority,
+            tsk.status AS task_status,
+            tsk.description AS task_description
+          FROM 
+              "profile" prof
+          JOIN 
+              "profile_has_task" pht ON prof.id = pht.profile_id
+          JOIN 
+              "task" tsk ON pht.task_id = tsk.id
+          WHERE 
+              prof.id = $1 AND prof.role = 'child';
+        `;
+      } else {
+        // If the role is 'adult', select all the tasks of the profile and its children
+        query = `
+        SELECT 
+        prof.id AS profile_id,
+        prof.name AS profile_name,
+        tsk.id AS task_id,
+	@@ -64,15 +93,27 @@ const taskDataMapper = {
+        tsk.priority AS task_priority,
+        tsk.status AS task_status,
+        tsk.description AS task_description
+    FROM 
+        "profile" prof
+    JOIN 
+        "profile_has_task" pht ON prof.id = pht.profile_id
+    JOIN 
+        "task" tsk ON pht.task_id = tsk.id
+    WHERE 
+        prof.id = $1
+    OR 
+        prof.id IN 
+        (SELECT profile_id 
+            FROM "profile_has_task" 
+              WHERE profile_id = $1 
+        AND EXISTS 
+        (SELECT 1 
+            FROM "profile" 
+              WHERE role = 'child' 
+        AND "account_id" = prof."account_id"));`;
+      }
+
+      const result = await pool.query(query, [id]);
+      return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
@@ -59,7 +125,6 @@ const profilDataMapper = {
         throw new DbError(error.message);
     }
 },
-
   // ----------- UPDATE PROFILE -----------
   async updateProfile(id, profileData) {
     try {
@@ -92,7 +157,6 @@ const profilDataMapper = {
       if (!id) {
         throw new Error('L\'identifiant du profil est manquant.');
       }
-      await pool.query('DELETE FROM "task" WHERE id IN (SELECT task_id FROM "profile_has_task" WHERE profile_id = $1);', [id]);
       await pool.query('DELETE FROM "profile" WHERE id = $1;', [id]);
       return true;
     } catch (error) {

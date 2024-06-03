@@ -10,12 +10,13 @@ const budgetController = {
 
   getBudgetById: async (req, res) => {
     const id = req.params.id;
-    const budget = await budgetDataMapper.findBudgetById(id)
-    if(!budget) {
-      res.status(404).send('Ce budget n\'existe pas')
-      res.json({ status: 'success', data: { budget } });
+    const budget = await budgetDataMapper.findBudgetById(id);
+    
+    if (!budget) {
+      return res.status(404).send('Ce budget n\'existe pas');
     }
-  },
+    res.json({ status: 'success', data: { budget } });
+    },
 
   getBudgetByHomeId: async (req, res) => {
     
@@ -31,10 +32,12 @@ const budgetController = {
   getBudgetsByAccountId: async (req, res) => {
     
     const id = req.params.id;
-    const budgets = await budgetDataMapper.findBudgetsByAccountId(id)
-    if(!budgets) {
-      res.status(404).send('Ce budget n\'existe pas')
+    const budgets = await budgetDataMapper.findBudgetsByAccountId(id);
+
+    if (!budgets || budgets.length === 0) {
+      return res.status(404).send('Aucun budget trouvé pour ce compte.');
     }
+
     res.json({ status: 'success', data: { budgets } });
   },
 

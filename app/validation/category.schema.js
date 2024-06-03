@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const categoryPartValidator = Joi.string().pattern(/^./).required();
-const colorPartValidator = Joi.string().pattern(/rgba?\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/); // Regex to allow only rbg and rgba color codes
+const colorPartValidator = Joi.string().pattern(/(rgba?|RGB)\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/);
 
 /**
 * Response of API for a category data source
