@@ -1,9 +1,5 @@
 import Joi from 'joi';
 
-const taskPartValidator = Joi.string().pattern(/^./);
-const timestampPartValidator = Joi.date().iso();
-const rewardAndCategoryPartValidator = Joi.number().integer();
-
 /**
 * Response of API for a task data source
 * @typedef {object} Task
@@ -16,6 +12,10 @@ const rewardAndCategoryPartValidator = Joi.number().integer();
 * @property {string} description - Points are excluded
 * @returns {ApiJsonSucces} - a task object
 */
+const taskPartValidator = Joi.string().pattern(/^./);
+const timestampPartValidator = Joi.date().iso();
+const rewardAndCategoryPartValidator = Joi.number().integer();
+
 
 /**
  * Task schema for the GET method
@@ -43,6 +43,7 @@ export const postSchema = Joi.object({
     status: taskPartValidator,
     description: taskPartValidator,
     category_id: rewardAndCategoryPartValidator,
+    account_id: rewardAndCategoryPartValidator,
 });
 
 /**

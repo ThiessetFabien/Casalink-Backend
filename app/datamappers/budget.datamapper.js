@@ -8,7 +8,10 @@ const budgetDataMapper = {
   // Find all the budgets
   async findAllBudgets(){
     try {
-      const result = await pool.query('SELECT * FROM "budget";');
+      const result = await pool.query(
+        `SELECT * 
+        FROM "budget";`
+        );
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -21,7 +24,11 @@ const budgetDataMapper = {
       if (!id) {
         throw new Error('L\'identifiant du budget est manquant.');
       }
-      const result = await pool.query('SELECT * FROM "budget" WHERE id=$1;', [id]);
+      const result = await pool.query(
+        `SELECT * 
+          FROM "budget" 
+        WHERE id = $1;
+      `, [id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -35,7 +42,11 @@ const budgetDataMapper = {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
 
-      const result = await pool.query('SELECT * FROM "budget" WHERE home_id = $1;', [home_id]);
+      const result = await pool.query(
+        `SELECT * 
+          FROM "budget" 
+        WHERE home_id = $1;
+      `, [home_id]);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -43,13 +54,19 @@ const budgetDataMapper = {
   },
 
   
-// All the budgets of a specific user
-async findBudgetsByUserId(user_id){
+// All the budgets of a specific account
+async findBudgetsByAccountId(account_id){
   try {
-    if (!user_id) {
+    if (!account_id) {
       throw new Error('L\'identifiant du foyer est manquant.');
     }
-    const result = await pool.query('SELECT "budget".* FROM "user" JOIN "home" ON "home".id = "user".home_id JOIN "budget" ON "budget".home_id = "home".id WHERE "user".id = $1;', [user_id]);
+    const result = await pool.query(
+    `SELECT "budget".*
+      FROM "account"
+    JOIN "home" ON "home".id = "account".home_id
+    JOIN "budget" ON "budget".home_id = "home".id
+      WHERE "account".id = $1;`
+  , [account_id]);
     return result.rows;
   } catch (error) {
     throw new DbError(error.message);
@@ -67,7 +84,9 @@ async findBudgetsByUserId(user_id){
       const { amount, name, category, description, home_id } = budgetData;
       
       const result = await pool.query(
-        'INSERT INTO "budget" (amount, name, category, description, home_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;',
+        `INSERT INTO "budget" 
+          (amount, name, category, description, home_id) 
+        VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
         [amount, name, category, description, home_id]
       );
       return result.rows[0];
@@ -84,7 +103,14 @@ async findBudgetsByUserId(user_id){
       }
       const { amount, name, category, description, home_id } = budgetData;
       const result = await pool.query(
-        'UPDATE "budget" SET amount = $1, name = $2, category = $3, description = $4, home_id = $5 WHERE id = $6 RETURNING *;',
+        `UPDATE "budget" 
+          SET amount = $1, 
+          name = $2, 
+          category = $3, 
+          description = $4, 
+          home_id = $5 
+        WHERE id = $6 
+          RETURNING *;`,
         [amount, name, category, description, home_id, id]
       );
       return result.rows[0];
@@ -101,7 +127,7 @@ async findBudgetsByUserId(user_id){
       if (!id) {
         throw new Error('L\'identifiant du budget est manquant.');
       }
-      await pool.query('DELETE FROM "budget" WHERE id = $1;', [id]);
+      await pool.query(`DELETE FROM "budget" WHERE id = $1;`, [id]);
       return true;
     } catch (error) {
       throw new DbError(error.message);

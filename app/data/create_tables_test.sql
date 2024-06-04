@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
+DROP TABLE IF EXISTS "budget", "account_has_address", "profile_has_task", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "account" (
     "email" TEXT NOT NULL UNIQUE,
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
-    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user' NOT NULL,
+    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user',
     "password" TEXT NOT NULL,
     "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
@@ -27,10 +27,10 @@ CREATE TABLE IF NOT EXISTS "account" (
 CREATE TABLE IF NOT EXISTS "profile" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL DEFAULT 'Profile 1',
-    "birthdate" TIMESTAMPTZ NOT NULL,
-    "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult' NOT NULL,
-    "pin" TEXT CHECK (pin ~ '^[0-9]{4}$'),
-    "score" INT DEFAULT 0 NOT NULL,
+    "birthdate" DATE DEFAULT '2000-01-01' NOT NULL,
+    "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult',
+    "pin" TEXT DEFAULT '0000',
+    "score" INT DEFAULT 0,
     "image" TEXT DEFAULT 'uploads/avatars/default-avatar.webp',
     "email" TEXT,
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS "category" (
 CREATE TABLE IF NOT EXISTS "task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL,
-  "start_date" TIMESTAMPTZ NOT NULL,
-  "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") NOT NULL,
-  "reward_point" INT,
+  "start_date" TIMESTAMPTZ DEFAULT NOW(),
+  "end_date" TIMESTAMPTZ CONSTRAINT "check_duration" CHECK ("end_date" > "start_date") DEFAULT (NOW() + INTERVAL '1 hour'),
+  "reward_point" INT DEFAULT 0,
   "priority" TEXT,
-  "status" TEXT DEFAULT('A Débuter') NOT NULL,
+  "status" TEXT DEFAULT 'A Débuter',
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
   "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS "account_has_address" (
 
 CREATE TABLE IF NOT EXISTS "budget" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "amount" NUMERIC(10,2) DEFAULT 0 NOT NULL,
+  "amount" NUMERIC(10,2) DEFAULT 0,
   "name" TEXT NOT NULL,
   "category" TEXT,
   "description" TEXT,

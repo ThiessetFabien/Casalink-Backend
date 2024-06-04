@@ -32,7 +32,12 @@ const categoryDataMapper = {
       if (!taskId) {
         throw new Error('L\'identifiant de la tache est manquant.');
       }
-      const result = await pool.query('SELECT * FROM "category" JOIN "task" ON "category".id = "task".category_id WHERE "task".id = $1;', [taskId]);
+      const result = await pool.query(
+        `SELECT * 
+          FROM "category" 
+        JOIN "task" ON "category".id = "task".category_id 
+          WHERE "task".id = $1;`
+          , [taskId]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);

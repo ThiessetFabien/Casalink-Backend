@@ -6,9 +6,9 @@ import Joi from 'joi';
 * @property {string} lastname - Points are excluded
 * @property {string} firstname - Points are excluded
 * @property {string} role - Points are excluded
-* @property {string} password - Between 8 characters and 100 characters, at least one uppercase letter, one lowercase letter, one number and one special character
-* @property {string} confirmPassword - Same as password
-* @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr "
+* @property {string} password - Password of the account. Should be between 8 and 100 characters, and contain at least one uppercase letter, one lowercase letter, one number, and one special character
+* @property {string} confirmPassword - Should match the password field
+* @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr ". Should follow the format example@example.com
 * @returns {ApiJsonSucces} - an account object
 */
 

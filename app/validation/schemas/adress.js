@@ -6,7 +6,7 @@ import Joi from 'joi';
  * @property {string} street - Points are excluded
  * @property {string} city - Spaces, accents and hyphens are allowed
  * @property {string} additional_information - Points are excluded
- * @property {string} postal_code - 5 digits between 01000 and 98999
+ * @property {string} postal_code - Should be a 5-digit number between 01000 and 98999
  * @property {string} country - Spaces, accents and hyphens are allowed
  * @returns {ApiJsonSucces} - an address object
  */

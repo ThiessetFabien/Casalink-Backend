@@ -1,5 +1,5 @@
 import express from 'express';
-import { postSchema, patchSchema } from '../../validation/task.schema.js';
+import { postSchema, patchSchema } from '../../validation/schemas/task.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import taskController from '../../controllers/task.controller.js';
@@ -72,7 +72,7 @@ router.get('/task/', cw(taskController.getAllTasks));
 router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 
 /**
-*POST /api/task
+*POST /api/task/account/{id}
 *@summary Create a new Task by account id
 *@tags Post
 *@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }
@@ -86,7 +86,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByAccountId));
 
 /**
-*POST /api/task
+*POST /api/task/profile/{id}
 *@summary Create a new Task by profile id
 *@tags Post
 *@param {TaskInput} request.body.required - Task info { name, start_date, end_date, reward_point, priority, status, description, category_id }

@@ -1,5 +1,5 @@
 import express from 'express';
-import { postSchema, patchSchema } from '../../validation/budget.schema.js';
+import { postSchema, patchSchema } from '../../validation/schemas/budget.js';
 import validate from '../../validation/validator.js';
 import cw from '../../middlewares/controller.wrapper.js';
 import budgetController from '../../controllers/budget.controller.js';

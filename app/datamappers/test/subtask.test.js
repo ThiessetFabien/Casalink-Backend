@@ -1,17 +1,20 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import subtaskData from "./subtask.js";
+import subtaskData from "../subtask.datamapper.js";
 
 describe('Casalink generates the list of subtask', () => {
 
     it('should return a subtask by ID', async () => {
-        const subtaskId = 1; 
+        const subtaskId = 1;
         const subtask = await subtaskData.findSubtaskById(subtaskId);
-        expect(subtask).to.be.an('object');
-        expect(subtask).to.have.property('description'); 
-        expect(subtask).to.have.property('name');
-        expect(subtask).to.have.property('task_id');
+        expect(subtask).to.be.an('array');
+        subtask.forEach(st => {
+            expect(st).to.have.property('description'); 
+            expect(st).to.have.property('name');
+            expect(st).to.have.property('task_id');
+        });
     });
+    
 
     it('should create a new subtask', async () => {
         const newsubtask = {

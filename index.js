@@ -7,7 +7,6 @@ import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import bodySanitizer from './app/middlewares/bodySanitizer.js';
-// import sessionMiddleware from './app/middlewares/session.middleware.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -32,7 +31,7 @@ app.use(express.json());
 
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 200,
   message: "Too many requests from this IP, please try again after an hour"
 });
 
@@ -57,11 +56,5 @@ const PORT = process.env.PORT ?? 3000;
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
 app.use(router);
-
-if (process.env.NODE_ENV === 'production') {
-  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT}/api/v${VERSION})`));
-} else {
-  app.listen(PORT, () => debug(`🖌️ Server ready in development mode: http://localhost:${PORT}/api/v${VERSION})`));
-}
 
 export default app;
