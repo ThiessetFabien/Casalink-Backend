@@ -8,7 +8,11 @@ const taskDataMapper = {
   async findAllTask(){
     try {
       // const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "profile_has_task".task_id = "task".id ORDER BY task.start_date ASC;');
-     const result = await pool.query('SELECT * FROM "task" ORDER BY start_date ASC;');
+     const result = await pool.query(`SELECT task.*, profile.role 
+     FROM task 
+     JOIN profile_has_task ON task.id = profile_has_task.task_id 
+     JOIN profile ON profile_has_task.profile_id = profile.id;
+     `);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -19,21 +23,24 @@ const taskDataMapper = {
   async findAllTaskByAccountId(account_id) {
     try {
       const result = await pool.query(
-      `SELECT 
-        tsk.id AS task_id,
-        tsk.name AS task_name,
-        tsk.start_date AS task_start_date,
-        tsk.end_date AS task_end_date,
-        tsk.reward_point AS task_reward_point,
-        tsk.priority AS task_priority,
-        tsk.status AS task_status,
-        tsk.description AS task_description
-      FROM 
-        "task" tsk
-      INNER JOIN 
-        "account" acc ON tsk.account_id = acc.id
-      WHERE 
-        acc.id = $1;`,
+      `SELECT DISTINCT ON (tsk.id)
+      tsk.id AS task_id,
+      tsk.name AS task_name,
+      tsk.start_date AS task_start_date,
+      tsk.end_date AS task_end_date,
+      tsk.reward_point AS task_reward_point,
+      tsk.priority AS task_priority,
+      tsk.status AS task_status,
+      tsk.description AS task_description,
+      prof.role AS profile_role
+  FROM 
+      "task" tsk
+  INNER JOIN 
+      "account" acc ON tsk.account_id = acc.id
+  INNER JOIN 
+      "profile" prof ON acc.id = prof.account_id
+  WHERE 
+      acc.id = $1;`,
        [account_id]);
       return result.rows;
     } catch (error) {
@@ -44,8 +51,11 @@ const taskDataMapper = {
   // Find a task by its id
   async findTaskById(id){
     try {
-      const result = await pool.query('SELECT * FROM "task" WHERE id=$1;', [id]);
-      console.log(result.rows[0]);
+      const result = await pool.query(`SELECT task.*, profile.role 
+      FROM task 
+      JOIN profile_has_task ON task.id = profile_has_task.task_id 
+      JOIN profile ON profile_has_task.profile_id = profile.id 
+      WHERE task.id =$1;`, [id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -57,24 +67,25 @@ const taskDataMapper = {
     try {
       const result = await pool.query(
       `SELECT 
-        prof.id AS profile_id,
-        prof.name AS profile_name,
-        tsk.id AS task_id,
-        tsk.name AS task_name,
-        tsk.start_date AS task_start_date,
-        tsk.end_date AS task_end_date,
-        tsk.reward_point AS task_reward_point,
-        tsk.priority AS task_priority,
-        tsk.status AS task_status,
-        tsk.description AS task_description
-      FROM 
-          "profile" prof
-      JOIN 
-          "profile_has_task" pht ON prof.id = pht.profile_id
-      JOIN 
-          "task" tsk ON pht.task_id = tsk.id
-      WHERE 
-          prof.id = $1;`,
+      prof.id AS profile_id,
+      prof.name AS profile_name,
+      prof.role AS profile_role,
+      tsk.id AS task_id,
+      tsk.name AS task_name,
+      tsk.start_date AS task_start_date,
+      tsk.end_date AS task_end_date,
+      tsk.reward_point AS task_reward_point,
+      tsk.priority AS task_priority,
+      tsk.status AS task_status,
+      tsk.description AS task_description
+    FROM 
+        "profile" prof
+    JOIN 
+        "profile_has_task" pht ON prof.id = pht.profile_id
+    JOIN 
+        "task" tsk ON pht.task_id = tsk.id
+    WHERE 
+        prof.id = $1;`,
          [id]);
       return result.rows;
     } catch (error) {
