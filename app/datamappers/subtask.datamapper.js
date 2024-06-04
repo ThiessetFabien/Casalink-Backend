@@ -20,7 +20,12 @@ const subtaskDataMapper = {
       if (!task_id) {
         throw new Error('L\'identifiant de la tache est manquant.');
       }
-      const result = await pool.query('SELECT "subtask".* FROM "subtask" JOIN "task" ON "task".id = "subtask".task_id WHERE "task".id = $1;', [task_id]);
+      const result = await pool.query(
+        `SELECT "subtask".* 
+            FROM "subtask" 
+          JOIN "task" ON "task".id = "subtask".task_id 
+        WHERE "task".id = $1;
+      `, [task_id]);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);

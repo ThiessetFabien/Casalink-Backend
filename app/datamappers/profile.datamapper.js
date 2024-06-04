@@ -17,8 +17,23 @@ const profilDataMapper = {
   // Find a profile by its account_id
   async findProfileByAccountId(account_id){
     try {
-      const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
-
+      const result = await pool.query(
+        `SELECT 
+          id, 
+          name, 
+          TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, 
+          role, 
+          pin, 
+          score, 
+          image, 
+          email, 
+          account_id, 
+          created_at, 
+          updated_at 
+        FROM "profile" 
+          WHERE account_id = $1 
+            ORDER BY "name" ASC;`
+        , [account_id]);
       console.log('date apres traitement de la query', result.rows);
       return result.rows;
     } catch (error) {
@@ -28,64 +43,12 @@ const profilDataMapper = {
 
   async findTaskByProfileId(id){
     try {
-      // Get the role of the profile
-      const { rows: [{ role }] } = await pool.query('SELECT role FROM "profile" WHERE id = $1', [id]);
-
-      let query = '';
-      if (role === 'child') {
-        // If the role is 'child', select only the tasks of the child
-        query = `
-          SELECT 
-            prof.id AS profile_id,
-            prof.name AS profile_name,
-            tsk.id AS task_id,
-            tsk.name AS task_name,
-            tsk.start_date AS task_start_date,
-            tsk.end_date AS task_end_date,
-            tsk.reward_point AS task_reward_point,
-            tsk.priority AS task_priority,
-            tsk.status AS task_status,
-            tsk.description AS task_description
-          FROM 
-              "profile" prof
-          JOIN 
-              "profile_has_task" pht ON prof.id = pht.profile_id
-          JOIN 
-              "task" tsk ON pht.task_id = tsk.id
-          WHERE 
-              prof.id = $1 AND prof.role = 'child';
-        `;
-      } else {
-        // If the role is 'adult', select all the tasks of the profile and its children
-        query = `
-        SELECT 
-        prof.id AS profile_id,
-        prof.name AS profile_name,
-        tsk.id AS task_id,
-	@@ -64,15 +93,27 @@ const taskDataMapper = {
-        tsk.priority AS task_priority,
-        tsk.status AS task_status,
-        tsk.description AS task_description
-    FROM 
-        "profile" prof
-    JOIN 
-        "profile_has_task" pht ON prof.id = pht.profile_id
-    JOIN 
-        "task" tsk ON pht.task_id = tsk.id
-    WHERE 
-        prof.id = $1
-    OR 
-        prof.id IN 
-        (SELECT profile_id 
-            FROM "profile_has_task" 
-              WHERE profile_id = $1 
-        AND EXISTS 
-        (SELECT 1 
-            FROM "profile" 
-              WHERE role = 'child' 
-        AND "account_id" = prof."account_id"));`;
-      }
-
+      const query = await pool.query(
+      `SELECT t.*
+        FROM task t
+      JOIN profile_has_task pht ON t.id = pht.task_id
+        WHERE pht.profile_id = $1;`
+        , [account_id]);
       const result = await pool.query(query, [id]);
       return result.rows;
     } catch (error) {
@@ -99,7 +62,12 @@ const profilDataMapper = {
       if (!home_id) {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
-      const result = await pool.query('SELECT * FROM "profile" JOIN "account" ON "profile".account_id = "account".id WHERE "account".home_id = $1;', [home_id]);
+      const result = await pool.query(
+        `SELECT * 
+          FROM "profile" 
+        JOIN "account" ON "profile".account_id = "account".id 
+          WHERE "account".home_id = $1;
+      `, [home_id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -132,12 +100,11 @@ const profilDataMapper = {
             throw new Error('Les données du profil ou l\'identifiant sont manquants.');
         }
         const { name, role, pin, score, birthdate, image, email, account_id } = profileData;
-        const query = `
-            UPDATE "profile" 
+        const query = 
+            `UPDATE "profile" 
             SET name = $1, role = $2, pin = $3, score = $4, birthdate = $5, image = $6, email = $7, account_id = $8, updated_at = NOW()
             WHERE id = $9 
-            RETURNING *;
-        `;
+            RETURNING *;`;
         const values = [name, role, pin, score, birthdate, image, email, account_id, id];
         const result = await pool.query(query, values);
         if (result.rows.length === 0) {

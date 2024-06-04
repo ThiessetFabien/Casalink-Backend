@@ -1,4 +1,4 @@
-import profileDataMapper from '../datamappers/profile.js';
+import profileDataMapper from '../datamappers/profile.datamapper.js';
 import ApiError from '../errors/api.error.js';
 import fs from 'fs-extra';
 import { outputFile } from 'fs-extra/esm'

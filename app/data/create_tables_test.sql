@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS "budget", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
+DROP TABLE IF EXISTS "budget", "account_has_address", "profile_has_task", "subtask", "task", "category", "address", "profile", "account", "home" CASCADE;
 
 CREATE TABLE IF NOT EXISTS "home" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "account" (
     "email" TEXT NOT NULL UNIQUE,
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
-    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user' NOT NULL,
+    "role" TEXT CHECK("role" IN ('user', 'admin')) DEFAULT 'user',
     "password" TEXT NOT NULL,
     "home_id" INT REFERENCES "home"("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ DEFAULT NOW(),
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS "profile" (
     "birthdate" DATE DEFAULT '2000-01-01' NOT NULL,
     "role" TEXT CHECK("role" IN ('adult', 'child')) DEFAULT 'adult',
     "pin" TEXT DEFAULT '0000',
-    "score" INT DEFAULT 0 NOT NULL,
+    "score" INT DEFAULT 0,
     "image" TEXT DEFAULT 'uploads/avatars/default-avatar.webp',
     "email" TEXT,
     "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS "category" (
   "updated_at" TIMESTAMPTZ
 );
 
-
 CREATE TABLE IF NOT EXISTS "task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -68,6 +67,7 @@ CREATE TABLE IF NOT EXISTS "task" (
   "status" TEXT DEFAULT 'A Débuter',
   "description" TEXT,
   "category_id" INT REFERENCES "category"("id") ON DELETE CASCADE,
+  "account_id" INT REFERENCES "account"("id") ON DELETE CASCADE,
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );

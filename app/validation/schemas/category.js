@@ -1,8 +1,5 @@
 import Joi from 'joi';
 
-const categoryPartValidator = Joi.string().pattern(/^./).required();
-const colorPartValidator = Joi.string().pattern(/(rgba?|RGB)\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/);
-
 /**
 * Response of API for a category data source
 * @typedef {object} Category
@@ -10,6 +7,9 @@ const colorPartValidator = Joi.string().pattern(/(rgba?|RGB)\((?<r>[.\d]+)[, ]+(
 * @property {string} color - Only rbg or rgba color codes
 * @returns {ApiJsonSucces} - a category object
 */
+const categoryPartValidator = Joi.string().pattern(/^./).required();
+const colorPartValidator = Joi.string().pattern(/(rgba?|RGB)\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/);
+
 
 /**
  * Category schema for the GET method

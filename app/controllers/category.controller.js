@@ -1,4 +1,4 @@
-import categoryDataMapper from '../datamappers/category.js'
+import categoryDataMapper from '../datamappers/category.datamapper.js'
 
 const categoryController = {
 

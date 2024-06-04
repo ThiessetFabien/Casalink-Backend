@@ -1,6 +1,6 @@
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import profileData from "./profile.js";
+import profileData from "../profile.datamapper.js";
 
 describe('Casalink generates the list of profile', () => {
     it('should return a profile by ID', async () => {

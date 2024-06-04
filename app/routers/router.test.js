@@ -10,20 +10,20 @@ import app from "../../index.js";
 const VERSION = process.env.VERSION || 1;
 const JWT_SECRET = process.env.JWT_SECRET;
 
-describe("Home router", () => {
-  const generateToken = () => {
-    return jwt.sign(
-      {
-        userId: 3,
-        name: "Toto",
-        role: "adult",
-        email: "popo@example.com"
-      },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-  };
+const generateToken = () => {
+  return jwt.sign(
+    {
+      userId: 4,
+      name: "Test",
+      role: "adult",
+      email: "test@test.com"
+    },
+    JWT_SECRET,
+    { expiresIn: '1day' }
+  );
+};
 
+describe("Home router", () => {
   it("should respond with status 200 for GET /api/home", async () => {
     const token = generateToken();
     const response = await supertest(app)
@@ -47,18 +47,6 @@ describe("Home router", () => {
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
   });
-
-  // it("should respond with status 200 for GET /api/home/account/1", async () => {
-  //   const token = generateToken();
-  //   const response = await supertest(app)
-  //     .get(`/api/v${VERSION}/home/account/1`)
-  //     .set('Authorization', `Bearer ${token}`)
-  //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   expect(response.status).to.equal(200);
-  //   expect(response.body).to.be.an('object');
-  // }); ne marche pas
 
   it("should respond with status 200 for POST /api/home", async () => {
     const token = generateToken();
@@ -99,29 +87,6 @@ describe("Home router", () => {
 });
 
 describe("Task router", () => {
-  const generateToken = () => {
-    return jwt.sign(
-      {
-        userId: 3,
-        name: "Toto",
-        role: "adult",
-        email: "popo@example.com"
-      },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-  };
-/*   it("should respond with status 200 for GET /api/task/account/:id", async () => {
-    const token = generateToken();
-    const response = await supertest(app)
-      .get(`/api/v${VERSION}/task/account/1`)
-      .set('Authorization', `Bearer ${token}`)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200);
-      expect(response.status).to.equal(200);
-      expect(response.body).to.be.an('object');
-  }); */
 
   it("should respond with status 200 for GET /api/task/1", async () => {
     const token = generateToken();
@@ -157,25 +122,37 @@ describe("Task router", () => {
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
   });
-/*   it("should respond with status 200 for POST /api/task/", async () => {
+  it("should respond with status 200 for POST api/task/account/:id", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .post(`/api/v${VERSION}/task`)
+      .post(`/api/v${VERSION}/task/account/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
-      .send({ name: 'Faire du sport' })
+      .send({
+        "name": "Musuculation",
+        "start_date": "2024-05-24",
+        "reward_point": 100,
+        "priority": "Haute",
+        "status": "A Débuter"
+      })
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
-  }); */
-  it("should respond with status 200 for PATCH /api/task/3", async () => {
+  });
+  it("should respond with status 200 for PATCH /api/task/9", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .patch(`/api/v${VERSION}/task/3`)
+      .patch(`/api/v${VERSION}/task/9`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
-      .send({ name: 'Muscu' })
+      .send({
+        "name": "Musuculation",
+        "start_date": "2024-05-24",
+        "reward_point": 50,
+        "priority": "Haute",
+        "status": "A Débuter"
+      })
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
@@ -193,18 +170,6 @@ describe("Task router", () => {
   });
 });
 describe("Profile router", () => {
-  const generateToken = () => {
-    return jwt.sign(
-      {
-        userId: 3,
-        name: "Toto",
-        role: "adult",
-        email: "popo@example.com"
-      },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-  };
   it("should respond with status 200 for GET /account/:id/profile", async () => {
     const token = generateToken();
     const response = await supertest(app)
@@ -236,20 +201,10 @@ describe("Profile router", () => {
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('array'); // Adjust expectation
-    expect(response.body[0]).to.have.property('id', ); // Further checks
+    expect(response.body).to.be.an('object'); 
+    expect(response.body).to.have.property('status').that.equals('success'); 
   });
-  /* it("should respond with status 200 for GET /api/profile", async () => {
-    const token = generateToken();
-    const response = await supertest(app)
-      .get(`/api/v${VERSION}/profile`)
-      .set('Authorization', `Bearer ${token}`)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200);
-    expect(response.status).to.equal(200);
-    expect(response.body).to.be.an('object');
-  }); */
+
   it("should respond with status 200 for POST /api/profile", async () => {
     const token = generateToken();
     const response = await supertest(app)
@@ -381,18 +336,6 @@ describe("Subtask router", () => {
   });
 });
 describe("Account router", () => {
-  const generateToken = () => {
-    return jwt.sign(
-      {
-        userId: 3,
-        name: "Toto",
-        role: "adult",
-        email: "popo@example.com"
-      },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-  };
   it("should respond with status 200 for GET /api/account/home/:id", async () => {
     const token = generateToken();
     const response = await supertest(app)
@@ -432,65 +375,53 @@ describe("Account router", () => {
   it("should update an account", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .patch(`/api/v${VERSION}/account/1`)
+      .patch(`/api/v${VERSION}/account/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
-      .send(
-        {
-          email: "HackAdrien@gmail.com",
-          firstname: "tata",
-          lastname: "tee",
-          role: "user",
-          password: "Tototte#123"
-         }
-      )
+      .send({
+        email: "HackAdrien@gmail.com",
+        firstname: "Adrien",
+        lastname: "Hack",
+        role: "adult",
+        password: "Totottme#123"
+      })
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
     expect(response.body).to.be.an('object');
   });
+
   it("should delete an account", async () => {
     const token = generateToken();
-  const response = await supertest(app)
-    .delete(`/api/v${VERSION}/account/1`)
-    .set('Authorization', `Bearer ${token}`)
-    .set('Accept', 'application/json')
-    .expect('Content-Type', /json/)
-    .expect(200);
-  expect(response.status).to.equal(200);
-
-  // Verify the account no longer exists
-  const checkResponse = await supertest(app)
-    .get(`/api/v${VERSION}/account/1`)
-    .set('Authorization', `Bearer ${token}`)
-    .set('Accept', 'application/json')
-    .expect(404); // Assuming it returns 404 when not found
-  expect(checkResponse.status).to.equal(404);
-});
-}
-);
-describe("Category router", () => {
-  const generateToken = () => {
-    return jwt.sign(
-      {
-        userId: 3,
-        name: "Toto",
-        role: "adult",
-        email: "popo@example.com"
-      },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-  };
-  it("should respond with status 200 for GET /api/category/task/:id", async () => {
-    const token = generateToken();
     const response = await supertest(app)
-      .get(`/api/v${VERSION}/category/task/1`)
+      .delete(`/api/v${VERSION}/account/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200);
     expect(response.status).to.equal(200);
+
+  // Verify the account no longer exists
+  const checkResponse = await supertest(app)
+      .get(`/api/v${VERSION}/account/1`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Accept', 'application/json')
+      .expect(404);
+    expect(checkResponse.status).to.equal(404);
+  });
+}
+);
+describe("Category router", () => {
+  it("should respond with status 200 for GET /api/category/task/:id", async () => {
+    const token = generateToken();
+    const response = await supertest(app)
+      .get(`/api/v${VERSION}/category/task/2`)
+      .set('Authorization', `Bearer ${token}`)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200);
+    expect(response.status).to.equal(200);
+    expect(() => JSON.parse(response.text)).to.not.throw();
     expect(response.body).to.be.an('object');
   });
 

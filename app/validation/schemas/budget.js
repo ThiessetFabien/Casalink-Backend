@@ -1,7 +1,15 @@
 import Joi from 'joi';
-
+/**
+ * Response of API for a budget data source
+ * @typedef {object} Budget
+ * @property {string} category - Category of the budget
+ * @property {number} amount - Amount of the budget. Should be a number with up to 2 decimal places
+ * @property {string} name - Name of the budget
+ * @property {string} description - Description of the budget
+ * @returns {ApiJsonSucces} - A budget object
+ */
 const budgetPartValidator = Joi.string().pattern(/^./);
-const amountPartValidator = Joi.string().pattern(/^\d+(\.\d{1,2})?$/).required(); // Regex to allow only digits with up to 2 decimal places
+const amountPartValidator = Joi.string().pattern(/^\d+(\.\d{1,2})?$/).required();
 
 
 /**
