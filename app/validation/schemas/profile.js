@@ -1,5 +1,17 @@
 import Joi from 'joi';
-
+/**
+ * Response of API for a profile data source
+ * @typedef {object} Profile
+ * @property {string} name - Points are excluded
+ * @property {string} role - Points are excluded
+ * @property {number} pin - Points are excluded
+ * @property {string} image - Points are excluded
+ * @property {number} account_id - Points are excluded
+ * @property {number} score - Points are excluded
+ * @property {string} email - A string followed by an arobase followed by a string followed by " .net ", " .com " or " .fr ". Should follow the format
+ * @property {string} birthdate - Points are excluded
+ * @returns {ApiJsonSucces} - a profile object
+ */
 const profilePartValidator = Joi.string().pattern(/^./).allow('');
 const pinPartValidator = Joi.number().integer().allow('', null);
 const scorePartValidator = Joi.number().integer();

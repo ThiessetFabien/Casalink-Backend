@@ -7,19 +7,6 @@ import subtaskController from '../../controllers/subtask.controller.js';
 const router = express.Router();
 
 /**
-*GET /api/subtask/task/{id}
-*@summary Get Subtask of Task by Task id
-*@tags Get
-*@param {number} id.path.required - Task id
-*@return {ApiSucces} 200 - Success response - application/json
-*@return {ApiJsonError} 400 - Bad Request - application/json
-*@return {ApiJsonError} 404 - Not Found - application/json
-*@return {ApiJsonError} 500 - Internal Server Error - application/json
-*/
-
-// router.get('/subtask/task/:id', cw(subtaskController.getSubtaskByTaskId));
-
-/**
 *GET /api/subtask/{id}
 *@summary Get Subtask by this id
 *@tags Get

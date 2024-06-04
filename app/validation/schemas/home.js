@@ -1,5 +1,11 @@
 import Joi from 'joi';
-
+/**
+ * Response of API for a home data source
+ * @typedef {object} Home
+ * @property {string} shopping_list - Points are excluded
+ * @property {string} name.required - Points are excluded
+ * @returns {ApiJsonSucces} - a home object
+ */
 const homePartValidator = Joi.string().pattern(/^./);
 
 /**

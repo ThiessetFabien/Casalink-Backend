@@ -21,7 +21,7 @@ const router = express.Router();
 router.get('/account/:id/profile', cw(profileController.getProfileByAccountId));
 
 /**
-*GET /api/account/{id}
+*GET /api/home/{id}/profile
 *@summary Get Profile of account by home id
 *@tags Get
 *@param {number} id.path.required - Home id
@@ -61,6 +61,16 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 
 router.post('/profile/', validate (postSchema, 'body'), cw(profileController.createOneProfile));
 
+/**
+*POST /api/profile/upload
+*@summary Create a new Image
+*@tags Post
+*@param {BudgetInput} request.body.required - Image data
+*@return {ApiSucces} 200 - Success response - application/json
+*@return {ApiJsonError} 400 - Bad Request - application/json
+*@return {ApiJsonError} 404 - Not Found - application/json
+*@return {ApiJsonError} 500 - Internal  Server Error - application/json
+*/
 router.post('/profile/upload', cw(profileController.imageBase64));
 
 /**
