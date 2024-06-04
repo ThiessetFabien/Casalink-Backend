@@ -17,8 +17,23 @@ const profilDataMapper = {
   // Find a profile by its account_id
   async findProfileByAccountId(account_id){
     try {
-      const result = await pool.query('SELECT id, name, TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, role, pin, score, image, email, account_id, created_at, updated_at FROM "profile" WHERE account_id = $1 ORDER BY "name" ASC;', [account_id]);
-
+      const result = await pool.query(
+        `SELECT 
+          id, 
+          name, 
+          TO_CHAR(birthdate, \'YYYY-MM-DD\') AS birthdate, 
+          role, 
+          pin, 
+          score, 
+          image, 
+          email, 
+          account_id, 
+          created_at, 
+          updated_at 
+        FROM "profile" 
+          WHERE account_id = $1 
+            ORDER BY "name" ASC;`
+        , [account_id]);
       console.log('date apres traitement de la query', result.rows);
       return result.rows;
     } catch (error) {
@@ -28,11 +43,12 @@ const profilDataMapper = {
 
   async findTaskByProfileId(id){
     try {
-      const query = await pool.query(`
-      SELECT t.*
-      FROM task t
+      const query = await pool.query(
+      `SELECT t.*
+        FROM task t
       JOIN profile_has_task pht ON t.id = pht.task_id
-      WHERE pht.profile_id = $1;`, [account_id]);
+        WHERE pht.profile_id = $1;`
+        , [account_id]);
       const result = await pool.query(query, [id]);
       return result.rows;
     } catch (error) {
@@ -46,7 +62,12 @@ const profilDataMapper = {
       if (!home_id) {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
-      const result = await pool.query('SELECT * FROM "profile" JOIN "account" ON "profile".account_id = "account".id WHERE "account".home_id = $1;', [home_id]);
+      const result = await pool.query(
+        `SELECT * 
+          FROM "profile" 
+        JOIN "account" ON "profile".account_id = "account".id 
+          WHERE "account".home_id = $1;
+      `, [home_id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -79,12 +100,11 @@ const profilDataMapper = {
             throw new Error('Les données du profil ou l\'identifiant sont manquants.');
         }
         const { name, role, pin, score, birthdate, image, email, account_id } = profileData;
-        const query = `
-            UPDATE "profile" 
+        const query = 
+            `UPDATE "profile" 
             SET name = $1, role = $2, pin = $3, score = $4, birthdate = $5, image = $6, email = $7, account_id = $8, updated_at = NOW()
             WHERE id = $9 
-            RETURNING *;
-        `;
+            RETURNING *;`;
         const values = [name, role, pin, score, birthdate, image, email, account_id, id];
         const result = await pool.query(query, values);
         if (result.rows.length === 0) {

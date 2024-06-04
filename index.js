@@ -57,10 +57,4 @@ app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
 app.use(router);
 
-if (process.env.NODE_ENV === 'production') {
-  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT}/api/v${VERSION})`));
-} else {
-  app.listen(PORT, () => debug(`🖌️ Server ready in development mode: http://localhost:${PORT}/api/v${VERSION})`));
-}
-
 export default app;

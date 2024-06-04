@@ -2,6 +2,7 @@ import { describe, it } from "mocha";
 import { expect } from "chai";
 import accountData from "../account.datamapper.js";
 
+
 describe('Casalink generates the list of accounts', () => {
     it('should return a list of accounts', async () => {
         const accountsList = await accountData.findAllAccounts();
@@ -20,7 +21,7 @@ describe('Casalink generates the list of accounts', () => {
         const accountId = 4;
         const account = await accountData.findAccountById(accountId);
         if (account.length === 0) {
-            expect(account).to.be.an('array').that.is.empty; // Expecting an empty array if no account is found
+            expect(account).to.be.an('array').that.is.empty;
         } else {
             expect(account[0]).to.be.an('object'); 
             expect(account[0]).to.have.property('firstname'); 
@@ -50,16 +51,16 @@ describe('Casalink generates the list of accounts', () => {
         const newaccount = {
     "firstname": "Adrien",
     "lastname": "Hack",
-    "email": "titit@gmail.com",
-    "password": "Tototet#123",
-    "confirmPassword":"Tototet#123"
+    "email": "Adrien@gmail.com",
+    "password": "Adrienhack#123",
+    "confirmPassword":"Adrienhack#123"
   };
         const account = await accountData.createAccount(newaccount);
         expect(account).to.be.an('object');
     });
 
     it('should update an account', async () => {
-        const accountId = 4; 
+        const accountId = 5; 
         const updateAccount = {
             email: "adrien.Hack@gmail.com",
             firstname: "IAdrien",
@@ -73,8 +74,9 @@ describe('Casalink generates the list of accounts', () => {
     });
 
     it('should delete an account', async () => {
-        const accountId = 4;
+        const accountId = 5;
         const result = await accountData.deleteAccountById(accountId);
-        expect(result).to.be.true;
-    });
+        expect(result).to.be.an('object');
+        expect(result).to.have.property('success', true);
+    });    
 });

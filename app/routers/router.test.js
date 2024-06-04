@@ -48,18 +48,6 @@ describe("Home router", () => {
     expect(response.body).to.be.an('object');
   });
 
-  // it("should respond with status 200 for GET /api/home/account/1", async () => {
-  //   const token = generateToken();
-  //   const response = await supertest(app)
-  //     .get(`/api/v${VERSION}/home/account/1`)
-  //     .set('Authorization', `Bearer ${token}`)
-  //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   expect(response.status).to.equal(200);
-  //   expect(response.body).to.be.an('object');
-  // }); ne marche pas
-
   it("should respond with status 200 for POST /api/home", async () => {
     const token = generateToken();
     const response = await supertest(app)
@@ -387,7 +375,7 @@ describe("Account router", () => {
   it("should update an account", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .patch(`/api/v${VERSION}/account/1`)
+      .patch(`/api/v${VERSION}/account/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
       .send({
@@ -406,7 +394,7 @@ describe("Account router", () => {
   it("should delete an account", async () => {
     const token = generateToken();
     const response = await supertest(app)
-      .delete(`/api/v${VERSION}/account/1`)
+      .delete(`/api/v${VERSION}/account/4`)
       .set('Authorization', `Bearer ${token}`)
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
