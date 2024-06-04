@@ -7,7 +7,8 @@ const taskDataMapper = {
   // Find all the tasks
   async findAllTask(){
     try {
-      const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "profile_has_task".task_id = "task".id ORDER BY task.start_date ASC;');
+      // const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "profile_has_task".task_id = "task".id ORDER BY task.start_date ASC;');
+     const result = await pool.query('SELECT * FROM "task" ORDER BY start_date ASC;');
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
@@ -18,19 +19,21 @@ const taskDataMapper = {
   async findAllTaskByAccountId(account_id) {
     try {
       const result = await pool.query(`
-        SELECT 
-          tsk.id AS task_id,
-          tsk.name AS task_name,
-          tsk.start_date AS task_start_date,
-          tsk.end_date AS task_end_date,
-          tsk.reward_point AS task_reward_point,
-          tsk.priority AS task_priority,
-          tsk.status AS task_status,
-          tsk.description AS task_description
-        FROM 
-          "task" tsk
-        WHERE 
-          tsk.account_id = $1;
+      SELECT 
+  tsk.id AS task_id,
+  tsk.name AS task_name,
+  tsk.start_date AS task_start_date,
+  tsk.end_date AS task_end_date,
+  tsk.reward_point AS task_reward_point,
+  tsk.priority AS task_priority,
+  tsk.status AS task_status,
+  tsk.description AS task_description
+FROM 
+  "task" tsk
+INNER JOIN 
+  "account" acc ON tsk.account_id = acc.id
+WHERE 
+  acc.id = $1;
       `, [account_id]);
       return result.rows;
     } catch (error) {
@@ -83,14 +86,14 @@ const taskDataMapper = {
   // ----------- CREATE TASK -----------
 
   // Create a new task
-  async createTaskByProfileId(taskData, profile_id) {
+  async createTaskByProfileId(taskData, profile_id, account_id) {
     try {
       const { name, start_date, end_date, reward_point, priority, status, description, category_id } = taskData;
       
       const result = await pool.query(
         `WITH new_task AS (
-            INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id")
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO "task" ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "account_id")
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $10)
             RETURNING *
          ),
          profile_task AS (
@@ -98,7 +101,7 @@ const taskDataMapper = {
             VALUES ($9, (SELECT id FROM new_task))
          )
          SELECT * FROM new_task;`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id]
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id, account_id]
       );
   
       const newTask = result.rows[0];
@@ -106,8 +109,8 @@ const taskDataMapper = {
     } catch (error) {
       throw new DbError(error.message);
     }
-  }
-  ,
+  },
+
 
   async createTaskByAccountId(taskData, account_id) {
     try {

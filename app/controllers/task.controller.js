@@ -63,11 +63,11 @@ const taskController = {
   createOneTaskByProfileId: async (req, res, next) => {
     const taskData = req.body;
     const {id: profile_id} = req.params;
-    const { name, start_date } = taskData;
-    if (!name || !start_date) {
+    const { name, start_date, account_id } = taskData;
+    if (!name || !start_date || !account_id) {
       return next(new ApiError(400, 'Les données de la tâche sont incorrectes.'));
     }
-    const task = await taskDataMapper.createTaskByProfileId(taskData, profile_id);
+    const task = await taskDataMapper.createTaskByProfileId(taskData, profile_id, account_id);
     return res.json({ status: 'success', data: { task } });
   },
 

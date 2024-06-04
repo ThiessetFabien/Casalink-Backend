@@ -28,64 +28,11 @@ const profilDataMapper = {
 
   async findTaskByProfileId(id){
     try {
-      // Get the role of the profile
-      const { rows: [{ role }] } = await pool.query('SELECT role FROM "profile" WHERE id = $1', [id]);
-
-      let query = '';
-      if (role === 'child') {
-        // If the role is 'child', select only the tasks of the child
-        query = `
-          SELECT 
-            prof.id AS profile_id,
-            prof.name AS profile_name,
-            tsk.id AS task_id,
-            tsk.name AS task_name,
-            tsk.start_date AS task_start_date,
-            tsk.end_date AS task_end_date,
-            tsk.reward_point AS task_reward_point,
-            tsk.priority AS task_priority,
-            tsk.status AS task_status,
-            tsk.description AS task_description
-          FROM 
-              "profile" prof
-          JOIN 
-              "profile_has_task" pht ON prof.id = pht.profile_id
-          JOIN 
-              "task" tsk ON pht.task_id = tsk.id
-          WHERE 
-              prof.id = $1 AND prof.role = 'child';
-        `;
-      } else {
-        // If the role is 'adult', select all the tasks of the profile and its children
-        query = `
-        SELECT 
-        prof.id AS profile_id,
-        prof.name AS profile_name,
-        tsk.id AS task_id,
-	@@ -64,15 +93,27 @@ const taskDataMapper = {
-        tsk.priority AS task_priority,
-        tsk.status AS task_status,
-        tsk.description AS task_description
-    FROM 
-        "profile" prof
-    JOIN 
-        "profile_has_task" pht ON prof.id = pht.profile_id
-    JOIN 
-        "task" tsk ON pht.task_id = tsk.id
-    WHERE 
-        prof.id = $1
-    OR 
-        prof.id IN 
-        (SELECT profile_id 
-            FROM "profile_has_task" 
-              WHERE profile_id = $1 
-        AND EXISTS 
-        (SELECT 1 
-            FROM "profile" 
-              WHERE role = 'child' 
-        AND "account_id" = prof."account_id"));`;
-      }
-
+      const query = await pool.query(`
+      SELECT t.*
+      FROM task t
+      JOIN profile_has_task pht ON t.id = pht.task_id
+      WHERE pht.profile_id = $1;`, [account_id]);
       const result = await pool.query(query, [id]);
       return result.rows;
     } catch (error) {

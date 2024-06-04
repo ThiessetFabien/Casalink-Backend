@@ -43,6 +43,7 @@ export const postSchema = Joi.object({
     status: taskPartValidator,
     description: taskPartValidator,
     category_id: rewardAndCategoryPartValidator,
+    account_id: rewardAndCategoryPartValidator,
 });
 
 /**
