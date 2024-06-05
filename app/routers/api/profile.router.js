@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/profile.js';
 import validate from '../../validation/validator.js';
@@ -59,7 +61,7 @@ router.get('/profile/:id', cw(profileController.getProfileById));
 *@return {ApiJsonError} 500 - Internal  Server Error - application/json
 */
 
-router.post('/profile/', validate (postSchema, 'body'), cw(profileController.createOneProfile));
+router.post('/profile/', validate(postSchema, 'body'), cw(profileController.createOneProfile));
 
 /**
 *POST /api/profile/upload
@@ -86,7 +88,7 @@ router.post('/profile/upload', cw(profileController.imageBase64));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/profile/:id', validate (patchSchema, 'body'), cw(profileController.updateOneProfile));
+router.patch('/profile/:id', validate(patchSchema, 'body'), cw(profileController.updateOneProfile));
 
 /**
 *DELETE /api/profile/{id}

@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import ApiError from '../../errors/api.error.js';
 import taskRouter from './task.router.js';

@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable max-len */
 import express from 'express';
 import { postSchema } from '../../validation/schemas/account.js';
 import validate from '../../validation/validator.js';

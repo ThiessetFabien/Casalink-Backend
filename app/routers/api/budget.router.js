@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/budget.js';
 import validate from '../../validation/validator.js';
@@ -31,7 +33,6 @@ router.get('/budget/home/:id', cw(budgetController.getBudgetByHomeId));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-
 router.get('/budget/account/:id', cw(budgetController.getBudgetsByAccountId));
 
 /**
@@ -57,7 +58,6 @@ router.get('/budget/:id', cw(budgetController.getBudgetById));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-
 router.get('/budget/', cw(budgetController.getAllBudgets));
 
 /**
@@ -71,7 +71,7 @@ router.get('/budget/', cw(budgetController.getAllBudgets));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.createOneBudget));
+router.post('/budget/', validate(postSchema, 'body'), cw(budgetController.createOneBudget));
 
 /**
 *PATCH /api/budget/{id}
@@ -85,7 +85,7 @@ router.post('/budget/', validate (postSchema, 'body'), cw(budgetController.creat
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/budget/:id', validate (patchSchema, 'body'), cw(budgetController.updateOneBudget));
+router.patch('/budget/:id', validate(patchSchema, 'body'), cw(budgetController.updateOneBudget));
 
 /**
 *DELETE /api/budget/{id}

@@ -12,7 +12,7 @@ import Joi from 'joi';
  */
 
 const addressPartValidator = Joi.string().pattern(/^./);
-const postalPartValidator = Joi.string().pattern(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/).required(); // Regex to allow only 5 digits
+const postalPartValidator = Joi.string().pattern(/^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/).required();
 const cityAndCountryPartValidator = Joi.string().pattern(/^[a-zA-ZÀ-ÿ\s'-]+$/);
 
 /**
@@ -20,11 +20,11 @@ const cityAndCountryPartValidator = Joi.string().pattern(/^[a-zA-ZÀ-ÿ\s'-]+$/)
  */
 
 export const postSchema = Joi.object({
-    street: addressPartValidator,
-    city: cityAndCountryPartValidator.required(),
-    additional_information: addressPartValidator,
-    postal_code: postalPartValidator.required(),
-    country: cityAndCountryPartValidator.required(),
+  street: addressPartValidator,
+  city: cityAndCountryPartValidator.required(),
+  additional_information: addressPartValidator,
+  postal_code: postalPartValidator.required(),
+  country: cityAndCountryPartValidator.required(),
 });
 
 /**
@@ -32,9 +32,9 @@ export const postSchema = Joi.object({
  */
 
 export const patchSchema = Joi.object({
-    street: addressPartValidator,
-    city: cityAndCountryPartValidator.required(),
-    additional_information: addressPartValidator,
-    postal_code: postalPartValidator.required(),
-    country: cityAndCountryPartValidator.required(),
+  street: addressPartValidator,
+  city: cityAndCountryPartValidator.required(),
+  additional_information: addressPartValidator,
+  postal_code: postalPartValidator.required(),
+  country: cityAndCountryPartValidator.required(),
 });

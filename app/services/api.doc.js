@@ -3,8 +3,8 @@ import expressJSDocSwagger from 'express-jsdoc-swagger';
 const options = {
   info: {
     version: '1.0.0',
-    title: "CasaLink",
-    description: "Gestion de planification familiale",
+    title: 'CasaLink',
+    description: 'Gestion de planification familiale',
   },
   baseDir: './app/routers',
 

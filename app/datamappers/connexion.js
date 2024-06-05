@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { config } from 'dotenv';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';

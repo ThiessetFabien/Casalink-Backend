@@ -11,16 +11,15 @@ import Joi from 'joi';
 const budgetPartValidator = Joi.string().pattern(/^./);
 const amountPartValidator = Joi.string().pattern(/^\d+(\.\d{1,2})?$/).required();
 
-
 /**
  * Budget schema for the POST method
  */
 
 export const postSchema = Joi.object({
-    category: budgetPartValidator,
-    amount: amountPartValidator,
-    name: budgetPartValidator,
-    description: budgetPartValidator,
+  category: budgetPartValidator,
+  amount: amountPartValidator,
+  name: budgetPartValidator,
+  description: budgetPartValidator,
 });
 
 /**
@@ -28,8 +27,8 @@ export const postSchema = Joi.object({
  */
 
 export const patchSchema = Joi.object({
-    category: budgetPartValidator,
-    amount: amountPartValidator,
-    name: budgetPartValidator,
-    description: budgetPartValidator,
+  category: budgetPartValidator,
+  amount: amountPartValidator,
+  name: budgetPartValidator,
+  description: budgetPartValidator,
 });

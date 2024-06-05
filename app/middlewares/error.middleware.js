@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
+import { config } from 'dotenv';
 import logger from '../utils/logger.js';
 import ApiError from '../errors/api.error.js';
-import DbError from '../errors/dbError.js'; 
-import { config } from 'dotenv';
+import DbError from '../errors/dbError.js';
+
 config({ path: `.env.${process.env.NODE_ENV}` });
 
 /**
@@ -31,23 +35,23 @@ export default (err, __, res, next) => {
   } else if (err instanceof DbError) {
     status = 500;
     message = 'Database error occurred';
-  } 
+  }
 
   // Error handling of specific database errors
   if (code === '23505') {
     status = 400;
     message = 'Resource already exists';
-  } 
+  }
 
   // Error handling of 404 errors
   if (status === 404) {
     message = 'Resource not found';
-  } 
+  }
 
   // Error handling of 401 errors
   if (status === 401) {
     message = 'Unauthorized';
-  } 
+  }
 
   // Error handling of 403 errors
   if (status === 403) {

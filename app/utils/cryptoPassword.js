@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 /**
  * Hash a plain password
@@ -12,10 +12,10 @@ async function hash(plainPassword) {
   return hashedPassword;
 }
 /**
- * 
+ *
  * @param {string} plainPassword The plain password to compare
  * @param {string} hashedPassword - The hashed password to compare against
- * @returns {Promise<boolean>} - A boolean indicating if the plain password matches the hashed password
+ * @returns {Promise<boolean>} - A Boolean that tells you whether the password matches the hash
  */
 async function compare(plainPassword, hashedPassword) {
   const isMatching = await bcrypt.compare(plainPassword, hashedPassword);

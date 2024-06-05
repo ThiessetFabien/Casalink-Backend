@@ -1,17 +1,18 @@
+/* eslint-disable import/extensions */
 import express from 'express';
-import errorMiddleware from "../middlewares/error.middleware.js";
+import { config } from 'dotenv';
+import errorMiddleware from '../middlewares/error.middleware.js';
 import logger from '../utils/logger.js';
 
 import apiRouter from './api/index.api.js';
 
-import { config } from 'dotenv';
-config({ path: `.env.development` });
+config({ path: '.env.development' });
 
 const router = express.Router();
 
 const VERSION = process.env.VERSION || 1;
 
-router.use((req, __ , next) => {
+router.use((req, __, next) => {
   logger.http(`${req.method} ${req.originalUrl}`);
   next();
 });

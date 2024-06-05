@@ -1,5 +1,6 @@
-import app from './index.js';
+/* eslint-disable import/extensions */
 import debugLib from 'debug';
+import app from './index.js';
 
 const debug = debugLib('app:server');
 const PORT = process.env.PORT ?? 3000;

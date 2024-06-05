@@ -1,17 +1,21 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
 // Import dependencies
 import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import bodyParser from 'body-parser';
-import router from './app/routers/router.js';
-import createDoc from './app/services/api.doc.js';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import bodySanitizer from './app/middlewares/bodySanitizer.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Load environment variables 
+// Load environment variables
 import { config } from 'dotenv';
+import bodySanitizer from './app/middlewares/bodySanitizer.js';
+import createDoc from './app/services/api.doc.js';
+import router from './app/routers/router.js';
+
 config({ path: `.env.${process.env.NODE_ENV}` });
 const VERSION = process.env.VERSION || 1;
 
@@ -32,7 +36,7 @@ app.use(express.json());
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 200,
-  message: "Too many requests from this IP, please try again after an hour"
+  message: 'Too many requests from this IP, please try again after an hour',
 });
 
 app.use(globalLimiter);

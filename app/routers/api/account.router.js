@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable max-len */
 import express from 'express';
 import { patchSchema } from '../../validation/schemas/account.js';
 import validate from '../../validation/validator.js';
@@ -57,7 +59,7 @@ router.get('/account/', cw(accountController.getAllAccounts));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/account/:id',validate (patchSchema, 'body'), cw(accountController.updateOneAccount));
+router.patch('/account/:id', validate(patchSchema, 'body'), cw(accountController.updateOneAccount));
 
 /**
 *DELETE /api/account/{id}
