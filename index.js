@@ -16,7 +16,7 @@ import bodySanitizer from './app/middlewares/bodySanitizer.js';
 import createDoc from './app/services/api.doc.js';
 import router from './app/routers/router.js';
 
-config({ path: `.env` });
+config({ path: '.env' });
 
 const debug = debugLib('app:server');
 
@@ -38,7 +38,7 @@ app.use(express.json());
 //   message: 'Too many requests from this IP, please try again after an hour',
 // });
 
-app.use(globalLimiter);
+// app.use(globalLimiter);
 
 // app.use(sessionMiddleware);
 app.use(bodySanitizer);
