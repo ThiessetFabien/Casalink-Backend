@@ -183,7 +183,7 @@ const taskDataMapper = {
           reward_point = $4,
           priority = $5,
           status = $6,
-          description = $7,
+          description = $7
         WHERE id = $8 RETURNING *;`,
         [name, start_date, end_date, reward_point, priority, status, description, id],
       );
