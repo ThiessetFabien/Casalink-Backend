@@ -9,13 +9,21 @@ const taskDataMapper = {
   // ----------- FIND TASK -----------
   async findAllTask() {
     try {
+    //   const result = await pool.query(
+    //     `SELECT task.*, profile.role
+    //  FROM task
+    //  JOIN profile_has_task ON task.id = profile_has_task.task_id
+    //  JOIN profile ON profile_has_task.profile_id = profile.id;
+    //  `,
+    //   );
       const result = await pool.query(
-        `SELECT task.*, profile.role 
-     FROM task 
-     JOIN profile_has_task ON task.id = profile_has_task.task_id 
-     JOIN profile ON profile_has_task.profile_id = profile.id;
-     `,
+        `SELECT task.*, profile.role, profile.id as profile_id
+      FROM task 
+      JOIN profile_has_task ON task.id = profile_has_task.task_id 
+      JOIN profile ON profile_has_task.profile_id = profile.id;
+   `,
       );
+
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
