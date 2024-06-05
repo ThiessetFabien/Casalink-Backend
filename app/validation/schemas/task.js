@@ -13,6 +13,7 @@ import Joi from 'joi';
 * @returns {ApiJsonSucces} - a task object
 */
 const taskPartValidator = Joi.string().pattern(/^./);
+const profileIDPartValidator = Joi.number().integer();
 const timestampPartValidator = Joi.date().iso();
 const rewardAndCategoryPartValidator = Joi.number().integer();
 
@@ -57,4 +58,5 @@ export const patchSchema = Joi.object({
   status: taskPartValidator,
   description: taskPartValidator,
   category_id: rewardAndCategoryPartValidator,
+  profile_id: profileIDPartValidator,
 });

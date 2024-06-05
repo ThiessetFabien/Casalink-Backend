@@ -10,7 +10,6 @@ const client = new Pool({
   password: process.env.PGPASSWORD,
 });
 client.connect();
-
 const sessionMiddleware = session({
   store: new pgSession({
     pool: client,
@@ -24,7 +23,7 @@ const sessionMiddleware = session({
     maxAge: 24 * 60 * 60 * 1000,
   },
   resave: false,
-  cookie: { secure: false }, // The cookie is transmitted in HTTP, not HTTPS
+  cookie: { secure: false },
 });
 
 export default sessionMiddleware;

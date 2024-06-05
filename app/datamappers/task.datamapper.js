@@ -1,117 +1,95 @@
-/* eslint-disable import/extensions */
-/* eslint-disable max-len */
-/* eslint-disable camelcase */
-import pool from './connexion.js';
-import DbError from '../errors/dbError.js';
+import pool from "./connexion.js";
+import DbError from "../errors/dbError.js";
 
 const taskDataMapper = {
 
-  // ----------- FIND TASK -----------
-  async findAllTask() {
+// ----------- FIND TASK -----------
+  // Find all the tasks
+  async findAllTask(){
     try {
-    //   const result = await pool.query(
-    //     `SELECT task.*, profile.role
-    //  FROM task
-    //  JOIN profile_has_task ON task.id = profile_has_task.task_id
-    //  JOIN profile ON profile_has_task.profile_id = profile.id;
-    //  `,
-    //   );
-      const result = await pool.query(
-        `SELECT task.*, profile.role, profile.id as profile_id
-      FROM task 
-      JOIN profile_has_task ON task.id = profile_has_task.task_id 
-      JOIN profile ON profile_has_task.profile_id = profile.id;
-   `,
-      );
-
+      // const result = await pool.query('SELECT * FROM "task" JOIN "profile_has_task" ON "profile_has_task".task_id = "task".id ORDER BY task.start_date ASC;');
+     const result = await pool.query('SELECT * FROM "task" ORDER BY start_date ASC;');
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
+  // find all tasks for the profiles of a specific account
   async findAllTaskByAccountId(account_id) {
     try {
       const result = await pool.query(
-        `SELECT DISTINCT ON (tsk.id)
-      tsk.id AS task_id,
-      tsk.name AS task_name,
-      tsk.start_date AS task_start_date,
-      tsk.end_date AS task_end_date,
-      tsk.reward_point AS task_reward_point,
-      tsk.priority AS task_priority,
-      tsk.status AS task_status,
-      tsk.description AS task_description,
-      COALESCE(prof.role, 'unassigned') AS profile_role,
-      prof.name AS profile_name
-  FROM 
-      "task" tsk
-  LEFT JOIN 
-      "profile_has_task" pht ON tsk.id = pht.task_id
-  LEFT JOIN 
-      "profile" prof ON pht.profile_id = prof.id
-  WHERE 
-      tsk.account_id = $1;`,
-        [account_id],
-      );
+      `SELECT 
+        tsk.id AS task_id,
+        tsk.name AS task_name,
+        tsk.start_date AS task_start_date,
+        tsk.end_date AS task_end_date,
+        tsk.reward_point AS task_reward_point,
+        tsk.priority AS task_priority,
+        tsk.status AS task_status,
+        tsk.description AS task_description
+      FROM 
+        "task" tsk
+      INNER JOIN 
+        "account" acc ON tsk.account_id = acc.id
+      WHERE 
+        acc.id = $1;`,
+       [account_id]);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
-  },
+  },  
 
-  async findTaskById(id) {
+  // Find a task by its id
+  async findTaskById(id){
     try {
-      const result = await pool.query(`SELECT task.*, profile.role 
-      FROM task 
-      JOIN profile_has_task ON task.id = profile_has_task.task_id 
-      JOIN profile ON profile_has_task.profile_id = profile.id 
-      WHERE task.id =$1;`, [id]);
+      const result = await pool.query('SELECT * FROM "task" WHERE id=$1;', [id]);
+      console.log(result.rows[0]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
-  async findTaskByProfileId(id) {
+  // All the tasks of a specific profile
+  async findTaskByProfileId(id){
     try {
       const result = await pool.query(
-        `SELECT 
-      prof.id AS profile_id,
-      prof.name AS profile_name,
-      prof.role AS profile_role,
-      tsk.id AS task_id,
-      tsk.name AS task_name,
-      tsk.start_date AS task_start_date,
-      tsk.end_date AS task_end_date,
-      tsk.reward_point AS task_reward_point,
-      tsk.priority AS task_priority,
-      tsk.status AS task_status,
-      tsk.description AS task_description
-    FROM 
-        "profile" prof
-    JOIN 
-        "profile_has_task" pht ON prof.id = pht.profile_id
-    JOIN 
-        "task" tsk ON pht.task_id = tsk.id
-    WHERE 
-        prof.id = $1;`,
-        [id],
-      );
+      `SELECT 
+        prof.id AS profile_id,
+        prof.name AS profile_name,
+        tsk.id AS task_id,
+        tsk.name AS task_name,
+        tsk.start_date AS task_start_date,
+        tsk.end_date AS task_end_date,
+        tsk.reward_point AS task_reward_point,
+        tsk.priority AS task_priority,
+        tsk.status AS task_status,
+        tsk.description AS task_description
+      FROM 
+          "profile" prof
+      JOIN 
+          "profile_has_task" pht ON prof.id = pht.profile_id
+      JOIN 
+          "task" tsk ON pht.task_id = tsk.id
+      WHERE 
+          prof.id = $1;`,
+         [id]);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
+
   // ----------- CREATE TASK -----------
 
+  // Create a new task
   async createTaskByProfileId(taskData, profile_id, account_id) {
     try {
-      const {
-        name, start_date, end_date, reward_point, priority, status, description, category_id,
-      } = taskData;
-
+      const { name, start_date, end_date, reward_point, priority, status, description, category_id } = taskData;
+      
       const result = await pool.query(
         `WITH new_task AS (
             INSERT INTO "task" 
@@ -124,9 +102,9 @@ const taskDataMapper = {
             VALUES ($9, (SELECT id FROM new_task))
          )
          SELECT * FROM new_task;`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id, account_id],
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id, account_id]
       );
-
+  
       const newTask = result.rows[0];
       return newTask;
     } catch (error) {
@@ -134,14 +112,13 @@ const taskDataMapper = {
     }
   },
 
+
   async createTaskByAccountId(taskData, account_id) {
     try {
-      const {
-        name, start_date, end_date, reward_point, priority, status, description, category_id,
-      } = taskData;
+      const { name, start_date, end_date, reward_point, priority, status, description, category_id } = taskData;
       const accountExists = await pool.query(
-        'SELECT 1 FROM "account" WHERE "id" = $1',
-        [account_id],
+        `SELECT 1 FROM "account" WHERE "id" = $1`,
+        [account_id]
       );
       if (accountExists.rowCount === 0) {
         throw new DbError('Le compte spécifié n\'existe pas.');
@@ -151,26 +128,26 @@ const taskDataMapper = {
         ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "account_id")
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
          RETURNING *`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, account_id],
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, account_id]
       );
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }
   },
+  
 
   // ----------- UPDATE TASK -----------
 
   async updateTask(id, taskData) {
     try {
+
       if (!id || !taskData) {
         throw new Error('L\'identifiant ou les données de la tâche sont manquants.');
       }
 
-      const {
-        name, start_date, end_date, reward_point, priority, status, description, category_id,
-      } = taskData;
-
+      const { name, start_date, end_date, reward_point, priority, status, description, category_id } = taskData;
+      
       const result = await pool.query(
         `UPDATE "task" 
           SET name = $1, 
@@ -182,7 +159,7 @@ const taskDataMapper = {
           description = $7, 
           category_id = $8 
         WHERE id = $9 RETURNING *;`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, id],
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, id]
       );
       return result.rows[0];
     } catch (error) {
@@ -190,6 +167,7 @@ const taskDataMapper = {
     }
   },
   // ----------- DELETE TASK -----------
+  // Delete a task by its id
   async deleteTaskById(id) {
     try {
       if (!id) {
@@ -200,7 +178,7 @@ const taskDataMapper = {
     } catch (error) {
       throw new DbError(error.message);
     }
-  },
-};
+  }
+}
 
 export default taskDataMapper;

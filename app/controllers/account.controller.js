@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 /* eslint-disable radix */
 /* eslint-disable import/extensions */
@@ -58,13 +59,11 @@ const accountController = {
     if (checkAccount) {
       return next(new ApiError(400, 'Cet email est déjà utilisé'));
     }
-    // creating a default home
     const homeData = 'Mon foyer';
     const home = await homeDataMapper.createHome(homeData);
     if (!home) {
       return next(new ApiError(500, 'La création du foyer a échoué.'));
     }
-    // creating an account with the home_id
     const accountDataWithHomeId = {
       firstname,
       lastname,
@@ -77,7 +76,6 @@ const accountController = {
       await homeDataMapper.deleteHomeById(home.id);
       return next(new ApiError(500, 'La création du compte a échoué.'));
     }
-    // creating a profile with the account_id
     const profileData = {
       name: `${firstname} ${lastname}`,
       pin: '0000',
@@ -85,12 +83,12 @@ const accountController = {
       birthdate: '1994-10-05',
       image: null,
       email: `${email}`,
+      role: 'adult',
       account_id: account.id,
     };
 
     const createdProfile = await profilDataMapper.createProfile(profileData);
     if (!createdProfile) {
-      // rollback account creation and home creation if profile creation fails
       await accountDataMapper.deleteAccountById(account.id);
       await homeDataMapper.deleteHomeById(home.id);
       return next(new ApiError(500, 'La création du profil a échoué.'));
@@ -110,21 +108,17 @@ const accountController = {
 
   loginForm: async (req, res, next) => {
     const { email, password } = req.body;
-
     const account = await accountDataMapper.findAccountByEmail(email);
     console.log('account', account);
     if (!account) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
-
     const isMatch = await bcrypt.compare(password, account.password);
     console.log('isMatch', isMatch);
     if (!isMatch) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
-    // Récupérer les tâches associées à l'utilisateur
     const tasks = await taskDataMapper.findAllTaskByAccountId(account.id);
-    // req.session.accountId = account.id;
     const token = generateToken(account);
     console.log('Generated Token:', token);
     return res.json({
@@ -132,7 +126,7 @@ const accountController = {
       token,
       data: {
         account,
-        tasks, // Ajouter les tâches à la réponse
+        tasks,
       },
     });
   },
@@ -162,7 +156,6 @@ const accountController = {
     const updateAccount = await accountDataMapper.updateAccount(id, updateAccountData);
     const account_id = req.session.accountId;
     req.session.tasks = await taskDataMapper.findAllTaskByAccountId(account_id);
-
     return res.json({ status: 'success', data: { updateAccount, tasks: req.session.tasks } });
   },
 

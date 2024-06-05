@@ -13,9 +13,6 @@ const taskController = {
     return res.json({ status: 'success', data: { tasks } });
   },
 
-  /*  getAllTasks ne sert à rien tant que nous n'avons pas définit la partie administrateur
- */
-
   getTaskById: async (req, res, next) => {
     const { id } = req.params;
     if (!parseInt(id)) {
