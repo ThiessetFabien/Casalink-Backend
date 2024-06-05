@@ -10,10 +10,17 @@ const taskDataMapper = {
   async findAllTask() {
     try {
       const result = await pool.query(
-        `SELECT task.*, profile.role 
-     FROM task 
-     JOIN profile_has_task ON task.id = profile_has_task.task_id 
-     JOIN profile ON profile_has_task.profile_id = profile.id;
+        ` SELECT 
+        task.*, 
+        profile.role, 
+        profile.id AS profile_id
+      FROM 
+        task
+      LEFT JOIN 
+        profile_has_task ON task.id = profile_has_task.task_id
+      LEFT JOIN 
+        profile ON profile_has_task.profile_id = profile.id
+        ORDER BY task.id ASC;
      `,
       );
       return result.rows;
@@ -54,11 +61,7 @@ const taskDataMapper = {
 
   async findTaskById(id) {
     try {
-      const result = await pool.query(`SELECT task.*, profile.role 
-      FROM task 
-      JOIN profile_has_task ON task.id = profile_has_task.task_id 
-      JOIN profile ON profile_has_task.profile_id = profile.id 
-      WHERE task.id =$1;`, [id]);
+      const result = await pool.query('SELECT * FROM task WHERE id =$1;', [id]);
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -97,7 +100,6 @@ const taskDataMapper = {
   },
 
   // ----------- CREATE TASK -----------
-
   async createTaskByProfileId(taskData, profile_id, account_id) {
     try {
       const {
@@ -106,19 +108,18 @@ const taskDataMapper = {
 
       const result = await pool.query(
         `WITH new_task AS (
-            INSERT INTO "task" 
-            ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "account_id")
-              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $10)
-            RETURNING *
-         ),
-         profile_task AS (
-            INSERT INTO "profile_has_task" ("profile_id", "task_id")
-            VALUES ($9, (SELECT id FROM new_task))
-         )
-         SELECT * FROM new_task;`,
+          INSERT INTO "task" 
+          ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "account_id")
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $10)
+          RETURNING id
+      ),
+      profile_task AS (
+          INSERT INTO "profile_has_task" ("profile_id", "task_id")
+          VALUES ($9, (SELECT id FROM new_task))
+      )
+      SELECT * FROM new_task;`,
         [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id, account_id],
       );
-
       const newTask = result.rows[0];
       return newTask;
     } catch (error) {
@@ -152,7 +153,6 @@ const taskDataMapper = {
   },
 
   // ----------- UPDATE TASK -----------
-
   async updateTask(id, taskData) {
     try {
       if (!id || !taskData) {
@@ -160,7 +160,7 @@ const taskDataMapper = {
       }
 
       const {
-        name, start_date, end_date, reward_point, priority, status, description, category_id,
+        name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id,
       } = taskData;
 
       const result = await pool.query(
@@ -172,10 +172,27 @@ const taskDataMapper = {
           priority = $5, 
           status = $6, 
           description = $7, 
-          category_id = $8 
+          category_id = $8
         WHERE id = $9 RETURNING *;`,
         [name, start_date, end_date, reward_point, priority, status, description, category_id, id],
       );
+
+      // Supprime toute association précédente de la tâche avec un profil
+      await pool.query(
+        `DELETE FROM "profile_has_task" 
+        WHERE task_id = $1;`,
+        [id],
+      );
+
+      // Si profile_id est fourni, ajoute une nouvelle association
+      if (profile_id !== null && profile_id !== undefined) {
+        await pool.query(
+          `INSERT INTO "profile_has_task" (profile_id, task_id) 
+          VALUES ($1, $2);`,
+          [profile_id, id],
+        );
+      }
+
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);

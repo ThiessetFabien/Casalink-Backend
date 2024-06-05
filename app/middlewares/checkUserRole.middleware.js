@@ -13,7 +13,6 @@ const checkAdminOrAdultRole = (req, res, next) => {
 
 const checkAdminRole = (req, res, next) => {
   const { role } = req.user;
-
   if (role === 'admin') {
     next();
   } else {
