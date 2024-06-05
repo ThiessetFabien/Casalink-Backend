@@ -114,7 +114,7 @@ router.post('/task/profile/:id', validate(postSchema, 'body'), cw(taskController
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/task/:id', validate(patchSchema, 'body'), cw(taskController.updateOneTask));
+router.patch('/task/:id', validate(patchSchema, 'body'), (taskController.updateOneTask));
 
 /**
 *DELETE /api/task/{id}

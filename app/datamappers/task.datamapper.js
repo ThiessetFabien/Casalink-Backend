@@ -173,7 +173,7 @@ const taskDataMapper = {
         throw new Error('L\'identifiant ou les données de la tâche sont manquants.');
       }
       const {
-        name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id,
+        name, start_date, end_date, reward_point, priority, status, description, profile_id,
       } = taskData;
       const result = await pool.query(
         `UPDATE "task"
@@ -184,9 +184,8 @@ const taskDataMapper = {
           priority = $5,
           status = $6,
           description = $7,
-          category_id = $8
-        WHERE id = $9 RETURNING *;`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, id],
+        WHERE id = $8 RETURNING *;`,
+        [name, start_date, end_date, reward_point, priority, status, description, id],
       );
       // Supprime toute association précédente de la tâche avec un profil
       await pool.query(
