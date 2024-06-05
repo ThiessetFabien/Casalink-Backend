@@ -16,8 +16,7 @@ import bodySanitizer from './app/middlewares/bodySanitizer.js';
 import createDoc from './app/services/api.doc.js';
 import router from './app/routers/router.js';
 
-config({ path: `.env.${process.env.NODE_ENV}` });
-const VERSION = process.env.VERSION || 1;
+config({ path: `.env` });
 
 const debug = debugLib('app:server');
 
@@ -53,9 +52,6 @@ app.use(bodySanitizer);
  */
 
 createDoc(app);
-
-// Starting server
-const PORT = process.env.PORT ?? 3000;
 
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
