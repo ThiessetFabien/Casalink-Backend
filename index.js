@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 
 // Load environment variables 
 import { config } from 'dotenv';
-config({ path: `.env.${process.env.NODE_ENV}` });
+config({ path: `.env` });
 const VERSION = process.env.VERSION || 1;
 
 const debug = debugLib('app:server');
@@ -49,9 +49,6 @@ app.use(bodySanitizer);
  */
 
 createDoc(app);
-
-// Starting server
-const PORT = process.env.PORT ?? 3000;
 
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
 
