@@ -9,7 +9,7 @@ const PORT = process.env.PORT ?? 3000;
 const VERSION = process.env.VERSION || 1;
 
 if (process.env.NODE_ENV === 'production') {
-  app.listen(PORT, () => debug(`🖌️ Server ready: http://localhost:${PORT}/api/v${VERSION})`));
+  app.listen(PORT, () => debug(`🖌️ Server ready: https://projet-planning-familial-back.onrender.com/api-docs//api/v${VERSION})`));
 } else {
   app.listen(PORT, () => debug(`✨ Server ready in development mode: http://localhost:${PORT}/api/v${VERSION})`));
 }
