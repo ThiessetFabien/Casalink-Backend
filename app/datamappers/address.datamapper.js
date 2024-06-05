@@ -1,40 +1,41 @@
-import pool from "./connexion.js";
-import DbError from "../errors/dbError.js";
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+/* eslint-disable import/extensions */
+import pool from './connexion.js';
+import DbError from '../errors/dbError.js';
 
 const addressDataMapper = {
 
-// ----------- FIND ADDRESS -----------
+  // ----------- FIND ADDRESS -----------
 
-  // Find all the Addresses
-  async findAllAddress(){
-    
+  async findAllAddress() {
     try {
       const result = await pool.query(
         `SELECT * 
           FROM "address";
-      `);
+      `,
+      );
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
-  // Find a address by its id
-  async findAddressById(id){
+  async findAddressById(id) {
     try {
       const result = await pool.query(
         `SELECT * 
           FROM "address" 
-            WHERE id=$1;`
-        , [id]);
+            WHERE id=$1;`,
+        [id],
+      );
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
-  // Find a address by its user_id
-  async findAddressByAccountId(user_id){
+  async findAddressByAccountId(user_id) {
     try {
       const result = await pool.query(
         `SELECT 
@@ -42,18 +43,18 @@ const addressDataMapper = {
             FROM "address" 
           JOIN "user_has_address" ON "user_has_address".address_id = "address".id
             WHERE "user_has_address".user_id = $1;`,
-          [user_id]);
+        [user_id],
+      );
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
-  // Find a address by its home_id
-  async findAddressByHomeId(home_id){
+  async findAddressByHomeId(home_id) {
     try {
       const result = await pool.query(
-      `SELECT DISTINCT
+        `SELECT DISTINCT
         h.name AS home_name,
         a.email AS account_email,
         ad.street,
@@ -71,7 +72,8 @@ const addressDataMapper = {
           "address" ad ON aha.address_id = ad.id
       WHERE 
         h.id = $1;`,
-        [home_id]);
+        [home_id],
+      );
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
@@ -80,16 +82,16 @@ const addressDataMapper = {
 
   // ----------- CREATE ADDRESS -----------
 
-  // Create a new address
   async createAddress(addressData) {
     try {
-      const { street, city, additional_information, postal_code, country } = addressData;
+      const {
+        street, city, additional_information, postal_code, country,
+      } = addressData;
       const result = await pool.query(
         `INSERT INTO "address" 
           (street, city, additional_information, postal_code, country) 
-        VALUES ($1, $2, $3, $4, $5) RETURNING *;`
-        ,
-        [street, city, additional_information, postal_code, country]
+        VALUES ($1, $2, $3, $4, $5) RETURNING *;`,
+        [street, city, additional_information, postal_code, country],
       );
       return result.rows[0];
     } catch (error) {
@@ -100,7 +102,9 @@ const addressDataMapper = {
   // ----------- UPDATE ADDRESS -----------
   async updateAddress(id, addressData) {
     try {
-      const { street, city, additional_information, postal_code, country } = addressData;
+      const {
+        street, city, additional_information, postal_code, country,
+      } = addressData;
       const result = await pool.query(
         `UPDATE "address" 
           SET street = $1, 
@@ -108,7 +112,7 @@ const addressDataMapper = {
           postal_code = $4, 
           country = $5 
         WHERE id = $6 RETURNING *;`,
-        [street, city, additional_information, postal_code, country, id]
+        [street, city, additional_information, postal_code, country, id],
       );
       return result.rows[0];
     } catch (error) {
@@ -117,20 +121,20 @@ const addressDataMapper = {
   },
 
   // ----------- DELETE address -----------
-  // Delete a address by its id
   async deleteAddressById(id) {
     try {
       const result = await pool.query(
         `DELETE
            FROM "address" 
-          WHERE id = $1;`
-        , [id]);
+          WHERE id = $1;`,
+        [id],
+      );
       console.log('result deleteAddressById', result.rows);
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
-  }
-}
+  },
+};
 
 export default addressDataMapper;

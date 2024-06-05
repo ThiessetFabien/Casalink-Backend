@@ -1,9 +1,9 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/home.js';
 import validate from '../../validation/validator.js';
 import homeController from '../../controllers/home.controller.js';
 import cw from '../../middlewares/controller.wrapper.js';
-// import {checkAdminOrAdultRole, checkAdultOrChildRole, checkAdminRole} from '../../middlewares/checkUserRole.middleware.js';
 
 const router = express.Router();
 
@@ -31,7 +31,6 @@ router.get('/home/:id', cw(homeController.getHomeById));
 
 router.get('/home/', cw(homeController.getAllHomes));
 
-
 /**
 *POST /api/home
 *@summary Create a new Home
@@ -43,7 +42,7 @@ router.get('/home/', cw(homeController.getAllHomes));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOneHome));
+router.post('/home/', validate(postSchema, 'body'), cw(homeController.createOneHome));
 
 /**
 *PATCH /api/home/{id}
@@ -57,7 +56,7 @@ router.post('/home/', validate (postSchema, 'body'), cw(homeController.createOne
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/home/:id', validate (patchSchema, 'body'), cw(homeController.updateOneHome));
+router.patch('/home/:id', validate(patchSchema, 'body'), cw(homeController.updateOneHome));
 
 /**
 *DELETE /api/home/{id}

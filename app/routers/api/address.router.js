@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/adress.js';
 import validate from '../../validation/validator.js';
@@ -40,7 +42,6 @@ router.get('/address/:id', cw(addressController.getAddressById));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-
 router.get('/address/', cw(addressController.getAllAddress));
 
 /**
@@ -54,7 +55,7 @@ router.get('/address/', cw(addressController.getAllAddress));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/address/', validate (postSchema, 'body'), cw(addressController.createOneAddress));
+router.post('/address/', validate(postSchema, 'body'), cw(addressController.createOneAddress));
 
 /**
 *PATCH /api/address/{id}
@@ -68,7 +69,7 @@ router.post('/address/', validate (postSchema, 'body'), cw(addressController.cre
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/address/:id', validate (patchSchema, 'body'), cw(addressController.updateOneAddress));
+router.patch('/address/:id', validate(patchSchema, 'body'), cw(addressController.updateOneAddress));
 
 /**
 *DELETE /api/address/{id}

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { config } from 'dotenv';
 
 config({ path: `/.env` });

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import Joi from 'joi';
 
 /**
@@ -10,14 +11,13 @@ import Joi from 'joi';
 const categoryPartValidator = Joi.string().pattern(/^./).required();
 const colorPartValidator = Joi.string().pattern(/(rgba?|RGB)\((?<r>[.\d]+)[, ]+(?<g>[.\d]+)[, ]+(?<b>[.\d]+)(?:\s?[,\/]\s?(?<a>[.\d]+%?))?\)/);
 
-
 /**
  * Category schema for the GET method
  */
 
 export const getSchema = Joi.object({
-    name: categoryPartValidator,
-    color: colorPartValidator,
+  name: categoryPartValidator,
+  color: colorPartValidator,
 });
 
 /**
@@ -25,8 +25,8 @@ export const getSchema = Joi.object({
  */
 
 export const postSchema = Joi.object({
-    name: categoryPartValidator,
-    color: colorPartValidator,
+  name: categoryPartValidator,
+  color: colorPartValidator,
 });
 
 /**
@@ -34,6 +34,6 @@ export const postSchema = Joi.object({
  */
 
 export const patchSchema = Joi.object({
-    name: categoryPartValidator,
-    color: colorPartValidator,
+  name: categoryPartValidator,
+  color: colorPartValidator,
 });
