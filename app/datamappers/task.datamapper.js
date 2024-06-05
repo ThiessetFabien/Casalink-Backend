@@ -172,40 +172,36 @@ const taskDataMapper = {
       if (!id || !taskData) {
         throw new Error('L\'identifiant ou les données de la tâche sont manquants.');
       }
-
       const {
-        name, start_date, end_date, reward_point, priority, status, description, profile_id,
+        name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id,
       } = taskData;
-
       const result = await pool.query(
-        `UPDATE "task" 
-          SET name = $1, 
-          start_date = $2, 
-          end_date = $3, 
-          reward_point = $4, 
-          priority = $5, 
-          status = $6, 
-          description = $7, 
-        WHERE id = $8 RETURNING *;`,
-        [name, start_date, end_date, reward_point, priority, status, description, id],
+        `UPDATE "task"
+          SET name = $1,
+          start_date = $2,
+          end_date = $3,
+          reward_point = $4,
+          priority = $5,
+          status = $6,
+          description = $7,
+          category_id = $8
+        WHERE id = $9 RETURNING *;`,
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, id],
       );
-
       // Supprime toute association précédente de la tâche avec un profil
       await pool.query(
-        `DELETE FROM "profile_has_task" 
+        `DELETE FROM "profile_has_task"
         WHERE task_id = $1;`,
         [id],
       );
-
       // Si profile_id est fourni, ajoute une nouvelle association
       if (profile_id !== null && profile_id !== undefined) {
         await pool.query(
-          `INSERT INTO "profile_has_task" (profile_id, task_id) 
+          `INSERT INTO "profile_has_task" (profile_id, task_id)
           VALUES ($1, $2);`,
           [profile_id, id],
         );
       }
-
       return result.rows[0];
     } catch (error) {
       throw new DbError(error.message);
