@@ -12,14 +12,14 @@ const homePartValidator = Joi.string().pattern(/^./);
  * Home schema for the POST method
  */
 export const postSchema = Joi.object({
-    shopping_list: homePartValidator,
-    name: homePartValidator.required(),
+  shopping_list: homePartValidator,
+  name: homePartValidator.required(),
 });
 
 /**
  * Home schema for the PATCH method
  */
 export const patchSchema = Joi.object({
-    shopping_list: homePartValidator,
-    name: homePartValidator.required(),
+  shopping_list: homePartValidator,
+  name: homePartValidator.required(),
 });

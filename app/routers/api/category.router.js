@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/category.js';
 import validate from '../../validation/validator.js';
@@ -43,7 +44,7 @@ router.get('/category/:id', cw(categoryController.getCategoryById));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/category/', validate (postSchema, 'body'), cw(categoryController.createOneCategory));
+router.post('/category/', validate(postSchema, 'body'), cw(categoryController.createOneCategory));
 
 /**
 *PATCH /api/category/{id}
@@ -57,7 +58,7 @@ router.post('/category/', validate (postSchema, 'body'), cw(categoryController.c
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/category/:id', validate (patchSchema, 'body'), cw(categoryController.updateOneCategory));
+router.patch('/category/:id', validate(patchSchema, 'body'), cw(categoryController.updateOneCategory));
 
 /**
 *DELETE /api/category/{id}

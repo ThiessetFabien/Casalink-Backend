@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/task.js';
 import validate from '../../validation/validator.js';
@@ -83,7 +85,7 @@ router.get('/task/account/:id', cw(taskController.getTaskByAccountId));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByAccountId));
+router.post('/task/account/:id', validate(postSchema, 'body'), cw(taskController.createOneTaskByAccountId));
 
 /**
 *POST /api/task/profile/{id}
@@ -97,7 +99,7 @@ router.post('/task/account/:id', validate (postSchema, 'body'), cw(taskControlle
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/task/profile/:id', validate (postSchema, 'body'), cw(taskController.createOneTaskByProfileId));
+router.post('/task/profile/:id', validate(postSchema, 'body'), cw(taskController.createOneTaskByProfileId));
 
 /**
 *PATCH /api/task/{id}
@@ -112,7 +114,7 @@ router.post('/task/profile/:id', validate (postSchema, 'body'), cw(taskControlle
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/task/:id', validate (patchSchema, 'body'), cw(taskController.updateOneTask));
+router.patch('/task/:id', validate(patchSchema, 'body'), cw(taskController.updateOneTask));
 
 /**
 *DELETE /api/task/{id}

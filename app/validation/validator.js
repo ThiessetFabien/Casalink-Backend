@@ -1,4 +1,4 @@
-import ApiError from '../errors/api.error.js';
+/* eslint-disable consistent-return */
 
 /**
 * validate a request data source against a schema
@@ -8,16 +8,16 @@ import ApiError from '../errors/api.error.js';
 */
 
 function validate(schema, source) {
-    return (req, res, next) => {
-        const { error } = schema.validate(req[source]);
-        if (error) {
-            // return next(new ApiError(400, error.name, error.message));
-            return res.status(400).json({ 
-                message: 'Validation error',
-                details: error.details.map(detail => detail.message) 
-            });
-        }
+  return (req, res, next) => {
+    const { error } = schema.validate(req[source]);
+    if (error) {
+      // return next(new ApiError(400, error.name, error.message));
+      return res.status(400).json({
+        message: 'Validation error',
+        details: error.details.map((detail) => detail.message),
+      });
+    }
     next();
-    };
+  };
 }
 export default validate;

@@ -1,11 +1,14 @@
-import pool from "./connexion.js";
-import DbError from "../errors/dbError.js";
+/* eslint-disable import/extensions */
+/* eslint-disable no-useless-escape */
+/* eslint-disable camelcase */
+/* eslint-disable no-undef */
+import pool from './connexion.js';
+import DbError from '../errors/dbError.js';
 
 const profilDataMapper = {
 
-// ----------- FIND profile -----------
-  // Find a profile by its id
-  async findProfileById(id){
+  // ----------- FIND profile -----------
+  async findProfileById(id) {
     try {
       const result = await pool.query('SELECT * FROM "profile" WHERE id=$1;', [id]);
       return result.rows[0];
@@ -14,8 +17,7 @@ const profilDataMapper = {
     }
   },
 
-  // Find a profile by its account_id
-  async findProfileByAccountId(account_id){
+  async findProfileByAccountId(account_id) {
     try {
       const result = await pool.query(
         `SELECT 
@@ -32,23 +34,24 @@ const profilDataMapper = {
           updated_at 
         FROM "profile" 
           WHERE account_id = $1 
-            ORDER BY "name" ASC;`
-        , [account_id]);
-      console.log('date apres traitement de la query', result.rows);
+            ORDER BY "name" ASC;`,
+        [account_id],
+      );
       return result.rows;
     } catch (error) {
       throw new DbError(error.message);
     }
   },
 
-  async findTaskByProfileId(id){
+  async findTaskByProfileId(id) {
     try {
       const query = await pool.query(
-      `SELECT t.*
+        `SELECT t.*
         FROM task t
       JOIN profile_has_task pht ON t.id = pht.task_id
-        WHERE pht.profile_id = $1;`
-        , [account_id]);
+        WHERE pht.profile_id = $1;`,
+        [account_id],
+      );
       const result = await pool.query(query, [id]);
       return result.rows;
     } catch (error) {
@@ -56,14 +59,12 @@ const profilDataMapper = {
     }
   },
 
-  // Find a profile by its home_id
-  async findProfileByHomeId(home_id){
+  async findProfileByHomeId(home_id) {
     try {
       if (!home_id) {
         throw new Error('L\'identifiant du foyer est manquant.');
       }
-      const result = await pool.query(
-        `SELECT * 
+      const result = await pool.query(`SELECT * 
           FROM "profile" 
         JOIN "account" ON "profile".account_id = "account".id 
           WHERE "account".home_id = $1;
@@ -76,49 +77,49 @@ const profilDataMapper = {
 
   // ----------- CREATE PROFILE -----------
 
-  // Create a new profile
   async createProfile(profileData) {
     try {
-        const { name, pin, score, birthdate, image, email, account_id, role } = profileData;
-        const result = await pool.query(
-          `INSERT 
+      const {
+        name, pin, score, birthdate, image, email, account_id, role,
+      } = profileData;
+      const result = await pool.query(
+        `INSERT 
             INTO "profile" (name, pin, score, birthdate, image, email, account_id, role)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING *;`,
-            [name, pin, score, birthdate, image, email, account_id, role]
-        );
+        [name, pin, score, birthdate, image, email, account_id, role],
+      );
 
       return result.rows[0];
     } catch (error) {
-        throw new DbError(error.message);
+      throw new DbError(error.message);
     }
-},
+  },
   // ----------- UPDATE PROFILE -----------
   async updateProfile(id, profileData) {
     try {
-        if (!id || !profileData) {
-            throw new Error('Les données du profil ou l\'identifiant sont manquants.');
-        }
-        const { name, role, pin, score, birthdate, image, email, account_id } = profileData;
-        const query = 
-            `UPDATE "profile" 
+      if (!id || !profileData) {
+        throw new Error('Les données du profil ou l\'identifiant sont manquants.');
+      }
+      const {
+        name, role, pin, score, birthdate, image, email, account_id,
+      } = profileData;
+      const query = `UPDATE "profile" 
             SET name = $1, role = $2, pin = $3, score = $4, birthdate = $5, image = $6, email = $7, account_id = $8, updated_at = NOW()
             WHERE id = $9 
             RETURNING *;`;
-        const values = [name, role, pin, score, birthdate, image, email, account_id, id];
-        const result = await pool.query(query, values);
-        if (result.rows.length === 0) {
-            throw new Error('Aucun profil trouvé avec cet ID.');
-        }
-        return result.rows[0];
+      const values = [name, role, pin, score, birthdate, image, email, account_id, id];
+      const result = await pool.query(query, values);
+      if (result.rows.length === 0) {
+        throw new Error('Aucun profil trouvé avec cet ID.');
+      }
+      return result.rows[0];
     } catch (error) {
-        throw new DbError(error.message);
+      throw new DbError(error.message);
     }
-},
-
+  },
 
   // ----------- DELETE PROFIL -----------
-  // Delete a profile by its id
   async deleteProfileById(id) {
     try {
       if (!id) {
@@ -129,7 +130,7 @@ const profilDataMapper = {
     } catch (error) {
       throw new DbError(error.message);
     }
-  }
-}
+  },
+};
 
 export default profilDataMapper;

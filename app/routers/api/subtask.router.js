@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import { postSchema, patchSchema } from '../../validation/schemas/subtask.js';
 import validate from '../../validation/validator.js';
@@ -30,7 +31,7 @@ router.get('/subtask/:id', cw(subtaskController.getSubtaskById));
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/subtask/', validate (postSchema, 'body'), cw(subtaskController.createOneSubtask));
+router.post('/subtask/', validate(postSchema, 'body'), cw(subtaskController.createOneSubtask));
 
 /**
 *PATCH /api/subtask/{id}/
@@ -44,7 +45,7 @@ router.post('/subtask/', validate (postSchema, 'body'), cw(subtaskController.cre
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.patch('/subtask/:id', validate (patchSchema, 'body'), cw(subtaskController.updateOneSubtask));
+router.patch('/subtask/:id', validate(patchSchema, 'body'), cw(subtaskController.updateOneSubtask));
 
 /**
 *DELETE /api/subtask/{id}
