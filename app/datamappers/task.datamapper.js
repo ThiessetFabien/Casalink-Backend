@@ -118,7 +118,7 @@ const taskDataMapper = {
           VALUES ($10, (SELECT id FROM new_task))
       )
       SELECT * FROM new_task;`,
-        [name, start_date, end_date, reward_point, priority, status, description, category_id, profile_id, account_id],
+        [name, start_date, end_date, reward_point, priority, status, description, category_id, account_id, profile_id],
       );
       const newTask = result.rows[0];
       return newTask;
