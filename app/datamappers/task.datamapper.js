@@ -110,7 +110,7 @@ const taskDataMapper = {
         `WITH new_task AS (
           INSERT INTO "task" 
           ("name", "start_date", "end_date", "reward_point", "priority", "status", "description", "category_id", "account_id")
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $10)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
           RETURNING id
       ),
       profile_task AS (
