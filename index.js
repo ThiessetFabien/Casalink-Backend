@@ -53,8 +53,10 @@ app.use(bodySanitizer);
 
 createDoc(app);
 
+console.log('CORS_ORIGIN', process.env.CORS_ORIGIN);
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
+  origin: `${process.env.CORS_ORIGIN}`,
   methods: ['GET', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
