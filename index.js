@@ -53,31 +53,9 @@ app.use(bodySanitizer);
 
 createDoc(app);
 
-// app.use(cors({
-//   origin: process.env.CORS_ORIGIN, optionsSuccessStatus: 200, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization'],
-// }));
-const allowedOrigins = process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim());
-
-// CORS options
-const corsOptions = {
-  origin(origin, callback) {
-    // Allow any origin if wildcard is present
-    if (allowedOrigins.includes('*')) {
-      callback(null, true);
-    } else if (!origin || allowedOrigins.includes(origin)) {
-      // Allow requests with no origin (like mobile apps or curl requests) or from allowed origins
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200,
-};
-
-// Use CORS middleware with defined options
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: process.env.CORS_ORIGIN, methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.use(router);
 
