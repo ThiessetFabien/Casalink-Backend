@@ -54,7 +54,7 @@ app.use(bodySanitizer);
 createDoc(app);
 
 app.use(cors({
-  origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://psychic-barnacle-n86g2ne.pages.github.io', methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(router);
