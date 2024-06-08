@@ -10,10 +10,10 @@
   "scripts": {
     "testRouter": "pnpm run resetDbTest && mocha --recursive ./app/**/*.test.js --require test.config.js --require test.hooks.js",
     "testDatamappers": "pnpm run resetDbTest && mocha --recursive ./app/datamappers/test/**/*.test.js --require test.config.js --require test.hooks.js",
-    "dev": "DEBUG=app:* NODE_ENV=production npx nodemon server.js",
+    "dev": "set DEBUG=app:* && set NODE_ENV=development && npx nodemon server.js",
     "resetDB": "sqitch revert -y && sqitch deploy && psql -d casalink -f ./app/data/seeding_v1.sql",
     "resetDbTest": "psql -d casalink_test -f ./app/data/create_tables_test.sql && psql -d casalink_test -f ./app/data/seeding_v1.sql"
-    },
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
