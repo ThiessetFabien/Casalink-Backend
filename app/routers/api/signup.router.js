@@ -20,6 +20,6 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/signup', validate(postSchema, 'body'), cw(accountController.createOneAccount));
+router.post('/signup', validate(postSchema, 'body'), (accountController.createOneAccount));
 
 export default router;
