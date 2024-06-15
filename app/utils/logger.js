@@ -1,4 +1,7 @@
 import winston from 'winston';
+import path from 'path';
+
+const logDirectory = path.join('/tmp', 'logs');
 
 const {
   combine, timestamp, simple,
@@ -10,9 +13,9 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   transports: [
     new winston.transports.Console({ format: winston.format.simple() }),
-    new winston.transports.File({ filename: './logs/error.log', level: 'error' }),
-    new winston.transports.File({ filename: './logs/combined.log', level: 'info' }),
-    new winston.transports.File({ filename: './logs/access.log', level: 'http' }),
+    new winston.transports.File({ filename: path.join(logDirectory, 'error.log'), level: 'error' }),
+    new winston.transports.File({ filename: path.join(logDirectory, 'combined.log'), level: 'info' }),
+    new winston.transports.File({ filename: path.join(logDirectory, 'access.log'), level: 'http' }),
   ],
 });
 
