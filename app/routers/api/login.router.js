@@ -20,7 +20,7 @@ const router = express.Router();
 *@return {ApiJsonError} 500 - Internal Server Error - application/json
 */
 
-router.post('/login/', validate(postSchema, 'body'), cw(accountController.loginForm));
+router.post('/login/', validate(postSchema, 'body'), (accountController.loginForm));
 
 /**
  * POST /api/logout/

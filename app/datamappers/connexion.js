@@ -18,7 +18,7 @@ const pool = new Pool({
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
   ssl: {
-    rejectUnauthorized: true,
+    rejectUnauthorized: false,
     ca: fs.readFileSync(path.resolve(__dirname, '../certs/root.crt')).toString(),
     key: fs.readFileSync(path.resolve(__dirname, '../certs/client.key')).toString(),
     cert: fs.readFileSync(path.resolve(__dirname, '../certs/client.crt')).toString()
