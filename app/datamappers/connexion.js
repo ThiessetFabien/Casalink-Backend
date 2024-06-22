@@ -12,9 +12,6 @@ const pool = new Pool({
   url: process.env.PGURL,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
-  ssl: {
-    rejectUnauthorized: false,
-  },
 });
 
 export default pool;
