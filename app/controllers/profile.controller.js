@@ -6,6 +6,7 @@
 import fs from 'fs-extra';
 import profileDataMapper from '../datamappers/profile.datamapper.js';
 import ApiError from '../errors/api.error.js';
+import cloudinary from '../utils/cloudinaryConfig.js';
 
 const profileController = {
 
@@ -86,11 +87,32 @@ const profileController = {
     res.status(200).json({ filePath });
   },
 
-  imageBase64: async (req, res, next) => {
-    const options = {
-      flag: 'w+',
-    };
+  uploadImageToCloudinary: async (imageBase64, profileId) => {
+    const matches = imageBase64.match(/^data:image\/([A-Za-z-+/]+);base64/);
+    if (!matches || matches.length < 2) {
+      throw new ApiError(400, 'Invalid base64 image format.');
+    }
+    const extension = matches[1];
 
+    const base64Data = imageBase64.split(';base64,').pop();
+    const imageBuffer = Buffer.from(base64Data, 'base64');
+    const imagePath = `./tmp/${profileId}.${extension}`; // Temporary path to save the image
+
+    // Save image temporarily
+    await fs.outputFile(imagePath, imageBuffer);
+
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(imagePath, {
+      public_id: `avatars/${profileId}`,
+    });
+
+    // Remove the temporary file
+    await fs.remove(imagePath);
+
+    return result.secure_url;
+  },
+
+  imageBase64: async (req, res, next) => {
     const imageBase64 = req.body.image;
     const profileId = req.body.id;
 
@@ -98,33 +120,64 @@ const profileController = {
       return next(new ApiError(400, 'Invalid request: image and profile ID are required.'));
     }
 
-    // get extension of the image
-    const matches = imageBase64.match(/^data:image\/([A-Za-z-+/]+);base64/);
-    if (!matches || matches.length < 2) {
-      return next(new ApiError(400, 'Invalid base64 image format.'));
+    try {
+      const imageUrl = await profileController.uploadImageToCloudinary(imageBase64, profileId);
+
+      const currentProfile = await profileDataMapper.findProfileById(profileId);
+
+      if (!currentProfile) {
+        return next(new ApiError(404, "Le profil n'existe pas."));
+      }
+
+      const updateProfileData = { ...currentProfile, image: imageUrl };
+
+      const profile = await profileDataMapper.updateProfile(profileId, updateProfileData);
+
+      return res.status(200).json({ status: 'success', message: 'Image uploaded successfully!', data: { profile } });
+    } catch (error) {
+      return next(new ApiError(500, error.message));
     }
-    const extension = matches[1];
-
-    const base64Data = imageBase64.split(';base64,').pop();
-    const imageBuffer = Buffer.from(base64Data, 'base64');
-    const imagePath = `public/uploads/avatars/${profileId}.${extension}`; // path to save the image
-    await fs.outputFile(imagePath, imageBuffer, options);
-
-    const imageName = imagePath.split('public/').pop();
-
-    console.log(profileId);
-    const currentProfile = await profileDataMapper.findProfileById(profileId);
-
-    if (!currentProfile) {
-      return next(new ApiError(404, "Le profil n'existe pas."));
-    }
-
-    const updateProfileData = { ...currentProfile, image: imageName };
-
-    const profile = await profileDataMapper.updateProfile(profileId, updateProfileData);
-
-    return res.status(200).json({ status: 'success', message: 'Image uploaded successfully !' });
   },
+
+  // imageBase64: async (req, res, next) => {
+  //   const options = {
+  //     flag: 'w+',
+  //   };
+
+  //   const imageBase64 = req.body.image;
+  //   const profileId = req.body.id;
+
+  //   if (!imageBase64 || !profileId) {
+  //     return next(new ApiError(400, 'Invalid request: image and profile ID are required.'));
+  //   }
+
+  //   // get extension of the image
+  //   const matches = imageBase64.match(/^data:image\/([A-Za-z-+/]+);base64/);
+  //   if (!matches || matches.length < 2) {
+  //     return next(new ApiError(400, 'Invalid base64 image format.'));
+  //   }
+  //   const extension = matches[1];
+
+  //   const base64Data = imageBase64.split(';base64,').pop();
+  //   const imageBuffer = Buffer.from(base64Data, 'base64');
+  //   const imagePath = `public/uploads/avatars/${profileId}.${extension}`; // path to save the image
+  //   await fs.outputFile(imagePath, imageBuffer, options);
+
+  //   const imageName = imagePath.split('public/').pop();
+
+  //   console.log(profileId);
+  //   const currentProfile = await profileDataMapper.findProfileById(profileId);
+
+  //   if (!currentProfile) {
+  //     return next(new ApiError(404, "Le profil n'existe pas."));
+  //   }
+
+  //   const updateProfileData = { ...currentProfile, image: imageName };
+
+  //   const profile = await profileDataMapper.updateProfile(profileId, updateProfileData);
+
+  //   return res.status(200).json({ status: 'success', message: 'Image uploaded successfully !' });
+  // },
 };
 
 export default profileController;
