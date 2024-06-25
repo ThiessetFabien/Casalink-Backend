@@ -11,10 +11,12 @@ const generateToken = (user) => {
     role: user.role,
     email: user.email,
   };
-
+  
   const secret = process.env.JWT_SECRET;
+  
   const options = {
-    expiresIn: '1 day', // Token expiration time
+    expiresIn: '2 hours', // Token expiration time
+    algorithm: 'RS256',
   };
 
   const token = jwt.sign(payload, secret, options);
