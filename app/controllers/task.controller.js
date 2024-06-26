@@ -92,6 +92,44 @@ const taskController = {
 
     res.json({ status: 'success', data: { task } });
   },
+  validateTask: async (req, res, next) => {
+    const { id: task_id } = req.params;
+    const { profile_role } = req.body;
+
+    try {
+      const task = await taskDataMapper.findTaskById(task_id);
+      if (!task) {
+        return next(new ApiError(404, "La tâche n'existe pas."));
+      }
+
+      if (profile_role === 'child') {
+        try {
+          const updatedTask = await taskDataMapper.validateTaskByChild(task_id);
+          if (!updatedTask) {
+            return next(new ApiError(500, 'La validation de la tâche par un enfant a échoué.'));
+          }
+          return res.json({ status: 'success', message: 'La tâche a été validée avec succès.' });
+        } catch (error) {
+          return next(new ApiError(500, 'Une erreur est survenue lors de la validation de la tâche par un enfant.', error));
+        }
+      }
+
+      if (profile_role === 'adult') {
+        try {
+          const updatedTask = await taskDataMapper.validateTaskByAdult(task_id);
+          if (!updatedTask) {
+            return next(new ApiError(500, 'La validation de la tâche par un adulte a échoué.'));
+          }
+          return res.json({ status: 'success', message: 'La validation par un adulte a été effectuée avec succès.' });
+        } catch (error) {
+          return next(new ApiError(500, 'Une erreur est survenue lors de la validation de la tâche par un adulte.', error));
+        }
+      }
+      return next(new ApiError(400, 'Le rôle du profil doit être soit "child" soit "adult".'));
+    } catch (error) {
+      return next(new ApiError(500, 'Une erreur est survenue lors de la validation de la tâche.', error));
+    }
+  },
 
   deleteOneTask: async (req, res, next) => {
     const { id } = req.params;
