@@ -23,3 +23,7 @@ logs
 .env.development
 sqitch.conf
 .vercel
+
+#keys
+private_key.pem
+public_key.pem

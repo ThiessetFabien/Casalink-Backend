@@ -6,7 +6,7 @@ import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-// import rateLimit from 'express-rate-limit';
+import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
 

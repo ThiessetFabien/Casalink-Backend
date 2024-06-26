@@ -2,6 +2,9 @@ import jwt from 'jsonwebtoken';
 import { config } from 'dotenv';
 
 config({ path: '.env.development' });
+import fs from 'fs';
+
+const privateKey = fs.readFileSync(process.env.JWT_PRIVATE_KEY_PATH, 'utf8');
 
 const generateToken = (user) => {
   const payload = {
@@ -19,7 +22,7 @@ const generateToken = (user) => {
     algorithm: 'RS256',
   };
 
-  const token = jwt.sign(payload, secret, options);
+  const token = jwt.sign(payload, privateKey, options);
   return token;
 };
 
