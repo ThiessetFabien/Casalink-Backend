@@ -19,8 +19,8 @@ const accountController = {
   },
 
   getAccountById: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du compte est incorrect.'));
     }
     const account = await accountDataMapper.findAccountById(id);
@@ -32,8 +32,8 @@ const accountController = {
   },
 
   getAccountByHomeId: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du foyer est incorrect.'));
     }
     const account = await accountDataMapper.findAccountsByHomeId(id);
@@ -133,9 +133,9 @@ const accountController = {
   },
 
   updateOneAccount: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newAccountData = req.body;
-    if (!parseInt(id)) {
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const currentAccountData = await accountDataMapper.findAccountById(id);
@@ -156,8 +156,8 @@ const accountController = {
   },
 
   deleteOneAccount: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const accountExist = await accountDataMapper.findAccountById(id);
