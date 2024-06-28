@@ -12,8 +12,8 @@ const profileController = {
 
   // QUERY GET
   getProfileById: async (req, res, next) => {
-    const { id } = req.params;
-    if (isNaN(id) || parseInt(id) <= 0) {
+    const id = parseInt(req.params.id);
+    if (isNaN(id) || id <= 0) {
       return next(new ApiError(401, 'L\'identifiant du profil est incorrect.'));
     }
     const profile = await profileDataMapper.findProfileById(id);
@@ -24,8 +24,8 @@ const profileController = {
   },
 
   getProfileByAccountId: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du profil est incorrect.'));
     }
     const profile = await profileDataMapper.findProfileByAccountId(id);
@@ -37,7 +37,7 @@ const profileController = {
   },
 
   getProfileByHomeId: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const profile = await profileDataMapper.findProfileByHomeId(id);
     if (!profile) {
       res.status(404).send('Ce profil n\'existe pas');
@@ -54,7 +54,7 @@ const profileController = {
   },
 
   updateOneProfile: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newProfileData = req.body;
 
     const currentProfile = await profileDataMapper.findProfileById(id);
@@ -70,7 +70,7 @@ const profileController = {
   },
 
   deleteOneProfile: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     await profileDataMapper.deleteProfileById(id);
     res.json({ status: 'success', message: 'Le profil a bien été supprimé' });
   },

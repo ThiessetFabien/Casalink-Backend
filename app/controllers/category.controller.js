@@ -6,7 +6,7 @@ const categoryController = {
 
   // QUERY GET
   getCategoryById: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const category = await categoryDataMapper.findCategoryById(id);
     if (!category) {
       res.status(404).send('Cette category n\'existe pas');
@@ -15,7 +15,7 @@ const categoryController = {
   },
 
   getCategoryByTaskId: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const category = await categoryDataMapper.findCategoryByTaskId(id);
     if (!category) {
       res.status(404).send('Cette categorie n\'existe pas');
@@ -31,7 +31,7 @@ const categoryController = {
   },
 
   updateOneCategory: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newCategoryData = req.body;
     const currentCategoryData = await categoryDataMapper.findCategoryById(id);
     if (!currentCategoryData) {
@@ -43,7 +43,7 @@ const categoryController = {
   },
 
   deleteOneCategory: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     await categoryDataMapper.deleteCategoryById(id);
     res.json({ status: 'success', message: 'La categorie a bien été supprimée' });
   },

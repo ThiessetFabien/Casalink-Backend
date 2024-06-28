@@ -11,7 +11,7 @@ const budgetController = {
   },
 
   getBudgetById: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const budget = await budgetDataMapper.findBudgetById(id);
 
     if (!budget) {
@@ -21,7 +21,7 @@ const budgetController = {
   },
 
   getBudgetByHomeId: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const budget = await budgetDataMapper.findBudgetByHomeId(id);
 
     if (!budget) {
@@ -31,7 +31,7 @@ const budgetController = {
   },
 
   getBudgetsByAccountId: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const budgets = await budgetDataMapper.findBudgetsByAccountId(id);
 
     if (!budgets || budgets.length === 0) {
@@ -49,7 +49,7 @@ const budgetController = {
   },
 
   updateOneBudget: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newBudgetData = req.body;
     const currentBudgetData = await budgetDataMapper.findBudgetById(id);
     if (!currentBudgetData) {
@@ -61,7 +61,7 @@ const budgetController = {
   },
 
   deleteOneBudget: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     await budgetDataMapper.deleteBudgetById(id);
     res.json({ status: 'success', message: 'Le budget a bien été supprimé' });
   },

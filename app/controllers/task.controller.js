@@ -14,8 +14,8 @@ const taskController = {
   },
 
   getTaskById: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant de la tâche est incorrect."));
     }
     const task = await taskDataMapper.findTaskById(id);
@@ -26,8 +26,8 @@ const taskController = {
   },
 
   getTaskByProfileId: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const tasks = await taskDataMapper.findTaskByProfileId(id);
@@ -39,7 +39,7 @@ const taskController = {
 
   getTaskByAccountId: async (req, res, next) => {
     const { id } = req.params;
-    if (!parseInt(id)) {
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const tasks = await taskDataMapper.findAllTaskByAccountId(id);
@@ -73,8 +73,8 @@ const taskController = {
   },
 
   updateOneTask: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant de la tâche est incorrect."));
     }
     const newTaskData = req.body;
@@ -132,8 +132,8 @@ const taskController = {
   },
 
   deleteOneTask: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant de la tâche est incorrect."));
     }
     const currentTask = await taskDataMapper.findTaskById(id);
