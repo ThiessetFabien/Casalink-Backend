@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3000;
 import { config } from 'dotenv';
 config({ path: '.env' });
 
-const PORT = process.env.PORT || 3000;
-
 const options = {
   info: {
     version: '1.0.0',
