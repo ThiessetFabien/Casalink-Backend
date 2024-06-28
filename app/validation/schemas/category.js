@@ -4,7 +4,7 @@ import Joi from 'joi';
 /**
 * Response of API for a category data source
 * @typedef {object} Category
-* @property {string} name.required - Points are excluded
+* @property {string} name.required - All caracters accepted
 * @property {string} color - Only rbg or rgba color codes
 * @returns {ApiJsonSucces} - a category object
 */

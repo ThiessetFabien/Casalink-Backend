@@ -4,9 +4,9 @@ import Joi from 'joi';
 /**
 * Response of API for a account data source
 * @typedef {object} Account
-* @property {string} lastname - Points are excluded
-* @property {string} firstname - Points are excluded
-* @property {string} role - Points are excluded
+* @property {string} lastname - All caracters accepted
+* @property {string} firstname - All caracters accepted
+* @property {string} role - All caracters accepted
 * @property {string} password - Minimum 8 characters (one upper-case letter, one lower-case letter, one number and one special character)
 * @property {string} confirmPassword - Should match the password field
 * @property {string} email - A string followed by " .net ", " .com " or " .fr ". Should follow the format example@example.com

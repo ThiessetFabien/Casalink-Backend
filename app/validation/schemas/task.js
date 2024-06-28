@@ -3,13 +3,13 @@ import Joi from 'joi';
 /**
 * Response of API for a task data source
 * @typedef {object} Task
-* @property {string} name - Points are excluded
+* @property {string} name - All caracters accepted
 * @property {string} start_date - Timestamp ISO 8601 required
 * @property {string} end_date - Timestamp ISO 8601 required
-* @property {string} reward_point - Points are excluded
-* @property {string} priority - Points are excluded
-* @property {string} status - Points are excluded
-* @property {string} description - Points are excluded
+* @property {string} reward_point - All caracters accepted
+* @property {string} priority - All caracters accepted
+* @property {string} status - All caracters accepted
+* @property {string} description - All caracters accepted
 * @returns {ApiJsonSucces} - a task object
 */
 const taskPartValidator = Joi.string().pattern(/^./);

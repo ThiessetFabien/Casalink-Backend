@@ -3,9 +3,9 @@ import Joi from 'joi';
 /**
  * Response of API for a subtask data source
  * @typedef {object} Subtask
- * @property {string} name - Points are excluded
- * @property {string} description - Points are excluded
- * @property {number} task_id - Points are excluded
+ * @property {string} name - All caracters accepted
+ * @property {string} description - All caracters accepted
+ * @property {number} task_id - All caracters accepted
  * @returns {ApiJsonSucces} - a subtask object
  */
 const subtaskPartValidator = Joi.string().pattern(/^./);
