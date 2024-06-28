@@ -3,6 +3,8 @@ import { config } from 'dotenv';
 config({ path: '.env' });
 
 const PORT = process.env.PORT || 3000;
+const VERSION = process.env.VERSION || 1;
+
 import { config } from 'dotenv';
 config({ path: '.env' });
 
@@ -14,7 +16,7 @@ const options = {
   },
   servers: [
     {
-      url: `http://localhost:${PORT}`,
+      url: `http://localhost:${PORT}/api/v${VERSION}`,
       description: 'Development server',
     },
     {
