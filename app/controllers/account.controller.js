@@ -94,7 +94,6 @@ const accountController = {
       return next(new ApiError(500, 'La création du profil a échoué.'));
     }
     const token = generateToken(account);
-    console.log('Generated Token:', token);
     return res.status(201).json({
       status: 'success',
       token,
@@ -109,18 +108,15 @@ const accountController = {
   loginForm: async (req, res, next) => {
     const { email, password } = req.body;
     const account = await accountDataMapper.findAccountByEmail(email);
-    console.log('account', account);
     if (!account) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
     const isMatch = await bcrypt.compare(password, account.password);
-    console.log('isMatch', isMatch);
     if (!isMatch) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
     const tasks = await taskDataMapper.findAllTaskByAccountId(account.id);
     const token = generateToken(account);
-    console.log('Generated Token:', token);
     return res.json({
       status: 'success',
       token,
