@@ -13,8 +13,8 @@ const homeController = {
   },
 
   getHomeById: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id, 10)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du compte est incorrect.'));
     }
     const home = await homeDataMapper.findHomeById(id);
@@ -25,7 +25,7 @@ const homeController = {
   },
 
   getHomeByAccountId: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const home = await homeDataMapper.findHomeByAccountId(id);
     if (!home) {
       return next(new ApiError(404, 'Le foyer n\'existe pas.'));
@@ -41,8 +41,8 @@ const homeController = {
   },
 
   updateOneHome: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du foyer est incorrect.'));
     }
     const newHomeData = req.body;
@@ -59,8 +59,8 @@ const homeController = {
   },
 
   deleteOneHome: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du compte est incorrect.'));
     }
     const home = await homeDataMapper.findHomeById(id);

@@ -1,5 +1,7 @@
 import winston from 'winston';
 import path from 'path';
+import { config } from 'dotenv';
+config({ path: '.env' });
 
 const logDirectory = path.join('/tmp', 'logs');
 

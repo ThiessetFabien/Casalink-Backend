@@ -10,8 +10,8 @@ const subtaskController = {
   // QUERY GET
 
   getSubtaskById: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant de la sous-tâche est incorrect.'));
     }
     const subtask = await subtaskDataMapper.findSubtaskById(id);
@@ -23,7 +23,7 @@ const subtaskController = {
   },
 
   getSubtaskByTaskId: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const subtasks = await subtaskDataMapper.findSubtasksByTaskId(id);
     if (!subtasks) {
       res.status(404).send('Ces sous-taches n\'existent pas');
@@ -39,7 +39,7 @@ const subtaskController = {
   },
 
   updateOneSubtask: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newSubtaskData = req.body;
 
     const currentSubtask = await subtaskDataMapper.findSubtaskById(id);
@@ -55,7 +55,7 @@ const subtaskController = {
   },
 
   deleteOneSubtask: async (req, res) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     await subtaskDataMapper.deleteSubtaskById(id);
     res.json({ status: 'success', message: 'La sous-tache a bien été supprimée' });
   },

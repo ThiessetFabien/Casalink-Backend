@@ -19,8 +19,8 @@ const accountController = {
   },
 
   getAccountById: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du compte est incorrect.'));
     }
     const account = await accountDataMapper.findAccountById(id);
@@ -32,8 +32,8 @@ const accountController = {
   },
 
   getAccountByHomeId: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du foyer est incorrect.'));
     }
     const account = await accountDataMapper.findAccountsByHomeId(id);
@@ -94,7 +94,6 @@ const accountController = {
       return next(new ApiError(500, 'La création du profil a échoué.'));
     }
     const token = generateToken(account);
-    console.log('Generated Token:', token);
     return res.status(201).json({
       status: 'success',
       token,
@@ -109,18 +108,15 @@ const accountController = {
   loginForm: async (req, res, next) => {
     const { email, password } = req.body;
     const account = await accountDataMapper.findAccountByEmail(email);
-    console.log('account', account);
     if (!account) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
     const isMatch = await bcrypt.compare(password, account.password);
-    console.log('isMatch', isMatch);
     if (!isMatch) {
       return next(new ApiError(401, 'L\'email ou le mot de passe est incorrect'));
     }
     const tasks = await taskDataMapper.findAllTaskByAccountId(account.id);
     const token = generateToken(account);
-    console.log('Generated Token:', token);
     return res.json({
       status: 'success',
       token,
@@ -137,9 +133,9 @@ const accountController = {
   },
 
   updateOneAccount: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const newAccountData = req.body;
-    if (!parseInt(id)) {
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const currentAccountData = await accountDataMapper.findAccountById(id);
@@ -160,8 +156,8 @@ const accountController = {
   },
 
   deleteOneAccount: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, "L'identifiant du compte est incorrect."));
     }
     const accountExist = await accountDataMapper.findAccountById(id);

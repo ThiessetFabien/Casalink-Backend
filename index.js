@@ -6,7 +6,7 @@ import debugLib from 'debug';
 import express, { urlencoded } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-// import rateLimit from 'express-rate-limit';
+import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -32,13 +32,13 @@ app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 app.use(express.json());
 
-// const globalLimiter = rateLimit({
-//   windowMs: 15 * 60 * 1000,
-//   max: 200,
-//   message: 'Too many requests from this IP, please try again after an hour',
-// });
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 2000,
+  message: 'Too many requests from this IP, please try again after an hour',
+});
 
-// app.use(globalLimiter);
+app.use(globalLimiter);
 
 // app.use(sessionMiddleware);
 app.use(bodySanitizer);

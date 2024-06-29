@@ -85,6 +85,8 @@ CREATE TABLE IF NOT EXISTS "profile_has_task" (
   "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "profile_id" INT REFERENCES "profile"("id") ON DELETE CASCADE,
   "task_id" INT REFERENCES "task"("id") ON DELETE CASCADE,
+  "validated_by_adult" BOOLEAN DEFAULT FALSE,
+  "validated_by_child" BOOLEAN DEFAULT FALSE;
   "created_at" TIMESTAMPTZ DEFAULT NOW(),
   "updated_at" TIMESTAMPTZ
 );

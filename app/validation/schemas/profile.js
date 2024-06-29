@@ -3,14 +3,14 @@ import Joi from 'joi';
 /**
  * Response of API for a profile data source
  * @typedef {object} Profile
- * @property {string} name - Points are excluded
- * @property {string} role - Points are excluded
- * @property {number} pin - Points are excluded
- * @property {string} image - Points are excluded
- * @property {number} account_id - Points are excluded
- * @property {number} score - Points are excluded
+ * @property {string} name - All caracters accepted
+ * @property {string} role - All caracters accepted
+ * @property {number} pin - All caracters accepted
+ * @property {string} image - All caracters accepted
+ * @property {number} account_id - All caracters accepted
+ * @property {number} score - All caracters accepted
  * @property {string} email - A string followed by " .net ", " .com " or " .fr ".
- * @property {string} birthdate - Points are excluded
+ * @property {string} birthdate - All caracters accepted
  * @returns {ApiJsonSucces} - a profile object
  */
 const profilePartValidator = Joi.string().pattern(/^./).allow('');

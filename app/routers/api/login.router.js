@@ -9,9 +9,8 @@ const router = express.Router();
 
 /**
 *POST /api/login/
-*@summary Post connexion of connexion by connexion id
+*@summary Post connexion
 *@tags Post
-*@param {number} id.path.required - connexion id
 *@param {loginInput} request.body.required - Profile info { email, password }
 *@return {ApiSucces} 200 - Success response - application/json
 *@return {ApiJsonError} 400 - Bad Request - application/json

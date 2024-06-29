@@ -13,7 +13,7 @@ const addressController = {
   },
 
   getAddressById: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const address = await addressDataMapper.findAddressById(id);
     if (!address) {
       return next(new ApiError(404, 'L\'adresse n\'existe pas.'));
@@ -22,7 +22,7 @@ const addressController = {
   },
 
   getAddressByAccountId: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const addresse = await addressDataMapper.findAddressByAccountId(id);
     if (!addresse) {
       return next(new ApiError(404, 'L\'adresse n\'existe pas.'));
@@ -31,7 +31,7 @@ const addressController = {
   },
 
   getAddressByHomeId: async (req, res, next) => {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
     const addresses = await addressDataMapper.findAddressByHomeId(id);
     if (!addresses) {
       return next(new ApiError(404, 'L\'adresse n\'existe pas.'));
@@ -47,8 +47,8 @@ const addressController = {
   },
 
   updateOneAddress: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant du compte est incorrect.'));
     }
     const newAddressData = req.body;
@@ -65,8 +65,8 @@ const addressController = {
   },
 
   deleteOneAddress: async (req, res, next) => {
-    const { id } = req.params;
-    if (!parseInt(id, 10)) {
+    const id = parseInt(req.params.id);
+    if (!id) {
       return next(new ApiError(401, 'L\'identifiant de l\'adresse est incorrect.'));
     }
 
