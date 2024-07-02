@@ -4,9 +4,6 @@ import debugLib from 'debug';
 import { config } from 'dotenv';
 
 config({ path: '.env.development' });
-import fs from 'fs';
-
-const publicKey = fs.readFileSync(process.env.JWT_PUBLIC_KEY_PATH, 'utf8');
 
 const debug = debugLib('app:jwtMiddleware');
 
@@ -27,7 +24,7 @@ const jwtMiddleware = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, publicKey);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     debug('Decoded JWT:', decoded);
 
     req.user = decoded;
